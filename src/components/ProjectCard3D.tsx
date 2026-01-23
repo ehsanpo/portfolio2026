@@ -26,19 +26,24 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 }) => {
   return (
     <Card3D className={className} glowColor={glowColor} intensity={15}>
-      <div className="relative w-full min-h-[500px] p-8 flex flex-col gap-6" style={{ transformStyle: 'preserve-3d', WebkitFontSmoothing: 'antialiased' }}>
+      <div className="relative h-full w-full p-8 flex flex-col justify-center gap-6" style={{ transformStyle: 'preserve-3d', WebkitFontSmoothing: 'antialiased' }}>
         
         {/* Category Badge */}
         {category && (
-          <div 
-            className="absolute -top-2 -right-2 bg-primary/30 backdrop-blur-xl border border-primary/50 text-white text-[10px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:opacity-100 transition-all duration-500 ease-out"
+          <>
+          
+            <div 
+            className="shadow-primary/30  absolute top-2 right-2 bg-primary/30 backdrop-blur-xl border border-primary/50 text-white text-[10px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:shadow-lg group-hover/card:opacity-100 transition-all duration-500 ease-out"
             style={{ 
               transform: 'translateZ(calc(var(--hover, 0) * 80px))',
-              boxShadow: '0 10px 20px rgba(0,0,0,0.3)'
+  
             }}
           >
             {category}
           </div>
+         
+          </>
+        
         )}
 
         {/* Icon/Image Container */}
@@ -95,20 +100,23 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
             )}
         </div>
 
-        {/* Footer Actions */}
+        {/* Footer Actions - Tags always visible but subtle */}
         <div 
-          className="mt-auto flex items-center justify-between opacity-0 group-hover/card:opacity-100 transition-all duration-500"
-          style={{ transform: 'translateZ(calc(var(--hover, 0) * 90px))' }}
+          className="flex items-center justify-between transition-all duration-500"
+          style={{ transform: 'translateZ(calc(var(--hover, 0) * 40px))' }}
         >
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {tags.map((tag, idx) => (
-              <span key={idx} className="text-[10px] bg-white/10 border-2 border-white/20 text-white/90 px-3 py-1 rounded-lg font-bold">
+              <span 
+                key={idx} 
+                className="text-[10px] bg-white/5 border-2 border-white/10 text-white/50 px-3 py-1 rounded-lg font-bold group-hover/card:text-white/90 group-hover/card:bg-white/10 group-hover/card:border-white/20 transition-all duration-300"
+              >
                 #{tag}
               </span>
             ))}
           </div>
-          <button className="text-primary font-black text-sm flex items-center gap-1 group/btn cursor-pointer">
-            View <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+          <button className="text-primary font-black text-sm flex items-center gap-1 opacity-0 group-hover/card:opacity-100 transition-all duration-500 cursor-pointer">
+            View <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
       </div>

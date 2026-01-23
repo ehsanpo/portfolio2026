@@ -1,0 +1,69 @@
+/* Duck Sprite Animations */
+/* Sprite sheet is 192x128 with 32x32 sprites arranged in a 6x4 grid */
+
+/* Container styles to prevent layout breaking */
+.duck-container {
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.duck-container .duck-sprite {
+	pointer-events: auto;
+}
+
+@keyframes duck-idle_normal {
+	0% {
+		background-position: 0px 0px;
+	}
+	100% {
+		background-position: -64px 0px;
+	}
+}
+
+@keyframes duck-walk_normal {
+	0% {
+		background-position: 0px -32px;
+	}
+	100% {
+		background-position: -192px -32px;
+	}
+}
+
+@keyframes duck-idle_bounce {
+	0% {
+		background-position: 0px -64px;
+	}
+	100% {
+		background-position: -128px -64px;
+	}
+}
+
+@keyframes duck-walk_bounce {
+	0% {
+		background-position: 0px -96px;
+	}
+	100% {
+		background-position: -192px -96px;
+	}
+}
+
+.duck-sprite {
+	transition: transform 0.3s ease;
+}
+
+/* Animation classes */
+.duck-sprite.idle_normal {
+	animation: duck-idle_normal 1000ms infinite steps(2);
+}
+
+.duck-sprite.walk_normal {
+	animation: duck-walk_normal 800ms infinite steps(6);
+}
+
+.duck-sprite.idle_bounce {
+	animation: duck-idle_bounce 1200ms infinite steps(4);
+}
+
+.duck-sprite.walk_bounce {
+	animation: duck-walk_bounce 800ms infinite steps(6);
+}

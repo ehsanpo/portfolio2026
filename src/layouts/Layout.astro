@@ -1,0 +1,116 @@
+---
+import { ClientRouter } from "astro:transitions";
+import {HeaderMinimal} from "@/components/Header.tsx";
+import { Footer } from "@/components/footer/Footer";
+import { getPortfolioData } from "@/utils/data";
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	imageAlt?: string;
+}
+
+const {
+	title,
+	description = "Developer Portfolio",
+	image = "/img/og-default.jpg",
+	imageAlt = "Ehsan Portfolio",
+} = Astro.props;
+
+const { navigation } = await getPortfolioData();
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImage} />
+		<meta property="og:image:alt" content={imageAlt} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={socialImage} />
+		<meta property="twitter:image:alt" content={imageAlt} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<script async defer src="https://scripts.withcabin.com/hello.js"></script>
+		<title>{title}</title>
+		<ClientRouter />
+	</head>
+	<body class="bg-white text-gray-900 dark:bg-neutral-900 dark:text-gray-100">
+		<HeaderMinimal
+		 navLinks={navigation.main}
+		 url={Astro.request.url}
+		 client:load
+			
+		/>
+		<main class="min-h-screen">
+			<slot />
+			<Footer client:load />
+		</main>
+		<!--
+		<script>
+			document.addEventListener("astro:after-swap", function () {
+				if (localStorage.getItem("theme") === "light") {
+					document.documentElement.classList.toggle("dark", false);
+				} else {
+					document.documentElement.classList.toggle("dark", true);
+				}
+			});
+		</script>
+		-->
+		<script is:inline>
+			// Easter Egg: Developer Console Message
+			console.log(
+				"%c" +
+					"\n███████╗██╗  ██╗███████╗ █████╗ ███╗   ██╗\n" +
+					"██╔════╝██║  ██║██╔════╝██╔══██╗████╗  ██║\n" +
+					"█████╗  ███████║███████╗███████║██╔██╗ ██║\n" +
+					"██╔══╝  ██╔══██║╚════██║██╔══██║██║╚██╗██║\n" +
+					"███████╗██║  ██║███████║██║  ██║██║ ╚████║\n" +
+					"╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝\n",
+				"color: #6366f1; font-weight: bold;"
+			);
+			console.log(
+				"%c👋 Hey there, curious developer!",
+				"font-size: 18px; font-weight: bold; color: #10b981;"
+			);
+			console.log(
+				"%c🔍 I see you're checking out the console. I like your style!",
+				"font-size: 14px; color: #8b5cf6;"
+			);
+			console.log(
+				"%c💡 Fun fact: This portfolio is built with Astro, React, and TailwindCSS",
+				"font-size: 14px; color: #f59e0b;"
+			);
+			console.log(
+				"%c🎮 Pro tip: Try the Konami Code! (↑↑↓↓←→←→BA)",
+				"font-size: 14px; color: #ec4899; font-style: italic;"
+			);
+			console.log(
+				"%c📧 Want to chat? Reach out at the contact page!",
+				"font-size: 14px; color: #06b6d4;"
+			);
+			console.log("%c⭐ GitHub: github.com/ehsanpo", "font-size: 14px; color: #a855f7;");
+		</script>
+	</body>
+</html>

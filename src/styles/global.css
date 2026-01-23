@@ -9,6 +9,7 @@
   --color-secondary-500: #F24E1E;
   --color-secondary-600: #F24E1E;
   --color-accent: #1ABCFE;
+  --color-accent-200: #A4EEFD;
   --color-accent-500: #1ABCFE;
   --color-accent-600: #0099CC;
   --font-kabel: "Kabel", sans-serif;
@@ -98,6 +99,10 @@ body {
 
 .clip {
   clip-path: polygon(0 0, 25% 0, calc(25% + 9px) 9px, calc(75% - 9px) 9px, 75% 0, 100% 0, 100% 100%, 60% 100%, calc(60% - 8px) calc(100% - 8px), calc(40% + 8px) calc(100% - 8px), 40% 100%, 0 100%);
+}
+
+.clip2 {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
 }
 
 .clip6 {

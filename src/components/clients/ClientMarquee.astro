@@ -1,0 +1,42 @@
+---
+import { getPortfolioItems } from "../../utils/data";
+import MarqueeContent from "./MarqueeContent.astro";
+
+const portfolioItems = await getPortfolioItems();
+// Get unique clients and not empty
+const uniqueClients = [...new Set(portfolioItems.map((item) => item.client))].filter(Boolean);
+---
+
+<div class="clip bg-white py-12 dark:bg-neutral-800">
+	<div class="container mx-auto mb-8 px-4">
+		<h2 class="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-white">Trusted By</h2>
+	</div>
+
+	<div class="relative overflow-hidden">
+		<div class="marquee-container">
+			<MarqueeContent clients={uniqueClients} />
+		</div>
+	</div>
+</div>
+
+<style>
+	.marquee-container {
+		display: flex;
+		animation: scroll 30s linear infinite;
+		gap: 2rem;
+	}
+
+	@keyframes scroll {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	/* Pause animation on hover */
+	.marquee-container:hover {
+		animation-play-state: paused;
+	}
+</style>

@@ -43,6 +43,40 @@
   }
 }
 
+@font-face {
+  font-family: "Basement";
+  src: url("/fonts/basement.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Kabel";
+  src: url("/fonts/Kabel.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Kabel", sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Basement", sans-serif;
+  }
+}
+
+
 .dark body {
   background-image: url(/page-bottom-bg.jpg);
   background-position: bottom;

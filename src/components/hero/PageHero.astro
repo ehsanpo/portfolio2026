@@ -1,0 +1,21 @@
+---
+import { Heading } from "../ui/heading";
+
+interface Props {
+	title: string;
+	subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="bg-gray-50 pb-8 pt-14 dark:bg-neutral-800">
+	<div class="container mx-auto px-4">
+		<div class="mx-auto max-w-3xl text-center">
+			<Heading level="h1" gradient shadow className="mb-4 text-4xl md:text-5xl" client:idle>
+				{title}
+			</Heading>
+			{subtitle && <p class="text-xl text-gray-600 dark:text-gray-400">{subtitle}</p>}
+		</div>
+	</div>
+</section>

@@ -14,7 +14,12 @@ export default defineConfig({
   site: "https://ehsan-pourhadi.com/",
 	base: "",
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+     ssr: {
+        noExternal: [
+            'gsap'
+        ]
+    }
   },
 
   integrations: [react(), mdx(), sitemap()]

@@ -1,0 +1,23 @@
+---
+import Heading from "@/components/ui/heading/Heading";
+import GitHubContributions from "../components/GitHubContributions";
+---
+
+<section class="bg-white py-16 dark:bg-gray-900">
+	<div class="container mx-auto px-4">
+		<div class="mb-12 text-center">
+			<Heading level="h2" gradient floating backplate client:idle>GitHub Activity</Heading>
+			<p class="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+				A visual representation of my coding activity and contributions over time.
+			</p>
+		</div>
+
+		<div class="mx-auto max-w-6xl">
+			<GitHubContributions
+				username="ehsanpo"
+				className="rounded-lg bg-gray-50 px-6 pb-4 pt-6 shadow-sm dark:bg-gray-800"
+				client:load
+			/>
+		</div>
+	</div>
+</section>

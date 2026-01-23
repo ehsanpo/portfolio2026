@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useRef, useEffect, useId } from 'react';
 import Card3D from './Card3D';
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectCard3DProps {
-  image?: string;
+  image?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
   icon?: string;
   title: string;
   description?: string;
   date?: string;
-  category?: string;
+  categories?: string[] | string;
   tags?: string[];
   className?: string;
   glowColor?: string;
+  layout?: number;
 }
 
 export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
@@ -19,43 +29,278 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   title,
   description,
   date,
-  category,
+  categories,
   tags = [],
   className = '',
   glowColor = 'rgba(255, 255, 255, 0.2)',
+  layout: propLayout = 0,
 }) => {
+  const idSuffix = useId().replace(/:/g, '');
+  const layout = propLayout % 6;
+
+  const contentWrapRef = useRef<HTMLDivElement>(null);
+	const maskRef = useRef<SVGCircleElement>(null);
+	const imageRef = useRef<SVGImageElement>(null);
+  const imageWidth = image?.width || 300;
+  const imageHeight = image?.height || 300;
+
+	// Setup animations
+	useEffect(() => {
+		if (
+			!contentWrapRef.current ||
+			!maskRef.current ||
+			!imageRef.current
+		)
+			return;
+
+		const isCircle = maskRef.current.tagName.toLowerCase() === "circle";
+
+		const maskAnimation = gsap.fromTo(maskRef.current, {
+			attr: isCircle
+				? { r: maskRef.current.getAttribute("r") || 0 }
+				: { d: maskRef.current.getAttribute("d") || "" },
+		}, {
+			ease: "none",// @ts-ignore
+			attr: isCircle 
+				? { r: maskRef.current.dataset.valueFinal }
+				: { d: maskRef.current.dataset.valueFinal },
+		});
+
+		// Create scroll triggers
+		const st = ScrollTrigger.create({
+			trigger: contentWrapRef.current,
+			start: "top bottom-=20%", //clamp(top bottom-=20%)
+			end: "+=60%",
+			scrub: 1,
+			animation: maskAnimation,
+		});
+
+		return () => {
+			st.kill();
+		};
+	}, []);
+
+	const Filters = [
+		<defs key="f1">
+			<filter id={`displacementFilter1-${layout}-${idSuffix}`}>
+				<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise" />
+				<feDisplacementMap
+					in="SourceGraphic"
+					in2="noise"
+					scale="50"
+					xChannelSelector="R"
+					yChannelSelector="G"
+				/>
+			</filter>
+			<mask id={`circleMask${layout}-${idSuffix}`}>
+				<circle
+					ref={maskRef}
+					cx="50%"
+					cy="50%"
+					r="0"
+					data-value-final={imageWidth}
+					fill="white"
+					className="mask"
+					style={{ filter: `url(#displacementFilter1-${layout}-${idSuffix})` }}
+				/>
+			</mask>
+		</defs>,
+		<defs key="f2">
+			<filter id={`displacementFilter2-${layout}-${idSuffix}`}>
+				<feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise" />
+				<feDisplacementMap
+					in="SourceGraphic"
+					in2="noise"
+					result="displacement"
+					scale="100"
+					xChannelSelector="R"
+					yChannelSelector="G"
+				/>
+				<feMorphology operator="dilate" radius="2" result="morph" in="displacement" />
+			</filter>
+			<mask id={`circleMask${layout}-${idSuffix}`}>
+				<circle
+					ref={maskRef}
+					cx="50%"
+					cy="50%"
+					r="0"
+					data-value-final={imageWidth}
+					fill="white"
+					className="mask"
+					style={{ filter: `url(#displacementFilter2-${layout}-${idSuffix})` }}
+				/>
+			</mask>
+		</defs>,
+
+		<defs key="f3">
+			<filter id={`displacementFilter4-${layout}-${idSuffix}`}>
+				<feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="1" result="noise" />
+				<feDisplacementMap
+					in="SourceGraphic"
+					in2="noise"
+					scale="50"
+					xChannelSelector="R"
+					yChannelSelector="G"
+				/>
+			</filter>
+			<mask id={`circleMask${layout}-${idSuffix}`}>
+				<circle
+					ref={maskRef}
+					cx="50%"
+					cy="50%"
+					r="0"
+					data-value-final={imageWidth}
+					fill="white"
+					className="mask"
+					style={{ filter: `url(#displacementFilter4-${layout}-${idSuffix})` }}
+				/>
+			</mask>
+		</defs>,
+		<defs key="f4">
+			<filter id={`displacementFilter5-${layout}-${idSuffix}`}>
+				<feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
+				<feDisplacementMap
+					in="SourceGraphic"
+					in2="noise"
+					scale="150"
+					xChannelSelector="R"
+					yChannelSelector="G"
+				/>
+			</filter>
+			<mask id={`circleMask${layout}-${idSuffix}`}>
+				<circle
+					ref={maskRef}
+					cx="50%"
+					cy="50%"
+					r="0"
+					data-value-final={imageWidth}
+					fill="white"
+					className="mask"
+					style={{ filter: `url(#displacementFilter5-${layout}-${idSuffix})` }}
+				/>
+			</mask>
+		</defs>,
+		<defs key="f5">
+			<filter id={`displacementFilter6-${layout}-${idSuffix}`}>
+				<feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="noise" />
+				<feDisplacementMap
+					in="SourceGraphic"
+					in2="noise"
+					result="displacement"
+					scale="150"
+					xChannelSelector="R"
+					yChannelSelector="G"
+				/>
+				<feGaussianBlur in="displacement" stdDeviation="10" />
+			</filter>
+			<mask id={`circleMask${layout}-${idSuffix}`}>
+				<circle
+					ref={maskRef}
+					cx="50%"
+					cy="50%"
+					r="0"
+					data-value-final={imageWidth}
+					fill="white"
+					className="mask"
+					style={{ filter: `url(#displacementFilter6-${layout}-${idSuffix})` }}
+				/>
+			</mask>
+		</defs>,
+		<defs key="f6">
+			<filter id={`displacementFilter7-${layout}-${idSuffix}`}>
+				<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" />
+				<feDisplacementMap
+					in="SourceGraphic"
+					in2="noise"
+					scale="120"
+					xChannelSelector="R"
+					yChannelSelector="G"
+				/>
+			</filter>
+			<mask id={`circleMask${layout}-${idSuffix}`}>
+				<circle
+					ref={maskRef}
+					cx="50%"
+					cy="50%"
+					r="0"
+					data-value-final={imageWidth}
+					fill="white"
+					className="mask"
+					style={{ filter: `url(#displacementFilter7-${layout}-${idSuffix})` }}
+				/>
+			</mask>
+		</defs>,
+	];
+
+
+
+
+
+
+
+
+
+
+
+
+  const categoryList = Array.isArray(categories) 
+    ? categories 
+    : categories 
+      ? [categories] 
+      : [];
+
+  const displayTags = tags.slice(0, 3);
+
   return (
     <Card3D className={className} glowColor={glowColor} intensity={15}>
-      <div className="relative h-full w-full p-8 flex flex-col justify-center gap-6" style={{ transformStyle: 'preserve-3d', WebkitFontSmoothing: 'antialiased' }}>
+      <div ref={contentWrapRef} className="relative h-full w-full p-8 flex flex-col gap-6" style={{ transformStyle: 'preserve-3d', WebkitFontSmoothing: 'antialiased' }}>
         
-        {/* Category Badge */}
-        {category && (
-          <>
-          
-            <div 
-            className="shadow-primary/30  absolute top-2 right-2 bg-primary/30 backdrop-blur-xl border border-primary/50 text-white text-[10px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:shadow-lg group-hover/card:opacity-100 transition-all duration-500 ease-out"
+        {/* Category Badges */}
+        <div className="absolute top-4 right-4 flex gap-2 items-end" 
             style={{ 
-              transform: 'translateZ(calc(var(--hover, 0) * 80px))',
-  
-            }}
-          >
-            {category}
-          </div>
-         
-          </>
-        
-        )}
+                transform: `translateZ(calc(var(--hover, 0) * 80px))`,
+              }}>
+          {categoryList.map((cat, idx) => (
+            <div 
+              key={idx}
+              className="shadow-primary/30 bg-primary/80 backdrop-blur-xl border border-primary/50 text-white text-[10px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:shadow-lg group-hover/card:opacity-100 transition-all duration-500 ease-out whitespace-nowrap"
+              
+            >
+              {cat}
+            </div>
+          ))}
+        </div>
 
         {/* Icon/Image Container */}
         <div 
-          className="relative w-full aspect-square rounded-[30px] overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 ease-out"
+          className="relative w-full  rounded-[24px] overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 ease-out"
           style={{ 
             transform: 'translateZ(calc(var(--hover, 0) * 50px)) scale(calc(1 + var(--hover, 0) * 0.05))', 
             boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
           }}
         >
           {image ? (
-            <img src={image} alt={title} className="w-full h-full object-cover" />
+            <svg
+						className={`w-full h-full content__img content__img--${layout}`}
+						width={imageWidth}
+						height={imageHeight}
+						version="1.1"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlnsXlink="http://www.w3.org/1999/xlink"
+						viewBox={`0 0 ${imageWidth} ${imageHeight}`}
+						preserveAspectRatio="none"
+					>
+						{Filters[layout]}
+						<image
+							ref={imageRef}
+							xlinkHref={image.src}
+							x="0" // Ensure the image starts at the top-left corner
+							y="0"
+							width="100%" // Ensures the image fills the container
+							height="100%" // Ensures the image fills the container
+							mask={`url(#circleMask${layout}-${idSuffix})`}
+						/>
+					</svg>
           ) : icon ? (
             <div className="text-7xl drop-shadow-2xl transition-all duration-500" style={{ transform: 'translateZ(20px)' }}>
               {icon}
@@ -106,18 +351,17 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
           style={{ transform: 'translateZ(calc(var(--hover, 0) * 40px))' }}
         >
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag, idx) => (
+            {displayTags.map((tag, idx) => (
               <span 
                 key={idx} 
-                className="text-[10px] bg-white/5 border-2 border-white/10 text-white/50 px-3 py-1 rounded-lg font-bold group-hover/card:text-white/90 group-hover/card:bg-white/10 group-hover/card:border-white/20 transition-all duration-300"
+                className="text-[10px] bg-white/5 border-2 border-white/10 text-white/50 px-3 py-1 rounded-lg font-bold
+                group-hover/card:text-white/90 group-hover/card:bg-secondary/10 group-hover/card:border-secondary/20 transition-all duration-300"
               >
                 #{tag}
               </span>
             ))}
           </div>
-          <button className="text-primary font-black text-sm flex items-center gap-1 opacity-0 group-hover/card:opacity-100 transition-all duration-500 cursor-pointer">
-            View <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </button>
+        
         </div>
       </div>
     </Card3D>

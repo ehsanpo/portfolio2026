@@ -1,0 +1,81 @@
+---
+import type React from "react";
+import { Heading } from "../ui/heading";
+import Tilt from "react-parallax-tilt";
+
+interface Props {
+	text?: string;
+	title: string;
+	subtitle?: string | React.ReactNode;
+	subtitleText?: string;
+	children?: React.ReactNode;
+	fullHeight?: boolean;
+	img?: string;
+}
+
+const { title, subtitle, text, subtitleText, fullHeight = false, img } = Astro.props;
+---
+
+<section
+	class={`bg-offwhite dark:bg-neutral-900 ${fullHeight ? "min-h-screen" : "pt-24 pb-8"} flex items-center`}
+>
+	<div class={`container mx-auto px-4 ${img && "flex flex-col md:flex-row items-center gap-4"}`}>
+		<div class="mx-auto flex-1 self-center">
+			{
+				text && (
+					<Heading level="h6" className={`mb-1 !pt-0 !text-left !text-xl`}>
+						{text}
+					</Heading>
+				)
+			}
+
+			<Heading
+				level="h1"
+				shadow
+				gradient
+				className={`${fullHeight ? "!text-4xl md:!text-7xl" : "text-4xl md:!text-5xl"} mb-1 !pt-0 !text-left`}
+			>
+				{title}
+			</Heading>
+			{
+				subtitle && (
+					<p
+						class={`${fullHeight ? "text-xl font-bold md:text-4xl" : "text-xl"} mb-2 text-black dark:text-secondary-500`}
+					>
+						{subtitle}
+					</p>
+				)
+			}
+			{
+				subtitleText && (
+					<p class={`mb-6 max-w-sm text-xl text-gray-600 dark:text-gray-400`}>{subtitleText}</p>
+				)
+			}
+			<slot />
+		</div>
+		{
+			img && (
+				<div class="flex-1">
+					<Tilt
+						client:load
+						perspective={1000}
+						className="portfolio-hero-image-tilt"
+						glareEnable={true}
+						glareMaxOpacity={0.8}
+						glareColor="#ffffff"
+						glarePosition="bottom"
+						glareBorderRadius="20px"
+					>
+						<div class="w-full">
+							<div>
+								{" "}
+								<img src={img} class="relative z-20 w-full rounded-lg object-cover shadow-lg" />
+								<div class="absolute inset-0 z-20 rotate-3 transform rounded-lg bg-gradient-to-r from-primary-500/80 to-secondary-500/80 mix-blend-soft-light" />
+							</div>
+						</div>
+					</Tilt>
+				</div>
+			)
+		}
+	</div>
+</section>

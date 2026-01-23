@@ -3,10 +3,14 @@
 
 @theme {
   --color-primary: #FFC700;
+  --color-primary-500: #FFC700;
+  --color-primary-600: #FFC700;
   --color-secondary: #F24E1E;
-  --color-accent: #F24E1E;
-  --color-background: #000000;
-  --color-foreground: #FFFFFF;
+  --color-secondary-500: #F24E1E;
+  --color-secondary-600: #F24E1E;
+  --color-accent: #1ABCFE;
+  --color-accent-500: #1ABCFE;
+  --color-accent-600: #0099CC;
 
   @keyframes fade-in-up {
     from {
@@ -26,8 +30,14 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-primary: #FFC700;
+    --color-primary-500: #FFC700;
+    --color-primary-600: #FFC700;
     --color-secondary: #F24E1E;
-    --color-accent: #F24E1E;
+    --color-secondary-500: #F24E1E;
+    --color-secondary-600: #F24E1E;
+    --color-accent: #1ABCFE;
+    --color-accent-500: #1ABCFE;
+    --color-accent-600: #0099CC;
     --color-background: #000000;
     --color-foreground: #FFFFFF;
   }

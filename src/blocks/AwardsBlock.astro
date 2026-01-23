@@ -1,0 +1,57 @@
+---
+import { getPortfolioData } from "@/utils/data";
+import Heading from "@/components/ui/heading/Heading";
+import { Image } from "astro:assets";
+
+// Import award images from assets
+import cannen from "@/assets/awards/cannen.png";
+import guldagg from "@/assets/awards/guldagg.png";
+import svenskadesign from "@/assets/awards/svenskadesign.png";
+
+const { awards } = await getPortfolioData();
+
+// Map image paths to imported assets
+const imageMap: Record<string, any> = {
+	"/img/awards/cannen.png": cannen,
+	"/img/awards/guldagg.png": guldagg,
+	"/img/awards/svenskadesign.png": svenskadesign,
+};
+
+// Replace string paths with imported ImageMetadata
+const awardsWithImages = awards.map((award) => ({
+	...award,
+	image: imageMap[award.images] || award.images,
+}));
+---
+
+<section class="bg-white py-20 dark:bg-neutral-800">
+	<div class="container mx-auto px-4">
+		<Heading level="h3" gradient floating backplate client:idle> Awards </Heading>
+
+		<div class="grid grid-cols-1 gap-8 text-center md:grid-cols-2 lg:grid-cols-3">
+			{
+				awardsWithImages.map((award) => (
+					<a
+						href={award.link}
+						class="clip6 group rounded-lg bg-opium p-6 transition-transform hover:-translate-y-1 dark:bg-secondary-900"
+					>
+						<div class="">
+							<Image
+								src={award.image}
+								alt={award.name}
+								widths={[480, 768, 1024]}
+								sizes="(max-width: 768px) 100vw, 33vw"
+								format="webp"
+								quality={80}
+								loading="lazy"
+								class="mx-auto mb-4 rounded-lg transition-transform group-hover:scale-105"
+							/>
+							<h3 class="mb-2 text-xl font-semibold text-secondary-400">{award.name}</h3>
+							<p class="dark:text-secondary-200">{award.description}</p>
+						</div>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</section>

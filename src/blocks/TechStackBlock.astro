@@ -1,0 +1,31 @@
+---
+import Button from "@/components/ui/Button";
+import SkillsInfo from "@/components/Skillsinfo";
+import StackCard from "@/components/StackCard";
+import { Heading } from "@/components/ui/heading";
+
+const { stacks } = Astro.props;
+---
+
+<section class="">
+	<div class="container mx-auto">
+		<h2 class="text-primary mb-12 text-center font-basement text-4xl"></h2>
+		<Heading
+			level="h2"
+			gradient
+			floating
+			backplate
+			className="pb-12 text-center text-4xl"
+			client:idle
+		>
+			Stacks
+		</Heading>
+		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+			{stacks.map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)}
+		</div>
+		<SkillsInfo />
+		<div class="mt-12 text-center">
+			<Button href="/skills" text="View All Stacks →" />
+		</div>
+	</div>
+</section>

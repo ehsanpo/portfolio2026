@@ -1,0 +1,54 @@
+---
+import { Heading } from "@/components/ui/heading";
+import { getPortfolioItems } from "@/utils/data";
+import { ProjectCard3D } from "@/components/ProjectCard3D";
+
+const portfolioItems = await getPortfolioItems();
+
+const filteredAndSortedItems = portfolioItems
+  .filter((item) => item.onHome)
+  .sort((a, b) => {
+    if (!a.date || !b.date) return 0;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+---
+
+<section id="selected-work" class="py-24 bg-neutral-950 overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="mb-16">
+      <Heading
+        level="h2"
+        gradient
+        floating
+        backplate
+        className="pb-4"
+        client:load
+      >
+        Selected Work
+      </Heading>
+    </div>
+
+    <div class="flex flex-wrap gap-8 justify-center">
+      {
+        filteredAndSortedItems.map((item, index) => (
+          <div class="flex-1 min-w-[min(100%,320px)] lg:min-w-[calc(33.333%-2rem)]">
+            <ProjectCard3D
+              client:visible
+              key={item.slug || item.title}
+              title={item.title}
+              description={item.description}
+              date={item.date}
+              categories={item.category}
+              tags={item.tag}
+              image={item.cover}
+              icon={item.logo?.src}
+              glowColor="rgba(255, 238, 8, 0.2)"
+              className="h-full"
+              layout={index}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

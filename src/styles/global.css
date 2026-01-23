@@ -11,6 +11,13 @@
   --color-accent: #1ABCFE;
   --color-accent-500: #1ABCFE;
   --color-accent-600: #0099CC;
+  --font-kabel: "Kabel", sans-serif;
+  --font-basement: "Basement", sans-serif;
+  --color-white: #F9F4EA;
+  --color-offwhite: #DAD3CA;
+  --color-opium: #8A7F7D;
+  --color-neutral-900: #050809;
+  --color-neutral-800: #072f45;
 
   @keyframes fade-in-up {
     from {

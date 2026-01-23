@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const getColorClasses = () => {
     if (variant === "secondary") {
-      return "from-accent via-accent-600 to-accent-500 hover:to-secondary-600 focus:outline-secondary-600 outline-secondary-600 hover:outline-secondary-600";
+      return "from-accent via-accent-500 to-accent-600 hover:to-secondary-600 focus:outline-secondary-600 outline-accent-600 hover:outline-accent-500";
     }
     return "from-primary via-from-primary-600 to-secondary-500 hover:to-accent-600 focus:outline-accent-600 outline-secondary-600 hover:outline-accent-600";
   };

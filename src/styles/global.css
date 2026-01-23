@@ -62,3 +62,8 @@
 .clip6 {
   clip-path: polygon(-1px 16px, 0px 16px, 8px 8px, 8px 8px, 24px 8px, 32px 0px, 32px -1px, calc(100% - 32px) -1px, calc(100% - 32px) 0px, calc(100% - 24px) 8px, calc(100% - 8px) 8px, calc(100% - 8px) 8px, 100% 16px, calc(100% + 1px) 16px, calc(100% + 1px) calc(100% + 1px), calc(75% + 8px) calc(100% + 1px), calc(75% + 8px) 100%, 75% calc(100% - 8px), 25% calc(100% - 8px), calc(25% - 8px) 100%, calc(25% - 8px) calc(100% + 1px), -1px calc(100% + 1px));
 }
+
+.pers-hover:hover {
+  transform: translateZ(calc(var(--hover, 0) * 50px)) scale(calc(1 + var(--hover, 0) * 0.05));
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}

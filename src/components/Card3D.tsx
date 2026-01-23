@@ -1,8 +1,10 @@
 import React, { useRef, useState, type ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 interface Card3DProps {
   children: ReactNode;
   className?: string;
+  childClassName?: string;
   intensity?: number;
   glowColor?: string;
   shine?: boolean;
@@ -16,7 +18,8 @@ interface Card3DProps {
 export const Card3D: React.FC<Card3DProps> = ({
   children,
   className = '',
-  intensity = 20,
+  childClassName = '',
+  intensity = 15,
   glowColor = 'rgba(255, 255, 255, 0.3)',
   shine = true,
 }) => {
@@ -71,7 +74,7 @@ export const Card3D: React.FC<Card3DProps> = ({
       >
         {/* Dynamic Shadow - Tilts with card */}
         <div 
-          className="absolute inset-4 rounded-[20px] opacity-0 group-hover/card:opacity-50 transition-all duration-500 blur-[40px]"
+          className="absolute inset-4 rounded-[16px] opacity-0 group-hover/card:opacity-50 transition-all duration-500 blur-[40px]"
           style={{ 
             transform: 'translateZ(-50px)',
             background: glowColor,
@@ -83,11 +86,14 @@ export const Card3D: React.FC<Card3DProps> = ({
         {/* Content Container */}
         <div className="relative z-10 w-full h-full" style={{ transformStyle: 'preserve-3d' }}>
           {/* Base Card Layer - Single source of border and radius */}
-          <div className="absolute inset-0 bg-linear-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/15 rounded-[20px] shadow-2xl" />
+          <div className={cn(
+              "absolute inset-0 bg-linear-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/15 rounded-[16px] shadow-2xl",
+              childClassName
+          )} />
 
           {/* Glow Layer */}
           <div 
-            className="absolute inset-px opacity-0 group-hover/card:opacity-30 transition-opacity duration-300 rounded-[20px] pointer-events-none"
+            className="absolute inset-px opacity-0 group-hover/card:opacity-30 transition-opacity duration-300 rounded-[16px] pointer-events-none"
             style={{
               background: `radial-gradient(circle at calc(50% + var(--x, 0) * 50%) calc(50% + var(--y, 0) * 50%), ${glowColor}, transparent 50%)`
             }}
@@ -96,7 +102,7 @@ export const Card3D: React.FC<Card3DProps> = ({
           {/* Shine Layer - Subtle and narrowed */}
           {shine && (
             <div 
-              className="absolute inset-px opacity-0 group-hover/card:opacity-10 transition-opacity duration-500 rounded-[20px] pointer-events-none blur-sm"
+              className="absolute inset-px opacity-0 group-hover/card:opacity-10 transition-opacity duration-500 rounded-[16px] pointer-events-none blur-sm"
               style={{
                 background: `linear-gradient(135deg, transparent 10%, white calc(10% + var(--x, 0) * 90%), transparent 65%)`
               }}

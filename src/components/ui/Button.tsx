@@ -18,19 +18,20 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const getColorClasses = () => {
     if (variant === "secondary") {
-      return "border-secondary-600 text-secondary-600 hover:bg-secondary-600 hover:shadow-secondary-500 active:border-secondary-100";
+      return "from-accent via-accent-600 to-accent-500 hover:to-secondary-600 focus:outline-secondary-600 outline-secondary-600 hover:outline-secondary-600";
     }
-    return "border-primary-600 text-primary-600 hover:bg-primary-600 hover:shadow-primary-500 active:border-primary-100";
+    return "from-primary via-from-primary-600 to-secondary-500 hover:to-accent-600 focus:outline-accent-600 outline-secondary-600 hover:outline-accent-600";
   };
 
   return (
     <a
       href={href}
       className={twMerge(
-        `group flex relative transition-all text-center items-center 
+        `group inline-flex relative transition-all text-center items-center 
         justify-center duration-400 ease-in-out outline focus:outline-offset-4 oultine-offset-base-900 font-medium 
-        focus-visible:outline-none focus:outline-2 text-black bg-linear-to-tr/oklch from-primary via-from-primary-600 to-secondary-500 hover:to-accent-600 
-        focus:outline-accent-600 outline-secondary-600 hover:outline-accent-600 h-12 px-8 py-3 text-lg rounded-xl`,
+        focus-visible:outline-none focus:outline-2 text-black bg-linear-to-tr/oklch
+        h-12 px-8 py-3 text-lg rounded-xl`,
+        getColorClasses(),
         className,
       )}
       target={target}
@@ -45,10 +46,7 @@ const Button: React.FC<ButtonProps> = ({
           </div>
         </div>
       </div>
-      <span
-        style={{ "--bg": `var(--${variant})` } as React.CSSProperties}
-        className="glitch-effect absolute inset-0 z-10 hidden group-hover:block"
-      ></span>
+      
     </a>
   );
 };

@@ -964,7 +964,7 @@
 			"id": 103,
 			"name": "Redis",
 			"icon": "/img/timeline-icons/redis.svg",
-			"duration": "2020-2021"
+			"duration": "2020-2026"
 		},
 		{
 			"id": 104,
@@ -1018,7 +1018,7 @@
 			"id": 17,
 			"name": "PostgreSQL",
 			"icon": "/img/timeline-icons/postgresql.svg",
-			"duration": "2021-2022"
+			"duration": "2021-2026"
 		},
 		{
 			"id": 18,
@@ -1315,15 +1315,15 @@
 	"stacks": [
 		{
 			"slug": "Front-end",
-			"labels": ["React", "Gatsby", "Next.js", "TypeScript", "Css"],
+			"labels": ["React", "Astro", "Next.js", "TypeScript", "Css"],
 			"icon": "/img/stacks/front-end.svg",
-			"data": ["10", "10", "9", "8", "10"]
+			"data": ["10", "9", "9", "8", "10"]
 		},
 		{
 			"slug": "Backend",
-			"labels": ["Node.js", "PHP", "Ruby on Rails", "Rest API", "GraphQL"],
+			"labels": ["Node.js","Rest API", "PHP", "Ruby on Rails", "Go"],
 			"icon": "/img/stacks/back-end.svg",
-			"data": ["10", "9", "7", "10", "10"]
+			"data": ["10", "10", "8", "7", "4"]
 		},
 		{
 			"slug": "Database",
@@ -1468,7 +1468,7 @@
 			"id": 4,
 			"name": "Timothy Alexis Vass",
 			"title": "System Developer at Bredband2",
-			"img": "/img/testimonial/timmy.jpg",
+			"img": "/img/testimonial/timothy.jpg",
 			"short": "Ehsan is a good influence and will contribute. Since he is helpful, curious and kind, he will make an extra effort to participate and investigate an issue even if it isn't his primary responsibility.",
 			"desc": "Ehsan is intelligent, sociable, helpful and really good at what he does. We worked together in the front-end team when I started at Bredband2, before I changed to backend. Ehsan is a good influence and will contribute. Since he is helpful, curious and kind, he will make an extra effort to participate and investigate an issue even if it is not his primary responsibility. His cheerful attitude is very valuable since he will uplift others, which in combination with his professional qualities makes him a really great and dedicated colleague. We shared many lunches, laughs and interesting conversations together. I definitely recommend Ehsan for these reasons!"
 		},

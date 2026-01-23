@@ -3,8 +3,9 @@ import Button from "@/components/ui/Button";
 import SkillsInfo from "@/components/Skillsinfo";
 import StackCard from "@/components/StackCard";
 import { Heading } from "@/components/ui/heading";
+import { getPortfolioData } from "@/utils/data";
+const { stacks } = await getPortfolioData();
 
-const { stacks } = Astro.props;
 ---
 
 <section class="">
@@ -21,7 +22,7 @@ const { stacks } = Astro.props;
 			Stacks
 		</Heading>
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{stacks.map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)}
+			{stacks.slice(0, 3).map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)}
 		</div>
 		<SkillsInfo />
 		<div class="mt-12 text-center">

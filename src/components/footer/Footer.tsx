@@ -229,7 +229,7 @@ export function Footer({
 					<div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
 						{/* Copyright */}
 						<div className="font-kabel flex items-center space-x-1 text-xs dark:text-gray-100">
-							<span>© 2025 Ehsan Pourhadi. All rights reserved.</span>
+							<span>© 2026 Ehsan Pourhadi. All rights reserved.</span>
 							<div className="flex items-center space-x-1">
 								<span>Made with</span>
 								

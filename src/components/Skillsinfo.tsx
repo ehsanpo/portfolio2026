@@ -20,7 +20,7 @@ const SkillsInfo = ({ show }: { show?: boolean }) => {
 				</button>
 
 				<div className="clip invisible absolute bottom-full left-1/2 w-[400px] max-w-[100vw] -translate-x-1/2 translate-y-2 transform opacity-0 transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-					<div className="relative rounded-2xl border bg-gray-300 bg-gradient-to-br p-4 shadow-[0_0_30px_rgba(79,70,229,0.15)] backdrop-blur-md dark:border-white/10 dark:bg-neutral-800">
+					<div className="relative rounded-2xl border bg-gray-300 bg-gradient-to-br p-4 shadow-[0_0_30px_rgba(79,70,229,0.15)] backdrop-blur-md dark:border-white/10 dark:bg-neutral-700">
 						<ul className="space-y-2">
 							<li>
 								<span className="font-basement text-primary/60">Beginner: </span>

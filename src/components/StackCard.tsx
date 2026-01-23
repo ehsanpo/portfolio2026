@@ -58,7 +58,7 @@ export default function StackCard({ slug, labels, icon, data, parentIndex }: Sta
 
 						return (
 							<div key={label} className="group/stat relative" >
-								<div className="clip2 rounded bg-neutral-800 px-2 py-2 group-hover/stat:translate-z-2 group-hover/stat:scale-112 group-hover/stat:shadow-xl transition-all duration-300 "
+								<div className="clip2 rounded bg-neutral-700/30 px-2 py-2 group-hover/stat:translate-z-2 group-hover/stat:scale-112 group-hover/stat:shadow-xl transition-all duration-300 "
 								>
 									<div className="flex justify-between gap-2">
 										<span className="text-gray-700 dark:text-gray-300">

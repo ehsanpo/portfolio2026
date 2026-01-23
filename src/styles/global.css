@@ -85,7 +85,7 @@ body {
 
 
 .dark body {
-  background-image: url(/page-bottom-bg.jpg);
+  background-image: url(/img/page-bottom-bg.jpg);
   background-position: bottom;
   background-repeat: no-repeat;
 }

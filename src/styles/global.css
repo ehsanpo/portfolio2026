@@ -114,3 +114,50 @@ body {
   transform: translateZ(calc(var(--hover, 0) * 50px)) scale(calc(1 + var(--hover, 0) * 0.05));
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
+
+
+.portfolio-hero-box {
+  width: 100%;
+}
+
+.portfolio-hero-box.porfolio-hero-medium {
+  width: 40%;
+  position: absolute;
+  top: 70%;
+  right: 0;
+  margin-top: -10%;
+}
+
+.portfolio-hero-box.porfolio-hero-small {
+  width: 25%;
+  position: absolute;
+  top: -100px;
+  left: -10%;
+}
+
+.portfolio-hero-box.porfolio-hero-small--right {
+  width: 25%;
+  position: absolute;
+  top: -20%;
+  left: -10%;
+}
+
+.portfolio-hero-image-tilt {
+  transform-style: preserve-3d;
+}
+
+.portfolio-hero-image-tilt>div:first-child {
+  transform: translateZ(1px);
+}
+
+.portfolio-hero-image-tilt>div:nth-child(2) {
+  transform: translateZ(20px);
+}
+
+.portfolio-hero-image-tilt div:nth-child(3) {
+  transform: translateZ(40px);
+}
+
+.portfolio-hero-image-tilt div:nth-child(4) {
+  transform: translateZ(30px);
+}

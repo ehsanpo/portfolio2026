@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHero from "../../components/hero/PageHero.astro";
+import { getPortfolioItems } from "../../utils/data";
+import PortfolioFilter from "@/components/PortfolioFilter";
+import { ProjectCard3D } from "@/components/ProjectCard3D";
+
+const portfolioItems = await getPortfolioItems();
+const sortedItems = portfolioItems.sort((a, b) => {
+	if (a.onHome !== b.onHome) return b.onHome ? 1 : -1;
+	return new Date(b.date).getTime() - new Date(a.date).getTime();
+});
+
+const allCategories = [...new Set(portfolioItems.flatMap((entry) => entry.category))];
+---
+
+<Layout
+	title="Portfolio - Work"
+	description="A showcase of my selected works and projects"
+	image="/img/og-default.jpg"
+	imageAlt="Ehsan's Portfolio - Selected Works and Projects"
+>
+	<PageHero title="Portfolio" subtitle="A showcase of my selected works and projects" />
+	<div class="py-20">
+		<div class="container mx-auto px-4">
+			<PortfolioFilter categories={allCategories} category="all" client:load />
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{
+					sortedItems.map((item, index) => (
+						<ProjectCard3D
+							title={item.title || ""}
+							description={item.tagline || ""}
+							date={item.date}
+							categories={item.category}
+							tags={item.tag}
+							image={
+								item.background_image
+									? {
+											src: item.background_image.src || `/img/${item.background_image}`,
+											alt: item.title || "",
+											width: 600,
+											height: 400,
+										}
+									: undefined
+							}
+							href={`/portfolio/${item.permalink || item.slug}`}
+							layout={index}
+							client:load
+						/>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</Layout>

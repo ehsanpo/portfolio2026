@@ -21,6 +21,7 @@ interface ProjectCard3DProps {
   className?: string;
   glowColor?: string;
   layout?: number;
+  href?: string;
 }
 
 export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
@@ -34,6 +35,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   className = '',
   glowColor = 'rgba(255, 255, 255, 0.2)',
   layout: propLayout = 0,
+  href,
 }) => {
   const idSuffix = useId().replace(/:/g, '');
   const layout = propLayout % 6;
@@ -251,119 +253,125 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
   const displayTags = tags.slice(0, 3);
 
-  return (
-    <Card3D className={className} glowColor={glowColor} intensity={15}>
-      <div ref={contentWrapRef} className="relative h-full w-full p-8 flex flex-col gap-6" style={{ transformStyle: 'preserve-3d', WebkitFontSmoothing: 'antialiased' }}>
-        
-        {/* Category Badges */}
-        <div className="absolute top-4 right-4 flex gap-2 items-end" 
-            style={{ 
-                transform: `translateZ(calc(var(--hover, 0) * 80px))`,
-              }}>
-          {categoryList.map((cat, idx) => (
-            <div 
-              key={idx}
-              className="shadow-primary/30 bg-primary/80 backdrop-blur-xl border border-primary/50 text-white text-[10px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:shadow-lg group-hover/card:opacity-100 transition-all duration-500 ease-out whitespace-nowrap"
-              
-            >
-              {cat}
-            </div>
-          ))}
-        </div>
-
-        {/* Icon/Image Container */}
-        <div 
-          className="relative w-full  rounded-[24px] overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 ease-out"
+  const CardContent = (
+    <div ref={contentWrapRef} className="relative h-full w-full p-8 flex flex-col gap-6" style={{ transformStyle: 'preserve-3d', WebkitFontSmoothing: 'antialiased' }}>
+      
+      {/* Category Badges */}
+      <div className="absolute top-4 right-4 flex gap-2 items-end" 
           style={{ 
-            transform: 'translateZ(calc(var(--hover, 0) * 50px)) scale(calc(1 + var(--hover, 0) * 0.05))', 
-            boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+              transform: `translateZ(calc(var(--hover, 0) * 80px))`,
+            }}>
+        {categoryList.map((cat, idx) => (
+          <div 
+            key={idx}
+            className="shadow-primary/30 bg-primary/80 backdrop-blur-xl border border-primary/50 text-white text-[10px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:shadow-lg group-hover/card:opacity-100 transition-all duration-500 ease-out whitespace-nowrap"
+          >
+            {cat}
+          </div>
+        ))}
+      </div>
+
+      {/* Icon/Image Container */}
+      <div 
+        className="relative w-full rounded-[24px] overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 ease-out"
+        style={{ 
+          transform: 'translateZ(calc(var(--hover, 0) * 50px)) scale(calc(1 + var(--hover, 0) * 0.05))', 
+          boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+        }}
+      >
+        {image ? (
+          <svg
+            className={`w-full h-full content__img content__img--${layout}`}
+            width={imageWidth}
+            height={imageHeight}
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            viewBox={`0 0 ${imageWidth} ${imageHeight}`}
+            preserveAspectRatio="none"
+          >
+            {Filters[layout]}
+            <image
+              ref={imageRef}
+              xlinkHref={image.src}
+              x="0"
+              y="0"
+              width="100%"
+              height="100%"
+              mask={`url(#circleMask${layout}-${idSuffix})`}
+            />
+          </svg>
+        ) : icon ? (
+          <div className="text-7xl drop-shadow-2xl transition-all duration-500" style={{ transform: 'translateZ(20px)' }}>
+            {icon}
+          </div>
+        ) : (
+          <div className="text-7xl opacity-20">📁</div>
+        )}
+      </div>
+
+      {/* Typography */}
+      <div className="flex flex-col gap-3 mt-2" style={{ transformStyle: 'preserve-3d' }}>
+        {date && (
+          <span 
+            className="text-[11px] text-white/50 uppercase tracking-[0.3em] font-bold transition-all duration-500"
+            style={{ transform: 'translateZ(calc(var(--hover, 0) * 40px))' }}
+          >
+            {date}
+          </span>
+        )}
+
+        <h3 
+          className="text-3xl font-black text-white leading-tight group-hover/card:text-primary transition-all duration-500"
+          style={{ 
+            transform: 'translateZ(calc(var(--hover, 0) * 60px))',
+            textShadow: 'calc(var(--x, 0) * -0.6rem) calc(var(--y, 0) * 0.6rem) 20px rgba(0,0,0,0.8)',
+            backfaceVisibility: 'hidden'
           }}
         >
-          {image ? (
-            <svg
-						className={`w-full h-full content__img content__img--${layout}`}
-						width={imageWidth}
-						height={imageHeight}
-						version="1.1"
-						xmlns="http://www.w3.org/2000/svg"
-						xmlnsXlink="http://www.w3.org/1999/xlink"
-						viewBox={`0 0 ${imageWidth} ${imageHeight}`}
-						preserveAspectRatio="none"
-					>
-						{Filters[layout]}
-						<image
-							ref={imageRef}
-							xlinkHref={image.src}
-							x="0" // Ensure the image starts at the top-left corner
-							y="0"
-							width="100%" // Ensures the image fills the container
-							height="100%" // Ensures the image fills the container
-							mask={`url(#circleMask${layout}-${idSuffix})`}
-						/>
-					</svg>
-          ) : icon ? (
-            <div className="text-7xl drop-shadow-2xl transition-all duration-500" style={{ transform: 'translateZ(20px)' }}>
-              {icon}
-            </div>
-          ) : (
-            <div className="text-7xl opacity-20">📁</div>
-          )}
-        </div>
+          {title}
+        </h3>
 
-        {/* Typography */}
-        <div className="flex flex-col gap-3 mt-2" style={{ transformStyle: 'preserve-3d' }}>
-          {date && (
-            <span 
-              className="text-[11px] text-white/50 uppercase tracking-[0.3em] font-bold transition-all duration-500"
-              style={{ transform: 'translateZ(calc(var(--hover, 0) * 40px))' }}
-            >
-              {date}
-            </span>
-          )}
-
-          <h3 
-            className="text-3xl font-black text-white leading-tight group-hover/card:text-primary transition-all duration-500"
+        {description && (
+          <p 
+            className="text-base text-white/70 leading-relaxed font-medium transition-all duration-500"
             style={{ 
-              transform: 'translateZ(calc(var(--hover, 0) * 60px))',
-              textShadow: 'calc(var(--x, 0) * -0.6rem) calc(var(--y, 0) * 0.6rem) 20px rgba(0,0,0,0.8)',
-              backfaceVisibility: 'hidden'
+              transform: 'translateZ(calc(var(--hover, 0) * 40px))',
+              textShadow: 'calc(var(--x, 0) * -0.3rem) calc(var(--y, 0) * 0.3rem) 10px rgba(0,0,0,0.6)'
             }}
           >
-            {title}
-          </h3>
+            {description}
+          </p>
+        )}
+      </div>
 
-            {description && (
-              <p 
-                className="text-base text-white/70 leading-relaxed font-medium transition-all duration-500"
-                style={{ 
-                  transform: 'translateZ(calc(var(--hover, 0) * 40px))',
-                  textShadow: 'calc(var(--x, 0) * -0.3rem) calc(var(--y, 0) * 0.3rem) 10px rgba(0,0,0,0.6)'
-                }}
-              >
-                {description}
-              </p>
-            )}
-        </div>
-
-        {/* Footer Actions - Tags always visible but subtle */}
-        <div 
-          className="flex items-center justify-between transition-all duration-500"
-          style={{ transform: 'translateZ(calc(var(--hover, 0) * 40px))' }}
-        >
-          <div className="flex flex-wrap gap-2">
-            {displayTags.map((tag, idx) => (
-              <span 
-                key={idx} 
-                className="text-[10px] bg-white/5 border-2 border-white/10 text-white/50 px-3 py-1 rounded-lg font-bold
-                group-hover/card:text-white/90 group-hover/card:bg-secondary/10 group-hover/card:border-secondary/20 transition-all duration-300"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-        
+      {/* Footer Actions */}
+      <div 
+        className="flex items-center justify-between transition-all duration-500 mt-auto"
+        style={{ transform: 'translateZ(calc(var(--hover, 0) * 40px))' }}
+      >
+        <div className="flex flex-wrap gap-2">
+          {displayTags.map((tag, idx) => (
+            <span 
+              key={idx} 
+              className="text-[10px] bg-white/5 border-2 border-white/10 text-white/50 px-3 py-1 rounded-lg font-bold
+              group-hover/card:text-white/90 group-hover/card:bg-secondary/10 group-hover/card:border-secondary/20 transition-all duration-300"
+            >
+              #{tag}
+            </span>
+          ))}
         </div>
       </div>
+    </div>
+  );
+
+  return (
+    <Card3D className={className} glowColor={glowColor} intensity={15}>
+      {href ? (
+        <a href={href} className="block w-full h-full no-underline transform-3d">
+          {CardContent}
+        </a>
+      ) : CardContent}
     </Card3D>
   );
 };

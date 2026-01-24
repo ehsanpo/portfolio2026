@@ -33,7 +33,7 @@ const filteredAndSortedItems = portfolioItems
         filteredAndSortedItems.map((item, index) => (
           <div class="flex-1 min-w-[min(100%,320px)] lg:min-w-[calc(33.333%-2rem)]">
             <ProjectCard3D
-              client:visible
+              client:load
               key={item.slug || item.title}
               title={item.title}
               description={item.description}

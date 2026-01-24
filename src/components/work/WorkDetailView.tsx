@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ProjectCard3D } from '@/components/ProjectCard3D';
 import TeamAvatar from '@/components/TeamAvatar';
 import { getTestimonialImage } from '@/utils/testimonialImages';
+import { getProjectImage } from '@/utils/projectHelpers';
 
 interface Company {
   id: string;
@@ -76,6 +77,8 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
            skillDurations[s + ' js'] || 
            '';
   };
+
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-32">
@@ -228,12 +231,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
                       description={project.data.tagline}
                       date={project.data.date}
                       tags={project.data.tag}
-                      image={project.data.cover ? {
-                        src: project.data.cover.src,
-                        alt: project.data.title,
-                        width: project.data.cover.width,
-                        height: project.data.cover.height
-                      } : undefined}
+                      image={getProjectImage(project.data)}
                       categories={project.data.category}
                       layout={index}
                       href={`/portfolio/${project.data.permalink}`}

@@ -311,7 +311,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
         )}
 
         <h3 
-          className="text-3xl font-black text-white leading-tight group-hover/card:text-primary transition-all duration-500"
+          className="text-2xl font-black text-white leading-tight group-hover/card:text-primary transition-all duration-500"
           style={{ 
             transform: 'translateZ(calc(var(--hover, 0) * 60px))',
             textShadow: 'calc(var(--x, 0) * -0.6rem) calc(var(--y, 0) * 0.6rem) 20px rgba(0,0,0,0.8)',

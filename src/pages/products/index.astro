@@ -4,6 +4,7 @@ import PageHero from "../../components/hero/PageHero.astro";
 import { getProductItems } from "../../utils/data";
 import PortfolioFilter from "@/components/PortfolioFilter";
 import { ProjectCard3D } from "@/components/ProjectCard3D";
+import { getProjectImage } from '@/utils/projectHelpers';
 
 const productItems = await getProductItems();
 const parseDateValue = (dateStr: string) => {
@@ -42,7 +43,7 @@ const allCategories = [...new Set(productItems.flatMap((entry) => entry.category
 								date={item.date}
 								categories={item.category}
 								tags={item.tag}
-								image={item.cover || item.background_image}
+								image={getProjectImage(item)}
 								icon={item.logo?.src}
 								glowColor="rgba(255, 238, 8, 0.2)"
 								className="h-full"

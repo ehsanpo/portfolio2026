@@ -71,11 +71,11 @@ export const Timeline: React.FC<TimelineProps> = ({ items, mainColor }) => {
 							<div className="text-sm font-bold print:text-xs">{item.subtitle}</div>
 						)}
 					</div>
-					<p className="mb-2 text-sm text-black">
+					<ul className="mb-2 list-disc pl-4 text-sm text-black">
 						{item.description.map((desc, index) => (
 							<li key={index}>{desc}</li>
 						))}
-					</p>
+					</ul>
 					{item.tags && (
 						<div className="flex flex-wrap gap-2">
 							{item.tags.map((tag, tagIndex) => (

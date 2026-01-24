@@ -1,0 +1,94 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PortfolioHeader from "@/components/portfolio/PortfolioHeader";
+import Gallery from "@/components/portfolio/Gallery.astro";
+import { getProductItems } from "@/utils/data";
+
+export async function getStaticPaths() {
+	const productItems = await getProductItems();
+	return productItems.map((item) => ({
+		params: { slug: item.permalink },
+		props: { item },
+	}));
+}
+
+interface ProductItem {
+	title: string;
+	description?: string;
+	tagline: string;
+	client: string;
+	agency: string;
+	category: string[];
+	tag: string[];
+	logo: {
+		height: number;
+		width: number;
+		src: string;
+	};
+	logo2?: {
+		height: number;
+		width: number;
+		src: string;
+	};
+	background_image: {
+		height: number;
+		width: number;
+		src: string;
+	};
+	permalink: string;
+	images: {
+		height: number;
+		width: number;
+		src: string;
+	}[];
+	case_link_url?: string;
+	content: any;
+	date: string;
+}
+
+const { item } = Astro.props as unknown as { item: ProductItem };
+const { Content } = await item.content.render();
+---
+
+<Layout
+	title={`${item.title} - Products`}
+	description={item.description || item.tagline || `${item.title} - ${item.client}`}
+	image={item.background_image?.src || item.logo?.src || "/img/og-default.jpg"}
+	imageAlt={`${item.title} - ${item.client}`}
+>
+	<article class="relative min-h-screen bg-white pt-4 dark:bg-neutral-900">
+		<PortfolioHeader item={item} client:load />
+
+		<div class="relative z-10 mx-auto max-w-6xl px-4 pt-10">
+			<div class="prose mx-auto mb-20 max-w-3xl dark:prose-invert">
+				<slot />
+				<Content />
+			</div>
+
+			<Gallery images={item.images} alt={item.title} />
+
+			{
+				item.case_link_url && (
+					<div class="pb-20 text-center">
+						<a
+							href={item.case_link_url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+						>
+							Visit Project
+							<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+								/>
+							</svg>
+						</a>
+					</div>
+				)
+			}
+		</div>
+	</article>
+</Layout>

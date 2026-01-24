@@ -1,0 +1,73 @@
+---
+import "photoswipe/style.css";
+import OptimizedImage from "../ui/OptimizedImage.astro";
+
+interface Props {
+	images: any;
+	alt: string;
+}
+
+const { images, alt } = Astro.props;
+---
+
+<div class="my-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+	{
+		images?.map((image, index) => (
+			<a
+				href={image.src}
+				data-pswp-width={image.width}
+				data-pswp-height={image.height}
+				class="gallery-item cursor-pointer"
+			>
+				<OptimizedImage
+					src={image}
+					alt={`${alt} - Image ${index + 1}`}
+					class="h-64 w-full rounded-lg object-cover transition-transform hover:scale-105"
+					sizes="(max-width: 768px) 100vw, 50vw"
+					widths={[480, 768, 1024, 1200, 1536]}
+					loading="lazy"
+				/>
+			</a>
+		))
+	}
+</div>
+
+<script>
+	import PhotoSwipe from "photoswipe";
+
+	const initPhotoSwipe = () => {
+		const items = document.querySelectorAll(".gallery-item");
+
+		// Remove existing event listeners to avoid duplicates
+		items.forEach((item) => {
+			const newItem = item.cloneNode(true);
+			item.parentNode.replaceChild(newItem, item);
+		});
+
+		const updatedItems = document.querySelectorAll(".gallery-item");
+
+		updatedItems.forEach((item, index) => {
+			item.addEventListener("click", (e) => {
+				e.preventDefault();
+
+				const gallery = new PhotoSwipe({
+					dataSource: Array.from(updatedItems).map((item) => ({
+						src: item.getAttribute("href"),
+						w: parseInt(item.getAttribute("data-pswp-width")),
+						h: parseInt(item.getAttribute("data-pswp-height")),
+					})),
+					pswpModule: PhotoSwipe,
+					index, // Set the clicked item's index
+				});
+
+				gallery.init();
+			});
+		});
+	};
+
+	// Initialize PhotoSwipe
+	initPhotoSwipe();
+
+	// Re-initialize when page content updates (for Astro view transitions)
+	document.addEventListener("astro:page-load", initPhotoSwipe);
+</script>

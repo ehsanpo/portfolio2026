@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHero from "../../components/hero/PageHero.astro";
+import { getProductItems } from "../../utils/data";
+import PortfolioFilter from "@/components/PortfolioFilter";
+import { ProjectCard3D } from "@/components/ProjectCard3D";
+
+const productItems = await getProductItems();
+const parseDateValue = (dateStr: string) => {
+	const normalized = /^\d{4}-\d{2}$/.test(dateStr) ? `${dateStr}-01` : dateStr;
+	return new Date(normalized).getTime();
+};
+const sortedItems = productItems.sort((a, b) => {
+	return parseDateValue(b.date) - parseDateValue(a.date);
+});
+
+const allCategories = [...new Set(productItems.flatMap((entry) => entry.category || []))];
+---
+
+<Layout
+	title="Products - Work"
+	description="A showcase of my products and digital creations"
+	image="/img/og-default.jpg"
+	imageAlt="Ehsan's Products - Digital Creations and Tools"
+>
+	<PageHero title="Products" subtitle="A showcase of my products and digital creations" />
+	<div class="py-20">
+		<div class="container mx-auto px-4">
+			<PortfolioFilter categories={allCategories as string[]} category="all" client:load />
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+				{
+					sortedItems.map((item, index) => (
+						<a 
+							href={`/products/${item.permalink || item.slug}`}
+							data-categories={JSON.stringify(item.category || [])}
+							class="block h-full cursor-pointer group/card-link"
+						>
+							<ProjectCard3D
+								client:load
+								title={item.title}
+								description={item.tagline}
+								date={item.date}
+								categories={item.category}
+								tags={item.tag}
+								image={item.cover || item.background_image}
+								icon={item.logo?.src}
+								glowColor="rgba(255, 238, 8, 0.2)"
+								className="h-full"
+								layout={index}
+							/>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</Layout>

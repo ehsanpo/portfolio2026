@@ -25,7 +25,7 @@
 			"startDate": "2023-09",
 			"endDate": "2025-11",
 			"year": "2023 - 2025",
-			"image": "/img/0_23.png",
+			"image": "/img/company/Tlogo.jpg",
 			"description": "Collaborated on the development of various software projects using React, Java, and ElectronJs.",
 			"detailedDescription": [
 				"Developed and maintained softphone, messaging, and video conferencing applications used in a large-scale communications platform.",
@@ -106,7 +106,7 @@
 			"startDate": "2020-06",
 			"endDate": "2023-09",
 			"year": "2020 - 2023",
-			"image": "/img/bb2.jpeg",
+			"image": "/img/company/bb2logo.jpg",
 			"description": "Contributed to the implementation of web applications utilizing Gatsby, NextJs, and Ruby on Rails. Also managed projects and team.",
 			"detailedDescription": [
 				"Developed and maintained the company's main website, e-commerce shop, and customer self-service portals.",
@@ -200,7 +200,7 @@
 			"startDate": "2019-05",
 			"endDate": "2020-03",
 			"year": "2019 - 2020",
-			"image": "/img/experience/tech-company.jpg",
+			"image": "/img/company/EPlogo.jpg",
 			"description": "Operated as an independent web developer, delivering high-quality responsive websites and web applications to clients.",
 			"detailedDescription": [
 				"Delivered multiple client-facing WordPress websites tailored to specific business needs.",
@@ -239,7 +239,7 @@
 			"startDate": "2016-10",
 			"endDate": "2019-05",
 			"year": "2017 - 2019",
-			"image": "/img/0_31.png",
+			"image": "/img/company/GGlogo.jpg",
 			"description": "Served as a technical lead at an advertising agency, offering clients strategic digital communication solutions for expanding their market reach.",
 			"detailedDescription": [
 				"Led technical execution of WordPress-based web projects from planning to delivery.",
@@ -353,7 +353,7 @@
 			"startDate": "2014-03",
 			"endDate": "2016-10",
 			"year": "2014 - 2017",
-			"image": "/img/0_0.png",
+			"image": "/img/company/WSlogo.jpg",
 			"description": "Managed end-to-end development projects for a global web agency, specializing in UX/UI design, web development, and digital marketing.",
 			"detailedDescription": [
 				"Delivered end-to-end web solutions for international clients across multiple industries.",
@@ -442,7 +442,7 @@
 			"startDate": "2012-03",
 			"endDate": "2014-10",
 			"year": "2012 - 2014",
-			"image": "/img/bg5-7.jpg",
+			"image": "/img/company/TFClogo.jpg",
 			"description": "Executed web production tasks at The Fan Club, contributing to the creation of compelling online experiences.",
 			"detailedDescription": [
 				"Developed dynamic web applications and campaign sites for advertising initiatives.",
@@ -567,7 +567,7 @@
 			"startDate": "2011-01",
 			"endDate": "2012-01",
 			"year": "2011 - 2012",
-			"image": "/img/0_3.png",
+			"image": "/img/company/NGDlogo.jpg",
 			"description": "Managed design and development tasks while overseeing server administration and web hosting operations.",
 			"detailedDescription": [
 				"Co-founded and operated a design and development agency.",
@@ -1220,7 +1220,7 @@
 	"navigation": {
 		"main": [
 			{ "key": "home", "href": "/", "text": "Home" },
-			{ "key": "portfolio", "href": "/portfolio", "text": "Work" },
+			{ "key": "work", "href": "/work", "text": "Work" },
 			{ "key": "products", "href": "/products", "text": "Products" },
 			{ "key": "skills", "href": "/skills", "text": "Skills" },
 			{ "key": "about", "href": "/about", "text": "About" },

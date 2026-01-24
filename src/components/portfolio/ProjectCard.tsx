@@ -48,8 +48,8 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 			data-categories={JSON.stringify(item.category)}
 		>
 			{item.onHome && (
-				<div className="absolute left-4 top-4 z-30">
-					<span className="inline-flex items-center gap-1 rounded-full bg-primary-500/90 px-3 py-1 text-xs text-primary-900">
+				<div className="absolute top-4 left-4 z-30">
+					<span className="bg-primary-500/90 text-primary-900 inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs">
 						<Star className="h-3 w-3" />
 						Featured
 					</span>
@@ -66,7 +66,7 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 					}}
 				/>
 			</div>
-			<div className="z-25 absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/40 group-hover:opacity-100">
+			<div className="absolute inset-0 z-25 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/40 group-hover:opacity-100">
 				<div className="flex items-center space-x-3">
 					{item.case_link_url && (
 						<button
@@ -86,14 +86,14 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 					)}
 				</div>
 			</div>
-			<div className="absolute bottom-0 left-0 right-0 z-20 p-4">
+			<div className="absolute right-0 bottom-0 left-0 z-20 p-4">
 				<div className="mb-3 flex items-center gap-4">
 					<div>
 						<a
 							href={`/${item.type === "product" ? "products" : "portfolio"}/${item.permalink || item.slug}`}
 						>
 							<h3
-								className="font-basement text-xl text-white transition-colors group-hover:text-primary-500"
+								className="font-basement group-hover:text-primary-500 text-xl text-white transition-colors"
 								style={{
 									viewTransitionName: `portfolio-title-${item.permalink || item.slug}`,
 								}}
@@ -101,7 +101,7 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 								<div className="hover:text-primary-400">{item.title}</div>
 							</h3>
 							<p
-								className="font-kabel mb-1 leading-tight text-primary-500"
+								className="font-kabel text-primary-500 mb-1 leading-tight"
 								style={{
 									viewTransitionName: `portfolio-tagline-${item.permalink || item.slug}`,
 								}}
@@ -134,7 +134,7 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 					{item.category?.slice(0, 3).map((cat, index) => (
 						<span
 							key={cat}
-							className={`clip2 invisible h-0 overflow-hidden bg-primary-500/80 px-3 text-sm text-primary-900 transition-all ease-in-out group-hover:visible group-hover:h-7 group-hover:py-1 ${delay[index]}`}
+							className={`clip2 bg-primary-500/80 text-primary-900 invisible h-0 overflow-hidden px-3 text-sm transition-all ease-in-out group-hover:visible group-hover:h-7 group-hover:py-1 ${delay[index]}`}
 							style={{
 								viewTransitionName: `portfolio-category-${item.permalink || item.slug}-${cat}`,
 							}}
@@ -148,7 +148,7 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 					{item.tag?.slice(0, 3).map((tag, index) => (
 						<span
 							key={tag}
-							className={`${index > 2 ? "hidden" : ""} clip2 invisible h-0 overflow-hidden border-l-2 border-purple-500/30 bg-purple-500/80 px-3 text-sm text-purple-100 transition-all hover:border-purple-500 group-hover:visible group-hover:h-7 group-hover:py-1 ${delay[index]}`}
+							className={`${index > 2 ? "hidden" : ""} clip2 invisible h-0 overflow-hidden border-l-2 border-purple-500/30 bg-purple-500/80 px-3 text-sm text-purple-100 transition-all group-hover:visible group-hover:h-7 group-hover:py-1 hover:border-purple-500 ${delay[index]}`}
 						>
 							{tag}
 						</span>
@@ -157,20 +157,20 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 			</div>
 
 			{showShare && (
-				<div className="absolute right-4 top-4 z-30">
+				<div className="absolute top-4 right-4 z-30">
 					<button
 						onClick={(e) => {
 							e.preventDefault();
 							e.stopPropagation();
 							setShowShareMenu(!showShareMenu);
 						}}
-						className="rounded-full bg-black/20 p-2 text-white opacity-0 backdrop-blur-sm transition-colors hover:bg-black/40 group-hover:opacity-100"
+						className="rounded-full bg-black/20 p-2 text-white opacity-0 backdrop-blur-sm transition-colors group-hover:opacity-100 hover:bg-black/40"
 					>
 						<MoreHorizontal size={16} />
 					</button>
 
 					{showShareMenu && (
-						<div className="absolute right-0 top-full mt-2">
+						<div className="absolute top-full right-0 mt-2">
 							<div className="min-w-[150px] rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
 								<div className="space-y-2 text-sm text-white">
 									<button
@@ -181,7 +181,7 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 												window.location.origin + `/portfolio/${item.permalink || item.slug}`
 											);
 										}}
-										className="block w-full text-left hover:text-primary-400"
+										className="hover:text-primary-400 block w-full text-left"
 									>
 										Copy Link
 									</button>
@@ -192,7 +192,7 @@ export function ProjectCard({ item, className, showShare = true }: ProjectCardPr
 											const tweetUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(item.title || "Check out this project")}&url=${encodeURIComponent(window.location.origin + "/portfolio/" + (item.permalink || item.slug))}`;
 											window.open(tweetUrl);
 										}}
-										className="block w-full text-left hover:text-primary-400"
+										className="hover:text-primary-400 block w-full text-left"
 									>
 										Share on X
 									</button>

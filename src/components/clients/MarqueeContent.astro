@@ -9,7 +9,7 @@ const { clients } = Astro.props;
 <div class="flex items-center gap-12 px-4">
 	{
 		clients.map((client) => (
-			<div class="clip2 whitespace-nowrap rounded-md bg-accent-600 p-3 font-basement text-lg font-medium text-secondary-900">
+			<div class="clip2 bg-accent-600 font-basement text-secondary-900 rounded-md p-3 text-lg font-medium whitespace-nowrap">
 				{client}
 			</div>
 		))

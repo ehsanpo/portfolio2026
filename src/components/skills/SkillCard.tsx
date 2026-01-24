@@ -21,7 +21,7 @@ export function SkillCard({ name, proficiency, description, icon }: SkillCardPro
 			{description && <p className="mb-4">{description}</p>}
 			<div className="h-2 w-full rounded-full bg-gray-200 dark:bg-neutral-700">
 				<div
-					className="h-2 rounded-full bg-primary-600 transition-all duration-300"
+					className="bg-primary-600 h-2 rounded-full transition-all duration-300"
 					style={{ width: `${proficiency * 10}%` }}
 				/>
 			</div>

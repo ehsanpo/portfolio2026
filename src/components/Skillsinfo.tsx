@@ -4,7 +4,7 @@ const SkillsInfo = ({ show }: { show?: boolean }) => {
 	return (
 		<div className="flex justify-center">
 			<div className="group relative m-auto inline-block text-left">
-				<button className="relative overflow-hidden rounded-xl bg-primary-600/90 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-primary-700/90 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+				<button className="bg-primary-600/90 hover:bg-primary-700/90 focus:ring-primary-500 relative overflow-hidden rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none">
 					<div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-xl transition-opacity group-hover:opacity-75"></div>
 
 					<span className="relative flex items-center gap-2">
@@ -31,8 +31,8 @@ const SkillsInfo = ({ show }: { show?: boolean }) => {
 								I’ve worked with it professionally and deployed it to production.
 							</li>
 							<li>
-								<span className="font-basement text-primary">Advanced: </span>I have several
-								years of experience, regularly working with it in production environments.
+								<span className="font-basement text-primary">Advanced: </span>I have several years
+								of experience, regularly working with it in production environments.
 							</li>
 							<li>
 								<span className="font-basement text-secondary">Expert: </span>: I’m highly

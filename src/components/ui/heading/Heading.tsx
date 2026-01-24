@@ -45,7 +45,7 @@ const Heading: React.FC<Props> = ({
 				{backplate && (
 					<Parallax
 						speed={5}
-						className="absolute left-0 top-[-10%] z-10 w-full overflow-hidden text-4xl font-bold opacity-10 blur-sm lg:text-9xl"
+						className="absolute top-[-10%] left-0 z-10 w-full overflow-hidden text-4xl font-bold opacity-10 blur-sm lg:text-9xl"
 					>
 						<motion.div
 							className="select-none"

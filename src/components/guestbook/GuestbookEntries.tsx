@@ -69,7 +69,7 @@ export default function GuestbookEntries({ refreshTrigger }: GuestbookEntriesPro
 	if (isLoading) {
 		return (
 			<div className="py-12 text-center">
-				<div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent"></div>
+				<div className="border-primary-500 inline-block h-8 w-8 animate-spin rounded-full border-4 border-t-transparent"></div>
 				<p className="mt-4 text-neutral-600">Loading messages...</p>
 			</div>
 		);
@@ -96,7 +96,7 @@ export default function GuestbookEntries({ refreshTrigger }: GuestbookEntriesPro
 			{entries.map((entry, index) => (
 				<div
 					key={index}
-					className="rounded-lg border border-neutral-200 bg-secondary-50 p-5 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-secondary-950"
+					className="bg-secondary-50 dark:bg-secondary-950 rounded-lg border border-neutral-200 p-5 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800"
 				>
 					<div className="mb-3 flex items-start gap-3">
 						<div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full">

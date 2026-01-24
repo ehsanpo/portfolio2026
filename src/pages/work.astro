@@ -1,34 +1,40 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import { ProjectCard3D } from '@/components/ProjectCard3D';
-import portfolioData from '@/data/portfolio-resume.json';
-import PageHero from '@/components/hero/PageHero.astro';
+import Layout from "@/layouts/Layout.astro";
+import { ProjectCard3D } from "@/components/ProjectCard3D";
+import portfolioData from "@/data/portfolio-resume.json";
+import PageHero from "@/components/hero/PageHero.astro";
 
 const companies = portfolioData.companies;
 ---
 
 <Layout title="Experience" description="Work Experience and Professional Career">
-  <PageHero title="Experience" subtitle="A showcase of the companies I've worked at" />
-  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      {companies.map((company, index) => (
-        <ProjectCard3D
-          client:visible
-          title={company.name}
-          description={company.description}
-          date={company.year}
-          tags={company.tags}
-          image={company.image ? {
-            src: company.image,
-            alt: company.name,
-            width: 800,
-            height: 600
-          } : undefined}
-          categories={company.position}
-          layout={index}
-          href={`/work/${company.id}`}
-        />
-      ))}
-    </div>
-  </section>
+	<PageHero title="Experience" subtitle="A showcase of the companies I've worked at" />
+	<section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+		<div class="grid grid-cols-1 gap-10 md:grid-cols-3">
+			{
+				companies.map((company, index) => (
+					<ProjectCard3D
+						client:visible
+						title={company.name}
+						description={company.description}
+						date={company.year}
+						tags={company.tags}
+						image={
+							company.image
+								? {
+										src: company.image,
+										alt: company.name,
+										width: 800,
+										height: 600,
+									}
+								: undefined
+						}
+						categories={company.position}
+						layout={index}
+						href={`/work/${company.id}`}
+					/>
+				))
+			}
+		</div>
+	</section>
 </Layout>

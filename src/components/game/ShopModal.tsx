@@ -30,7 +30,7 @@ export function ShopModal() {
 					<div className="text-right text-xs text-amber-200">{format(cost)} coins</div>
 				</div>
 				<div className="flex items-center justify-between">
-					<span className="text-[11px] uppercase tracking-wide text-gray-300">{helper}</span>
+					<span className="text-[11px] tracking-wide text-gray-300 uppercase">{helper}</span>
 					<button
 						onClick={() => purchase(item.id)}
 						disabled={disabled}
@@ -38,7 +38,7 @@ export function ShopModal() {
 							"rounded-md px-3 py-1 text-xs font-semibold transition",
 							disabled
 								? "cursor-not-allowed bg-white/10 text-gray-300"
-								: "bg-primary-500 text-black hover:bg-primary-400"
+								: "bg-primary-500 hover:bg-primary-400 text-black"
 						)}
 						data-game-ignore
 					>

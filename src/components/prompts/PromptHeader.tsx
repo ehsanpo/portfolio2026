@@ -22,7 +22,7 @@ const PromptHeader: React.FC<PromptHeaderProps> = ({ prompt }) => {
 		<div className="bg-gray-100 dark:bg-neutral-800">
 			<header className="mx-auto max-w-6xl overflow-hidden px-4 py-12">
 				<ParallaxProvider>
-					<div className="container relative">
+					<div className="relative container">
 						<div className="grid md:grid-cols-2">
 							<div className="self-center">
 								<Heading className="mb-4 !text-left" level="h1" gradient>
@@ -32,8 +32,8 @@ const PromptHeader: React.FC<PromptHeaderProps> = ({ prompt }) => {
 								<div className="flex flex-col gap-4">
 									{category && (
 										<div className="flex gap-4">
-											<h3 className="min-w-20 font-medium uppercase text-primary-400">Category</h3>
-											<span className="clip2 hover:border-primary border-l-2 border-primary-500/30 bg-primary-500/20 px-3 py-1 text-sm text-primary-400 transition-all">
+											<h3 className="text-primary-400 min-w-20 font-medium uppercase">Category</h3>
+											<span className="clip2 hover:border-primary border-primary-500/30 bg-primary-500/20 text-primary-400 border-l-2 px-3 py-1 text-sm transition-all">
 												{category}
 											</span>
 										</div>
@@ -41,7 +41,7 @@ const PromptHeader: React.FC<PromptHeaderProps> = ({ prompt }) => {
 
 									{tags && tags.length > 0 && (
 										<div className="flex gap-4">
-											<h3 className="min-w-20 font-medium uppercase text-purple-400">Tags</h3>
+											<h3 className="min-w-20 font-medium text-purple-400 uppercase">Tags</h3>
 											<div className="flex flex-wrap gap-2">
 												{tags.map((tag, index) => (
 													<span

@@ -60,7 +60,7 @@ export function PromptsViewer({ prompts }: PromptsViewerProps) {
 					<div className="relative">
 						<button
 							onClick={handleCopy}
-							className="bg-primary hover:bg-primary/90 absolute right-4 top-4 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
+							className="bg-primary hover:bg-primary/90 absolute top-4 right-4 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors"
 							title="Copy prompt to clipboard"
 						>
 							<svg
@@ -79,7 +79,7 @@ export function PromptsViewer({ prompts }: PromptsViewerProps) {
 							Copy
 						</button>
 
-						<div className="prose prose-lg max-w-none rounded-xl border border-gray-200 bg-white p-8 dark:prose-invert dark:border-gray-800 dark:bg-gray-900">
+						<div className="prose prose-lg dark:prose-invert max-w-none rounded-xl border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-900">
 							<div
 								className="prompt-content"
 								dangerouslySetInnerHTML={{ __html: activePrompt.renderedContent }}
@@ -91,7 +91,7 @@ export function PromptsViewer({ prompts }: PromptsViewerProps) {
 					<div className="mt-8 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
 						<div className="flex items-start">
 							<svg
-								className="mr-3 mt-0.5 h-5 w-5 text-blue-600 dark:text-blue-400"
+								className="mt-0.5 mr-3 h-5 w-5 text-blue-600 dark:text-blue-400"
 								fill="currentColor"
 								viewBox="0 0 20 20"
 							>

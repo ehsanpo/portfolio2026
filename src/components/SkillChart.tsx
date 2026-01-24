@@ -124,7 +124,7 @@ const CategoryButton = ({
 
 	return (
 		<button
-			className={`flex w-[200px] items-center justify-center rounded-lg p-2 font-basement transition-all duration-200 ${
+			className={`font-basement flex w-[200px] items-center justify-center rounded-lg p-2 transition-all duration-200 ${
 				isActive
 					? "scale-105 transform text-white shadow-lg"
 					: `${categoryColor.button} transition-colors hover:bg-white`

@@ -52,7 +52,7 @@ const testimonialsWithImages = testimonials.map((testimonial) => ({
 
 		{
 			showAll ? (
-				<div class="w-full mt-12 m-auto flex flex-wrap max-w-6xl items-center gap-2 justify-center">
+				<div class="m-auto mt-12 flex w-full max-w-6xl flex-wrap items-center justify-center gap-2">
 					{testimonialsWithImages.map((testimonial) => (
 						<TestimonialCard testimonial={testimonial} client:load />
 					))}
@@ -60,27 +60,25 @@ const testimonialsWithImages = testimonials.map((testimonial) => ({
 			) : (
 				<>
 					<div class="marquee-row relative mx-auto w-full max-w-6xl overflow-hidden">
-						<div class="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent dark:from-neutral-800" />
-						<div class="marquee-inner flex min-w-[200%] transform-gpu pb-2 pt-2">
-							{[...testimonialsWithImages, ...testimonialsWithImages].map(
-								(testimonial) => (
-									<TestimonialCard testimonial={testimonial} client:load />
-								)
-							)}
+						<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent dark:from-neutral-800" />
+						<div class="marquee-inner flex min-w-[200%] transform-gpu pt-2 pb-2">
+							{[...testimonialsWithImages, ...testimonialsWithImages].map((testimonial) => (
+								<TestimonialCard testimonial={testimonial} client:load />
+							))}
 						</div>
-						<div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent dark:from-neutral-800 md:w-40" />
+						<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent md:w-40 dark:from-neutral-800" />
 					</div>
 
 					<div class="marquee-row relative mx-auto w-full max-w-6xl overflow-hidden">
-						<div class="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent dark:from-neutral-800" />
-						<div class="marquee-inner marquee-reverse flex min-w-[200%] transform-gpu pb-5 pt-10">
+						<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent dark:from-neutral-800" />
+						<div class="marquee-inner marquee-reverse flex min-w-[200%] transform-gpu pt-10 pb-5">
 							{[...testimonialsWithImages, ...testimonialsWithImages]
 								.reverse()
 								.map((testimonial) => (
 									<TestimonialCard testimonial={testimonial} client:load />
 								))}
 						</div>
-						<div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent dark:from-neutral-800 md:w-40" />
+						<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent md:w-40 dark:from-neutral-800" />
 					</div>
 				</>
 			)
@@ -89,11 +87,7 @@ const testimonialsWithImages = testimonials.map((testimonial) => ({
 		{
 			showAll ? null : (
 				<div class="mt-12 text-center">
-					<Button
-						href="/about/#testimonials"
-						text="View All Testimonials →"
-						variant="secondary"
-					/>
+					<Button href="/about/#testimonials" text="View All Testimonials →" variant="secondary" />
 				</div>
 			)
 		}

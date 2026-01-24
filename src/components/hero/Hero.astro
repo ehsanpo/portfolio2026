@@ -40,7 +40,7 @@ const { title, subtitle, text, subtitleText, fullHeight = false, img } = Astro.p
 			{
 				subtitle && (
 					<p
-						class={`${fullHeight ? "text-xl font-bold md:text-4xl" : "text-xl"} mb-2 text-black dark:text-secondary-500`}
+						class={`${fullHeight ? "text-xl font-bold md:text-4xl" : "text-xl"} dark:text-secondary-500 mb-2 text-black`}
 					>
 						{subtitle}
 					</p>
@@ -70,7 +70,7 @@ const { title, subtitle, text, subtitleText, fullHeight = false, img } = Astro.p
 							<div>
 								{" "}
 								<img src={img} class="relative z-20 w-full rounded-lg object-cover shadow-lg" />
-								<div class="absolute inset-0 z-20 rotate-3 transform rounded-lg bg-gradient-to-r from-primary-500/80 to-secondary-500/80 mix-blend-soft-light" />
+								<div class="from-primary-500/80 to-secondary-500/80 absolute inset-0 z-20 rotate-3 transform rounded-lg bg-gradient-to-r mix-blend-soft-light" />
 							</div>
 						</div>
 					</Tilt>

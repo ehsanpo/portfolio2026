@@ -72,7 +72,7 @@ export function ProcessFlowDiagram() {
 	) => (
 		<div className="group relative flex flex-col items-center gap-2">
 			<Circle ref={circleRef}>
-				<IconComponent className="h-6 w-6 stroke-secondary-500" />
+				<IconComponent className="stroke-secondary-500 h-6 w-6" />
 			</Circle>
 			{/* Tooltip that appears on hover */}
 			<div className="clip4 pointer-events-none w-max rounded bg-gray-800 px-2 py-1 pb-2 text-sm text-white shadow-md transition-opacity">

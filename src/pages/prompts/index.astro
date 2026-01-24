@@ -4,7 +4,6 @@ import PageHero from "../../components/hero/PageHero.astro";
 import { getPrompts } from "../../utils/data";
 import { Card3D } from "../../components/Card3D";
 
-
 const prompts = await getPrompts();
 const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 ---
@@ -16,79 +15,95 @@ const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 	imageAlt="Ehsan's AI Prompts Collection"
 >
 	<PageHero title="AI Prompts" subtitle="A collection of AI prompts for various tasks" />
-	<div class="py-20 bg-neutral-900 border-t border-white/5">
+	<div class="border-t border-white/5 bg-neutral-900 py-20">
 		<div class="container mx-auto px-4">
 			{
 				categories.map((category) => {
 					const categoryPrompts = prompts.filter((p) => p.category === category);
 					return (
 						<div class="mb-16">
-							<h2 class="mb-10 text-4xl font-black text-white uppercase tracking-tighter flex items-center gap-4">
-                {category}
-                <span class="h-px flex-1 bg-linear-to-r from-white/10 to-transparent"></span>
-              </h2>
+							<h2 class="mb-10 flex items-center gap-4 text-4xl font-black tracking-tighter text-white uppercase">
+								{category}
+								<span class="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
+							</h2>
 							<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
 								{categoryPrompts.map((prompt) => (
-									<Card3D 
-                    client:load 
-                    className="h-[480px]"
-                    glowColor="rgba(255, 199, 0, 0.15)"
-                  >
-                    <div class="p-6 h-full flex flex-col items-start preserve-3d">
-                      {/* Image/Icon Header */}
-                      <div 
-                        class="w-full h-44 rounded-xl bg-white/5 border border-white/10 overflow-hidden mb-6 flex items-center justify-center transition-all duration-500 group-hover/card:bg-primary/5 group-hover/card:border-primary/20"
-                        style="transform: translateZ(30px)"
-                      >
-                        {prompt.image ? (
-                          <img 
-                            src={prompt.image} 
-                            alt={prompt.title} 
-                            class="w-full h-full object-cover opacity-40 group-hover/card:opacity-100 transition-all duration-700 group-hover/card:scale-110" 
-                          />
-                        ) : (
-                          <span class="text-6xl transition-all duration-500 group-hover/card:scale-110 group-hover/card:rotate-6">
-                            {prompt.icon || "✨"}
-                          </span>
-                        )}
-                      </div>
+									<Card3D client:load className="h-[480px]" glowColor="rgba(255, 199, 0, 0.15)">
+										<div class="preserve-3d flex h-full flex-col items-start p-6">
+											{/* Image/Icon Header */}
+											<div
+												class="group-hover/card:bg-primary/5 group-hover/card:border-primary/20 mb-6 flex h-44 w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-all duration-500"
+												style="transform: translateZ(30px)"
+											>
+												{prompt.image ? (
+													<img
+														src={prompt.image}
+														alt={prompt.title}
+														class="h-full w-full object-cover opacity-40 transition-all duration-700 group-hover/card:scale-110 group-hover/card:opacity-100"
+													/>
+												) : (
+													<span class="text-6xl transition-all duration-500 group-hover/card:scale-110 group-hover/card:rotate-6">
+														{prompt.icon || "✨"}
+													</span>
+												)}
+											</div>
 
-                      <div class="flex flex-col gap-3 flex-1">
-                        <h3 
-                          class="text-2xl font-black text-white leading-tight group-hover/card:text-primary transition-all duration-500"
-                          style="transform: translateZ(50px); text-shadow: 0 10px 20px rgba(0,0,0,0.5);"
-                        >
-                          {prompt.title}
-                        </h3>
-                        <p 
-                          class="text-white/50 text-sm leading-relaxed line-clamp-3 font-medium"
-                          style="transform: translateZ(30px)"
-                        >
-                          {prompt.description}
-                        </p>
-                      </div>
+											<div class="flex flex-1 flex-col gap-3">
+												<h3
+													class="group-hover/card:text-primary text-2xl leading-tight font-black text-white transition-all duration-500"
+													style="transform: translateZ(50px); text-shadow: 0 10px 20px rgba(0,0,0,0.5);"
+												>
+													{prompt.title}
+												</h3>
+												<p
+													class="line-clamp-3 text-sm leading-relaxed font-medium text-white/50"
+													style="transform: translateZ(30px)"
+												>
+													{prompt.description}
+												</p>
+											</div>
 
-                      <div class="mt-auto w-full flex items-center justify-between pt-6" style="transform: translateZ(40px)">
-                        <div class="flex flex-wrap gap-2">
-                          {prompt.tags?.slice(0, 2).map((tag) => (
-                            <span class="text-[9px] font-black uppercase tracking-widest bg-white/5 border border-white/10 text-white/30 px-3 py-1.5 rounded-lg group-hover/card:border-primary/30 group-hover/card:text-primary/70 transition-all duration-500">
-                              #{tag}
-                            </span>
-                          ))}
-                        </div>
-                        
-                        {/* Interactive indicator */}
-                        <div 
-                          class="text-primary opacity-0 -translate-x-4 group-hover/card:opacity-100 group-hover/card:translate-x-0 transition-all duration-500"
-                          style="transform: translateZ(60px)"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </div>
-                      </div>
+											<div
+												class="mt-auto flex w-full items-center justify-between pt-6"
+												style="transform: translateZ(40px)"
+											>
+												<div class="flex flex-wrap gap-2">
+													{prompt.tags?.slice(0, 2).map((tag) => (
+														<span class="group-hover/card:border-primary/30 group-hover/card:text-primary/70 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-black tracking-widest text-white/30 uppercase transition-all duration-500">
+															#{tag}
+														</span>
+													))}
+												</div>
 
-                      <a href={`/prompts/${prompt.slug}`} class="absolute inset-0 z-30" aria-label={`View ${prompt.title}`}></a>
-                    </div>
-                  </Card3D>
+												{/* Interactive indicator */}
+												<div
+													class="text-primary -translate-x-4 opacity-0 transition-all duration-500 group-hover/card:translate-x-0 group-hover/card:opacity-100"
+													style="transform: translateZ(60px)"
+												>
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														width="20"
+														height="20"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="currentColor"
+														stroke-width="3"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+													>
+														<path d="M5 12h14" />
+														<path d="m12 5 7 7-7 7" />
+													</svg>
+												</div>
+											</div>
+
+											<a
+												href={`/prompts/${prompt.slug}`}
+												class="absolute inset-0 z-30"
+												aria-label={`View ${prompt.title}`}
+											/>
+										</div>
+									</Card3D>
 								))}
 							</div>
 						</div>

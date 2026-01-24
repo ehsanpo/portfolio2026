@@ -29,7 +29,7 @@ export function PromptDetail({ children, className }: PromptDetailProps) {
 			<div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-6 dark:border-blue-800 dark:bg-blue-900/20">
 				<div className="flex items-start gap-2">
 					<svg
-						className="mr-3 mt-0.5 h-6 w-6 text-blue-600 dark:text-blue-400"
+						className="mt-0.5 mr-3 h-6 w-6 text-blue-600 dark:text-blue-400"
 						fill="currentColor"
 						viewBox="0 0 20 20"
 					>
@@ -49,11 +49,7 @@ export function PromptDetail({ children, className }: PromptDetailProps) {
 						</p>
 					</div>
 					<div className="flex justify-end">
-						<Button
-							onClick={handleCopy}
-							variant="secondary"
-
-						>
+						<Button onClick={handleCopy} variant="secondary">
 							<div className="flex items-center gap-2">
 								{copied ? (
 									<>
@@ -66,16 +62,13 @@ export function PromptDetail({ children, className }: PromptDetailProps) {
 										Copy Prompt
 									</>
 								)}
-
-
 							</div>
-
 						</Button>
 					</div>
 				</div>
 			</div>
 			<div className="relative mb-8">
-				<div className="prompt-content prose prose-lg max-w-none rounded-xl border border-gray-200 bg-white p-8 dark:prose-invert dark:border-gray-800 dark:bg-gray-900">
+				<div className="prompt-content prose prose-lg dark:prose-invert max-w-none rounded-xl border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-900">
 					{children}
 				</div>
 			</div>

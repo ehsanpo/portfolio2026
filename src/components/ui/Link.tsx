@@ -26,7 +26,7 @@ export const Link: React.FC<LinkProps> = ({ href, children, className, external 
 		<a
 			href={href}
 			className={cn(
-				"text-primary underline-offset-4 transition-colors hover:text-secondary hover:underline",
+				"text-primary hover:text-secondary underline-offset-4 transition-colors hover:underline",
 				className
 			)}
 			{...(isExternal

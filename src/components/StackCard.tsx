@@ -44,22 +44,21 @@ export default function StackCard({ slug, labels, icon, data, parentIndex }: Sta
 	return (
 		<motion.div className={`rounded-lg`} whileHover={{ scale: 1.02 }}>
 			<Card3D
-				className="justify-center cursor-pointer flex-col items-center whitespace-nowrap text-black"
+				className="cursor-pointer flex-col items-center justify-center whitespace-nowrap text-black"
 				glowColor="color-mix(in srgb, currentColor 80%, var(--color-accent))"
 			>
-				<div className="p-3 flex items-center gap-4 -mb-2.5">
+				<div className="-mb-2.5 flex items-center gap-4 p-3">
 					<img src={icon} alt={slug} className="h-12 w-12" />
 					<h3 className="font-basement text-xl text-gray-600 dark:text-gray-300">{slug}</h3>
 				</div>
-				<div className="p-3 space-y-4">
+				<div className="space-y-4 p-3">
 					{labels.map((label, index) => {
 						const timelineMatch = findTimelineMatch(label);
 						const yearsOfExperience = timelineMatch?.yearsOfExperience;
 
 						return (
-							<div key={label} className="group/stat relative" >
-								<div className="clip2 rounded bg-neutral-700/30 px-2 py-2 group-hover/stat:translate-z-2 group-hover/stat:scale-112 group-hover/stat:shadow-xl transition-all duration-300 "
-								>
+							<div key={label} className="group/stat relative">
+								<div className="clip2 rounded bg-neutral-700/30 px-2 py-2 transition-all duration-300 group-hover/stat:translate-z-2 group-hover/stat:scale-112 group-hover/stat:shadow-xl">
 									<div className="flex justify-between gap-2">
 										<span className="text-gray-700 dark:text-gray-300">
 											<span
@@ -67,9 +66,11 @@ export default function StackCard({ slug, labels, icon, data, parentIndex }: Sta
 													timelineMatch?.stillActive
 												)}`}
 											></span>
-											{label}{yearsOfExperience && (
-												<span className="text-xs text-gray-500 dark:text-gray-400 opacity-0 transition-all duration-300 ease-in-out group-hover/stat:opacity-100">
-												{" "}- {yearsOfExperience} Years
+											{label}
+											{yearsOfExperience && (
+												<span className="text-xs text-gray-500 opacity-0 transition-all duration-300 ease-in-out group-hover/stat:opacity-100 dark:text-gray-400">
+													{" "}
+													- {yearsOfExperience} Years
 												</span>
 											)}
 										</span>

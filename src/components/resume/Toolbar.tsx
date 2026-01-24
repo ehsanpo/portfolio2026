@@ -17,7 +17,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 	const colors = ["#0891b2", "#4f46e5", "#059669", "#db2777", "#d97706"];
 
 	return (
-		<div className="fixed left-0 right-0 top-16 z-50 bg-white shadow-md print:hidden">
+		<div className="fixed top-16 right-0 left-0 z-50 bg-white shadow-md print:hidden">
 			<div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-2">
 				<div className="flex items-center gap-4">
 					<div className="flex items-center gap-2">
@@ -35,7 +35,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 						onClick={() => onLanguageChange(currentLanguage === "en" ? "sv" : "en")}
 						className="rounded-lg p-2 hover:bg-gray-100"
 					>
-						<Languages className="h-5 w-5 text-primary-500" />
+						<Languages className="text-primary-500 h-5 w-5" />
 					</button>
 				</div>
 				<button onClick={onExportPDF} className="rounded-lg bg-slate-300 p-2 hover:bg-gray-100">

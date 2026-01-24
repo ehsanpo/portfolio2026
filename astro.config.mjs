@@ -1,26 +1,24 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
-import react from '@astrojs/react';
+import react from "@astrojs/react";
 
-import mdx from '@astrojs/mdx';
+import mdx from "@astrojs/mdx";
 
-import sitemap from '@astrojs/sitemap';
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ehsan-pourhadi.com/",
+	site: "https://ehsan-pourhadi.com/",
 	base: "",
-  vite: {
-    plugins: [tailwindcss()],
-     ssr: {
-        noExternal: [
-            'gsap'
-        ]
-    }
-  },
+	vite: {
+		plugins: [tailwindcss()],
+		ssr: {
+			noExternal: ["gsap"],
+		},
+	},
 
-  integrations: [react(), mdx(), sitemap()]
+	integrations: [react(), mdx(), sitemap()],
 });

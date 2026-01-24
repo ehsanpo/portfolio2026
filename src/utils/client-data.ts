@@ -1,6 +1,5 @@
 import portfolioData from "../data/portfolio-resume.json";
 
-// Type for blog posts (used by client components)
 export interface BlogPost {
 	title: string;
 	description: string;
@@ -16,14 +15,13 @@ export interface BlogPost {
 	};
 	featured?: boolean;
 	slug: string;
-	content: any; // Use any here to avoid importing CollectionEntry
+	content: any;
 }
 
 export const getPortfolioData = () => {
 	return portfolioData;
 };
 
-// Calculate years of experience from duration string
 export const calculateYearsOfExperience = (duration: string): number => {
 	const [startYear, endYear] = duration.split("-").map((year) => parseInt(year));
 	const currentYear = new Date().getFullYear();
@@ -31,7 +29,6 @@ export const calculateYearsOfExperience = (duration: string): number => {
 	return actualEndYear - startYear;
 };
 
-// Calculate precise duration in years and months
 export const calculatePreciseDuration = (startDate: string, endDate?: string): string => {
 	if (!startDate) return "";
 
@@ -53,83 +50,72 @@ export const calculatePreciseDuration = (startDate: string, endDate?: string): s
 	return parts.join(" ");
 };
 
-// Mapping object to handle name variations between stacks and timeline
 const TECH_NAME_MAPPING: { [key: string]: string } = {
-	// Front-end stack mappings
 	React: "ReactJS",
 	Gatsby: "Gatsby",
 	"Next.js": "Next.js",
 	TypeScript: "TypeScript",
-	Sass: "Sass", // Not in timeline
+	Sass: "Sass",
 
-	// Backend stack mappings
 	"Node.js": "Node.js",
 	PHP: "PHP",
 	"Ruby on Rails": "Ruby on Rails",
-	"Rest API": "Rest API", // Not in timeline
+	"Rest API": "Rest API",
 	GraphQL: "GraphQL",
 
-	// Database stack mappings
 	MySQL: "MySQL",
 	PostgreSQL: "PostgreSQL",
-	MongoDB: "MongoDB", // Not in timeline
-	Redis: "Redis", // Not in timeline
-	Elasticsearch: "Elasticsearch", // Not in timeline
+	MongoDB: "MongoDB",
+	Redis: "Redis",
+	Elasticsearch: "Elasticsearch",
 
-	// Design stack mappings
-	UI: "UX Design", // Maps to UX Design in timeline
+	UI: "UX Design",
 	UX: "UX Design",
 	"Adobe XD": "Adobe XD",
 	Photoshop: "Photoshop",
-	"Motion Graphics": "Motion Graphics", // Not in timeline
+	"Motion Graphics": "Motion Graphics",
 
-	// Cloud stack mappings (most not in timeline)
 	"AWS API Gateway": "AWS",
 	Lambda: "AWS",
 	DynamoDB: "AWS",
 	S3: "AWS",
 	CloudFront: "AWS",
 
-	// DevOps stack mappings (most not in timeline)
-	Linux: "Linux", // Not in timeline
-	Docker: "Docker", // Not in timeline
-	Nginx: "Nginx", // Not in timeline
-	"Shell Script": "Shell Script", // Not in timeline
-	"Github Actions": "Github Actions", // Not in timeline
+	Linux: "Linux",
+	Docker: "Docker",
+	Nginx: "Nginx",
+	"Shell Script": "Shell Script",
+	"Github Actions": "Github Actions",
 
-	// Apps stack mappings
 	"Electron js": "Electron JS",
 	Typescript: "TypeScript",
 	Tailwind: "Tailwind",
-	Vite: "Vite", // Not in timeline
-	"React Native": "React Native", // Not in timeline
+	Vite: "Vite",
+	"React Native": "React Native",
 
-	// Multimedia stack mappings
-	"Reason Studios": "Reason Studios", // Not in timeline
-	Cubase: "Cubase", // Not in timeline
-	FFmpeg: "FFmpeg", // Not in timeline
-	"After Effects": "After Effects", // Not in timeline
+	"Reason Studios": "Reason Studios",
+	Cubase: "Cubase",
+	FFmpeg: "FFmpeg",
+	"After Effects": "After Effects",
 };
 
 const calculateStatus = (duration: string): number => {
 	const [startYear, endYear] = duration.split("-").map((year) => parseInt(year));
 	const currentYear = new Date().getFullYear();
 	if (endYear > currentYear) {
-		return 10; // Still active
+		return 10;
 	} else if (endYear === currentYear) {
-		return 7; // Just ended this year
+		return 7;
 	} else if (currentYear - endYear <= 2) {
-		return 5; // Ended within the last 2 years
+		return 5;
 	} else {
-		return 2; // Ended more than 2 years ago
+		return 2;
 	}
 };
 
-// Find matching timeline entry for a stack label
 export const findTimelineMatch = (stackLabel: string) => {
 	const timelineData = portfolioData.timeline;
 
-	// Direct mapping lookup
 	const mappedName = TECH_NAME_MAPPING[stackLabel];
 	if (mappedName) {
 		const match = timelineData.find((item) => item.name === mappedName);
@@ -142,7 +128,6 @@ export const findTimelineMatch = (stackLabel: string) => {
 		}
 	}
 
-	// Fallback: exact match
 	const exactMatch = timelineData.find((item) => item.name === stackLabel);
 	if (exactMatch) {
 		return {
@@ -152,7 +137,6 @@ export const findTimelineMatch = (stackLabel: string) => {
 		};
 	}
 
-	// Fallback: case-insensitive partial match
 	const partialMatch = timelineData.find(
 		(item) =>
 			item.name.toLowerCase().includes(stackLabel.toLowerCase()) ||

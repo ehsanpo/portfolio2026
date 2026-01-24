@@ -27,7 +27,7 @@ export const Aside: React.FC<AsideProps> = ({ data, mainColor, language }) => {
 				<h2 className="mb-2 text-xl font-semibold" style={{ color: mainColor }}>
 					{t.contact}
 				</h2>
-				<div className="space-y-2 text-sm print:grid print:grid-cols-2 print:gap-x-4 print:gap-y-1 print:space-y-0">
+				<div className="space-y-2 text-sm print:grid print:grid-cols-2 print:space-y-0 print:gap-x-4 print:gap-y-1">
 					<p className="flex items-center gap-2">
 						<MapPin size={16} style={{ color: mainColor }} />
 						{data.basics.location}

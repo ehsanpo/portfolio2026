@@ -54,7 +54,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, mainColor }) => {
 					className="timeline-item relative border-l-2 border-current pb-4 pl-8"
 					style={{ color: mainColor }}
 				>
-					<div className="absolute -left-[11px] top-1 h-4 w-4 rounded-full bg-current" />
+					<div className="absolute top-1 -left-[11px] h-4 w-4 rounded-full bg-current" />
 					<div className="mb-1 text-black">
 						<div className="flex items-baseline justify-between">
 							<h3

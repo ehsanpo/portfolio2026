@@ -64,7 +64,7 @@ const agencySlug = portfolioData.companies.find((c) => c.name === item.agency)?.
 		<PortfolioHeader item={item} agencySlug={agencySlug} client:load />
 
 		<div class="relative z-10 mx-auto max-w-6xl px-4 pt-10">
-			<div class="prose mx-auto mb-20 max-w-3xl dark:prose-invert">
+			<div class="prose dark:prose-invert mx-auto mb-20 max-w-3xl">
 				<slot />
 				<Content />
 			</div>
@@ -78,7 +78,7 @@ const agencySlug = portfolioData.companies.find((c) => c.name === item.agency)?.
 							href={item.case_link_url}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+							class="bg-primary-600 hover:bg-primary-700 inline-flex items-center rounded-lg px-6 py-3 text-white transition-colors"
 						>
 							Visit Project
 							<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

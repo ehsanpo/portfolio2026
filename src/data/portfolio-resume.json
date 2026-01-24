@@ -689,7 +689,12 @@
 					"id": "music-producer",
 					"title": "Music Producer and Event Organizer",
 					"description": "Produced and released multiple songs, primarily in hip-hop and R&B genres. Organized and hosted an event for Malmö-based artists at Arena 305. Collaborated with various artists and producers, contributing to projects that showcased diverse musical styles and talents.",
-					"technologies": ["Reason Studios", "Pro Tools", "Sound Design", "Digital Audio Processing"],
+					"technologies": [
+						"Reason Studios",
+						"Pro Tools",
+						"Sound Design",
+						"Digital Audio Processing"
+					],
 					"image": null,
 					"link": {
 						"href": "https://soundcloud.com/eprumental",
@@ -792,7 +797,7 @@
 			"icon": "/img/timeline-icons/reason-studios.svg",
 			"duration": "2010-2024"
 		},
-				{
+		{
 			"id": 117,
 			"name": "Docker",
 			"icon": "/img/timeline-icons/docker.svg",
@@ -1327,7 +1332,7 @@
 		},
 		{
 			"slug": "Backend",
-			"labels": ["Node.js","Rest API", "PHP", "Ruby on Rails", "Go"],
+			"labels": ["Node.js", "Rest API", "PHP", "Ruby on Rails", "Go"],
 			"icon": "/img/stacks/back-end.svg",
 			"data": ["10", "10", "8", "7", "4"]
 		},
@@ -1460,7 +1465,6 @@
 			"img": "/img/testimonial/asger.jpg",
 			"short": "Ehsan and I have worked closely together on a variety of projects, each differing in size and complexity.",
 			"desc": "Having worked in the industry for only a handful of years, I consider the opportunity to have worked with Ehsan as extremely rewarding. Even though we started out in different teams, Ehsan has always been open to discussing both problems and solutions. Over the past two years, Ehsan and I have worked closely together on a variety of projects, each differing in size and complexity. Besides his excellent ability to break down tasks and problems and provide high quality code to efficiently solve even the most demanding task we have had, Ehsan also has the ability to convey the essence of a problem and explain both the 'how' and the 'why' it should be solved to junior devs as well as customers alike. But working with Ehsan is also challenging in the best possible way. He is always on the lookout for new tech and ideas, on how to do things better. This is something from which everyone in our team has benefitted from. Over a great many cups of tea, we have discussed how to approach problems, potential pitfalls and best practices. I'm sure that Ehsan's knowledge, curiosity and sense of teamwork will be a great asset to any organisation and I envy the next developer who gets to pick his brain. - It's always time for tea…"
-			
 		},
 		{
 			"id": 5,

@@ -59,7 +59,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 		<div className="bg-gray-100 dark:bg-neutral-800">
 			<header className="mx-auto max-w-6xl overflow-hidden px-4 py-12">
 				<ParallaxProvider>
-					<div className="container relative">
+					<div className="relative container">
 						<div className="grid md:grid-cols-2">
 							<div className="self-center">
 								<Heading
@@ -82,16 +82,16 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 								</p>
 								<div className="flex flex-col gap-4">
 									<div className="flex gap-4">
-										<h3 className="min-w-20 font-medium uppercase text-secondary-500">Client</h3>
+										<h3 className="text-secondary-500 min-w-20 font-medium uppercase">Client</h3>
 										<p className="font-basement text-secondary-500">{client}</p>
 									</div>
 									<div className="flex gap-4">
-										<h3 className="min-w-20 font-medium uppercase text-secondary-500">Year</h3>
+										<h3 className="text-secondary-500 min-w-20 font-medium uppercase">Year</h3>
 										<p className="font-basement text-secondary-500">{date}</p>
 									</div>
 									{agency && (
 										<div className="flex gap-4">
-											<h3 className="min-w-20 font-medium uppercase text-yellow-500">Agency</h3>
+											<h3 className="min-w-20 font-medium text-yellow-500 uppercase">Agency</h3>
 											{agencySlug ? (
 												<a
 													href={`/work/${agencySlug}`}
@@ -106,12 +106,12 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 									)}
 
 									<div className="flex gap-4">
-										<h3 className="min-w-20 font-medium uppercase text-primary-400">Role</h3>
+										<h3 className="text-primary-400 min-w-20 font-medium uppercase">Role</h3>
 										<div className="flex flex-wrap gap-2">
 											{category.map((categoryTag, index) => (
 												<span
 													key={index}
-													className="clip2 hover:border-primary border-l-2 border-primary-500/30 bg-primary-500/20 px-3 py-1 text-sm text-primary-400 transition-all"
+													className="clip2 hover:border-primary border-primary-500/30 bg-primary-500/20 text-primary-400 border-l-2 px-3 py-1 text-sm transition-all"
 													style={{
 														viewTransitionName: `portfolio-category-${item.permalink}-${categoryTag}`,
 													}}
@@ -122,7 +122,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 										</div>
 									</div>
 									<div className="flex gap-4">
-										<h3 className="min-w-20 font-medium uppercase text-gray-500 dark:text-purple-400">
+										<h3 className="min-w-20 font-medium text-gray-500 uppercase dark:text-purple-400">
 											Tech
 										</h3>
 										<div className="flex flex-wrap gap-2">
@@ -152,7 +152,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 										</Parallax>
 									</div>
 									{images && images[0] && (
-										<div className="portfolio-hero-image absolute left-0 top-[100%] w-full">
+										<div className="portfolio-hero-image absolute top-[100%] left-0 w-full">
 											<Parallax speed={10}>
 												<img
 													height={images[0].height}
@@ -166,7 +166,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 									)}
 
 									{logo2 && (
-										<div className="portfolio-hero-image absolute left-0 top-[100%] w-full">
+										<div className="portfolio-hero-image absolute top-[100%] left-0 w-full">
 											<Parallax speed={5} className="portfolio-hero-box porfolio-hero-small">
 												<img
 													height={logo2?.height}
@@ -182,7 +182,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 										<div className="portfolio-hero-image absolute top-[30%] w-full">
 											<Parallax
 												speed={5}
-												className="portfolio-hero-box porfolio-hero-small--right absolute left-0 top-[10%] w-full"
+												className="portfolio-hero-box porfolio-hero-small--right absolute top-[10%] left-0 w-full"
 											>
 												<img
 													height={background_image.height}

@@ -38,7 +38,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 				) : (
 					<div
 						className={cn(
-							"relative bg-gradient-to-br from-primary-500 to-primary-700",
+							"from-primary-500 to-primary-700 relative bg-gradient-to-br",
 							featured ? "h-64" : "h-48"
 						)}
 					>
@@ -75,7 +75,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 									{post.category.slice(0, 2).map((cat) => (
 										<span
 											key={cat}
-											className="clip2 rounded bg-primary-600 px-2 py-1 text-xs font-medium text-black dark:bg-primary-900 dark:text-primary-200"
+											className="clip2 bg-primary-600 dark:bg-primary-900 dark:text-primary-200 rounded px-2 py-1 text-xs font-medium text-black"
 										>
 											{cat}
 										</span>
@@ -92,7 +92,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 
 					<h3
 						className={cn(
-							"mb-3 font-bold text-gray-900 transition-colors group-hover:text-primary-600 dark:text-primary-500 dark:group-hover:text-secondary-500",
+							"group-hover:text-primary-600 dark:text-primary-500 dark:group-hover:text-secondary-500 mb-3 font-bold text-gray-900 transition-colors",
 							featured ? "text-2xl" : "text-xl"
 						)}
 					>
@@ -100,18 +100,17 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 					</h3>
 
 					{post.description && (
-						<p className="mb-4 text-gray-600 dark:text-accent-200">
+						<p className="dark:text-accent-200 mb-4 text-gray-600">
 							{post.description.length > 120
 								? `${post.description.substring(0, 120)}...`
 								: post.description}
 						</p>
 					)}
-
 				</div>
 
 				{featured && (
-					<div className="absolute left-4 top-4">
-						<span className="rounded-full bg-primary-600 px-3 py-1 text-xs font-medium text-white">
+					<div className="absolute top-4 left-4">
+						<span className="bg-primary-600 rounded-full px-3 py-1 text-xs font-medium text-white">
 							Featured
 						</span>
 					</div>

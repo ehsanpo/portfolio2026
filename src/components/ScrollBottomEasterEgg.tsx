@@ -72,7 +72,7 @@ export default function ScrollBottomEasterEgg() {
 
 	return (
 		<motion.div
-			className="pointer-events-auto relative z-40 overflow-hidden hidden"
+			className="pointer-events-auto relative z-40 hidden overflow-hidden"
 			id="pixelworld"
 			initial={{ y: "100%" }}
 			animate={{

@@ -5,12 +5,12 @@ import StackCard from "@/components/StackCard";
 import { Heading } from "@/components/ui/heading";
 import { getPortfolioData } from "@/utils/data";
 const { stacks } = getPortfolioData();
-const {showAll = false} = Astro.props;
+const { showAll = false } = Astro.props;
 ---
 
 <section class="">
 	<div class="container mx-auto">
-		<h2 class="text-primary mb-12 text-center font-basement text-4xl"></h2>
+		<h2 class="text-primary font-basement mb-12 text-center text-4xl"></h2>
 		<Heading
 			level="h2"
 			gradient
@@ -22,11 +22,19 @@ const {showAll = false} = Astro.props;
 			Stacks
 		</Heading>
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{stacks.slice(0, showAll ? stacks.length : 3).map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)}
+			{
+				stacks
+					.slice(0, showAll ? stacks.length : 3)
+					.map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)
+			}
 		</div>
 		<SkillsInfo />
-		{showAll && <div class="mt-12 text-center">
-			<Button href="/skills" text="View All Stacks →" />
-		</div>}
+		{
+			showAll && (
+				<div class="mt-12 text-center">
+					<Button href="/skills" text="View All Stacks →" />
+				</div>
+			)
+		}
 	</div>
 </section>

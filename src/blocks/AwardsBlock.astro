@@ -32,26 +32,30 @@ const awardsWithImages = awards.map((award) => ({
 		<div class="grid grid-cols-1 gap-8 text-center md:grid-cols-2 lg:grid-cols-3">
 			{
 				awardsWithImages.map((award) => (
-					<Card3D className="text-black group/card " childClassName="clip6 " glowColor="color-mix(in srgb, currentColor 80%, var(--color-primary))" client:load >
-					<a
-						href={award.link}
-						class=" rounded-lg p-6 transition-transform hover:-translate-y-1 "
+					<Card3D
+						className="text-black group/card "
+						childClassName="clip6 "
+						glowColor="color-mix(in srgb, currentColor 80%, var(--color-primary))"
+						client:load
 					>
-						<div class="">
-							<Image
-								src={award.image}
-								alt={award.name}
-								widths={[480, 768, 1024]}
-								sizes="(max-width: 768px) 100vw, 33vw"
-								format="webp"
-								quality={80}
-								loading="lazy"
-								class="mx-auto mb-4 rounded-lg transition-transform group-hover/card:scale-105"
-							/>
-							<h3 class="mb-2 text-xl font-semibold text-primary-500 group-hover/card:translate-z-20 group-hover/card:scale-110 transition-all duration-300">{award.name}</h3>
-							<p class="text-primary-500">{award.description}</p>
-						</div>
-					</a>
+						<a href={award.link} class="rounded-lg p-6 transition-transform hover:-translate-y-1">
+							<div class="">
+								<Image
+									src={award.image}
+									alt={award.name}
+									widths={[480, 768, 1024]}
+									sizes="(max-width: 768px) 100vw, 33vw"
+									format="webp"
+									quality={80}
+									loading="lazy"
+									class="mx-auto mb-4 rounded-lg transition-transform group-hover/card:scale-105"
+								/>
+								<h3 class="text-primary-500 mb-2 text-xl font-semibold transition-all duration-300 group-hover/card:translate-z-20 group-hover/card:scale-110">
+									{award.name}
+								</h3>
+								<p class="text-primary-500">{award.description}</p>
+							</div>
+						</a>
 					</Card3D>
 				))
 			}

@@ -23,7 +23,7 @@ import {
 	Newspaper,
 } from "lucide-react";
 import { cn } from "../../lib/utils";
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from "react-tooltip";
 import DuckSprite from "../DuckSprite";
 import DocSearch from "./DocSearch";
 
@@ -40,7 +40,6 @@ type NavigationLink = {
 	name: string;
 	icon: typeof Code;
 } & ({ id: string; href?: never } | { href: string; id?: never });
-
 
 const navigationSections: { title: string; links: NavigationLink[] }[] = [
 	{
@@ -88,7 +87,6 @@ const navigationSections: { title: string; links: NavigationLink[] }[] = [
 				icon: Pen, // Using Pen as placeholder for Dribbble
 				href: "https://dribbble.com/epo",
 			},
-	
 		],
 	},
 ];
@@ -109,8 +107,6 @@ export function Footer({
 		}
 	};
 
-
-
 	return (
 		<footer className={cn("relative mt-20", className)}>
 			<DuckSprite />
@@ -119,7 +115,7 @@ export function Footer({
 					{/* Brand Section */}
 					<div className="lg:col-span-1">
 						<div className="mb-4 flex items-center space-x-3">
-							<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary-900 to-secondary-900">
+							<div className="from-primary-900 to-secondary-900 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br">
 								<svg
 									width="48"
 									height="48"
@@ -147,7 +143,7 @@ export function Footer({
 							Experienced software developer passionate about creating impactful digital experiences
 							with modern web technologies and thoughtful design.
 						</p>
-					
+
 						<div className="mt-2">
 							<DocSearch
 								appId="0DAQDYSKFQ"
@@ -161,7 +157,7 @@ export function Footer({
 					{showNavigation &&
 						navigationSections.map((section) => (
 							<div key={section.title}>
-								<h3 className="text-foreground mb-4 font-basement text-lg">{section.title}</h3>
+								<h3 className="text-foreground font-basement mb-4 text-lg">{section.title}</h3>
 								<ul className="space-y-3">
 									{section.links.map((link) => {
 										const Icon = link.icon;
@@ -172,7 +168,7 @@ export function Footer({
 														href={link.href}
 														target={link.href.startsWith("http") ? "_blank" : "_self"}
 														rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-														className="font-kabel group flex items-center text-sm text-gray-400 transition-colors hover:text-primary"
+														className="font-kabel group hover:text-primary flex items-center text-sm text-gray-400 transition-colors"
 													>
 														<Icon className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
 														{link.name}
@@ -183,7 +179,7 @@ export function Footer({
 												) : (
 													<button
 														onClick={() => link.id && handleNavigation(link.id)}
-														className="text-muted-foreground font-kabel group flex items-center text-sm transition-colors hover:text-primary"
+														className="text-muted-foreground font-kabel group hover:text-primary flex items-center text-sm transition-colors"
 													>
 														<Icon className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
 														{link.name}
@@ -232,29 +228,36 @@ export function Footer({
 							<span>© 2026 Ehsan Pourhadi. All rights reserved.</span>
 							<div className="flex items-center space-x-1">
 								<span>Made with</span>
-								
-									<Heart className="h-4 w-4 fill-current text-red-600"  data-tooltip-id="footer-tt" data-tooltip-content="Love and passion"/>
-						
+
+								<Heart
+									className="h-4 w-4 fill-current text-red-600"
+									data-tooltip-id="footer-tt"
+									data-tooltip-content="Love and passion"
+								/>
+
 								<span>and</span>
-								
-									<Coffee className="h-4 w-4 text-yellow-500" data-tooltip-id="footer-tt" data-tooltip-content="Actually tea ☕ - coffee is for emergencies!" />
-								
+
+								<Coffee
+									className="h-4 w-4 text-yellow-500"
+									data-tooltip-id="footer-tt"
+									data-tooltip-content="Actually tea ☕ - coffee is for emergencies!"
+								/>
+
 								<span>using</span>
-								
-									<a
-										href="/credits"
-										className="inline-flex items-center gap-1 align-bottom text-primary transition-colors hover:text-secondary"
-                                        data-tooltip-id="footer-tt" 
-                                        data-tooltip-content="See all tools and resources"
-									>
-										<Zap className="h-4 w-4" />
-										<span className="underline decoration-primary/50 underline-offset-2">
-											awesome tools
-										</span>
-									</a>
-								
+
+								<a
+									href="/credits"
+									className="text-primary hover:text-secondary inline-flex items-center gap-1 align-bottom transition-colors"
+									data-tooltip-id="footer-tt"
+									data-tooltip-content="See all tools and resources"
+								>
+									<Zap className="h-4 w-4" />
+									<span className="decoration-primary/50 underline underline-offset-2">
+										awesome tools
+									</span>
+								</a>
 							</div>
-							<Tooltip id="footer-tt"/>
+							<Tooltip id="footer-tt" />
 						</div>
 
 						<button

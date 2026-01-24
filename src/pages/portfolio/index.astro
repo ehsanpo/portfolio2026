@@ -4,7 +4,7 @@ import PageHero from "../../components/hero/PageHero.astro";
 import { getPortfolioItems } from "../../utils/data";
 import PortfolioFilter from "@/components/PortfolioFilter";
 import { ProjectCard3D } from "@/components/ProjectCard3D";
-import { getProjectImage } from '@/utils/projectHelpers';
+import { getProjectImage } from "@/utils/projectHelpers";
 
 const portfolioItems = await getPortfolioItems();
 const sortedItems = portfolioItems.sort((a, b) => {
@@ -13,7 +13,6 @@ const sortedItems = portfolioItems.sort((a, b) => {
 });
 
 const allCategories = [...new Set(portfolioItems.flatMap((entry) => entry.category))];
-
 ---
 
 <Layout

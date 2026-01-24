@@ -22,7 +22,7 @@ export default function WeatherSystem({
 		const intensities = ["light", "medium", "heavy"];
 
 		setCurrentWeather(weatherTypes[Math.floor(Math.random() * weatherTypes.length)] as any);
-			setCurrentIntensity(intensities[Math.floor(Math.random() * intensities.length)] as any);
+		setCurrentIntensity(intensities[Math.floor(Math.random() * intensities.length)] as any);
 
 		const interval = setInterval(() => {
 			setCurrentWeather(weatherTypes[Math.floor(Math.random() * weatherTypes.length)] as any);

@@ -7,14 +7,12 @@ import type { Resume } from "@/types/resume";
 import type { Language } from "@/translations/index";
 import portfolioData from "@/data/portfolio-resume.json";
 
-interface Props {
-
-}
+interface Props {}
 
 const ResumeCv: React.FC<Props> = () => {
 	const [mainColor, setMainColor] = useState("#4f46e5");
 	const [language, setLanguage] = useState<Language>("en");
-	
+
 	const resumeData: Resume = {
 		basics: {
 			name: portfolioData.basics.name,
@@ -84,7 +82,7 @@ const ResumeCv: React.FC<Props> = () => {
 				</div>
 
 				<div className="mx-auto flex max-w-4xl gap-8 px-4 py-8 print:block print:gap-0 print:space-y-4">
-					<div className="w-1/4 flex-shrink-0 print:w-full">
+					<div className="w-1/4 shrink-0 print:w-full">
 						<Aside data={resumeData} mainColor={mainColor} language={language} />
 					</div>
 					<div className="flex-1 print:w-full">

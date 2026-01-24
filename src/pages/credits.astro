@@ -21,7 +21,7 @@ const { meta } = await getPortfolioData();
 				<!-- Core Stack -->
 				<section>
 					<h2
-						class="my-8 text-center font-basement text-3xl font-bold text-neutral-800 dark:text-neutral-100"
+						class="font-basement my-8 text-center text-3xl font-bold text-neutral-800 dark:text-neutral-100"
 					>
 						⚡ Core Stack
 					</h2>
@@ -30,9 +30,9 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-orange-500/10 to-purple-600/10"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="mb-4 text-4xl">🚀</div>
-								<h3 class="mb-2 font-basement text-xl font-bold">Astro</h3>
+								<h3 class="font-basement mb-2 text-xl font-bold">Astro</h3>
 								<p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
 									Static site generation framework
 								</p>
@@ -40,7 +40,8 @@ const { meta } = await getPortfolioData();
 									href="https://astro.build/"
 									target="_blank"
 									rel="noopener noreferrer"
-									class="text-sm font-medium text-primary-500 hover:text-primary-600">astro.build →</a
+									class="text-primary-500 hover:text-primary-600 text-sm font-medium"
+									>astro.build →</a
 								>
 							</div>
 						</Card3D>
@@ -48,9 +49,9 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-blue-500/10 to-cyan-500/10"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="mb-4 text-4xl">⚛️</div>
-								<h3 class="mb-2 font-basement text-xl font-bold">React</h3>
+								<h3 class="font-basement mb-2 text-xl font-bold">React</h3>
 								<p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
 									Interactive components
 								</p>
@@ -58,7 +59,7 @@ const { meta } = await getPortfolioData();
 									href="https://react.dev/"
 									target="_blank"
 									rel="noopener noreferrer"
-									class="text-sm font-medium text-primary-500 hover:text-primary-600">react.dev →</a
+									class="text-primary-500 hover:text-primary-600 text-sm font-medium">react.dev →</a
 								>
 							</div>
 						</Card3D>
@@ -66,9 +67,9 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-teal-500/10 to-blue-600/10"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="mb-4 text-4xl">🎨</div>
-								<h3 class="mb-2 font-basement text-xl font-bold">TailwindCSS</h3>
+								<h3 class="font-basement mb-2 text-xl font-bold">TailwindCSS</h3>
 								<p class="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
 									Utility-first CSS framework
 								</p>
@@ -76,7 +77,7 @@ const { meta } = await getPortfolioData();
 									href="https://tailwindcss.com/"
 									target="_blank"
 									rel="noopener noreferrer"
-									class="text-sm font-medium text-primary-500 hover:text-primary-600"
+									class="text-primary-500 hover:text-primary-600 text-sm font-medium"
 									>tailwindcss.com →</a
 								>
 							</div>
@@ -87,24 +88,24 @@ const { meta } = await getPortfolioData();
 				<!-- State & Animation -->
 				<section>
 					<h2
-						class="mb-8 text-center font-basement text-3xl font-bold text-neutral-800 dark:text-neutral-100"
+						class="font-basement mb-8 text-center text-3xl font-bold text-neutral-800 dark:text-neutral-100"
 					>
 						🎭 State & Animation
 					</h2>
 					<div class="grid gap-6 md:grid-cols-4">
 						<Card3D client:visible childClassName="bg-neutral-50 dark:bg-neutral-800/50">
-							<div class="p-6 h-full">
+							<div class="h-full p-6">
 								<h3 class="mb-2 font-semibold">Zustand</h3>
 								<p class="mb-3 text-sm text-neutral-600 dark:text-neutral-400">State management</p>
 								<a
 									href="https://zustand-demo.pmnd.rs/"
 									target="_blank"
-									class="text-xs text-primary-500">View →</a
+									class="text-primary-500 text-xs">View →</a
 								>
 							</div>
 						</Card3D>
 						<Card3D client:visible childClassName="bg-neutral-50 dark:bg-neutral-800/50">
-							<div class="p-6 h-full">
+							<div class="h-full p-6">
 								<h3 class="mb-2 font-semibold">GSAP</h3>
 								<p class="mb-3 text-sm text-neutral-600 dark:text-neutral-400">
 									Professional animations
@@ -113,21 +114,23 @@ const { meta } = await getPortfolioData();
 							</div>
 						</Card3D>
 						<Card3D client:visible childClassName="bg-neutral-50 dark:bg-neutral-800/50">
-							<div class="p-6 h-full">
+							<div class="h-full p-6">
 								<h3 class="mb-2 font-semibold">Framer Motion</h3>
 								<p class="mb-3 text-sm text-neutral-600 dark:text-neutral-400">React animations</p>
 								<a
 									href="https://www.framer.com/motion/"
 									target="_blank"
-									class="text-xs text-primary-500">View →</a
+									class="text-primary-500 text-xs">View →</a
 								>
 							</div>
 						</Card3D>
 						<Card3D client:visible childClassName="bg-neutral-50 dark:bg-neutral-800/50">
-							<div class="p-6 h-full">
+							<div class="h-full p-6">
 								<h3 class="mb-2 font-semibold">PhotoSwipe</h3>
 								<p class="mb-3 text-sm text-neutral-600 dark:text-neutral-400">Gallery lightbox</p>
-								<ExternalLink href="https://photoswipe.com/" className="text-xs">View →</ExternalLink>
+								<ExternalLink href="https://photoswipe.com/" className="text-xs"
+									>View →</ExternalLink
+								>
 							</div>
 						</Card3D>
 					</div>
@@ -136,15 +139,12 @@ const { meta } = await getPortfolioData();
 				<!-- UI Components -->
 				<section>
 					<h2
-						class="mb-8 text-center font-basement text-3xl font-bold text-neutral-800 dark:text-neutral-100"
+						class="font-basement mb-8 text-center text-3xl font-bold text-neutral-800 dark:text-neutral-100"
 					>
 						🧩 UI Components
 					</h2>
-					<Card3D
-						client:visible
-						childClassName="bg-white dark:bg-neutral-800/30"
-					>
-						<div class="p-8 h-full">
+					<Card3D client:visible childClassName="bg-white dark:bg-neutral-800/30">
+						<div class="h-full p-8">
 							<div class="grid gap-6 md:grid-cols-2">
 								<div class="flex items-start gap-4">
 									<div class="text-2xl">🎛️</div>
@@ -172,7 +172,7 @@ const { meta } = await getPortfolioData();
 				<!-- Creative Assets & Design Tools -->
 				<section>
 					<h2
-						class="mb-8 text-center font-basement text-3xl font-bold text-neutral-800 dark:text-neutral-100"
+						class="font-basement mb-8 text-center text-3xl font-bold text-neutral-800 dark:text-neutral-100"
 					>
 						🎨 Creative Assets & Design Tools
 					</h2>
@@ -183,11 +183,11 @@ const { meta } = await getPortfolioData();
 								client:visible
 								childClassName="bg-gradient-to-br from-blue-500/10 to-purple-600/10"
 							>
-								<div class="p-6 h-full">
+								<div class="h-full p-6">
 									<div class="flex items-start gap-4">
 										<div class="text-4xl">🎨</div>
 										<div>
-											<h3 class="mb-2 font-basement text-xl font-bold">Adobe Photoshop</h3>
+											<h3 class="font-basement mb-2 text-xl font-bold">Adobe Photoshop</h3>
 											<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 												Professional image editing and digital art
 											</p>
@@ -195,7 +195,7 @@ const { meta } = await getPortfolioData();
 												href="https://www.adobe.com/products/photoshop.html"
 												target="_blank"
 												rel="noopener noreferrer"
-												class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+												class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 											>
 										</div>
 									</div>
@@ -205,11 +205,11 @@ const { meta } = await getPortfolioData();
 								client:visible
 								childClassName="bg-gradient-to-br from-purple-500/10 to-pink-600/10"
 							>
-								<div class="p-6 h-full">
+								<div class="h-full p-6">
 									<div class="flex items-start gap-4">
 										<div class="text-4xl">🔧</div>
 										<div>
-											<h3 class="mb-2 font-basement text-xl font-bold">Figma</h3>
+											<h3 class="font-basement mb-2 text-xl font-bold">Figma</h3>
 											<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 												Collaborative interface design and prototyping
 											</p>
@@ -217,7 +217,7 @@ const { meta } = await getPortfolioData();
 												href="https://www.figma.com/"
 												target="_blank"
 												rel="noopener noreferrer"
-												class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+												class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 											>
 										</div>
 									</div>
@@ -227,11 +227,11 @@ const { meta } = await getPortfolioData();
 								client:visible
 								childClassName="bg-gradient-to-br from-purple-500/10 to-pink-600/10"
 							>
-								<div class="p-6 h-full">
+								<div class="h-full p-6">
 									<div class="flex items-start gap-4">
 										<div class="text-4xl">🦆</div>
 										<div>
-											<h3 class="mb-2 font-basement text-xl font-bold">Duck Sprite Animation</h3>
+											<h3 class="font-basement mb-2 text-xl font-bold">Duck Sprite Animation</h3>
 											<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 												Adorable duck sprite sheet bringing life to the footer
 											</p>
@@ -239,7 +239,7 @@ const { meta } = await getPortfolioData();
 												href="https://caz-creates-games.itch.io/"
 												target="_blank"
 												rel="noopener noreferrer"
-												class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+												class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 											>
 										</div>
 									</div>
@@ -252,7 +252,7 @@ const { meta } = await getPortfolioData();
 				<!-- Development Tools -->
 				<section>
 					<h2
-						class="mb-8 text-center font-basement text-3xl font-bold text-neutral-800 dark:text-neutral-100"
+						class="font-basement mb-8 text-center text-3xl font-bold text-neutral-800 dark:text-neutral-100"
 					>
 						💻 Development Tools
 					</h2>
@@ -261,11 +261,11 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-orange-500/10 to-red-600/10"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="flex items-start gap-4">
 									<div class="text-3xl">🧠</div>
 									<div>
-										<h3 class="mb-2 font-basement text-xl font-bold">IntelliJ IDEA</h3>
+										<h3 class="font-basement mb-2 text-xl font-bold">IntelliJ IDEA</h3>
 										<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 											Powerful IDE for intelligent development
 										</p>
@@ -273,7 +273,7 @@ const { meta } = await getPortfolioData();
 											href="https://www.jetbrains.com/idea/"
 											target="_blank"
 											rel="noopener noreferrer"
-											class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+											class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 										>
 									</div>
 								</div>
@@ -283,11 +283,11 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-blue-500/10 to-indigo-600/10"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="flex items-start gap-4">
 									<div class="text-3xl">⚡</div>
 									<div>
-										<h3 class="mb-2 font-basement text-xl font-bold">Visual Studio Code</h3>
+										<h3 class="font-basement mb-2 text-xl font-bold">Visual Studio Code</h3>
 										<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 											Lightweight yet powerful code editor
 										</p>
@@ -295,7 +295,7 @@ const { meta } = await getPortfolioData();
 											href="https://code.visualstudio.com/"
 											target="_blank"
 											rel="noopener noreferrer"
-											class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+											class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 										>
 									</div>
 								</div>
@@ -305,11 +305,11 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-yellow-500/10 to-orange-600/10"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="flex items-start gap-4">
 									<div class="text-3xl">🤖</div>
 									<div>
-										<h3 class="mb-2 font-basement text-xl font-bold">Antigravity</h3>
+										<h3 class="font-basement mb-2 text-xl font-bold">Antigravity</h3>
 										<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 											Advanced AI coding assistant
 										</p>
@@ -317,7 +317,7 @@ const { meta } = await getPortfolioData();
 											href="https://deepmind.google/"
 											target="_blank"
 											rel="noopener noreferrer"
-											class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+											class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 										>
 									</div>
 								</div>
@@ -329,7 +329,7 @@ const { meta } = await getPortfolioData();
 				<!-- AI Assistance -->
 				<section>
 					<h2
-						class="mb-8 text-center font-basement text-3xl font-bold text-neutral-800 dark:text-neutral-100"
+						class="font-basement mb-8 text-center text-3xl font-bold text-neutral-800 dark:text-neutral-100"
 					>
 						🤖 AI Assistance
 					</h2>
@@ -338,18 +338,18 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-purple-500/10 to-indigo-600/10 group-hover:from-purple-500/20 group-hover:to-indigo-600/20"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="flex items-start gap-4">
 									<div class="text-3xl">🐙</div>
 									<div>
-										<h3 class="mb-2 font-basement text-xl font-bold">GitHub Copilot</h3>
+										<h3 class="font-basement mb-2 text-xl font-bold">GitHub Copilot</h3>
 										<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 											AI-powered coding assistance
 										</p>
 										<a
 											href="https://github.com/features/copilot"
 											target="_blank"
-											class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+											class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 										>
 									</div>
 								</div>
@@ -359,18 +359,18 @@ const { meta } = await getPortfolioData();
 							client:visible
 							childClassName="bg-gradient-to-br from-blue-500/10 to-cyan-600/10 group-hover:from-blue-500/20 group-hover:to-cyan-600/20"
 						>
-							<div class="p-8 h-full">
+							<div class="h-full p-8">
 								<div class="flex items-start gap-4">
 									<div class="text-3xl">✨</div>
 									<div>
-										<h3 class="mb-2 font-basement text-xl font-bold">Google Gemini</h3>
+										<h3 class="font-basement mb-2 text-xl font-bold">Google Gemini</h3>
 										<p class="mb-4 text-neutral-600 dark:text-neutral-400">
 											Image generation & creative support
 										</p>
 										<a
 											href="https://gemini.google.com/"
 											target="_blank"
-											class="font-medium text-primary-500 hover:text-primary-600">Learn More →</a
+											class="text-primary-500 hover:text-primary-600 font-medium">Learn More →</a
 										>
 									</div>
 								</div>
@@ -383,9 +383,9 @@ const { meta } = await getPortfolioData();
 			<!-- Footer -->
 			<div class="mt-20 text-center">
 				<div
-					class="mb-8 rounded-2xl border border-neutral-200/50 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 p-8 backdrop-blur-sm dark:border-neutral-700/50"
+					class="from-primary-500/10 to-secondary-500/10 mb-8 rounded-2xl border border-neutral-200/50 bg-gradient-to-r p-8 backdrop-blur-sm dark:border-neutral-700/50"
 				>
-					<h2 class="gradient-text mb-4 font-basement text-2xl font-bold">Thank You! 🙏</h2>
+					<h2 class="gradient-text font-basement mb-4 text-2xl font-bold">Thank You! 🙏</h2>
 					<p class="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-neutral-300">
 						Grateful for the incredible open-source community and all the creators who make projects
 						like this possible.
@@ -394,7 +394,7 @@ const { meta } = await getPortfolioData();
 
 				<a
 					href="/"
-					class="inline-flex items-center gap-2 rounded-xl bg-primary-500 text-black px-8 py-4 font-basement font-semibold transition-all hover:scale-105 hover:bg-primary-600"
+					class="bg-primary-500 font-basement hover:bg-primary-600 inline-flex items-center gap-2 rounded-xl px-8 py-4 font-semibold text-black transition-all hover:scale-105"
 				>
 					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path

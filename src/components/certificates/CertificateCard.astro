@@ -13,9 +13,8 @@ interface Props {
 const { name, image, year, index } = Astro.props;
 ---
 
-
-	<div class="overflow-hidden rounded-lg text-center">
-		<BoxReveal boxColor="bg-primary-500 h-full" duration={0.5} delay={(index % 4) * 0.2} client:idle>
+<div class="overflow-hidden rounded-lg text-center">
+	<BoxReveal boxColor="bg-primary-500 h-full" duration={0.5} delay={(index % 4) * 0.2} client:idle>
 		<Image
 			src={image}
 			alt={name}
@@ -26,17 +25,19 @@ const { name, image, year, index } = Astro.props;
 			loading="eager"
 			class="w-full object-cover"
 		/>
-		</BoxReveal>
-		
+	</BoxReveal>
 
-		<div class="p-4">
-			<BoxReveal boxColor="bg-secondary-500 h-full" duration={0.6} delay={(index % 4) * 0.4} client:idle>
+	<div class="p-4">
+		<BoxReveal
+			boxColor="bg-secondary-500 h-full"
+			duration={0.6}
+			delay={(index % 4) * 0.4}
+			client:idle
+		>
 			<h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
 				<p class="text-sm text-gray-600 dark:text-gray-400">{year}</p>
 				{name}
 			</h3>
-			</BoxReveal>
-		</div>
-		
+		</BoxReveal>
 	</div>
-
+</div>

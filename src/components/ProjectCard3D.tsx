@@ -46,7 +46,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   const imageWidth = image?.width || 300;
   const imageHeight = image?.height || 300;
 
-	// Setup animations
+
 	useEffect(() => {
 		if (
 			!contentWrapRef.current ||
@@ -62,16 +62,16 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 				? { r: maskRef.current.getAttribute("r") || 0 }
 				: { d: maskRef.current.getAttribute("d") || "" },
 		}, {
-			ease: "none",// @ts-ignore
+			ease: "none",
 			attr: isCircle 
-				? { r: maskRef.current.dataset.valueFinal }
-				: { d: maskRef.current.dataset.valueFinal },
+				? { r: maskRef.current.dataset.valueFinal || 0 }
+				: { d: maskRef.current.dataset.valueFinal || "" },
 		});
 
-		// Create scroll triggers
+
 		const st = ScrollTrigger.create({
 			trigger: contentWrapRef.current,
-			start: "top bottom-=20%", //clamp(top bottom-=20%)
+			start: "top bottom-=20%",
 			end: "+=60%",
 			scrub: 1,
 			animation: maskAnimation,
@@ -245,7 +245,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   const CardContent = (
     <div ref={contentWrapRef} className="relative h-full w-full p-8 flex flex-col gap-6" style={{ transformStyle: 'preserve-3d', WebkitFontSmoothing: 'antialiased' }}>
       
-      {/* Category Badges */}
+
       <div className="absolute top-4 right-4 flex gap-2 items-end" 
           style={{ 
               transform: `translateZ(calc(var(--hover, 0) * 80px))`,
@@ -260,7 +260,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
         ))}
       </div>
 
-      {/* Icon/Image Container */}
+
       <div 
         className="relative w-full rounded-[24px] overflow-hidden bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 ease-out"
         style={{ 
@@ -299,7 +299,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
         )}
       </div>
 
-      {/* Typography */}
+
       <div className="flex flex-col gap-3 mt-2" style={{ transformStyle: 'preserve-3d' }}>
         {date && (
           <span 
@@ -334,7 +334,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
         )}
       </div>
 
-      {/* Footer Actions */}
+
       <div 
         className="flex items-center justify-between transition-all duration-500 mt-auto"
         style={{ transform: 'translateZ(calc(var(--hover, 0) * 40px))' }}

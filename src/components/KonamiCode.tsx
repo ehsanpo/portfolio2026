@@ -33,7 +33,7 @@ export default function KonamiCode() {
 			setKeys((prevKeys) => {
 				const newKeys = [...prevKeys, e.key].slice(-10);
 
-				// Check if the last 10 keys match the Konami code
+
 				const matches = KONAMI_CODE.every((key, i) => key === newKeys[i]);
 
 				if (matches && !activated) {
@@ -41,7 +41,7 @@ export default function KonamiCode() {
 					triggerEasterEgg();
 					enableGame();
 					setHUD(true);
-					// Reset after 5 seconds
+
 					setTimeout(() => {
 						setActivated(false);
 						setKeys([]);
@@ -57,7 +57,7 @@ export default function KonamiCode() {
 	}, [mounted, activated, enableGame, setHUD]);
 
 	const triggerEasterEgg = () => {
-		// Confetti celebration
+
 		const duration = 3000;
 		const animationEnd = Date.now() + duration;
 		const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };

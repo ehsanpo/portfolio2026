@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import { Toolbar } from "@/components/resume/Toolbar";
-import { Main } from "@/components/resume//Main";
-import { Aside } from "@/components/resume//Aside";
+import { Main } from "@/components/resume/Main";
+import { Aside } from "@/components/resume/Aside";
 import type { Resume } from "@/types/resume";
 import type { Language } from "@/translations/index";
 import portfolioData from "@/data/portfolio-resume.json";
 
 interface Props {
-	// Define your props here if needed
+
 }
 
 const ResumeCv: React.FC<Props> = () => {

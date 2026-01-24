@@ -1,0 +1,74 @@
+---
+import { getPortfolioData } from "@/utils/data";
+import { calculatePreciseDuration } from "@/utils/client-data";
+import TimelineCard from "@/components/TimelineCard";
+import BoxReveal from "@/components/ui/box-reveal";
+
+const { companies, education, basics } = getPortfolioData();
+
+const workItems = companies.map((c) => ({
+	title: c.position,
+	subTitle: c.name,
+	date: c.year,
+	startDate: c.startDate,
+	endDate: c.endDate,
+	type: "work" as const,
+	location: c.location || basics.location,
+	duration: calculatePreciseDuration(c.startDate, c.endDate),
+})).sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+
+const educationItems = education.map((e) => ({
+	title: e.degree || e.title,
+	subTitle: e.institution,
+	date: e.year,
+	startDate: e.startDate,
+	endDate: e.endDate,
+	type: "education" as const,
+	location: "",
+	duration: calculatePreciseDuration(e.startDate, e.endDate),
+})).sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+---
+
+<section class="py-10 md:py-20">
+	<div class="container mx-auto">
+		<div class="grid gap-12 lg:grid-cols-2">
+			{/* Work Experience Column */}
+			<div class="flex flex-col gap-8">
+				<BoxReveal boxColor="bg-primary-500" duration={0.5} client:idle>
+					<h2 class="font-basement text-3xl md:text-4xl">Experience</h2>
+				</BoxReveal>
+				
+				<div class="flex flex-col gap-4">
+					{
+						workItems.map((item, index) => (
+							<TimelineCard 
+								{...item} 
+								delay={index * 0.1}
+								client:load 
+							/>
+						))
+					}
+				</div>
+			</div>
+
+			{/* Education Column */}
+			<div class="flex flex-col gap-8">
+				<BoxReveal boxColor="bg-secondary-500" duration={0.5} client:idle>
+					<h2 class="font-basement text-3xl md:text-4xl">Education</h2>
+				</BoxReveal>
+
+				<div class="flex flex-col gap-4">
+					{
+						educationItems.map((item, index) => (
+							<TimelineCard 
+								{...item} 
+								delay={index * 0.1}
+								client:load 
+							/>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -31,6 +31,28 @@ export const calculateYearsOfExperience = (duration: string): number => {
 	return actualEndYear - startYear;
 };
 
+// Calculate precise duration in years and months
+export const calculatePreciseDuration = (startDate: string, endDate?: string): string => {
+	if (!startDate) return "";
+
+	const start = new Date(startDate);
+	const end = endDate && endDate !== "Present" ? new Date(endDate) : new Date();
+
+	let years = end.getFullYear() - start.getFullYear();
+	let months = end.getMonth() - start.getMonth();
+
+	if (months < 0) {
+		years--;
+		months += 12;
+	}
+
+	const parts = [];
+	if (years > 0) parts.push(`${years} year${years > 1 ? "s" : ""}`);
+	if (months > 0) parts.push(`${months} month${months > 1 ? "s" : ""}`);
+
+	return parts.join(" ");
+};
+
 // Mapping object to handle name variations between stacks and timeline
 const TECH_NAME_MAPPING: { [key: string]: string } = {
 	// Front-end stack mappings

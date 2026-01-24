@@ -1,0 +1,29 @@
+---
+import { getPortfolioData } from "../../utils/data";
+const { contact } = await getPortfolioData();
+---
+
+<div class="space-y-4">
+	<div>
+		<h3 class="text-lg font-medium text-gray-900 dark:text-white">Location</h3>
+		<p class="mt-2 text-gray-600 dark:text-gray-400">{contact.location}</p>
+	</div>
+
+	<div>
+		<h3 class="text-lg font-medium text-gray-900 dark:text-white">Connect</h3>
+		<div class="mt-2 flex gap-4">
+			{
+				Object.entries(contact.socialLinks).map(([platform, url]) => (
+					<a
+						href={url}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-gray-600 hover:text-primary-600 dark:text-gray-400"
+					>
+						<span class="capitalize">{platform}</span>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</div>

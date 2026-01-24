@@ -1,0 +1,35 @@
+---
+import { getPortfolioData } from "../../utils/data";
+import Card3D from "../Card3D";
+import { Heading } from "../ui/heading";
+const { tools } = getPortfolioData();
+---
+
+<div class="container mx-auto py-20">
+	<Heading level="h2" gradient floating backplate client:idle>Development Tools</Heading>
+	<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+		{
+			tools.map((tool) => (
+				<Card3D glowColor="var(--bg-neutral-800)" client:load>
+					<div class="rounded-lg p-6 shadow-lg">
+						<div class="mb-4 flex items-center">
+							<img src={tool.icon} alt={tool.name} class="mr-3 h-8 w-8" />
+							<h3 class="text-lg font-semibold  dark:text-white">{tool.name}</h3>
+						</div>
+						<p class="mb-4 dark:text-gray-400">{tool.description}</p>
+						<div class="flex items-center">
+							<div class="flex-1">
+								<div class="h-2 w-full rounded-full  dark:bg-neutral-700">
+									<div
+										class="h-2 rounded-full bg-primary-600"
+										style={`width: ${tool.proficiency * 10}%`}
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</Card3D>
+			))
+		}
+	</div>
+</div>

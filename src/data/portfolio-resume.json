@@ -1223,7 +1223,6 @@
 			{ "key": "portfolio", "href": "/portfolio", "text": "Work" },
 			{ "key": "products", "href": "/products", "text": "Products" },
 			{ "key": "skills", "href": "/skills", "text": "Skills" },
-			{ "key": "services", "href": "/services", "text": "Services" },
 			{ "key": "about", "href": "/about", "text": "About" },
 			{ "key": "contact", "href": "/contact", "text": "Contact" }
 		],
@@ -1310,6 +1309,13 @@
 				"Beat creation and MIDI programming",
 				"Sound design and mastering"
 			]
+		}
+	],
+	"charts": [
+		{
+			"slug": "Overall",
+			"labels": ["Front-End", "Backend", "Database", "Design", "Cloud", "Devop"],
+			"data": ["10", "9", "8", "8", "6", "7"]
 		}
 	],
 	"stacks": [

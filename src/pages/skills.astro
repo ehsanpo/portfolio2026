@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SkillChart from "../components/SkillChart";
+import RankTimeline from "@/components/RankTimeline";
+import { getPortfolioData } from "@/utils/data";
+import Certificates from "@/blocks/CertificatesBlock.astro";
+import ToolsList from "@/components/skills/ToolsList.astro";
+import PageHero from "@/components/hero/PageHero.astro";
+import TechStackBlock from "@/blocks/TechStackBlock.astro";
+import { Heading } from "@/components/ui/heading";
+import { ProcessFlowDiagram } from "@/components/Beams";
+import GitHubContributionsBlock from "@/blocks/GitHubContributionsBlock.astro";
+
+const { stacks, charts } = getPortfolioData();
+---
+
+<Layout title="Skills - Developer Portfolio">
+	<PageHero
+		title="Skills & Tools"
+		subtitle="My technical expertise and proficiency across different technologies"
+	/>
+	<TechStackBlock showAll />
+	<Heading level="h2" gradient floating backplate client:idle>Skills Chart</Heading>
+
+	<SkillChart data={stacks} chartData={charts[0]} client:load showButtons={true} />
+
+	<section class="">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Tech Timeline </Heading>
+			<RankTimeline />
+		</div>
+	</section>
+
+	<ToolsList />
+	<GitHubContributionsBlock />
+	<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
+	<ProcessFlowDiagram client:load />
+	<Certificates showAll />
+</Layout>

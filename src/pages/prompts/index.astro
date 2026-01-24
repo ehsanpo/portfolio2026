@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHero from "../../components/hero/PageHero.astro";
+import { getPrompts } from "../../utils/data";
+import { PromptCard } from "../../components/prompts/PromptCard";
+
+const prompts = await getPrompts();
+const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
+---
+
+<Layout
+	title="AI Prompts - Collection"
+	description="A collection of AI prompts for various tasks and projects"
+	image="/img/og-default.jpg"
+	imageAlt="Ehsan's AI Prompts Collection"
+>
+	<PageHero title="AI Prompts" subtitle="A collection of AI prompts for various tasks" />
+	<div class="py-20">
+		<div class="container mx-auto px-4">
+			{
+				categories.map((category) => {
+					const categoryPrompts = prompts.filter((p) => p.category === category);
+					return (
+						<div class="mb-16">
+							<h2 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">{category}</h2>
+							<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+								{categoryPrompts.map((prompt) => (
+									<PromptCard prompt={prompt} client:load />
+								))}
+							</div>
+						</div>
+					);
+				})
+			}
+		</div>
+	</div>
+</Layout>

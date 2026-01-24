@@ -1,0 +1,354 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/hero/Hero.astro";
+import StackCard from "@/components/StackCard";
+import SkillChart from "@/components/SkillChart";
+import { Heading } from "@/components/ui/heading";
+import { getPortfolioData, getRoles } from "@/utils/data";
+import BoxReveal from "@/components/ui/box-reveal";
+
+const { stacks } = await getPortfolioData();
+const roles = getRoles();
+const currentRole = roles.find((role) => role.slug === "music-production-technologist");
+
+// Filter stacks related to Music Production
+const musicStacks = stacks.filter((stack) =>
+	["Multimedia", "Front-end", "Design"].includes(stack.slug)
+);
+
+// Create custom skills chart for Music Production Technologist role
+const musicChart = {
+	slug: "Music Production Skills",
+	labels: [
+		"Audio Production",
+		"Sound Design",
+		"Music Tech",
+		"Creative Direction",
+		"Event Planning",
+		"Technical Integration",
+	],
+	data: ["10", "9", "10", "8", "8", "9"],
+};
+
+// Music production tools
+const musicTools = [
+	{
+		name: "Reason Studios",
+		icon: "/img/timeline-icons/reason-studios.svg",
+		description: "Professional DAW for music production, mixing, and sound design",
+		proficiency: 10,
+	},
+	{
+		name: "Cubase",
+		icon: "/img/timeline-icons/cubase.svg",
+		description: "Advanced digital audio workstation for recording and production",
+		proficiency: 9,
+	},
+	{
+		name: "FFmpeg",
+		icon: "/img/timeline-icons/ffmpeg.svg",
+		description: "Audio/video processing and conversion for multimedia projects",
+		proficiency: 7,
+	},
+	{
+		name: "After Effects",
+		icon: "/img/timeline-icons/after-effects.svg",
+		description: "Motion graphics and visual effects for music videos",
+		proficiency: 5,
+	},
+];
+---
+
+<Layout title="Music Production Technologist - Ehsan Pourhadi">
+	<Hero fullHeight title="Music Production Technologist" img={currentRole?.image}>
+		<div>
+			<BoxReveal boxColor="bg-secondary-500" duration={0.1} delay={0.2} client:load>
+				<p class="mb-5 text-2xl dark:text-gray-300">
+					{currentRole?.description}
+				</p>
+			</BoxReveal>
+			<BoxReveal boxColor="bg-primary-500" duration={0.5} delay={0.2} client:load>
+				<p class="text-xl dark:text-gray-300">
+					I merge technical precision with creative expression, producing music that resonates
+					emotionally while leveraging cutting-edge technology. From beat creation to mastering, I
+					craft sonic experiences that tell stories.
+				</p>
+			</BoxReveal>
+		</div>
+	</Hero>
+
+	<section class="container mx-auto px-4 py-12">
+		<div class="mx-auto max-w-4xl">
+			<!-- Self-Definition -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
+				<p class="text-lg text-gray-700 dark:text-gray-300">
+					I merge technical expertise with creative vision to produce professional-quality music and
+					multimedia experiences. With formal training in music production and 15+ years of hands-on
+					experience, I understand both the artistic and technical aspects of sound design, from
+					beat creation to mastering, from live events to digital distribution.
+				</p>
+			</div>
+
+			<!-- Evidence Snippets -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
+				<div class="space-y-6">
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							From Education at Glokala Folkshögskola
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Immersed in an in-depth Music Production program, acquiring proficiency in recording,
+							mixing, mastering, event planning, and industry-standard practices. Produced and
+							released multiple songs, primarily in hip-hop and R&B genres. Organized and hosted an
+							event for Malmö-based artists at Arena 305."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Portfolio Experience - Glokala Folkshögskola (2009)
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							From Blog: Music Production Tools 2022
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"My journey in music production has been defined by experimentation and learning
+							industry-standard tools. From Reason Studios to Cubase, each DAW has shaped my
+							approach to creating beats, designing sounds, and bringing musical ideas to life."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Blog - Music Production Tools 2022
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							From Life Timeline
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Released my first official track 'The Demo' – marking the beginning of my music
+							production journey. A milestone that combined technical skills with creative
+							expression."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Life Timeline - 2010
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Outcome Focus -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
+				<div class="grid gap-6 md:grid-cols-2">
+					<div class="rounded-lg bg-gradient-to-br from-primary-500/10 to-primary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-primary-600 dark:text-primary-400">
+							15+ Years
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Music Production Experience
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							From first release in 2010 to ongoing creative work with Reason Studios and modern
+							tools
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-secondary-500/10 to-secondary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-secondary-600 dark:text-secondary-400">
+							Multiple Releases
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Original Productions
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Hip-hop and R&B tracks showcasing technical and creative capabilities
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">
+							Event Organizer
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Arena 305 Showcase
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Organized and hosted live event for Malmö-based artists, demonstrating technical and
+							creative leadership
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-green-500/10 to-green-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-green-600 dark:text-green-400">
+							Cross-Domain
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Technical + Creative
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Bridging software development with music production for unique multimedia projects
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Technical Stacks -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle
+				>Creative & Technical Stacks</Heading
+			>
+			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{
+					musicStacks.map((stack, index) => (
+						<StackCard {...stack} parentIndex={index} client:load />
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills Chart -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Music Production Skills</Heading>
+			<SkillChart data={[musicChart]} chartData={musicChart} client:load />
+		</div>
+	</section>
+
+	<!-- Music Production Tools -->
+	<section class="container mx-auto py-20">
+		<Heading level="h2" gradient floating backplate client:idle>Music Production Tools</Heading>
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+			{
+				musicTools.map((tool) => (
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<div class="mb-4 flex items-center">
+							<img src={tool.icon} alt={tool.name} class="mr-3 h-8 w-8" />
+							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">{tool.name}</h3>
+						</div>
+						<p class="mb-4 text-gray-600 dark:text-gray-400">{tool.description}</p>
+						<div class="flex items-center">
+							<div class="flex-1">
+								<div class="h-2 w-full rounded-full bg-gray-200 dark:bg-neutral-700">
+									<div
+										class="h-2 rounded-full bg-primary-600"
+										style={`width: ${tool.proficiency * 10}%`}
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- Production Process -->
+	<section class="py-12">
+		<div class="container mx-auto px-4">
+			<Heading level="h2" gradient floating backplate client:idle>Music Production Process</Heading>
+			<div class="mx-auto max-w-4xl">
+				<div class="grid gap-8 md:grid-cols-3">
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<div class="mb-4 text-4xl">🎵</div>
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							1. Ideation & Composition
+						</h3>
+						<p class="text-gray-700 dark:text-gray-300">
+							Start with musical ideas, create melodies, and build chord progressions using MIDI
+							programming and sampling
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<div class="mb-4 text-4xl">🎛️</div>
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							2. Production & Mixing
+						</h3>
+						<p class="text-gray-700 dark:text-gray-300">
+							Layer instruments, design custom sounds, apply effects, and balance levels for
+							professional sound quality
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<div class="mb-4 text-4xl">🎧</div>
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							3. Mastering & Release
+						</h3>
+						<p class="text-gray-700 dark:text-gray-300">
+							Final polish with mastering techniques, prepare for distribution across platforms like
+							SoundCloud and Spotify
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Featured Work -->
+	<section class="container mx-auto px-4 py-12">
+		<Heading level="h2" gradient floating backplate client:idle>Featured Music</Heading>
+		<div class="mx-auto max-w-4xl">
+			<div class="rounded-lg bg-white p-8 shadow-lg dark:bg-neutral-800">
+				<h3 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
+					Listen on SoundCloud
+				</h3>
+				<p class="mb-6 text-gray-700 dark:text-gray-300">
+					Check out my music production work featuring hip-hop and R&B productions created with
+					Reason Studios and professional audio tools.
+				</p>
+				<a
+					href="https://soundcloud.com/eprumental"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+				>
+					Visit SoundCloud
+					<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+						></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<section class="container mx-auto px-4 py-16">
+		<div class="gradient-bg rounded-lg py-12 text-center">
+			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">
+				Ready to collaborate on a creative project?
+			</h3>
+			<a
+				href="/contact"
+				class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+			>
+				Get in Touch
+				<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+				</svg>
+			</a>
+		</div>
+	</section>
+</Layout>

@@ -79,7 +79,7 @@ const testimonialsWithImages = testimonials.map((testimonial) => ({
 
 		{
 			showAll ? (
-				<div class="mt-12 flex flex-col items-center gap-4">
+				<div class="w-full mt-12 m-auto grid grid-cols-4 items-center gap-2">
 					{testimonialsWithImages.map((testimonial) => (
 						<TestimonialCard testimonial={testimonial} client:load />
 					))}

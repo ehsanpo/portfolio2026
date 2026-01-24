@@ -1,0 +1,216 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/hero/Hero.astro";
+import StackCard from "@/components/StackCard";
+import SkillChart from "@/components/SkillChart";
+import ToolsList from "@/components/skills/ToolsList.astro";
+import { ProcessFlowDiagram } from "@/components/Beams";
+import { Heading } from "@/components/ui/heading";
+import { getPortfolioData, getRoles } from "@/utils/data";
+import BoxReveal from "@/components/ui/box-reveal";
+
+const { stacks, charts } = await getPortfolioData();
+const roles = getRoles();
+const currentRole = roles.find((role) => role.slug === "engineering-manager");
+
+// Filter stacks related to Engineering Management
+const managementStacks = stacks.filter((stack) =>
+	["Front-end", "Backend", "DevOps", "CI/CD"].includes(stack.slug)
+);
+
+// Create custom skills chart for Engineering Manager role
+const managementChart = {
+	slug: "Engineering Leadership",
+	labels: [
+		"Technical Leadership",
+		"Team Management",
+		"Project Delivery",
+		"Process Improvement",
+		"Mentoring",
+		"Architecture",
+	],
+	data: ["10", "9", "10", "9", "10", "9"],
+};
+---
+
+<Layout title="Engineering Manager - Ehsan Pourhadi">
+	<Hero fullHeight title="Engineering Manager" img={currentRole?.image}>
+		<div>
+			<BoxReveal boxColor="bg-secondary-500" duration={0.1} delay={0.2} client:load>
+				<p class="mb-5 text-2xl dark:text-gray-300">
+					{currentRole?.description}
+				</p>
+			</BoxReveal>
+			<BoxReveal boxColor="bg-primary-500" duration={0.5} delay={0.2} client:load>
+				<p class="text-xl dark:text-gray-300">
+					I combine technical expertise with people leadership, fostering growth, removing blockers,
+					and ensuring teams deliver high-quality software while maintaining work-life balance and
+					professional development.
+				</p>
+			</BoxReveal>
+		</div>
+	</Hero>
+
+	<section class="container mx-auto px-4 pb-12">
+		<div class="mx-auto max-w-4xl">
+			<!-- Self-Definition -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
+				<p class="text-lg text-gray-700 dark:text-gray-300">
+					I bridge the gap between technical execution and people leadership. With 12+ years of
+					hands-on development experience, I lead teams by doing, not just directing. I create
+					environments where engineers thrive, ship quality code, and continuously improve both
+					their craft and our processes.
+				</p>
+			</div>
+
+			<!-- Evidence Snippets -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
+				<div class="space-y-6">
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							From Experience at Bredband2
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Managed the project and team. Streamlined development processes to enhance team
+							productivity and efficiency. Mentored junior developers and conducted code reviews."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Portfolio Experience - Bredband2 (2020-2023)
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							Testimonial from Lenny Erlesand (Engineering Manager at Telavox)
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Ehsan is deeply engaged in improving how we work together as a team. He takes
+							initiative in refining our processes, ensuring that we collaborate more effectively
+							and work more sustainably. He provides thoughtful feedback, asks challenging
+							questions, and contributes to discussions with both openness and courage."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Testimonials - Lenny Erlesand
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Outcome Focus -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
+				<div class="grid gap-6 md:grid-cols-2">
+					<div class="rounded-lg bg-gradient-to-br from-primary-500/10 to-primary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-primary-600 dark:text-primary-400">
+							100,000+
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Active Users Served
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Led customer service portal redesign at Bredband2, delivering real-time service
+							monitoring
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-secondary-500/10 to-secondary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-secondary-600 dark:text-secondary-400">
+							3-Year
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Team Leadership
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Successfully managed cross-functional teams through major technical transitions
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">
+							Award-Winning
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Project Delivery
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Svenska Design Gold & Cannes Lions recognition for technical excellence
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-green-500/10 to-green-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-green-600 dark:text-green-400">
+							Scaled Velocity
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Through Coaching
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Mentored developers and streamlined processes to boost team productivity
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Technical Stacks -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Technical Stacks</Heading>
+			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+				{
+					managementStacks.map((stack, index) => (
+						<StackCard {...stack} parentIndex={index} client:load />
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills Chart -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Leadership Skills</Heading>
+			<SkillChart data={[managementChart]} chartData={managementChart} client:load />
+		</div>
+	</section>
+
+	<!-- Development Tools -->
+	<ToolsList />
+
+	<!-- Development Process -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
+			<ProcessFlowDiagram client:load />
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<section class="container mx-auto px-4 py-16">
+		<div class="gradient-bg rounded-lg py-12 text-center">
+			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">
+				Ready to build great software together?
+			</h3>
+			<a
+				href="/contact"
+				class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+			>
+				Get in Touch
+				<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+				</svg>
+			</a>
+		</div>
+	</section>
+</Layout>

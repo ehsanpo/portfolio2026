@@ -1,0 +1,227 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/hero/Hero.astro";
+import StackCard from "@/components/StackCard";
+import SkillChart from "@/components/SkillChart";
+import ToolsList from "@/components/skills/ToolsList.astro";
+import { ProcessFlowDiagram } from "@/components/Beams";
+import { Heading } from "@/components/ui/heading";
+import { getPortfolioData, getRoles } from "@/utils/data";
+import BoxReveal from "@/components/ui/box-reveal";
+
+const { stacks } = await getPortfolioData();
+const roles = getRoles();
+const currentRole = roles.find((role) => role.slug === "senior-software-engineer");
+
+// Filter stacks related to Senior Software Engineering
+const seniorStacks = stacks.filter((stack) =>
+	["Front-end", "Backend", "Database", "DevOps"].includes(stack.slug)
+);
+
+// Create custom skills chart for Senior Software Engineer role
+const seniorChart = {
+	slug: "Senior Engineering",
+	labels: [
+		"Code Quality",
+		"System Design",
+		"Mentorship",
+		"Technical Leadership",
+		"Best Practices",
+		"Innovation",
+	],
+	data: ["10", "9", "10", "9", "10", "9"],
+};
+---
+
+<Layout title="Senior Software Engineer - Ehsan Pourhadi">
+	<Hero fullHeight title="Senior Software Engineer" img={currentRole?.image}>
+		<div>
+			<BoxReveal boxColor="bg-secondary-500" duration={0.1} delay={0.2} client:load>
+				<p class="mb-5 text-2xl dark:text-gray-300">
+					{currentRole?.description}
+				</p>
+			</BoxReveal>
+			<BoxReveal boxColor="bg-primary-500" duration={0.5} delay={0.2} client:load>
+				<p class="text-xl dark:text-gray-300">
+					With 12+ years of software development experience, I've evolved from building features to
+					architecting systems and mentoring teams. I write production-quality code, make sound
+					technical decisions, and share knowledge to elevate team capabilities.
+				</p>
+			</BoxReveal>
+		</div>
+	</Hero>
+
+	<section class="container mx-auto px-4 py-12">
+		<div class="mx-auto max-w-4xl">
+			<!-- Self-Definition -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
+				<p class="text-lg text-gray-700 dark:text-gray-300">
+					With 12+ years of software development experience, I've evolved from building features to
+					architecting systems and mentoring teams. I write production-quality code, make sound
+					technical decisions, and share knowledge to elevate team capabilities. I balance technical
+					depth with pragmatic delivery.
+				</p>
+			</div>
+
+			<!-- Evidence Snippets -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
+				<div class="space-y-6">
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							From Experience at Telavox
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Collaborated on the development of various software projects using React, Java, and
+							ElectronJs. Contributed to the design and architecture of web applications."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Portfolio Experience - Telavox (2023-Present)
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							Testimonial from Heshan Kithuldora (Software Developer)
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Ehsan is a highly experienced engineer with strong technical expertise across both
+							front-end and back-end development. He often took the lead on new initiatives and
+							helped establish effective ways of working within the team."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Testimonials - Heshan Kithuldora
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							Testimonial from Asger Bjerre-Nielsen (Developer)
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Ehsan has excellent ability to break down tasks and problems and provide high quality
+							code to efficiently solve even the most demanding task. He is always on the lookout
+							for new tech and ideas, on how to do things better."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Testimonials - Asger Bjerre-Nielsen
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Outcome Focus -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
+				<div class="grid gap-6 md:grid-cols-2">
+					<div class="rounded-lg bg-gradient-to-br from-primary-500/10 to-primary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-primary-600 dark:text-primary-400">
+							12+ Years
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Professional Experience
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Full-stack development across multiple companies and technologies
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-secondary-500/10 to-secondary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-secondary-600 dark:text-secondary-400">
+							Technical Lead
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Initiative & Innovation
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Leading new initiatives and establishing best practices for teams
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">Mentorship</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Knowledge Sharing
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Mentoring developers and conducting code reviews to elevate team quality
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-green-500/10 to-green-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-green-600 dark:text-green-400">
+							Architecture
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">System Design</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Designing scalable architectures for complex web applications
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Technical Stacks -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Technical Expertise</Heading>
+			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+				{
+					seniorStacks.map((stack, index) => (
+						<StackCard {...stack} parentIndex={index} client:load />
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills Chart -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Senior Engineering Skills</Heading
+			>
+			<SkillChart data={[seniorChart]} chartData={seniorChart} client:load />
+		</div>
+	</section>
+
+	<!-- Development Tools -->
+	<ToolsList />
+
+	<!-- Development Process -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
+			<ProcessFlowDiagram client:load />
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<section class="container mx-auto px-4 py-16">
+		<div class="gradient-bg rounded-lg py-12 text-center">
+			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">
+				Ready to elevate your engineering team?
+			</h3>
+			<a
+				href="/contact"
+				class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+			>
+				Get in Touch
+				<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+				</svg>
+			</a>
+		</div>
+	</section>
+</Layout>

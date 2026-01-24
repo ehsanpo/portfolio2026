@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import PromptHeader from "../../components/prompts/PromptHeader";
+import { PromptDetail } from "../../components/prompts/PromptDetail";
+
+export async function getStaticPaths() {
+	const prompts = await getCollection("prompt");
+	return prompts.map((prompt) => ({
+		params: { slug: prompt.slug },
+		props: { prompt },
+	}));
+}
+
+type Props = {
+	prompt: CollectionEntry<"prompt">;
+};
+
+const { prompt } = Astro.props;
+const { Content } = await prompt.render();
+---
+
+<Layout
+	title={`${prompt.data.title} - AI Prompts`}
+	description={prompt.data.description}
+	image="/img/og-default.jpg"
+	imageAlt={prompt.data.title}
+>
+	<article class="relative min-h-screen bg-white pt-4 dark:bg-neutral-900">
+		<PromptHeader
+			prompt={{
+				title: prompt.data.title,
+				description: prompt.data.description,
+				category: prompt.data.category,
+				tags: prompt.data.tags,
+				icon: prompt.data.icon,
+				image: prompt.data.image?.src,
+			}}
+			client:load
+		/>
+
+		<div class="relative z-10 mx-auto max-w-6xl px-4 pt-10">
+			<PromptDetail
+				prompt={{
+					title: prompt.data.title,
+					description: prompt.data.description,
+					category: prompt.data.category,
+					tags: prompt.data.tags,
+					icon: prompt.data.icon,
+					image: prompt.data.image?.src,
+				}}
+				client:load
+			>
+				<Content />
+			</PromptDetail>
+		</div>
+	</article>
+</Layout>

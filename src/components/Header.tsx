@@ -24,7 +24,6 @@ export function HeaderMinimal({
   const [isOpen, setIsOpen] = useState(false)
   const Newurl = new URL(url);
   const currentPage= Newurl.pathname.split("/").filter(Boolean)[0] || "/";
-  console.log(currentPage)
 
   useEffect(() => {
     const handleResize = () => {

@@ -1,0 +1,97 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/hero/PageHero.astro";
+import { ProjectCard3D } from "@/components/ProjectCard3D";
+import { getRoles } from "@/utils/data";
+
+// Import role images
+import seniorEngineer from "@/assets/roles/Senior Software Engineer.png";
+import productEngineer from "@/assets/roles/Product Engineer.png";
+import engineeringManager from "@/assets/roles/Engineering Manage.png";
+import devops from "@/assets/roles/devops.png";
+import musicProduction from "@/assets/roles/Music Production.png";
+
+const roles = getRoles();
+
+// Map image paths to imported assets
+const imageMap: Record<string, any> = {
+	"/img/roles/Senior Software Engineer.png": seniorEngineer,
+	"/img/roles/Product Engineer.png": productEngineer,
+	"/img/roles/Engineering Manage.png": engineeringManager,
+	"/img/roles/devops.png": devops,
+	"/img/roles/Music Production.png": musicProduction,
+};
+---
+
+<Layout title="Professional Roles - Ehsan Pourhadi">
+	<PageHero
+		title="Versatile Expertise"
+		subtitle="Throughout my career, I've worn many hats and adapted to various roles. Each position has shaped my understanding of technology, product development, and team dynamics. Explore the different roles where I can add value to your organization."
+	/>
+
+	<section class="container mx-auto px-4 py-12">
+		<div class="mx-auto max-w-6xl">
+			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+				{
+					roles.map((role, index) => {
+						const mappedImage = imageMap[role.image];
+						const displayImage = mappedImage 
+							? { 
+									src: mappedImage.src, 
+									alt: role.title,
+									width: mappedImage.width,
+									height: mappedImage.height
+								} 
+							: role.image 
+								? { 
+										src: role.image, 
+										alt: role.title,
+										width: 800,
+										height: 600
+									} 
+								: undefined;
+
+						return (
+							<a href={`/roles/${role.slug}`} class="block h-full cursor-pointer">
+								<ProjectCard3D
+									client:load
+									title={role.title}
+									description={role.description}
+									icon={role.icon}
+									image={displayImage}
+									tags={role.tags}
+									layout={index}
+									className="h-full"
+								/>
+							</a>
+						);
+					})
+				}
+			</div>
+
+	
+			<div
+				class="mt-16 rounded-lg bg-gradient-to-r from-primary-500 to-secondary-500 p-8 text-center text-black"
+			>
+				<h3 class="mb-4 text-2xl font-bold">Ready to Work Together?</h3>
+				<p class="mb-6 text-lg opacity-90">
+					Whether you need technical expertise, strategic leadership, or creative solutions, I'm
+					here to help bring your vision to life.
+				</p>
+				<a
+					href="/contact"
+					class="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-medium text-primary-600 transition-all hover:bg-gray-100 hover:shadow-lg"
+				>
+					Get in Touch
+					<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M8 12h8m-8 0l4 4m-4-4l4-4"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>

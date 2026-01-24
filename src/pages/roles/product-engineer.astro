@@ -1,0 +1,212 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/hero/Hero.astro";
+import StackCard from "@/components/StackCard";
+import SkillChart from "@/components/SkillChart";
+import ToolsList from "@/components/skills/ToolsList.astro";
+import { ProcessFlowDiagram } from "@/components/Beams";
+import { Heading } from "@/components/ui/heading";
+import { getPortfolioData, getRoles } from "@/utils/data";
+import BoxReveal from "@/components/ui/box-reveal";
+
+const { stacks } = await getPortfolioData();
+const roles = getRoles();
+const currentRole = roles.find((role) => role.slug === "product-engineer");
+
+// Filter stacks related to Product Engineering
+const productStacks = stacks.filter((stack) =>
+	["Front-end", "Backend", "Design", "Database"].includes(stack.slug)
+);
+
+// Create custom skills chart for Product Engineer role
+const productChart = {
+	slug: "Product Engineering",
+	labels: [
+		"Product Thinking",
+		"User Research",
+		"Technical Execution",
+		"Iteration Speed",
+		"Business Impact",
+		"End-to-End Ownership",
+	],
+	data: ["9", "8", "10", "9", "9", "10"],
+};
+---
+
+<Layout title="Product Engineer - Ehsan Pourhadi">
+	<Hero fullHeight title="Product Engineer" img={currentRole?.image}>
+		<div>
+			<BoxReveal boxColor="bg-secondary-500" duration={0.1} delay={0.2} client:load>
+				<p class="mb-5 text-2xl dark:text-gray-300">
+					{currentRole?.description}
+				</p>
+			</BoxReveal>
+			<BoxReveal boxColor="bg-primary-500" duration={0.5} delay={0.2} client:load>
+				<p class="text-xl dark:text-gray-300">
+					I bridge the gap between technical possibilities and user needs, ensuring that every line
+					of code serves a purpose and every feature solves real problems. I think in products, not
+					just features.
+				</p>
+			</BoxReveal>
+		</div>
+	</Hero>
+
+	<section class="container mx-auto px-4 py-12">
+		<div class="mx-auto max-w-4xl">
+			<!-- Self-Definition -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
+				<p class="text-lg text-gray-700 dark:text-gray-300">
+					I don't just write code,I solve user problems. With a deep understanding of both technical
+					implementation and product strategy, I bridge the gap between what users need and what
+					engineering can deliver. I own features end-to-end, from ideation through deployment and
+					iteration.
+				</p>
+			</div>
+
+			<!-- Evidence Snippets -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
+				<div class="space-y-6">
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							From Experience at Bredband2
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Spearheaded the complete redesign and development of the customer service portal,
+							serving over 100,000 active users. Implemented real-time service monitoring and
+							automated troubleshooting. Worked closely with UX to optimize UI/UX for improved user
+							engagement."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Portfolio Experience - Bredband2 (2020-2023)
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
+						<h3 class="mb-2 text-xl font-semibold text-primary-600 dark:text-primary-400">
+							Testimonial from Rebecca Löfgren (Senior UX Designer)
+						</h3>
+						<blockquote
+							class="border-l-4 border-primary-500 pl-4 italic text-gray-700 dark:text-gray-300"
+						>
+							"Ehsan possesses the ability to see the whole picture, which enables him to produce
+							quality products , even if the brief is a bit fuzzy. He has a keen eye for design,
+							which has made my job as a designer so much easier."
+						</blockquote>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Source: Testimonials - Rebecca Löfgren
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Outcome Focus -->
+			<div class="mb-16">
+				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
+				<div class="grid gap-6 md:grid-cols-2">
+					<div class="rounded-lg bg-gradient-to-br from-primary-500/10 to-primary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-primary-600 dark:text-primary-400">
+							100,000+
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">Users Impacted</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Redesigned customer portal serving six-figure user base with improved engagement
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-secondary-500/10 to-secondary-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-secondary-600 dark:text-secondary-400">
+							End-to-End
+						</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Product Ownership
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							From user research to deployment, owning complete product features
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">UX-Driven</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Design Collaboration
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Working closely with designers to optimize user experience and engagement
+						</p>
+					</div>
+
+					<div class="rounded-lg bg-gradient-to-br from-green-500/10 to-green-600/10 p-6">
+						<div class="mb-2 text-3xl font-bold text-green-600 dark:text-green-400">Real-Time</div>
+						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+							Monitoring Solutions
+						</div>
+						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+							Implemented automated troubleshooting and real-time service monitoring
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Technical Stacks -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Technical Stacks</Heading>
+			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+				{
+					productStacks.map((stack, index) => (
+						<StackCard {...stack} parentIndex={index} client:load />
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills Chart -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle
+				>Product Engineering Skills</Heading
+			>
+			<SkillChart data={[productChart]} chartData={productChart} client:load />
+		</div>
+	</section>
+
+	<!-- Development Tools -->
+	<ToolsList />
+
+	<!-- Development Process -->
+	<section class="py-12">
+		<div class="container mx-auto">
+			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
+			<ProcessFlowDiagram client:load />
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<section class="container mx-auto px-4 py-16">
+		<div class="gradient-bg rounded-lg py-12 text-center">
+			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">
+				Ready to build products users love?
+			</h3>
+			<a
+				href="/contact"
+				class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+			>
+				Get in Touch
+				<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+				</svg>
+			</a>
+		</div>
+	</section>
+</Layout>

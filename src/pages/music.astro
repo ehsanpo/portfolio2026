@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SpotifyEmbed from "../components/SpotifyEmbed";
+import PageHero from "@/components/hero/PageHero.astro";
+
+const playlists = [
+	{
+		playlistId: "5PUExiuXHdh71FCOME9eVA",
+		title: "2020 - 2020",
+	},
+	{
+		playlistId: "0AxIzHIcCeyu8z6JqidQtX",
+		title: "Future - 2020",
+	},
+	{
+		playlistId: "0e5MIP4vPxL2DtADJFD301",
+		title: "Present - 2020",
+	},
+	{
+		playlistId: "1ewlhbOoQAHakrgaEuXWry",
+		title: "The Past - 2019",
+	},
+	{
+		playlistId: "5VIhDY0sy0rKd2z68T2yRD",
+		title: "The Wind - 2019",
+	},
+	{
+		playlistId: "2nz5ZaS4XeSXO5D9jNP9cD",
+		title: "Life Goes On - 2003",
+	},
+	{
+		playlistId: "7oGREogIXr9kBU6cVvTytF",
+		title: "Noor - 2022",
+	},
+	{
+		playlistId: "2avKo7p73VQlQZuZ5AhdsX",
+		title: "Bellerina - 2022",
+	},
+	{
+		playlistId: "4VzPczlIoeB84Nn1HsuFq6",
+		title: "20 - 2022",
+	},
+	{
+		playlistId: "15gO287YrDb4sNHckk5wiJ",
+		title: "Divane - 2021",
+	},
+	{
+		playlistId: "1SVNdrRPEto1RXbmX9Oyy9",
+		title: "Malmö Syndrome - 2021",
+	},
+	{
+		playlistId: "04RmkiqoBN6VFU5XQvS0CE",
+		title: "Infinity - 2021",
+	},
+	{
+		playlistId: "3i4AVKxg8Znjot9NlO6ie8",
+		title: "Spaced out - 2020",
+	},
+	{
+		playlistId: "2nKd39bGTeA5MTq0z21c0I",
+		title: "Fallen Angels - 2019",
+	},
+	{
+		playlistId: "5SuRJpmUEks2akEQx9qWAl",
+		title: "Getaway - 2019",
+	},
+	{
+		playlistId: "4etfZNUXJ0DljYEvpKIWxy",
+		title: "Hope - 2017",
+	},
+	{
+		playlistId: "1aDI4c4U1vQQy9mXbUIiIN",
+		title: "The Demo - 2010",
+	},
+];
+---
+
+<Layout title="Music - Developer Portfolio">
+	<PageHero title="Music" />
+	<div class="container mx-auto px-4 py-20">
+		<div class="grid gap-4 md:grid-cols-3">
+			{playlists.map((playlist) => <SpotifyEmbed {...playlist} client:visible />)}
+		</div>
+	</div>
+</Layout>

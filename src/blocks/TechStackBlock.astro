@@ -4,8 +4,8 @@ import SkillsInfo from "@/components/Skillsinfo";
 import StackCard from "@/components/StackCard";
 import { Heading } from "@/components/ui/heading";
 import { getPortfolioData } from "@/utils/data";
-const { stacks } = await getPortfolioData();
-
+const { stacks } = getPortfolioData();
+const {showAll = false} = Astro.props;
 ---
 
 <section class="">
@@ -22,11 +22,11 @@ const { stacks } = await getPortfolioData();
 			Stacks
 		</Heading>
 		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{stacks.slice(0, 3).map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)}
+			{stacks.slice(0, showAll ? stacks.length : 3).map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)}
 		</div>
 		<SkillsInfo />
-		<div class="mt-12 text-center">
+		{showAll && <div class="mt-12 text-center">
 			<Button href="/skills" text="View All Stacks →" />
-		</div>
+		</div>}
 	</div>
 </section>

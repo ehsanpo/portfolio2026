@@ -1,0 +1,41 @@
+---
+import Resume from "@/components/Resume";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="CV" description="My CV">
+	<Resume client:idle />
+</Layout>
+
+---
+<style is:global>
+	:root {
+		--main-color: #0891b2;
+	}
+
+	body {
+		line-height: 1.5;
+	}
+
+	@media print {
+		@page {
+			size: A4;
+			margin: 24px 16px;
+			page-break-inside: avoid;
+		}
+		header,
+		#pixelworld,
+		footer {
+			display: none !important;
+		}
+
+		.bg-white {
+			background-color: #fff !important;
+		}
+		aside {
+			page-break-inside: avoid;
+			order: 2;
+			margin-top: 16px;
+		}
+	}
+</style>

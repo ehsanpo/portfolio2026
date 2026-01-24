@@ -36,7 +36,7 @@ export const Link: React.FC<LinkProps> = ({ href, children, className, external 
 					}
 				: {})}
 		>
-			{children} XXX
+			{children}
 		</a>
 	);
 };

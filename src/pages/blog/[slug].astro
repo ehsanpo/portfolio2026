@@ -1,0 +1,140 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getBlogPosts } from "../../utils/data";
+
+export async function getStaticPaths() {
+	const blogPosts = await getBlogPosts();
+	return blogPosts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+interface BlogPost {
+	title: string;
+	description?: string;
+	date: string;
+	author?: string;
+	category?: string[];
+	tag?: string[];
+	cover?: {
+		height: number;
+		width: number;
+		src: string;
+	};
+	featured?: boolean;
+	content: any;
+	slug: string;
+}
+
+const { post } = Astro.props as unknown as { post: BlogPost };
+const { Content } = await post.content.render();
+
+const formatDate = (dateString: string) => {
+	return new Date(dateString).toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+};
+---
+
+<Layout
+	title={`${post.title} - Blog`}
+	description={post.description || `Read ${post.title} on Ehsan's Blog`}
+	image={post.cover?.src || "/img/og-default.jpg"}
+	imageAlt={post.title}
+>
+	<article class="min-h-screen bg-white pt-4 dark:bg-neutral-900">
+		<div class="mx-auto max-w-3xl px-4 py-16">
+			{
+				post.cover && (
+					<div class="mb-8 overflow-hidden rounded-lg">
+						<img src={post.cover.src} alt={post.title} class="h-64 w-full object-cover md:h-96" />
+					</div>
+				)
+			}
+
+			<header class="mb-12 text-center">
+				<h1 class="mb-6 text-4xl font-bold text-gray-900 dark:text-white md:text-5xl">
+					{post.title}
+				</h1>
+
+				{
+					post.description && (
+						<p class="mx-auto mb-6 max-w-3xl text-xl text-gray-600 dark:text-gray-400">
+							{post.description}
+						</p>
+					)
+				}
+
+				<div
+					class="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400"
+				>
+					<time datetime={post.date}>
+						{formatDate(post.date)}
+					</time>
+
+					{
+						post.author && (
+							<>
+								<span>•</span>
+								<span>By {post.author}</span>
+							</>
+						)
+					}
+
+					{
+						post.category && post.category.length > 0 && (
+							<>
+								<span>•</span>
+								<div class="flex flex-wrap gap-2">
+									{post.category.map((cat) => (
+										<span class="rounded-md bg-primary-100 px-2 py-1 text-xs text-primary-800 dark:bg-primary-900 dark:text-primary-200">
+											{cat}
+										</span>
+									))}
+								</div>
+							</>
+						)
+					}
+				</div>
+			</header>
+
+			<div class="prose prose-base max-w-none dark:prose-invert">
+				<Content />
+			</div>
+
+			{
+				post.tag && post.tag.length > 0 && (
+					<footer class="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700">
+						<div class="flex flex-wrap gap-2">
+							<span class="mr-2 text-sm text-gray-500 dark:text-gray-400">Tags:</span>
+							{post.tag.map((tag) => (
+								<span class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+									#{tag}
+								</span>
+							))}
+						</div>
+					</footer>
+				)
+			}
+
+			<div class="mt-16 text-center">
+				<a
+					href="/blog"
+					class="inline-flex items-center rounded-lg bg-primary-600 px-6 py-3 text-white transition-colors hover:bg-primary-700"
+				>
+					<svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+					</svg>
+					Back to Blog
+				</a>
+			</div>
+		</div>
+	</article>
+</Layout>

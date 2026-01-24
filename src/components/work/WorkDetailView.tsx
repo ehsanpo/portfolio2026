@@ -76,6 +76,8 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
            '';
   };
 
+  console.log(relatedProjects);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-32">
       {/* Hero Section */}
@@ -197,18 +199,18 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
                   <motion.div key={project.id} variants={itemVariants}>
                     <ProjectCard3D
                       title={project.data.title}
-                      description={project.data.description}
+                      description={project.data.tagline}
                       date={project.data.date}
                       tags={project.data.tag}
-                      image={project.data.cover ? {
-                        src: project.data.cover.src,
+                      image={project.data.background_image ? {
+                        src: project.data.background_image.src,
                         alt: project.data.title,
-                        width: project.data.cover.width,
-                        height: project.data.cover.height
+                        width: project.data.background_image.width,
+                        height: project.data.background_image.height
                       } : undefined}
                       categories={project.data.category}
                       layout={index}
-                      href={`/portfolio/${project.permalink || project.slug}`}
+                      href={`/portfolio/${project.data.permalink}`}
                     />
                   </motion.div>
                 ))}

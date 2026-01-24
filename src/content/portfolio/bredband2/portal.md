@@ -1,7 +1,7 @@
 ---
 onHome: false
 title: Customer Portal
-title2: "Mitt Bredband2" Customer Portal
+title2: Mitt Bredband2 Customer Portal
 description: Developed a secure customer portal using bankID, enabling self-service account management and reducing support calls.
 date: "2023"
 status: publish

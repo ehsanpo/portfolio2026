@@ -26,9 +26,29 @@ const socialImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
+				}
+				return 'light';
+			})();
+		
+			if (theme === 'light') {
+				document.documentElement.classList.remove('dark');
+				document.documentElement.classList.add('light');
+			} else {
+				document.documentElement.classList.add('dark');
+				document.documentElement.classList.remove('light');
+			}
+			window.localStorage.setItem('theme', theme);
+		</script>
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,17 +87,18 @@ const socialImage = new URL(image, Astro.site);
 			<slot />
 			<Footer client:load />
 		</main>
-		<!--
 		<script>
-			document.addEventListener("astro:after-swap", function () {
-				if (localStorage.getItem("theme") === "light") {
-					document.documentElement.classList.toggle("dark", false);
+			document.addEventListener("astro:after-swap", () => {
+				const theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+				if (theme === "light") {
+					document.documentElement.classList.remove("dark");
+					document.documentElement.classList.add("light");
 				} else {
-					document.documentElement.classList.toggle("dark", true);
+					document.documentElement.classList.add("dark");
+					document.documentElement.classList.remove("light");
 				}
 			});
 		</script>
-		-->
 		<script is:inline>
 			// Easter Egg: Developer Console Message
 			console.log(

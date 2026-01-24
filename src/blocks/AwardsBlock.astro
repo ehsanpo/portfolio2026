@@ -32,7 +32,7 @@ const awardsWithImages = awards.map((award) => ({
 		<div class="grid grid-cols-1 gap-8 text-center md:grid-cols-2 lg:grid-cols-3">
 			{
 				awardsWithImages.map((award) => (
-					<Card3D className="text-black group/card " childClassName="clip6 " glowColor="color-mix(in srgb, currentColor 80%, var(--color-primary));" client:load >
+					<Card3D className="text-black group/card " childClassName="clip6 " glowColor="color-mix(in srgb, currentColor 80%, var(--color-primary))" client:load >
 					<a
 						href={award.link}
 						class=" rounded-lg p-6 transition-transform hover:-translate-y-1 "

@@ -2,24 +2,67 @@
 @plugin "@tailwindcss/typography";
 @import "./duck-sprite.css";
 
+/* Configure Tailwind 4 dark mode to use .dark class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --primary: #FFC700;
+  --secondary: #F24E1E;
+  --accent: #1ABCFE;
+  --accent-200: #A4EEFD;
+  --accent-500: #1ABCFE;
+  --accent-600: #0099CC;
+
+  --background: #F9F4EA;
+  --foreground: #050809;
+
+  --neutral-900: #050809;
+  --neutral-800: #072f45;
+  --white: #F9F4EA;
+  --offwhite: #DAD3CA;
+  --opium: #8A7F7D;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #FFFFFF;
+
+  --neutral-900: #050809;
+  --neutral-800: #072f45;
+  --white: #F9F4EA;
+  --offwhite: #DAD3CA;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #000000;
+    --foreground: #FFFFFF;
+  }
+}
+
 @theme {
-  --color-primary: #FFC700;
-  --color-primary-500: #FFC700;
-  --color-primary-600: #FFC700;
-  --color-secondary: #F24E1E;
-  --color-secondary-500: #F24E1E;
-  --color-secondary-600: #F24E1E;
-  --color-accent: #1ABCFE;
-  --color-accent-200: #A4EEFD;
-  --color-accent-500: #1ABCFE;
-  --color-accent-600: #0099CC;
+  --color-primary: var(--primary);
+  --color-primary-500: var(--primary);
+  --color-primary-600: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-secondary-500: var(--secondary);
+  --color-secondary-600: var(--secondary);
+  --color-accent: var(--accent);
+  --color-accent-200: var(--accent-200);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-white: var(--white);
+  --color-offwhite: var(--offwhite);
+  --color-opium: var(--opium);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-800: var(--neutral-800);
+
   --font-kabel: "Kabel", sans-serif;
   --font-basement: "Basement", sans-serif;
-  --color-white: #F9F4EA;
-  --color-offwhite: #DAD3CA;
-  --color-opium: #8A7F7D;
-  --color-neutral-900: #050809;
-  --color-neutral-800: #072f45;
 
   @keyframes fade-in-up {
     from {
@@ -34,22 +77,6 @@
   }
 
   --animate-fade-in-up: fade-in-up 0.6s ease-out backwards;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-primary: #FFC700;
-    --color-primary-500: #FFC700;
-    --color-primary-600: #FFC700;
-    --color-secondary: #F24E1E;
-    --color-secondary-500: #F24E1E;
-    --color-secondary-600: #F24E1E;
-    --color-accent: #1ABCFE;
-    --color-accent-500: #1ABCFE;
-    --color-accent-600: #0099CC;
-    --color-background: #000000;
-    --color-foreground: #FFFFFF;
-  }
 }
 
 @font-face {
@@ -74,6 +101,8 @@ html {
 
 body {
   font-family: "Kabel", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 
   h1,
   h2,
@@ -90,6 +119,7 @@ body {
   background-image: url(/img/page-bottom-bg.jpg);
   background-position: bottom;
   background-repeat: no-repeat;
+
 }
 
 .gradient-text {

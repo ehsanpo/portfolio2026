@@ -45,7 +45,7 @@ export default function StackCard({ slug, labels, icon, data, parentIndex }: Sta
 		<motion.div className={`rounded-lg`} whileHover={{ scale: 1.02 }}>
 			<Card3D
 				className="justify-center cursor-pointer flex-col items-center whitespace-nowrap text-black"
-				glowColor="color-mix(in srgb, currentColor 80%, var(--color-accent));"
+				glowColor="color-mix(in srgb, currentColor 80%, var(--color-accent))"
 			>
 				<div className="p-3 flex items-center gap-4 -mb-2.5">
 					<img src={icon} alt={slug} className="h-12 w-12" />

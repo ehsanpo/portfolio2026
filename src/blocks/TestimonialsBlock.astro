@@ -3,41 +3,14 @@ import { getPortfolioData } from "@/utils/data";
 import { TestimonialCard } from "@/components/testimonials/TestimonialCard";
 import { Heading } from "@/components/ui/heading";
 import Button from "@/components/ui/Button";
-
-import asger from "@/assets/testimonial/asger.jpg";
-import desire from "@/assets/testimonial/desire.jpeg";
-import lenny from "@/assets/testimonial/lenny.jpg";
-import jony from "@/assets/testimonial/jony.jpg";
-import heshan from "@/assets/testimonial/heshan.jpg";
-import fredrik2 from "@/assets/testimonial/fredrik2.jpg";
-import timothy from "@/assets/testimonial/timothy.jpg";
-import erfan from "@/assets/testimonial/erfan.jpg";
-import rebecca from "@/assets/testimonial/rebecca.jpg";
-import fredrik from "@/assets/testimonial/fredrik.jpg";
-import david from "@/assets/testimonial/david.jpg";
-import klas from "@/assets/testimonial/klas.jpg";
-
-const imageMap: Record<string, any> = {
-	"/img/testimonial/asger.jpg": asger.src,
-	"/img/testimonial/desire.jpeg": desire.src,
-	"/img/testimonial/lenny.jpg": lenny.src,
-	"/img/testimonial/jony.jpg": jony.src,
-	"/img/testimonial/heshan.jpg": heshan.src,
-	"/img/testimonial/fredrik2.jpg": fredrik2.src,
-	"/img/testimonial/timothy.jpg": timothy.src,
-	"/img/testimonial/erfan.jpg": erfan.src,
-	"/img/testimonial/rebecca.jpg": rebecca.src,
-	"/img/testimonial/fredrik.jpg": fredrik.src,
-	"/img/testimonial/david.jpg": david.src,
-	"/img/testimonial/klas.jpg": klas.src,
-};
+import { getTestimonialImage } from "@/utils/testimonialImages";
 
 const { testimonials } = getPortfolioData();
 const { showAll = false } = Astro.props;
 
 const testimonialsWithImages = testimonials.map((testimonial) => ({
 	...testimonial,
-	img: imageMap[testimonial.img] || testimonial.img,
+	img: getTestimonialImage(testimonial.img),
 }));
 ---
 
@@ -79,7 +52,7 @@ const testimonialsWithImages = testimonials.map((testimonial) => ({
 
 		{
 			showAll ? (
-				<div class="w-full mt-12 m-auto grid grid-cols-4 items-center gap-2">
+				<div class="w-full mt-12 m-auto flex flex-wrap max-w-6xl items-center gap-2 justify-center">
 					{testimonialsWithImages.map((testimonial) => (
 						<TestimonialCard testimonial={testimonial} client:load />
 					))}

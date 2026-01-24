@@ -119,7 +119,7 @@ export function Footer({
 					{/* Brand Section */}
 					<div className="lg:col-span-1">
 						<div className="mb-4 flex items-center space-x-3">
-							<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/10 to-secondary-500/60">
+							<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary-900 to-secondary-900">
 								<svg
 									width="48"
 									height="48"

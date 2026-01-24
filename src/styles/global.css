@@ -6,16 +6,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --primary: #FFC700;
-  --secondary: #F24E1E;
-  --accent: #1ABCFE;
-  --accent-200: #A4EEFD;
-  --accent-500: #1ABCFE;
-  --accent-600: #0099CC;
-
+  --primary: oklch(85.75% 0.175 88.49);
+  --secondary: oklch(63.50% 0.217 34.98);
+  --accent: oklch(73.41% 0.158 236.01);
   --background: #F9F4EA;
   --foreground: #050809;
-
   --neutral-900: #050809;
   --neutral-800: #072f45;
   --white: #F9F4EA;
@@ -25,8 +20,7 @@
 
 .dark {
   --background: #000000;
-  --foreground: #FFFFFF;
-
+  --foreground: #F9F4EA;
   --neutral-900: #050809;
   --neutral-800: #072f45;
   --white: #F9F4EA;
@@ -42,15 +36,41 @@
 
 @theme {
   --color-primary: var(--primary);
-  --color-primary-500: var(--primary);
-  --color-primary-600: var(--primary);
+  --color-primary-50: oklch(98.15% 0.027 93.10);
+  --color-primary-100: oklch(96.58% 0.053 94.43);
+  --color-primary-200: oklch(93.43% 0.102 94.56);
+  --color-primary-300: oklch(90.57% 0.143 93.99);
+  --color-primary-400: oklch(88.02% 0.168 92.19);
+  --color-primary-500: oklch(85.75% 0.175 88.49);
+  --color-primary-600: oklch(72.59% 0.148 88.83);
+  --color-primary-700: oklch(58.80% 0.120 89.37);
+  --color-primary-800: oklch(44.15% 0.090 90.38);
+  --color-primary-900: oklch(28.13% 0.058 92.90);
+  --color-primary-950: oklch(22.93% 0.047 94.01);
   --color-secondary: var(--secondary);
-  --color-secondary-500: var(--secondary);
-  --color-secondary-600: var(--secondary);
+  --color-secondary-50: oklch(95.60% 0.021 36.03);
+  --color-secondary-100: oklch(91.19% 0.042 36.49);
+  --color-secondary-200: oklch(82.92% 0.086 37.62);
+  --color-secondary-300: oklch(75.22% 0.136 37.73);
+  --color-secondary-400: oklch(68.64% 0.181 37.51);
+  --color-secondary-500: oklch(63.50% 0.217 34.98);
+  --color-secondary-600: oklch(53.97% 0.182 35.33);
+  --color-secondary-700: oklch(43.91% 0.146 35.56);
+  --color-secondary-800: oklch(33.18% 0.104 36.43);
+  --color-secondary-900: oklch(21.62% 0.061 38.74);
+  --color-secondary-950: oklch(18.02% 0.047 41.67);
   --color-accent: var(--accent);
-  --color-accent-200: var(--accent-200);
-  --color-accent-500: var(--accent-500);
-  --color-accent-600: var(--accent-600);
+  --color-accent-50: oklch(96.79% 0.021 223);
+  --color-accent-100: oklch(93.41% 0.043 224.93);
+  --color-accent-200: oklch(87.50% 0.081 224.36);
+  --color-accent-300: oklch(81.95% 0.116 226.91);
+  --color-accent-400: oklch(77.39% 0.142 230.10);
+  --color-accent-500: oklch(73.41% 0.158 236.01);
+  --color-accent-600: oklch(62.32% 0.132 235.20);
+  --color-accent-700: oklch(50.46% 0.106 234.73);
+  --color-accent-800: oklch(38.12% 0.078 232.61);
+  --color-accent-900: oklch(24.40% 0.049 230.58);
+  --color-accent-950: oklch(20.28% 0.039 225.89);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -124,7 +144,7 @@ body {
 
 .gradient-text {
   background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

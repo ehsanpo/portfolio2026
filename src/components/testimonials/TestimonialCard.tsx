@@ -97,7 +97,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, d
       </div>
 
       <motion.div layout className="flex items-center justify-between text-[12px] uppercase tracking-wider font-medium
-       text-slate-400 dark:text-slate-400 mt-auto pt-2 border-t border-neutral-50 dark:border-neutral-600">
+       text-slate-400 dark:text-slate-400 mt-auto pt-2 border-t border-neutral-50 dark:border-accent-700">
         <div className="flex items-center gap-1">
           <svg className="size-3" viewBox="0 0 24 24" fill="none"><path d="M19 3C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H19ZM18.5 18.5V13.2C18.5 11.235 17.435 10.25 16.035 10.25C14.905 10.25 14.4 10.87 14.115 11.31H14.075V10.45H11.565V18.5H14.115V14.4C14.115 13.295 14.325 12.225 15.69 12.225C17.035 12.225 17.055 13.485 17.055 14.475V18.5H18.5ZM7.04 8.71C7.855 8.71 8.515 8.05 8.515 7.235C8.515 6.42 7.855 5.76 7.04 5.76C6.225 5.76 5.565 6.42 5.565 7.235C5.565 8.05 6.225 8.71 7.04 8.71ZM8.315 18.5V10.45H5.765V18.5H8.315Z" fill="currentColor"/></svg>
           <span>Linkedin</span>

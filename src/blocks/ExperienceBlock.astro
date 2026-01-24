@@ -13,8 +13,6 @@ const workItems = companies.map((c) => ({
 	startDate: c.startDate,
 	endDate: c.endDate,
 	type: "work" as const,
-	location: c.location || basics.location,
-	duration: calculatePreciseDuration(c.startDate, c.endDate),
 })).sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
 
 const educationItems = education.map((e) => ({
@@ -23,9 +21,7 @@ const educationItems = education.map((e) => ({
 	date: e.year,
 	startDate: e.startDate,
 	endDate: e.endDate,
-	type: "education" as const,
-	location: "",
-	duration: calculatePreciseDuration(e.startDate, e.endDate),
+	type: "education" as const
 })).sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
 ---
 

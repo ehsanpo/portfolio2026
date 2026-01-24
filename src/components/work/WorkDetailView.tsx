@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard3D } from '@/components/ProjectCard3D';
 import TeamAvatar from '@/components/TeamAvatar';
+import { getTestimonialImage } from '@/utils/testimonialImages';
 
 interface Company {
   id: string;
@@ -86,14 +87,14 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
         className="relative pb-20 overflow-hidden"
       >
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-linear-to-b from-blue-500/10 to-transparent blur-3xl opacity-20"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-linear-to-b from-accent-500/10 to-transparent blur-3xl opacity-20"></div>
         </div>
 
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Logo/Image */}
           <motion.div 
             variants={itemVariants}
-            className="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden bg-white/5 border border-white/10 p-4 flex items-center justify-center backdrop-blur-sm shadow-2xl shrink-0 group hover:border-blue-500/50 transition-colors duration-500"
+            className="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden bg-white/5 border border-white/10 p-4 flex items-center justify-center backdrop-blur-sm shadow-2xl shrink-0 group hover:border-accent-500/50 transition-colors duration-500"
           >
             {company.image ? (
               <img src={company.image} alt={company.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
@@ -106,20 +107,20 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
           <div className="flex-1 text-center lg:text-left">
             <motion.div 
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-400 text-sm font-medium mb-5"
             >
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
               {company.year}
             </motion.div>
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight"
+              className="text-primary-500 text-4xl md:text-6xl font-bold mb-1 tracking-tight"
             >
               {company.name}
             </motion.h1>
             <motion.p 
               variants={itemVariants}
-              className="text-xl md:text-2xl text-blue-400/90 font-medium mb-6 uppercase tracking-wider"
+              className="text-xl md:text-2xl text-accent-400/90 font-medium mb-1 uppercase tracking-wider"
             >
               {company.position}
             </motion.p>
@@ -136,30 +137,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Left Column: Content */}
         <div className="lg:col-span-8 space-y-12">
-          
-          {/* Detailed Description */}
-          <motion.section 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-          >
-            <h2 className="font-bold text-white mb-8 border-l-4 border-blue-500 pl-4 uppercase tracking-widest text-sm">Overview</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {company.detailedDescription.map((item, idx) => (
-                <motion.div 
-                  key={idx}
-                  variants={itemVariants}
-                  className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all duration-300 group"
-                >
-                  <p className="text-slate-300 leading-6 group-hover:text-white transition-colors uppercase text-sm">
-                    {item}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-          
           {/* Tags */}
           {company.tags && company.tags.length > 0 && (
             <motion.section 
@@ -168,55 +145,44 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
               viewport={{ once: true, margin: "-100px" }}
               variants={containerVariants}
             >
-              <h2 className="font-bold text-white mb-6 uppercase tracking-widest text-sm">Focus Areas</h2>
+              <h2 className="font-bold text-white mb-6 uppercase tracking-widest text-sm border-l-4 border-accent-500 pl-4">Focus Areas</h2>
               <div className="flex flex-wrap gap-2">
-                {company.tags.map((tag, idx) => (
-                  <motion.span 
-                    key={idx}
-                    variants={itemVariants}
-                    className="px-4 py-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-colors"
-                  >
-                    {tag}
-                  </motion.span>
-                ))}
+                {company.softSkills.map((skill, idx) => (
+                <motion.span 
+                  key={idx}
+                  variants={itemVariants}
+                  className="px-4 py-2 rounded-xl bg-accent-500/10 border border-accent-500/20 text-accent-400 text-sm font-medium hover:bg-accent-500/20 transition-colors"
+                >
+                  {skill}
+                </motion.span>
+              ))}
               </div>
             </motion.section>
           )}
 
-          {/* Related Portfolio content */}
-          {relatedProjects.length > 0 && (
-            <motion.section 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={containerVariants}
-            >
-              <h2 className="font-bold text-white mb-8 border-l-4 border-blue-500 pl-4 uppercase tracking-widest text-sm">Projects & Case Studies</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {relatedProjects.map((project, index) => (
-                  <motion.div key={project.id} variants={itemVariants}>
-                    <ProjectCard3D
-                      title={project.data.title}
-                      description={project.data.tagline}
-                      date={project.data.date}
-                      tags={project.data.tag}
-                      image={project.data.background_image ? {
-                        src: project.data.background_image.src,
-                        alt: project.data.title,
-                        width: project.data.background_image.width,
-                        height: project.data.background_image.height
-                      } : undefined}
-                      categories={project.data.category}
-                      layout={index}
-                      href={`/portfolio/${project.data.permalink}`}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.section>
-          )}
-
-           {/* Awards if they exist */}
+          {/* Detailed Description */}
+          <motion.section 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+          >
+            <h2 className="font-bold text-white mb-8 border-l-4 border-accent-500 pl-4 uppercase tracking-widest text-sm">Overview</h2>
+            <div className="grid grid-cols-1 gap-4">
+              {company.detailedDescription.map((item, idx) => (
+                <motion.div 
+                  key={idx}
+                  variants={itemVariants}
+                  className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-500/30 transition-all duration-300 group"
+                >
+                  <p className="text-slate-300 leading-6 group-hover:text-white transition-colors">
+                    {item}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+            {/* Awards if they exist */}
            {company.awards && company.awards.length > 0 && (
             <motion.section 
               initial="hidden"
@@ -224,7 +190,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
               viewport={{ once: true, margin: "-100px" }}
               variants={containerVariants}
             >
-              <h2 className="font-bold text-white mb-8 border-l-4 border-blue-500 pl-4 uppercase tracking-widest text-sm">Awards & Recognition</h2>
+              <h2 className="font-bold text-white mb-8 border-l-4 border-accent-500 pl-4 uppercase tracking-widest text-sm">Awards & Recognition</h2>
               <div className="space-y-4">
                 {company.awards.map((award, idx) => (
                   <motion.div 
@@ -244,6 +210,42 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
               </div>
             </motion.section>
           )}
+  
+          {/* Related Portfolio content */}
+          {relatedProjects.length > 0 && (
+            <motion.section 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={containerVariants}
+            >
+              <h2 className="font-bold text-white mb-8 border-l-4 border-accent-500 pl-4 uppercase tracking-widest text-sm">Projects & Case Studies</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {relatedProjects.map((project, index) => (
+                  <motion.div key={project.id} variants={itemVariants}>
+                    <ProjectCard3D
+                      title={project.data.title}
+                      description={project.data.tagline}
+                      date={project.data.date}
+                      tags={project.data.tag}
+                      image={project.data.cover ? {
+                        src: project.data.cover.src,
+                        alt: project.data.title,
+                        width: project.data.cover.width,
+                        height: project.data.cover.height
+                      } : undefined}
+                      categories={project.data.category}
+                      layout={index}
+                      href={`/portfolio/${project.data.permalink}`}
+                      glowColor='color-mix(in srgb, black 80%, var(--color-accent))'
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.section>
+          )}
+
+
         </div>
 
         {/* Right Column: Sidebar */}
@@ -256,7 +258,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
           >
-            <h2 className="font-bold text-white mb-6 uppercase tracking-widest text-sm">Technical Expertise</h2>
+            <h2 className="font-bold text-white mb-6 uppercase tracking-widest text-sm border-l-4 border-accent-500 pl-4">Technical Expertise</h2>
             <div className="space-y-3">
               {company.codeSkills.map((skill, idx) => (
                 <motion.div 
@@ -264,30 +266,9 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
                   variants={itemVariants}
                   className="p-4 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center group hover:bg-white/10 transition-colors"
                 >
-                  <span className="text-slate-300 font-medium group-hover:text-blue-400 transition-colors">{skill}</span>
+                  <span className="text-slate-300 font-medium group-hover:text-accent-400 transition-colors">{skill}</span>
                   <span className="text-xs text-slate-500 font-mono">{getSkillDuration(skill)}</span>
                 </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* Soft Skills */}
-          <motion.section 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-          >
-             <h2 className="font-bold text-white mb-6 uppercase tracking-widest text-sm">Soft Skills</h2>
-            <div className="flex flex-wrap gap-2">
-              {company.softSkills.map((skill, idx) => (
-                <motion.span 
-                  key={idx}
-                  variants={itemVariants}
-                  className="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-400 text-sm hover:border-slate-500 transition-colors"
-                >
-                  {skill}
-                </motion.span>
               ))}
             </div>
           </motion.section>
@@ -308,15 +289,15 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
                     variants={itemVariants}
                     className="flex items-center gap-4 group"
                   >
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-800 border-2 border-slate-700 group-hover:border-blue-500 transition-colors flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-800 border-2 border-slate-700 group-hover:border-accent-500 transition-colors flex items-center justify-center">
                       {member.img ? (
-                        <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
+                        <img src={getTestimonialImage(member.img)} alt={member.name} className="w-full h-full object-cover" />
                       ) : (
                         <TeamAvatar name={member.name} size={48} />
                       )}
                     </div>
                     <div>
-                      <div className="text-white font-medium text-sm group-hover:text-blue-400 transition-colors">{member.name}</div>
+                      <div className="text-white font-medium text-sm group-hover:text-accent-400 transition-colors">{member.name}</div>
                       <div className="text-slate-500 text-xs">{member.role}</div>
                     </div>
                   </motion.div>

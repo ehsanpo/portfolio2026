@@ -195,7 +195,7 @@
 		{
 			"id": "freelance-2019",
 			"name": "Ehsan Pourhadi",
-			"position": "Freelance Web Developer",
+			"position": "Web Developer",
 			"type": "experience",
 			"startDate": "2019-05",
 			"endDate": "2020-03",
@@ -234,7 +234,7 @@
 		{
 			"id": "guts-glory",
 			"name": "Guts & Glory",
-			"position": "Web Developer/Tech Lead",
+			"position": "Tech Lead",
 			"type": "experience",
 			"startDate": "2016-10",
 			"endDate": "2019-05",
@@ -437,7 +437,7 @@
 		{
 			"id": "the-fan-club",
 			"name": "The Fan Club",
-			"position": "Web Developer/Designer",
+			"position": "Web Developer",
 			"type": "experience",
 			"startDate": "2012-03",
 			"endDate": "2014-10",
@@ -562,7 +562,7 @@
 		{
 			"id": "next-g-design",
 			"name": "Next Generation Design",
-			"position": "Developer/Designer & Co-Founder",
+			"position": "Co-Founder/Developer",
 			"type": "experience",
 			"startDate": "2011-01",
 			"endDate": "2012-01",
@@ -631,7 +631,7 @@
 			"type": "education",
 			"highlighted": false,
 			"institution": "Linux Academy / A Cloud Guru",
-			"degree": "AWS Certified Solutions Architect",
+			"degree": "AWS Solutions Architect",
 			"title": "Linux Academy / A Cloud Guru",
 			"startDate": "2018",
 			"endDate": "2018",

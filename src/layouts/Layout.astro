@@ -1,8 +1,11 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import {HeaderMinimal} from "@/components/Header.tsx";
 import { Footer } from "@/components/footer/Footer";
 import { getPortfolioData } from "@/utils/data";
+import KonamiCode from "../components/KonamiCode";
+import { GameHUD } from "../components/game/GameHUD";
+import { NavLockGuard } from "../components/game/NavLockGuard";
+import ScrollBottomEasterEgg from "../components/ScrollBottomEasterEgg";
 import "../styles/global.css";
 
 interface Props {
@@ -19,7 +22,7 @@ const {
 	imageAlt = "Ehsan Portfolio",
 } = Astro.props;
 
-const { navigation } = await getPortfolioData();
+const { navigation } = getPortfolioData();
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
@@ -74,7 +77,6 @@ const socialImage = new URL(image, Astro.site);
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<script async defer src="https://scripts.withcabin.com/hello.js"></script>
 		<title>{title}</title>
-		<ClientRouter />
 	</head>
 	<body class="bg-white text-gray-900 dark:bg-neutral-900 dark:text-gray-100">
 		<HeaderMinimal
@@ -86,7 +88,11 @@ const socialImage = new URL(image, Astro.site);
 		<main class="min-h-screen">
 			<slot />
 			<Footer client:load />
+			<ScrollBottomEasterEgg client:load />
 		</main>
+		<NavLockGuard client:load />
+		<GameHUD client:load />
+		<KonamiCode client:load />
 		<script>
 			document.addEventListener("astro:after-swap", () => {
 				const theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");

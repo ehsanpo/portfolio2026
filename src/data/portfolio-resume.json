@@ -792,6 +792,18 @@
 			"icon": "/img/timeline-icons/reason-studios.svg",
 			"duration": "2010-2024"
 		},
+				{
+			"id": 117,
+			"name": "Docker",
+			"icon": "/img/timeline-icons/docker.svg",
+			"duration": "2019-2026"
+		},
+		{
+			"id": 118,
+			"name": "Linux",
+			"icon": "/img/timeline-icons/linux.svg",
+			"duration": "2011-2026"
+		},
 		{
 			"id": 111,
 			"name": "Cubase",
@@ -1085,18 +1097,6 @@
 			"name": "Wails",
 			"icon": "/img/timeline-icons/wails.svg",
 			"duration": "2025-2026"
-		},
-		{
-			"id": 117,
-			"name": "Docker",
-			"icon": "/img/timeline-icons/docker.svg",
-			"duration": "2019-2026"
-		},
-		{
-			"id": 118,
-			"name": "Linux",
-			"icon": "/img/timeline-icons/linux.svg",
-			"duration": "2011-2026"
 		}
 	],
 	"roles": [

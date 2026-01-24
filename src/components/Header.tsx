@@ -112,6 +112,7 @@ export function HeaderMinimal({
             <a
               key={link.key}
               href={link.href}
+              data-game-nav-link
               className={cn(
                 "transition-colors hover:text-neutral-900 dark:hover:text-white relative after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-primary after:transition-all hover:after:w-full",
                 currentPage === link.key ? "text-neutral-900 dark:text-white after:w-full" : ""

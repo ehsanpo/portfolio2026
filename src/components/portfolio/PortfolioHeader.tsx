@@ -4,6 +4,7 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import Tilt from "react-parallax-tilt";
 
 interface Props {
+	agencySlug?: string;
 	item: {
 		title: string;
 		tagline: string;
@@ -38,7 +39,7 @@ interface Props {
 	};
 }
 
-const PortfolioHeader: React.FC<Props> = ({ item }) => {
+const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 	const {
 		title,
 		tagline,
@@ -91,7 +92,16 @@ const PortfolioHeader: React.FC<Props> = ({ item }) => {
 									{agency && (
 										<div className="flex gap-4">
 											<h3 className="min-w-20 font-medium uppercase text-yellow-500">Agency</h3>
-											<p className="font-basement text-yellow-500">{agency}</p>
+											{agencySlug ? (
+												<a
+													href={`/work/${agencySlug}`}
+													className="font-basement text-yellow-500 hover:underline"
+												>
+													{agency}
+												</a>
+											) : (
+												<p className="font-basement text-yellow-500">{agency}</p>
+											)}
 										</div>
 									)}
 

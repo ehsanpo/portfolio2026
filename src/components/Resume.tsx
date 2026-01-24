@@ -5,8 +5,7 @@ import { Main } from "@/components/resume//Main";
 import { Aside } from "@/components/resume//Aside";
 import type { Resume } from "@/types/resume";
 import type { Language } from "@/translations/index";
-import resumeEn from "@/data/resume-en.json";
-import resumeSv from "@/data/resume-sv.json";
+import portfolioData from "@/data/portfolio-resume.json";
 
 interface Props {
 	// Define your props here if needed
@@ -15,7 +14,37 @@ interface Props {
 const ResumeCv: React.FC<Props> = () => {
 	const [mainColor, setMainColor] = useState("#4f46e5");
 	const [language, setLanguage] = useState<Language>("en");
-	const resumeData: Resume = language === "en" ? resumeEn : resumeSv;
+	
+	const resumeData: Resume = {
+		basics: {
+			name: portfolioData.basics.name,
+			title: portfolioData.basics.title,
+			image: portfolioData.basics.image,
+			email: portfolioData.basics.email,
+			location: portfolioData.basics.location,
+			website: portfolioData.basics.website,
+			linkedin: portfolioData.basics.linkedin,
+			about: portfolioData.basics.about,
+		},
+		experience: portfolioData.companies.map((c) => ({
+			company: c.name,
+			position: c.position,
+			startDate: c.startDate,
+			endDate: c.endDate,
+			description: c.detailedDescription,
+			tags: c.tags,
+		})),
+		education: portfolioData.education.map((e) => ({
+			institution: e.institution,
+			degree: e.degree,
+			startDate: e.startDate,
+			endDate: e.endDate,
+			description: e.detailedDescription,
+		})),
+		certificates: portfolioData.certifications,
+		skills: portfolioData.skills,
+		languages: portfolioData.languages.map((l) => l.name),
+	};
 
 	useEffect(() => {
 		document.documentElement.style.setProperty("--main-color", mainColor);

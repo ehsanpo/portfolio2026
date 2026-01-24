@@ -8,8 +8,8 @@ status: publish
 permalink: bredband2-skills
 author: Ehsan
 type: portfolio
-agency: ""
-client: "Bredband2"
+agency: Bredband2
+client: Bredband2
 tagline: "Continuous learning and professional development"
 case_link_url: "https://www.bredband2.com/"
 category:

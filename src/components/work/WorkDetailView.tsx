@@ -76,8 +76,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({ company, related
            '';
   };
 
-  console.log(relatedProjects);
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-32">
       {/* Hero Section */}

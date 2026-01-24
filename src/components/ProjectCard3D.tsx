@@ -234,17 +234,6 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 		</defs>,
 	];
 
-
-
-
-
-
-
-
-
-
-
-
   const categoryList = Array.isArray(categories) 
     ? categories 
     : categories 
@@ -264,7 +253,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
         {categoryList.map((cat, idx) => (
           <div 
             key={idx}
-            className="shadow-primary/30 bg-primary/80 backdrop-blur-xl border border-primary/50 text-white text-[10px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:shadow-lg group-hover/card:opacity-100 transition-all duration-500 ease-out whitespace-nowrap"
+            className="shadow-primary/30 bg-primary/80 backdrop-blur-xl border border-primary/50 text-black text-[12px] uppercase tracking-widest font-black px-4 py-1.5 rounded-full opacity-0 group-hover/card:shadow-lg group-hover/card:opacity-100 transition-all duration-500 ease-out whitespace-nowrap"
           >
             {cat}
           </div>

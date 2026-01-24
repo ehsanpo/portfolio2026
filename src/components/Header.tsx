@@ -53,14 +53,12 @@ export function HeaderMinimal({
   }
 
   const handleSearchClick = () => {
-    // 1. Try to find and click the DocSearch button if it exists in the DOM
     const docSearchButton = document.querySelector(".DocSearch-Button") as HTMLElement;
     if (docSearchButton) {
       docSearchButton.click();
       return;
     }
 
-    // 2. Dispatch Ctrl+K keyboard event (as per DocSearch standard)
     const event = new KeyboardEvent("keydown", {
       key: "k",
       code: "KeyK",
@@ -70,7 +68,6 @@ export function HeaderMinimal({
     })
     document.dispatchEvent(event)
 
-    // Also try Cmd+K for Mac users
     const metaEvent = new KeyboardEvent("keydown", {
       key: "k",
       code: "KeyK",
@@ -117,7 +114,7 @@ export function HeaderMinimal({
               href={link.href}
               className={cn(
                 "transition-colors hover:text-neutral-900 dark:hover:text-white relative after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-primary after:transition-all hover:after:w-full",
-                currentPage === link.href ? "text-neutral-900 dark:text-white after:w-full" : ""
+                currentPage === link.key ? "text-neutral-900 dark:text-white after:w-full" : ""
               )}
             >
               {link.text}

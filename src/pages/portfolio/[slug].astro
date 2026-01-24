@@ -49,6 +49,9 @@ interface PortfolioItem {
 
 const { item } = Astro.props as unknown as { item: PortfolioItem };
 const { Content } = await item.content.render();
+
+import portfolioData from "@/data/portfolio-resume.json";
+const agencySlug = portfolioData.companies.find((c) => c.name === item.agency)?.id;
 ---
 
 <Layout
@@ -58,7 +61,7 @@ const { Content } = await item.content.render();
 	imageAlt={`${item.title} - ${item.client}`}
 >
 	<article class="relative min-h-screen bg-white pt-4 dark:bg-neutral-900">
-		<PortfolioHeader item={item} client:load />
+		<PortfolioHeader item={item} agencySlug={agencySlug} client:load />
 
 		<div class="relative z-10 mx-auto max-w-6xl px-4 pt-10">
 			<div class="prose mx-auto mb-20 max-w-3xl dark:prose-invert">

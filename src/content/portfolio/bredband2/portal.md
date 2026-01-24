@@ -8,8 +8,8 @@ status: publish
 permalink: bredband2-portal
 author: Ehsan
 type: portfolio
-agency: ""
-client: "Bredband2"
+agency: Bredband2
+client: Bredband2
 tagline: "Empowering customers with secure self-service"
 case_link_url: "https://www.bredband2.com/"
 category:

@@ -8,19 +8,14 @@ const companies = portfolioData.companies;
 ---
 
 <Layout title="Experience" description="Work Experience and Professional Career">
-
-
   <PageHero title="Experience" subtitle="A showcase of the companies I've worked at" />
   <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    
-
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
       {companies.map((company, index) => (
         <ProjectCard3D
           client:visible
           title={company.name}
-          description={`${company.position}. ${company.description}`}
+          description={company.description}
           date={company.year}
           tags={company.tags}
           image={company.image ? {
@@ -29,7 +24,7 @@ const companies = portfolioData.companies;
             width: 800,
             height: 600
           } : undefined}
-          categories={company.type}
+          categories={company.position}
           layout={index}
           href={`/work/${company.id}`}
         />
@@ -37,11 +32,3 @@ const companies = portfolioData.companies;
     </div>
   </section>
 </Layout>
-
-<style>
-  /* Optional: Custom styles for the experience page */
-  section {
-    position: relative;
-    z-index: 1;
-  }
-</style>

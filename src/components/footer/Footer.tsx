@@ -42,9 +42,8 @@ const navigationSections: { title: string; links: NavigationLink[] }[] = [
 	{
 		title: "Portfolio",
 		links: [
-			{ name: "Work", href: "/portfolio", icon: Briefcase },
+			{ name: "Work", href: "/work", icon: Briefcase },
 			{ name: "Skills", href: "/skills", icon: Code },
-			{ name: "Services", href: "/services", icon: Palette },
 			{ name: "About", href: "/about", icon: User },
 			{ name: "Roles", href: "/roles", icon: Briefcase },
 		],
@@ -163,7 +162,7 @@ export function Footer({
 														href={link.href}
 														target={link.href.startsWith("http") ? "_blank" : "_self"}
 														rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-														className="font-kabel group hover:text-primary flex items-center text-sm text-gray-400 transition-colors"
+														className="font-kabel group hover:text-primary flex items-center text-sm dark:text-gray-400 text-black transition-colors"
 													>
 														<Icon className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
 														{link.name}

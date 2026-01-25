@@ -4,7 +4,6 @@ const unlockCosts: Record<UnlockablePage, number> = {
 	"/": 0,
 	"/portfolio": 60,
 	"/skills": 50,
-	"/services": 50,
 	"/about": 70,
 	"/contact": 90,
 	"/blog": 110,
@@ -16,7 +15,6 @@ const unlockCosts: Record<UnlockablePage, number> = {
 const unlockTargets: Record<ShopItemId, UnlockablePage | null> = {
 	"unlock-portfolio": "/portfolio",
 	"unlock-skills": "/skills",
-	"unlock-services": "/services",
 	"unlock-about": "/about",
 	"unlock-contact": "/contact",
 	"unlock-blog": "/blog",
@@ -45,15 +43,6 @@ export const buildShop = (state: GameState): ShopItemDefinition[] => [
 		maxLevel: 1,
 		type: "unlock",
 		target: "/skills",
-	},
-	{
-		id: "unlock-services",
-		title: "Unlock Services",
-		description: "Unlock the Services page in the header.",
-		cost: () => unlockCosts["/services"],
-		maxLevel: 1,
-		type: "unlock",
-		target: "/services",
 	},
 	{
 		id: "unlock-about",

@@ -21,7 +21,7 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({
 			target="_blank"
 			rel="noopener noreferrer"
 			className={cn(
-				"text-primary hover:text-secondary flex items-center gap-1 underline-offset-4 transition-colors hover:underline",
+				"text-black dark:text-primary hover:text-secondary flex items-center gap-1 underline-offset-4 transition-colors hover:underline",
 				className
 			)}
 		>

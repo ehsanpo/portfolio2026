@@ -43,7 +43,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 				if (!expanded) setIsExpanded(true);
 				e.stopPropagation();
 			}}
-			className={`dark:bg-accent-600/20 clip flex flex-col border border-neutral-100 bg-white dark:border-neutral-800 ${
+			className={`bg-offwhite dark:bg-accent-600/20 clip flex flex-col border border-neutral-100  dark:border-neutral-800 ${
 				expanded
 					? "pointer-events-auto relative z-[1001] w-full max-w-2xl rounded-2xl p-8 shadow-2xl"
 					: "relative z-10 w-72 cursor-pointer rounded-xl px-4 pt-6 pb-4 shadow-sm hover:shadow-xl"

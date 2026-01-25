@@ -9,6 +9,7 @@ interface BoxRevealProps {
 	boxColor?: string;
 	duration?: number;
 	delay?: number;
+	className?: string;
 }
 
 export const BoxReveal = ({
@@ -17,6 +18,7 @@ export const BoxReveal = ({
 	boxColor,
 	duration,
 	delay = 0,
+	className,
 }: BoxRevealProps) => {
 	const mainControls = useAnimation();
 	const slideControls = useAnimation();
@@ -37,6 +39,7 @@ export const BoxReveal = ({
 	return (
 		<div
 			ref={ref}
+			className={className}
 			style={{
 				position: "relative",
 				width,

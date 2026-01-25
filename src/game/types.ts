@@ -7,7 +7,6 @@ export type UnlockablePage =
 	| "/"
 	| "/portfolio"
 	| "/skills"
-	| "/services"
 	| "/about"
 	| "/contact"
 	| "/blog"
@@ -18,7 +17,6 @@ export type UnlockablePage =
 export type ShopItemId =
 	| "unlock-portfolio"
 	| "unlock-skills"
-	| "unlock-services"
 	| "unlock-about"
 	| "unlock-contact"
 	| "unlock-blog"

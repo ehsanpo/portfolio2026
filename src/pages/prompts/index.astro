@@ -28,7 +28,7 @@ const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 							</h2>
 							<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
 								{categoryPrompts.map((prompt) => (
-									<Card3D client:load className="h-[480px]" glowColor="rgba(255, 199, 0, 0.15)">
+									<Card3D client:load className="h-[400px]" glowColor="rgba(255, 199, 0, 0.15)">
 										<div class="preserve-3d flex h-full flex-col items-start p-6">
 											<div
 												class="group-hover/card:bg-primary/5 group-hover/card:border-primary/20 mb-6 flex h-44 w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-all duration-500"
@@ -47,7 +47,7 @@ const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 												)}
 											</div>
 
-											<div class="flex flex-1 flex-col gap-3">
+											<div class="flex flex-1 flex-col gap-3 preserve-3d ">
 												<h3
 													class="group-hover/card:text-primary text-2xl leading-tight font-black text-white transition-all duration-500"
 													style="transform: translateZ(50px); text-shadow: 0 10px 20px rgba(0,0,0,0.5);"

@@ -5,7 +5,6 @@ const defaultUnlocks: Record<UnlockablePage, boolean> = {
 	"/": true,
 	"/portfolio": false,
 	"/skills": false,
-	"/services": false,
 	"/about": false,
 	"/contact": false,
 	"/blog": false,

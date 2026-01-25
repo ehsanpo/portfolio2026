@@ -7,8 +7,6 @@ import { BlogCard } from "../../components/blog/BlogCard";
 const blogPosts = await getBlogPosts();
 const featuredPosts = blogPosts.filter((post) => post.featured === true);
 const regularPosts = blogPosts.filter((post) => post.featured !== true);
-
-
 ---
 
 <Layout

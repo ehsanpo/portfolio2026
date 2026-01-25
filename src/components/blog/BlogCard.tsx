@@ -20,7 +20,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 	return (
 		<article
 			className={cn(
-				"clip group relative overflow-hidden rounded bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-neutral-800",
+				"clip group relative overflow-hidden rounded bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl bg-opium dark:bg-neutral-800",
 				featured && "md:col-span-1",
 				className
 			)}
@@ -64,7 +64,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 
 				<div className="p-6">
 					<div className="mb-3 flex flex-wrap items-center gap-2">
-						<time dateTime={post.date} className="text-sm text-gray-500 dark:text-gray-400">
+						<time dateTime={post.date} className="text-sm text-gray-200 dark:text-gray-400">
 							{formatDate(post.date)}
 						</time>
 
@@ -100,7 +100,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 					</h3>
 
 					{post.description && (
-						<p className="dark:text-accent-200 mb-4 text-gray-600">
+						<p className="dark:text-accent-200 mb-4 text-gray-100">
 							{post.description.length > 120
 								? `${post.description.substring(0, 120)}...`
 								: post.description}

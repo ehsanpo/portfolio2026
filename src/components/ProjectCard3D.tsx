@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useId } from "react";
+import React, { useRef, useEffect, useId, useMemo } from "react";
 import Card3D from "./Card3D";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,62 +24,8 @@ interface ProjectCard3DProps {
 	href?: string;
 }
 
-export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
-	image,
-	icon,
-	title,
-	description,
-	date,
-	categories,
-	tags = [],
-	className = "",
-	glowColor = "rgba(255, 255, 255, 0.2)",
-	layout: propLayout = 0,
-	href,
-}) => {
-	const idSuffix = useId().replace(/:/g, "");
-	const layout = propLayout % 6;
-
-	const contentWrapRef = useRef<HTMLDivElement>(null);
-	const maskRef = useRef<SVGCircleElement>(null);
-	const imageRef = useRef<SVGImageElement>(null);
-	const imageWidth = image?.width || 300;
-	const imageHeight = image?.height || 300;
-
-	useEffect(() => {
-		if (!contentWrapRef.current || !maskRef.current || !imageRef.current) return;
-
-		const isCircle = maskRef.current.tagName.toLowerCase() === "circle";
-
-		const maskAnimation = gsap.fromTo(
-			maskRef.current,
-			{
-				attr: isCircle
-					? { r: maskRef.current.getAttribute("r") || 0 }
-					: { d: maskRef.current.getAttribute("d") || "" },
-			},
-			{
-				ease: "none",
-				attr: isCircle
-					? { r: maskRef.current.dataset.valueFinal || 0 }
-					: { d: maskRef.current.dataset.valueFinal || "" },
-			}
-		);
-
-		const st = ScrollTrigger.create({
-			trigger: contentWrapRef.current,
-			start: "top bottom-=20%",
-			end: "+=60%",
-			scrub: 1,
-			animation: maskAnimation,
-		});
-
-		return () => {
-			st.kill();
-		};
-	}, []);
-
-	const Filters = [
+const useFilters = (layout: number, idSuffix: string, imageWidth: number, maskRef: React.RefObject<SVGCircleElement | null>) => {
+	return useMemo(() => [
 		<defs key="f1">
 			<filter id={`displacementFilter1-${layout}-${idSuffix}`}>
 				<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise" />
@@ -130,7 +76,6 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 				/>
 			</mask>
 		</defs>,
-
 		<defs key="f3">
 			<filter id={`displacementFilter4-${layout}-${idSuffix}`}>
 				<feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="1" result="noise" />
@@ -229,7 +174,68 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 				/>
 			</mask>
 		</defs>,
-	];
+	], [layout, idSuffix, imageWidth, maskRef]);
+};
+
+const useScrollTriggerAnimation = (contentWrapRef: React.RefObject<HTMLDivElement | null>, maskRef: React.RefObject<SVGCircleElement | null>, imageRef: React.RefObject<SVGImageElement | null>) => {
+	useEffect(() => {
+		if (!contentWrapRef.current || !maskRef.current || !imageRef.current) return;
+
+		const isCircle = maskRef.current.tagName.toLowerCase() === "circle";
+
+		const maskAnimation = gsap.fromTo(
+			maskRef.current,
+			{
+				attr: isCircle
+					? { r: maskRef.current.getAttribute("r") || 0 }
+					: { d: maskRef.current.getAttribute("d") || "" },
+			},
+			{
+				ease: "none",
+				attr: isCircle
+					? { r: maskRef.current.dataset.valueFinal || 0 }
+					: { d: maskRef.current.dataset.valueFinal || "" },
+			}
+		);
+
+		const st = ScrollTrigger.create({
+			trigger: contentWrapRef.current,
+			start: "top bottom-=20%",
+			end: "+=60%",
+			scrub: 1,
+			animation: maskAnimation,
+		});
+
+		return () => {
+			st.kill();
+		};
+	}, []);
+};
+
+export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
+	image,
+	icon,
+	title,
+	description,
+	date,
+	categories,
+	tags = [],
+	className = "",
+	glowColor = "rgba(255, 255, 255, 0.2)",
+	layout: propLayout = 0,
+	href,
+}) => {
+	const idSuffix = useId().replace(/:/g, "");
+	const layout = propLayout % 6;
+
+	const contentWrapRef = useRef<HTMLDivElement>(null);
+	const maskRef = useRef<SVGCircleElement>(null);
+	const imageRef = useRef<SVGImageElement>(null);
+	const imageWidth = image?.width || 300;
+	const imageHeight = image?.height || 300;
+
+	const Filters = useFilters(layout, idSuffix, imageWidth, maskRef);
+	useScrollTriggerAnimation(contentWrapRef, maskRef, imageRef);
 
 	const categoryList = Array.isArray(categories) ? categories : categories ? [categories] : [];
 
@@ -258,7 +264,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 			</div>
 
 			<div
-				className="relative flex w-full items-center justify-center overflow-hidden rounded-[24px] border border-white/10 bg-white/5 transition-all duration-500 ease-out"
+				className="relative flex w-full items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all duration-500 ease-out"
 				style={{
 					transform:
 						"translateZ(calc(var(--hover, 0) * 50px)) scale(calc(1 + var(--hover, 0) * 0.05))",

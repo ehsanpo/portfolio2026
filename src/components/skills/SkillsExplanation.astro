@@ -37,7 +37,7 @@ const { skills } = await getPortfolioData();
 		explanation?.classList.toggle("hidden");
 	});
 
-	// Close when clicking outside
+	
 	document.addEventListener("click", (event) => {
 		if (!button?.contains(event.target as Node) && !explanation?.contains(event.target as Node)) {
 			explanation?.classList.add("hidden");

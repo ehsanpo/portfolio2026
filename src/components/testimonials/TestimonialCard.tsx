@@ -28,7 +28,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 		return () => setMounted(false);
 	}, []);
 
-	// Prevent scrolling when expanded
+	
 	useEffect(() => {
 		if (isExpanded) {
 			document.body.style.overflow = "hidden";

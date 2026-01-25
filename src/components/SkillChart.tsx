@@ -27,7 +27,6 @@ interface SkillChartProps {
 	};
 }
 
-// Color mappings for each category
 const categoryColors = {
 	Overall: {
 		bg: "rgba(34, 197, 94, 0.2)",
@@ -76,7 +75,6 @@ const categoryColors = {
 	},
 };
 
-// Helper functions
 const getExpertiseLevel = (level: number): string => {
 	if (level === 10) return "Expert";
 	if (level >= 7 && level <= 9) return "Advanced";
@@ -253,11 +251,9 @@ export default function SkillChart({ data, chartData, showButtons }: SkillChartP
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
 	useEffect(() => {
-		// Initial detection of dark mode
 		const darkModeEnabled = document.documentElement.classList.contains("dark");
 		setIsDarkMode(darkModeEnabled);
 
-		// Watch for changes to the <html> classList
 		const observer = new MutationObserver(() => {
 			const isDark = document.documentElement.classList.contains("dark");
 			setIsDarkMode(isDark);
@@ -269,7 +265,7 @@ export default function SkillChart({ data, chartData, showButtons }: SkillChartP
 		});
 
 		return () => {
-			observer.disconnect(); // Cleanup the observer on unmount
+			observer.disconnect();
 		};
 	}, []);
 

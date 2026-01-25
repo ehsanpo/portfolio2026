@@ -75,7 +75,6 @@ export function GameHUD() {
 
 	return (
 		<>
-			{/* Click animations */}
 			{clickAnimations.map((anim) => (
 				<div
 					key={anim.id}

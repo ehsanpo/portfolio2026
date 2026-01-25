@@ -7,7 +7,7 @@ const isUnlocked = (href: string, unlocks: Record<UnlockablePage, boolean>) => {
 	return unlocks[key] ?? true;
 };
 
-// Track if we've already applied lock state to avoid redundant updates
+
 let lockStateApplied = false;
 
 const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) => {
@@ -23,7 +23,7 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 		const locked = mode === "active" && href !== "/" && !isUnlocked(href, unlocks);
 		const hideLife = isLife && (mode !== "active" || !unlocks["/life"]);
 
-		// Always hide /life when not in game mode or not unlocked
+		
 		if (hideLife) {
 			el.style.display = "none";
 			return;
@@ -31,7 +31,7 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 
 		el.style.display = "";
 
-		// Get original text content without emoji
+		
 		const originalText = el.textContent?.replace(/🔒\s*/, "") || "";
 
 		if (locked) {
@@ -39,7 +39,7 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 			el.title = "Locked - unlock in Shop";
 			el.classList.add("pointer-events-none", "opacity-60");
 
-			// Add lock emoji
+			
 			if (!el.textContent?.includes("🔒")) {
 				el.textContent = `🔒 ${originalText}`;
 			}
@@ -54,7 +54,7 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 			el.removeAttribute("aria-disabled");
 			el.classList.remove("pointer-events-none", "opacity-60");
 
-			// Remove lock emoji
+			
 			if (el.textContent?.includes("🔒")) {
 				el.textContent = originalText;
 			}
@@ -76,7 +76,7 @@ export function NavLockGuard() {
 	useEffect(() => {
 		if (!mounted) return;
 
-		// Only run once per component lifecycle, even if store updates
+		
 		const cleanup = applyLockState(mode, unlocks);
 		lockStateApplied = true;
 

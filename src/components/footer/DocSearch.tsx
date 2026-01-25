@@ -7,7 +7,6 @@ interface DocSearchProps {
 	indexName: string;
 }
 
-// Add custom styles to remove focus-visible outline
 const style = `
 	#docsearch-input:focus-visible {
 		outline: none !important;
@@ -22,12 +21,10 @@ export default function DocSearch({ appId, apiKey, indexName }: DocSearchProps) 
 	const searchButtonRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		// Check for dark mode preference
 		const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 		const htmlElement = document.documentElement;
 		const isDark = htmlElement.classList.contains("dark") || prefersDark;
 
-		// Dynamically import docsearch only on client side
 		import("@docsearch/js").then(({ default: docsearch }) => {
 			docsearch({
 				container: searchButtonRef.current!,
@@ -44,12 +41,10 @@ export default function DocSearch({ appId, apiKey, indexName }: DocSearchProps) 
 			});
 		});
 
-		// Set data-theme attribute for DocSearch
 		if (isDark) {
 			htmlElement.setAttribute("data-theme", "dark");
 		}
 
-		// Listen for theme changes
 		const observer = new MutationObserver(() => {
 			const isDarkNow = htmlElement.classList.contains("dark");
 			htmlElement.setAttribute("data-theme", isDarkNow ? "dark" : "light");

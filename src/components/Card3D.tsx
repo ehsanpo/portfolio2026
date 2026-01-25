@@ -10,11 +10,6 @@ interface Card3DProps {
 	shine?: boolean;
 }
 
-/**
- * Card3D: A high-performance 3D tilt component driven by CSS variables.
- * Offloading the transform calculations to CSS ensures smooth interactions
- * without React render-cycle lag.
- */
 export const Card3D: React.FC<Card3DProps> = ({
 	children,
 	className = "",
@@ -31,13 +26,11 @@ export const Card3D: React.FC<Card3DProps> = ({
 
 		const { left, top, width, height } = containerRef.current.getBoundingClientRect();
 
-		// Calculate mouse position as a percentage from center (-0.5 to 0.5)
 		const px = (e.clientX - left) / width - 0.5;
 		const py = (e.clientY - top) / height - 0.5;
 
-		// Set CSS variables for the tilt
-		containerRef.current.style.setProperty("--x", (px * 2).toString()); // -1 to 1
-		containerRef.current.style.setProperty("--y", (py * 2).toString()); // -1 to 1
+		containerRef.current.style.setProperty("--x", (px * 2).toString());
+		containerRef.current.style.setProperty("--y", (py * 2).toString());
 	};
 
 	const roundedIntensity = intensity * 0.8;
@@ -74,7 +67,6 @@ export const Card3D: React.FC<Card3DProps> = ({
           `,
 				}}
 			>
-				{/* Dynamic Shadow - Tilts with card */}
 				<div
 					className="absolute inset-4 rounded-[16px] opacity-0 blur-[40px] transition-all duration-500 group-hover/card:opacity-50"
 					style={{
@@ -85,9 +77,7 @@ export const Card3D: React.FC<Card3DProps> = ({
 					}}
 				/>
 
-				{/* Content Container */}
 				<div className="relative z-10 h-full w-full" style={{ transformStyle: "preserve-3d" }}>
-					{/* Base Card Layer - Single source of border and radius */}
 					<div
 						className={cn(
 							"absolute inset-0 rounded-[16px] border border-white/15 bg-linear-to-br from-white/10 to-white/5 shadow-2xl backdrop-blur-2xl",
@@ -95,7 +85,6 @@ export const Card3D: React.FC<Card3DProps> = ({
 						)}
 					/>
 
-					{/* Glow Layer */}
 					<div
 						className="pointer-events-none absolute inset-px rounded-[16px] opacity-0 transition-opacity duration-300 group-hover/card:opacity-30"
 						style={{
@@ -103,7 +92,6 @@ export const Card3D: React.FC<Card3DProps> = ({
 						}}
 					/>
 
-					{/* Shine Layer - Subtle and narrowed */}
 					{shine && (
 						<div
 							className="pointer-events-none absolute inset-px rounded-[16px] opacity-0 blur-sm transition-opacity duration-500 group-hover/card:opacity-10"
@@ -113,7 +101,6 @@ export const Card3D: React.FC<Card3DProps> = ({
 						/>
 					)}
 
-					{/* Final Content */}
 					<div className="relative z-20 h-full w-full" style={{ transformStyle: "preserve-3d" }}>
 						{children}
 					</div>

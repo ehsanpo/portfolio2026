@@ -52,7 +52,7 @@ export default function ScrollBottomEasterEgg() {
 			const scrollPosition = window.scrollY;
 			const isAtBottom = scrollPosition >= scrollableHeight - 10;
 
-			// If scrolled up (using scrollbar or any other method), hide banner
+			
 			if (!isAtBottom && scrollPosition < lastScrollPos) {
 				setExtraScrollAttempts(0);
 				setShowBanner(false);

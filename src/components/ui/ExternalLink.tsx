@@ -9,16 +9,7 @@ interface ExternalLinkProps {
 	showIcon?: boolean;
 }
 
-/**
- * ExternalLink - Link component for external URLs with security attributes
- *
- * Automatically adds target="_blank" and rel="noopener noreferrer" for security.
- * Optionally shows an external link icon.
- *
- * @example
- * <ExternalLink href="https://github.com">GitHub</ExternalLink>
- * <ExternalLink href="https://example.com" showIcon={false}>Example</ExternalLink>
- */
+
 export const ExternalLink: React.FC<ExternalLinkProps> = ({
 	href,
 	children,

@@ -4,7 +4,7 @@ import PageHero from "@/components/hero/PageHero.astro";
 import { ProjectCard3D } from "@/components/ProjectCard3D";
 import { getRoles } from "@/utils/data";
 
-// Import role images
+
 import seniorEngineer from "@/assets/roles/Senior Software Engineer.png";
 import productEngineer from "@/assets/roles/Product Engineer.png";
 import engineeringManager from "@/assets/roles/Engineering Manage.png";
@@ -13,7 +13,7 @@ import musicProduction from "@/assets/roles/Music Production.png";
 
 const roles = getRoles();
 
-// Map image paths to imported assets
+
 const imageMap: Record<string, any> = {
 	"/img/roles/Senior Software Engineer.png": seniorEngineer,
 	"/img/roles/Product Engineer.png": productEngineer,

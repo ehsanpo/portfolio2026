@@ -1,7 +1,7 @@
-/* Duck Sprite Animations */
-/* Sprite sheet is 192x128 with 32x32 sprites arranged in a 6x4 grid */
 
-/* Container styles to prevent layout breaking */
+
+
+
 .duck-container {
 	pointer-events: none;
 	overflow: hidden;
@@ -51,7 +51,7 @@
 	transition: transform 0.3s ease;
 }
 
-/* Animation classes */
+
 .duck-sprite.idle_normal {
 	animation: duck-idle_normal 1000ms infinite steps(2);
 }

@@ -1,15 +1,13 @@
 import React from "react";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { TimelineSection } from "./TimelineSection";
-import { getPortfolioData } from "../..//utils/client-data";
-interface Props {
-	// Define your props here if needed
-}
+import { getPortfolioData } from "../../utils/client-data";
+
 const { experience } = await getPortfolioData();
 const experienceHighlight = experience.filter((item) => item.highlighted === true);
 const sortetExperience = experienceHighlight.sort((a, b) => parseInt(a.year) - parseInt(b.year));
 
-const TimelineAbout: React.FC<Props> = () => {
+const TimelineAbout: React.FC = () => {
 	return (
 		<ParallaxProvider>
 			{sortetExperience.map((item, index) => (

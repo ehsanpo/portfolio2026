@@ -18,11 +18,10 @@ export function PromptsViewer({ prompts }: PromptsViewerProps) {
 
 	const handleCopy = async () => {
 		try {
-			// Get the text content from the rendered prompt
 			const promptElement = document.querySelector(".prompt-content");
 			if (promptElement) {
 				await navigator.clipboard.writeText(promptElement.textContent || "");
-				// You can add a toast notification here
+
 				alert("Prompt copied to clipboard!");
 			}
 		} catch (err) {
@@ -34,29 +33,24 @@ export function PromptsViewer({ prompts }: PromptsViewerProps) {
 		<div className="flex min-h-screen">
 			<main className="flex-1 p-6 lg:p-10">
 				<div className="mx-auto max-w-4xl">
-					{/* Header */}
 					<div className="mb-8">
 						<h1 className="mb-3 text-4xl font-bold text-gray-900 dark:text-white">
 							{activePrompt.title}
 						</h1>
 						<p className="text-lg text-gray-600 dark:text-gray-400">{activePrompt.description}</p>
 
-						{/* Tags */}
 						{activePrompt.tags && activePrompt.tags.length > 0 && (
 							<div className="mt-4 flex flex-wrap gap-2">
 								{activePrompt.tags.map((tag) => (
 									<span
 										key={tag}
 										className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-									>
-										#{tag}
-									</span>
+									></span>
 								))}
 							</div>
 						)}
 					</div>
 
-					{/* Prompt Content */}
 					<div className="relative">
 						<button
 							onClick={handleCopy}
@@ -87,7 +81,6 @@ export function PromptsViewer({ prompts }: PromptsViewerProps) {
 						</div>
 					</div>
 
-					{/* Info box */}
 					<div className="mt-8 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
 						<div className="flex items-start">
 							<svg

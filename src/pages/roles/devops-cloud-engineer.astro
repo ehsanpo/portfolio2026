@@ -14,12 +14,12 @@ const { stacks } = await getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "devops-cloud-engineer");
 
-// Filter stacks related to DevOps/Cloud Engineering
+
 const devopsStacks = stacks.filter((stack) =>
 	["DevOps", "CI/CD", "Cloud", "Backend"].includes(stack.slug)
 );
 
-// Create custom skills chart for DevOps/Cloud Engineer role
+
 const devopsChart = {
 	slug: "DevOps & Cloud",
 	labels: [
@@ -54,7 +54,7 @@ const devopsChart = {
 
 	<section class="container mx-auto px-4 py-12">
 		<div class="mx-auto max-w-4xl">
-			<!-- Self-Definition -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
 				<p class="text-lg text-gray-700 dark:text-gray-300">
@@ -65,7 +65,7 @@ const devopsChart = {
 				</p>
 			</div>
 
-			<!-- Evidence Snippets -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
 				<div class="space-y-6">
@@ -103,7 +103,7 @@ const devopsChart = {
 				</div>
 			</div>
 
-			<!-- Outcome Focus -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
 				<div class="grid gap-6 md:grid-cols-2">
@@ -159,7 +159,7 @@ const devopsChart = {
 		</div>
 	</section>
 
-	<!-- Technical Stacks -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>DevOps & Cloud Stacks</Heading>
@@ -173,7 +173,7 @@ const devopsChart = {
 		</div>
 	</section>
 
-	<!-- Skills Chart -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>DevOps & Cloud Skills</Heading>
@@ -181,10 +181,10 @@ const devopsChart = {
 		</div>
 	</section>
 
-	<!-- Development Tools -->
+	
 	<ToolsList />
 
-	<!-- Development Process -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>DevOps Workflow</Heading>
@@ -192,7 +192,7 @@ const devopsChart = {
 		</div>
 	</section>
 
-	<!-- Call to Action -->
+	
 	<section class="container mx-auto px-4 py-16">
 		<div class="gradient-bg rounded-lg py-12 text-center">
 			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">

@@ -30,7 +30,7 @@ const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 								{categoryPrompts.map((prompt) => (
 									<Card3D client:load className="h-[480px]" glowColor="rgba(255, 199, 0, 0.15)">
 										<div class="preserve-3d flex h-full flex-col items-start p-6">
-											{/* Image/Icon Header */}
+											
 											<div
 												class="group-hover/card:bg-primary/5 group-hover/card:border-primary/20 mb-6 flex h-44 w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-all duration-500"
 												style="transform: translateZ(30px)"
@@ -70,12 +70,12 @@ const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 												<div class="flex flex-wrap gap-2">
 													{prompt.tags?.slice(0, 2).map((tag) => (
 														<span class="group-hover/card:border-primary/30 group-hover/card:text-primary/70 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-black tracking-widest text-white/30 uppercase transition-all duration-500">
-															#{tag}
+#{tag}
 														</span>
 													))}
 												</div>
 
-												{/* Interactive indicator */}
+												
 												<div
 													class="text-primary -translate-x-4 opacity-0 transition-all duration-500 group-hover/card:translate-x-0 group-hover/card:opacity-100"
 													style="transform: translateZ(60px)"

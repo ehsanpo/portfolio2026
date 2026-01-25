@@ -3,7 +3,7 @@ import { getPortfolioItems } from "../../utils/data";
 import MarqueeContent from "./MarqueeContent.astro";
 
 const portfolioItems = await getPortfolioItems();
-// Get unique clients and not empty
+
 const uniqueClients = [...new Set(portfolioItems.map((item) => item.client))].filter(Boolean);
 ---
 
@@ -35,7 +35,7 @@ const uniqueClients = [...new Set(portfolioItems.map((item) => item.client))].fi
 		}
 	}
 
-	/* Pause animation on hover */
+	
 	.marquee-container:hover {
 		animation-play-state: paused;
 	}

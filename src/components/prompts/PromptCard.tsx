@@ -26,7 +26,6 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
 			whileHover={{ scale: 1.02 }}
 			transition={{ duration: 0.2 }}
 		>
-			{/* Image or Icon */}
 			{prompt.image ? (
 				<div className="relative h-48 w-full overflow-hidden">
 					<img
@@ -42,7 +41,6 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
 				</div>
 			)}
 
-			{/* Content */}
 			<div className="p-6">
 				<div className="mb-4 flex items-start justify-between">
 					<h3 className="text-xl font-bold text-gray-900 dark:text-white">{prompt.title}</h3>
@@ -51,7 +49,6 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
 				<p className="mb-4 line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
 					{prompt.description}
 				</p>{" "}
-				{/* Tags */}
 				{prompt.tags && prompt.tags.length > 0 && (
 					<div className="flex flex-wrap gap-2">
 						{prompt.tags.slice(0, 3).map((tag) => (

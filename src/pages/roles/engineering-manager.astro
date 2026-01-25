@@ -13,12 +13,12 @@ const { stacks, charts } = await getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "engineering-manager");
 
-// Filter stacks related to Engineering Management
+
 const managementStacks = stacks.filter((stack) =>
 	["Front-end", "Backend", "DevOps", "CI/CD"].includes(stack.slug)
 );
 
-// Create custom skills chart for Engineering Manager role
+
 const managementChart = {
 	slug: "Engineering Leadership",
 	labels: [
@@ -53,7 +53,7 @@ const managementChart = {
 
 	<section class="container mx-auto px-4 pb-12">
 		<div class="mx-auto max-w-4xl">
-			<!-- Self-Definition -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
 				<p class="text-lg text-gray-700 dark:text-gray-300">
@@ -64,7 +64,7 @@ const managementChart = {
 				</p>
 			</div>
 
-			<!-- Evidence Snippets -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
 				<div class="space-y-6">
@@ -102,7 +102,7 @@ const managementChart = {
 				</div>
 			</div>
 
-			<!-- Outcome Focus -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
 				<div class="grid gap-6 md:grid-cols-2">
@@ -159,7 +159,7 @@ const managementChart = {
 		</div>
 	</section>
 
-	<!-- Technical Stacks -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Technical Stacks</Heading>
@@ -173,7 +173,7 @@ const managementChart = {
 		</div>
 	</section>
 
-	<!-- Skills Chart -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Leadership Skills</Heading>
@@ -181,10 +181,10 @@ const managementChart = {
 		</div>
 	</section>
 
-	<!-- Development Tools -->
+	
 	<ToolsList />
 
-	<!-- Development Process -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
@@ -192,7 +192,7 @@ const managementChart = {
 		</div>
 	</section>
 
-	<!-- Call to Action -->
+	
 	<section class="container mx-auto px-4 py-16">
 		<div class="gradient-bg rounded-lg py-12 text-center">
 			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">

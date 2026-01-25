@@ -3,7 +3,7 @@ import { getPortfolioData } from "@/utils/data";
 import Heading from "@/components/ui/heading/Heading";
 import { Image } from "astro:assets";
 
-// Import award images from assets
+
 import cannen from "@/assets/awards/cannen.png";
 import guldagg from "@/assets/awards/guldagg.png";
 import svenskadesign from "@/assets/awards/svenskadesign.png";
@@ -11,14 +11,14 @@ import Card3D from "@/components/Card3D";
 
 const { awards } = await getPortfolioData();
 
-// Map image paths to imported assets
+
 const imageMap: Record<string, any> = {
 	"/img/awards/cannen.png": cannen,
 	"/img/awards/guldagg.png": guldagg,
 	"/img/awards/svenskadesign.png": svenskadesign,
 };
 
-// Replace string paths with imported ImageMetadata dark:bg-[#154964
+
 const awardsWithImages = awards.map((award) => ({
 	...award,
 	image: imageMap[award.images] || award.images,

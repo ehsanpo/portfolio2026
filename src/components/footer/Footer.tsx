@@ -112,7 +112,6 @@ export function Footer({
 			<DuckSprite />
 			<div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-					{/* Brand Section */}
 					<div className="lg:col-span-1">
 						<div className="mb-4 flex items-center space-x-3">
 							<div className="from-primary-900 to-secondary-900 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br">
@@ -153,7 +152,6 @@ export function Footer({
 						</div>
 					</div>
 
-					{/* Navigation Sections */}
 					{showNavigation &&
 						navigationSections.map((section) => (
 							<div key={section.title}>
@@ -193,7 +191,6 @@ export function Footer({
 						))}
 				</div>
 
-				{/* Stats Section */}
 				{showStats && (
 					<div className="border-border/50 mt-12 border-t border-gray-500/20 pt-8">
 						<div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
@@ -220,10 +217,8 @@ export function Footer({
 					</div>
 				)}
 
-				{/* Bottom Section */}
 				<div className="border-border/50 mt-12 border-t border-gray-500/20 pt-8">
 					<div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-						{/* Copyright */}
 						<div className="font-kabel flex items-center space-x-1 text-xs dark:text-gray-100">
 							<span>© 2026 Ehsan Pourhadi. All rights reserved.</span>
 							<div className="flex items-center space-x-1">

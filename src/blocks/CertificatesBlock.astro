@@ -3,7 +3,7 @@ import { getPortfolioData } from "@/utils/data";
 import CertificateCard from "@/components/certificates/CertificateCard.astro";
 import { Heading } from "@/components/ui/heading";
 
-// Import certificate images from assets
+
 import cybersecurity from "@/assets/cert/cybersecurity.png";
 import AWS from "@/assets/cert/AWS.png";
 import SFPC from "@/assets/cert/SFPC.png";
@@ -23,7 +23,7 @@ import selfLeadership from "@/assets/cert/bb2-self-leader.png";
 
 const { certifications } = await getPortfolioData();
 
-// Map image paths to imported assets
+
 const imageMap: Record<string, any> = {
 	"/img/cert/cybersecurity.png": cybersecurity,
 	"/img/cert/AWS.png": AWS,
@@ -42,7 +42,7 @@ const imageMap: Record<string, any> = {
 	"/img/cert/bb2-self-leader.png": selfLeadership,
 };
 
-// Replace string paths with imported ImageMetadata
+
 const certsWithImages = certifications.map((cert) => ({
 	...cert,
 	image: imageMap[cert.img] || cert.img,

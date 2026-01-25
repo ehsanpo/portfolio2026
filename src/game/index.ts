@@ -1,4 +1,4 @@
-// Barrel export to ensure all types are available during bundling
+
 export type {
 	GameMode,
 	UnlockablePage,

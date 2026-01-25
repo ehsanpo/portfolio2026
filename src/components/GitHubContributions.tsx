@@ -61,7 +61,6 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 
 	useEffect(() => {
 		if (data) {
-			// Add staggered animation delays to each cell
 			const rects = document.querySelectorAll(".react-calendar-heatmap rect");
 			rects.forEach((rect, index) => {
 				(rect as SVGRectElement).style.transitionDelay = `${index * 0.002}s`;
@@ -76,14 +75,12 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 		setSelectedYear(parseInt(event.target.value));
 	};
 
-	// Generate year options (from 2008 when GitHub was founded to current year)
 	const currentYear = new Date().getFullYear();
 	const yearOptions = [];
 	for (let year = 2018; year <= currentYear; year++) {
 		yearOptions.push(year);
 	}
 
-	// Transform data for heat map
 	const heatMapData =
 		data?.contributions.map((day) => ({
 			date: day.date,
@@ -229,11 +226,11 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 									if (!value || value.count === 0) {
 										return "color-empty";
 									}
-									// Map contribution counts to scale levels (1-4)
+
 									if (value.count >= 1 && value.count <= 3) return "color-scale-1";
 									if (value.count >= 4 && value.count <= 6) return "color-scale-2";
 									if (value.count >= 7 && value.count <= 9) return "color-scale-3";
-									return "color-scale-4"; // 10+ contributions
+									return "color-scale-4";
 								}}
 								tooltipDataAttrs={(value) =>
 									({

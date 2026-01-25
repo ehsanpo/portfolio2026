@@ -7,9 +7,7 @@ import type { Resume } from "@/types/resume";
 import type { Language } from "@/translations/index";
 import portfolioData from "@/data/portfolio-resume.json";
 
-interface Props {}
-
-const ResumeCv: React.FC<Props> = () => {
+const ResumeCv = () => {
 	const [mainColor, setMainColor] = useState("#4f46e5");
 	const [language, setLanguage] = useState<Language>("en");
 

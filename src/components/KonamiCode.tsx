@@ -85,7 +85,7 @@ export default function KonamiCode() {
 			});
 		}, 250);
 
-		// Log message to console
+		
 		console.log(
 			"%c🎮 KONAMI CODE ACTIVATED! 🎮",
 			"font-size: 24px; font-weight: bold; color: #ff6b6b; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);"

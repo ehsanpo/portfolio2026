@@ -13,12 +13,12 @@ const { stacks } = await getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "senior-software-engineer");
 
-// Filter stacks related to Senior Software Engineering
+
 const seniorStacks = stacks.filter((stack) =>
 	["Front-end", "Backend", "Database", "DevOps"].includes(stack.slug)
 );
 
-// Create custom skills chart for Senior Software Engineer role
+
 const seniorChart = {
 	slug: "Senior Engineering",
 	labels: [
@@ -53,7 +53,7 @@ const seniorChart = {
 
 	<section class="container mx-auto px-4 py-12">
 		<div class="mx-auto max-w-4xl">
-			<!-- Self-Definition -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
 				<p class="text-lg text-gray-700 dark:text-gray-300">
@@ -64,7 +64,7 @@ const seniorChart = {
 				</p>
 			</div>
 
-			<!-- Evidence Snippets -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
 				<div class="space-y-6">
@@ -117,7 +117,7 @@ const seniorChart = {
 				</div>
 			</div>
 
-			<!-- Outcome Focus -->
+			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
 				<div class="grid gap-6 md:grid-cols-2">
@@ -169,7 +169,7 @@ const seniorChart = {
 		</div>
 	</section>
 
-	<!-- Technical Stacks -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Technical Expertise</Heading>
@@ -183,7 +183,7 @@ const seniorChart = {
 		</div>
 	</section>
 
-	<!-- Skills Chart -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Senior Engineering Skills</Heading
@@ -192,10 +192,10 @@ const seniorChart = {
 		</div>
 	</section>
 
-	<!-- Development Tools -->
+	
 	<ToolsList />
 
-	<!-- Development Process -->
+	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
@@ -203,7 +203,7 @@ const seniorChart = {
 		</div>
 	</section>
 
-	<!-- Call to Action -->
+	
 	<section class="container mx-auto px-4 py-16">
 		<div class="gradient-bg rounded-lg py-12 text-center">
 			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">

@@ -32,7 +32,7 @@ export function HeaderMinimal({
 		};
 		window.addEventListener("resize", handleResize);
 
-		// Initialize theme state
+		
 		const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
 		setTheme(currentTheme);
 

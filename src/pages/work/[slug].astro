@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 const { company } = Astro.props;
 
-// Fetch related portfolio items
+
 const portfolioEntries = await getCollection("portfolio");
 const relatedProjects = portfolioEntries.filter(
 	(entry) =>
@@ -23,12 +23,12 @@ const relatedProjects = portfolioEntries.filter(
 		(entry.id && entry.id.startsWith(company.id))
 );
 
-// Find skill durations from timeline
+
 const skillDurations = portfolioData.timeline.reduce(
 	(acc, item) => {
 		const name = item.name.toLowerCase();
 		acc[name] = item.duration;
-		// Add common aliases
+		
 		if (name === "reactjs") acc["react"] = item.duration;
 		if (name === "electron js") acc["electron"] = item.duration;
 		if (name === "vuejs") acc["vue"] = item.duration;

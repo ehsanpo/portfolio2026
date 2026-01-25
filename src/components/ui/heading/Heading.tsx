@@ -27,7 +27,7 @@ const Heading: React.FC<Props> = ({
 	backplate,
 	style,
 }) => {
-	const Tag = level as keyof JSX.IntrinsicElements; // Ensures Tag is a valid HTML heading element
+	const Tag = level as keyof JSX.IntrinsicElements; 
 	const headingClass = getHeadingClass({
 		gradient,
 		shadow,

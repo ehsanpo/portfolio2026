@@ -81,7 +81,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 
 	return (
 		<div className="mx-auto max-w-7xl px-4 pt-32 pb-32 sm:px-6 lg:px-8">
-			{/* Hero Section */}
 			<motion.section
 				initial="hidden"
 				animate="visible"
@@ -93,7 +92,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 				</div>
 
 				<div className="flex flex-col items-center gap-12 lg:flex-row">
-					{/* Logo/Image */}
 					<motion.div
 						variants={itemVariants}
 						className="group hover:border-accent-500/50 flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-sm transition-colors duration-500 md:h-48 md:w-48"
@@ -111,7 +109,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 						)}
 					</motion.div>
 
-					{/* Info */}
 					<div className="flex-1 text-center lg:text-left">
 						<motion.div
 							variants={itemVariants}
@@ -143,9 +140,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 			</motion.section>
 
 			<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-				{/* Left Column: Content */}
 				<div className="space-y-12 lg:col-span-8">
-					{/* Tags */}
 					{company.tags && company.tags.length > 0 && (
 						<motion.section
 							initial="hidden"
@@ -170,7 +165,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 						</motion.section>
 					)}
 
-					{/* Detailed Description */}
 					<motion.section
 						initial="hidden"
 						whileInView="visible"
@@ -194,7 +188,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 							))}
 						</div>
 					</motion.section>
-					{/* Awards if they exist */}
+
 					{company.awards && company.awards.length > 0 && (
 						<motion.section
 							initial="hidden"
@@ -229,7 +223,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 						</motion.section>
 					)}
 
-					{/* Related Portfolio content */}
 					{relatedProjects.length > 0 && (
 						<motion.section
 							initial="hidden"
@@ -261,9 +254,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 					)}
 				</div>
 
-				{/* Right Column: Sidebar */}
 				<div className="space-y-12 lg:col-span-4">
-					{/* Skills */}
 					<motion.section
 						initial="hidden"
 						whileInView="visible"
@@ -291,7 +282,6 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 						</div>
 					</motion.section>
 
-					{/* Team */}
 					{company.team && company.team.length > 0 && (
 						<motion.section
 							initial="hidden"

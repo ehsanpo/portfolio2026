@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 @import "./duck-sprite.css";
 
-/* Configure Tailwind 4 dark mode to use .dark class */
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
@@ -341,7 +341,7 @@ body {
 	}
 }
 
-/* Fire sprite animations */
+
 .fire-sprite {
 	background-image: url("/img/px/fire/fire_spritesheet.png");
 	background-repeat: no-repeat;

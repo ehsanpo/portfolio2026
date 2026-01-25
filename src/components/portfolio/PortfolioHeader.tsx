@@ -35,7 +35,7 @@ interface Props {
 		}[];
 		case_link_url?: string;
 		content: any;
-		date: string;
+		port_date: string;
 	};
 }
 
@@ -51,7 +51,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 		background_image,
 		images,
 		category,
-		date,
+		port_date,
 	} = item;
 
 	return (
@@ -86,7 +86,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 									</div>
 									<div className="flex gap-4">
 										<h3 className="text-secondary-400 min-w-20 font-medium uppercase">Year</h3>
-										<p className="font-basement text-secondary-400">{date}</p>
+										<p className="font-basement text-secondary-400">{port_date}</p>
 									</div>
 									{agency && (
 										<div className="flex gap-4">
@@ -151,8 +151,8 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 										</Parallax>
 									</div>
 									{images && images[0] && (
-										<div className="portfolio-hero-image absolute top-full left-0 w-full">
-											<Parallax speed={10}>
+										<div className="portfolio-hero-image absolute top-[50%] left-0 w-full">
+											<Parallax speed={8}>
 												<img
 													height={images[0].height}
 													width={images[0].width}
@@ -165,7 +165,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 									)}
 
 									{logo2 && (
-										<div className="portfolio-hero-image absolute top-full left-0 w-full">
+										<div className="portfolio-hero-image top-[50%]l absolute left-0 w-full">
 											<Parallax speed={5} className="portfolio-hero-box porfolio-hero-small">
 												<img
 													height={logo2?.height}

@@ -9,7 +9,7 @@ import { getProjectImage } from "@/utils/projectHelpers";
 const portfolioItems = await getPortfolioItems();
 const sortedItems = portfolioItems.sort((a, b) => {
 	if (a.onHome !== b.onHome) return b.onHome ? 1 : -1;
-	return new Date(b.date).getTime() - new Date(a.date).getTime();
+	return new Date(b.port_date).getTime() - new Date(a.port_date).getTime();
 });
 
 const allCategories = [...new Set(portfolioItems.flatMap((entry) => entry.category || []))].filter(
@@ -33,7 +33,7 @@ const allCategories = [...new Set(portfolioItems.flatMap((entry) => entry.catego
 						<ProjectCard3D
 							title={item.title || ""}
 							description={item.tagline || ""}
-							date={item.date}
+							date={item.port_date}
 							categories={item.category}
 							tags={item.tag}
 							image={getProjectImage(item)}

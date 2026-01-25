@@ -1,6 +1,6 @@
 ---
 title: Äppleappen
-date: "2019-03-28T10:31:34+00:00"
+date: "2019-03-28"
 status: publish
 permalink: appleappen
 author: Ehsan

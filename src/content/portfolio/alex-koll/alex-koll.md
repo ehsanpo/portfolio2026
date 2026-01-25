@@ -1,6 +1,6 @@
 ---
 title: "Alex Köll"
-date: "2019-03-28T13:29:56+00:00"
+date: "2019-03-28"
 status: publish
 permalink: alex-koll
 author: Ehsan

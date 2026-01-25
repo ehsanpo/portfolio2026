@@ -40,7 +40,7 @@ const socialImage = new URL(image, Astro.site);
 				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 					return "dark";
 				}
-				return "light";
+				return "dark";
 			})();
 
 			if (theme === "light") {
@@ -92,7 +92,7 @@ const socialImage = new URL(image, Astro.site);
 			document.addEventListener("astro:after-swap", () => {
 				const theme =
 					localStorage.getItem("theme") ||
-					(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+					(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "dark");
 				if (theme === "light") {
 					document.documentElement.classList.remove("dark");
 					document.documentElement.classList.add("light");

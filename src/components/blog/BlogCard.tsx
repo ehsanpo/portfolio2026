@@ -100,7 +100,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 					</h3>
 
 					{post.description && (
-						<p className="dark:text-accent-200 mb-4 text-gray-100">
+						<p className="dark:text-accent-200 mb-4 text-gray-800">
 							{post.description.length > 120
 								? `${post.description.substring(0, 120)}...`
 								: post.description}

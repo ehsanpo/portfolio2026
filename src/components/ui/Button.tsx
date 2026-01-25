@@ -37,7 +37,7 @@ const Button: React.FC<ButtonProps> = ({
 			{...(Tag === "a" ? { href, target } : { type })}
 			onClick={onClick as any}
 			className={twMerge(
-				`group hover:bg-position-[0%_0%] bg-size-[100%_200%] bg-position-[0%_100%] oultine-offset-base-900 relative inline-flex h-12 items-center justify-center rounded-xl bg-linear-to-tr/oklch px-8 py-3 text-center text-lg font-medium text-black outline transition-all duration-400 ease-in-out focus:outline-2 focus:outline-offset-4 focus-visible:outline-none`,
+				`group oultine-offset-base-900 relative inline-flex h-12 items-center justify-center rounded-xl bg-linear-to-tr/oklch bg-size-[100%_200%] bg-position-[0%_100%] px-8 py-3 text-center text-lg font-medium text-black outline transition-all duration-400 ease-in-out hover:bg-position-[0%_0%] focus:outline-2 focus:outline-offset-4 focus-visible:outline-none`,
 				getColorClasses(),
 				className
 			)}

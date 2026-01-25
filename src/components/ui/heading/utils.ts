@@ -4,7 +4,7 @@ export function getHeadingClass({ gradient, shadow: _shadow, floating }: Heading
 	const baseClasses = ["font-bold", "text-gray-900", "text-white", "transition-all"];
 
 	if (gradient) {
-		baseClasses.push("!text-primary-500");
+		baseClasses.push("!text-primary-500 text-shadow-md");
 	}
 
 	if (floating) {

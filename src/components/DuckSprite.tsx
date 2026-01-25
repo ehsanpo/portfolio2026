@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { generateSound } from "../utils/sounds";
+import { cn } from "@/lib/utils";
 
 interface DuckSpriteProps {
 	className?: string;
@@ -70,7 +71,7 @@ const DuckSprite: React.FC<DuckSpriteProps> = ({ className = "" }) => {
 
 	return (
 		<div
-			className={`duck-sprite ${animation} ${className}`}
+			className={cn("duck-sprite", animation, className)}
 			onClick={handleQuack}
 			style={{
 				position: "absolute",

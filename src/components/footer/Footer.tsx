@@ -43,6 +43,7 @@ const navigationSections: { title: string; links: NavigationLink[] }[] = [
 		title: "Portfolio",
 		links: [
 			{ name: "Work", href: "/work", icon: Briefcase },
+			{ name: "Portfolio", href: "/portfolio", icon: Briefcase },
 			{ name: "Skills", href: "/skills", icon: Code },
 			{ name: "About", href: "/about", icon: User },
 			{ name: "Roles", href: "/roles", icon: Briefcase },
@@ -104,7 +105,7 @@ export function Footer({
 	};
 
 	return (
-		<footer className={cn("relative mt-20", className)}>
+		<footer className={cn("relative mt-20 border-t border-gray-800", className)}>
 			<DuckSprite />
 			<div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 				<div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">

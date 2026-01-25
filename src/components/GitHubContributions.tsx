@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
 import CalendarHeatmap, { type ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
@@ -90,7 +91,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 	const totalContributions = data?.total[selectedYear.toString()] || 0;
 
 	return (
-		<div className={`github-contributions min-h-60 ${className}`}>
+		<div className={cn("github-contributions min-h-60", className)}>
 			<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 				<div>
 					<h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">

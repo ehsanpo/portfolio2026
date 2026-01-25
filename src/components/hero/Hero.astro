@@ -2,7 +2,7 @@
 import type React from "react";
 import { Heading } from "../ui/heading";
 import Tilt from "react-parallax-tilt";
-import Island from "./island.astro";
+import Island from "./Island.astro";
 
 interface Props {
 	text?: string;
@@ -25,7 +25,7 @@ const { title, subtitle, text, subtitleText, fullHeight = false, img, island } =
 		<div class="mx-auto flex-1 self-center">
 			{
 				text && (
-					<Heading level="h6" className={`mb-1 !pt-0 !text-left !text-xl`}>
+					<Heading level="h6" className={`mb-1 pt-0! text-left! text-xl!`}>
 						{text}
 					</Heading>
 				)
@@ -35,7 +35,7 @@ const { title, subtitle, text, subtitleText, fullHeight = false, img, island } =
 				level="h1"
 				shadow
 				gradient
-				className={`${fullHeight ? "!text-4xl md:!text-7xl" : "text-4xl md:!text-5xl"} mb-1 !pt-0 !text-left`}
+				className={`${fullHeight ? "text-4xl! md:text-7xl!" : "text-4xl md:text-5xl!"} mb-1 pt-0! text-left!`}
 			>
 				{title}
 			</Heading>

@@ -3,6 +3,7 @@ import type { HeadingLevel } from "./types";
 import { getHeadingClass } from "./utils";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 interface Props {
 	level?: HeadingLevel;
@@ -37,9 +38,11 @@ const Heading: React.FC<Props> = ({
 	return (
 		<ParallaxProvider>
 			<Tag
-				className={`relative pt-12 text-center text-3xl lg:text-7xl ${className} ${
+				className={cn(
+					"relative pt-12 text-center text-3xl lg:text-7xl",
+					className,
 					backplate ? "pb-12" : ""
-				}`}
+				)}
 				style={style}
 			>
 				{backplate && (

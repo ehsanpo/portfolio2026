@@ -5,7 +5,6 @@ const SkillsInfo = ({ show: _show }: { show?: boolean }) => {
 		<div className="flex justify-center">
 			<div className="group relative m-auto inline-block text-left">
 				<Button className="relative overflow-hidden rounded-xl px-6 py-3 text-sm">
-
 					<span className="relative flex items-center gap-2">
 						<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" className="h-4 w-4">
 							<path

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import type { HeadingLevel, HeadingStyles } from "./types";
 import { getHeadingClass } from "./utils";
+import { cn } from "@/lib/utils";
 
 interface AnimatedHeadingProps extends HeadingStyles {
 	level?: HeadingLevel;
@@ -24,7 +25,7 @@ export function AnimatedHeading({
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5, ease: "easeOut" }}
 		>
-			<Tag className={`${headingClass} ${className}`}>{children}</Tag>
+			<Tag className={cn(headingClass, className)}>{children}</Tag>
 		</motion.div>
 	);
 }

@@ -80,7 +80,7 @@ export function HeaderMinimal({
 	return (
 		<nav
 			className={cn(
-				"fixed top-1 left-1/2 z-[100] w-[92%] -translate-x-1/2 transition-all duration-300",
+				"fixed top-1 left-1/2 z-100 w-[92%] -translate-x-1/2 transition-all duration-300",
 				className
 			)}
 		>
@@ -99,7 +99,6 @@ export function HeaderMinimal({
 					>
 						<path
 							fill="currentColor"
-							className="st1"
 							d="M0.5,19.4C0.2,19,0,18.7,0,18.2c0-0.4,0.2-0.8,0.5-1.1L17.1,0.5C17.4,0.2,17.8,0,18.2,0c0.4,0,0.8,0.2,1.1,0.5
           c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1L2.7,19.4c-0.3,0.3-0.7,0.5-1.1,0.5C1.2,19.8,0.8,19.7,0.5,19.4z M12.4,25.6
           c-0.3,0.3-0.8,0.6-1.3,0.8s-1,0.3-1.5,0.3c-0.5,0-1.1-0.1-1.6-0.3c-0.5-0.2-1.1-0.5-1.5-1l-2.1-2.1c-0.4-0.4-0.6-0.8-0.5-1.2
@@ -109,7 +108,7 @@ export function HeaderMinimal({
 						></path>
 					</svg>
 
-					<span className="bg-gradient-to-r from-[#F24E1E] via-[#FFC700] to-[#1ABCFE] bg-clip-text text-base text-neutral-900 transition-all duration-300 group-hover:text-transparent md:text-lg dark:text-white">
+					<span className="from-secondary-400 via-primary to-accent bg-linear-to-r bg-clip-text text-base text-neutral-900 transition-all duration-300 group-hover:text-transparent md:text-lg dark:text-white">
 						{logoText}
 					</span>
 				</a>
@@ -121,7 +120,7 @@ export function HeaderMinimal({
 							href={link.href}
 							data-game-nav-link
 							className={cn(
-								"after:bg-primary relative transition-colors after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:transition-all hover:text-neutral-900 hover:after:w-full dark:hover:text-white",
+								"after:bg-primary relative transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:transition-all hover:text-neutral-900 hover:after:w-full dark:hover:text-white",
 								currentPage === link.key ? "text-neutral-900 after:w-full dark:text-white" : ""
 							)}
 						>

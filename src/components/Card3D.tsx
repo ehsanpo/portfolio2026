@@ -52,7 +52,7 @@ export const Card3D: React.FC<Card3DProps> = ({
 	return (
 		<div
 			ref={containerRef}
-			className={`group group/card relative w-full cursor-pointer ${className}`}
+			className={cn("group group/card relative w-full cursor-pointer", className)}
 			onMouseMove={handleMouseMove}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={handleMouseLeave}

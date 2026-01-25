@@ -121,7 +121,7 @@ const CategoryButton = ({
 
 	return (
 		<button
-			className={`font-basement flex w-[200px] items-center justify-center rounded-lg p-2 transition-all duration-200 ${
+			className={`font-basement flex w-50 items-center justify-center rounded-lg p-2 transition-all duration-200 ${
 				isActive
 					? "scale-105 transform text-white shadow-lg"
 					: `${categoryColor.button} transition-colors hover:bg-white`
@@ -247,7 +247,7 @@ const StatisticsCard = ({
 export default function SkillChart({ data, chartData, showButtons }: SkillChartProps) {
 	const [currentChart, setCurrentChart] = React.useState(chartData);
 	const [currentCategory, setCurrentCategory] = React.useState("Overall");
-	const [isDarkMode, setIsDarkMode] = useState(false);
+	const [isDarkMode, setIsDarkMode] = useState(true);
 
 	useEffect(() => {
 		const darkModeEnabled = document.documentElement.classList.contains("dark");

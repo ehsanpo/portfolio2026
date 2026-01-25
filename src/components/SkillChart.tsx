@@ -9,7 +9,6 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import SkillsInfo from "./Skillsinfo";
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 

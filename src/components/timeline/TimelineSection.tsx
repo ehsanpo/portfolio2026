@@ -3,7 +3,7 @@ import { ParallaxBanner, Parallax } from "react-scroll-parallax";
 import { Award } from "lucide-react";
 import { Project } from "./Project";
 import { TechTags } from "./TechTags";
-import TeamSection from "../team/TeamSection";
+import { TeamSection } from "./TeamSection";
 
 interface TimelineSectionProps {
 	year: string;

@@ -7,8 +7,6 @@ const isUnlocked = (href: string, unlocks: Record<UnlockablePage, boolean>) => {
 	return unlocks[key] ?? true;
 };
 
-let lockStateApplied = false;
-
 const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) => {
 	const anchors = Array.from(
 		document.querySelectorAll("[data-game-nav-link]")
@@ -72,7 +70,6 @@ export function NavLockGuard() {
 		if (!mounted) return;
 
 		const cleanup = applyLockState(mode, unlocks);
-		lockStateApplied = true;
 
 		return cleanup;
 	}, [mounted, mode, unlocks]);

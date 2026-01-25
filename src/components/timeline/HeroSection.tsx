@@ -5,7 +5,11 @@ export const HeroSection = () => {
 	return (
 		<section className="relative flex min-h-screen items-center justify-center overflow-hidden">
 			<div className="absolute inset-0">
-				<img src={one} alt="Hero background" className="h-full w-full object-cover opacity-50" />
+				<img
+					src={one.src}
+					alt="Hero background"
+					className="h-full w-full object-cover opacity-50"
+				/>
 			</div>
 			<div className="relative z-10 text-center text-white">
 				<h1 className="mb-4 text-6xl font-bold">My Journey</h1>

@@ -100,7 +100,7 @@ const TECH_NAME_MAPPING: { [key: string]: string } = {
 };
 
 const calculateStatus = (duration: string): number => {
-	const [startYear, endYear] = duration.split("-").map((year) => parseInt(year));
+	const [, endYear] = duration.split("-").map((year) => parseInt(year));
 	const currentYear = new Date().getFullYear();
 	if (endYear > currentYear) {
 		return 10;

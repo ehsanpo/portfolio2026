@@ -8,9 +8,8 @@ import { ProcessFlowDiagram } from "@/components/Beams";
 import { Heading } from "@/components/ui/heading";
 import { getPortfolioData, getRoles } from "@/utils/data";
 import BoxReveal from "@/components/ui/box-reveal";
-import PageHero from "@/components/hero/PageHero.astro";
 
-const { stacks } = await getPortfolioData();
+const { stacks } = getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "devops-cloud-engineer");
 
@@ -159,8 +158,8 @@ const devopsChart = {
 			<Heading level="h2" gradient floating backplate client:idle>DevOps & Cloud Stacks</Heading>
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
 				{
-					devopsStacks.map((stack, index) => (
-						<StackCard {...stack} parentIndex={index} client:load />
+					devopsStacks.map((stack) => (
+						<StackCard {...stack} client:load />
 					))
 				}
 			</div>

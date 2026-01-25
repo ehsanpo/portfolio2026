@@ -8,7 +8,7 @@ const blogPosts = await getBlogPosts();
 const featuredPosts = blogPosts.filter((post) => post.featured === true);
 const regularPosts = blogPosts.filter((post) => post.featured !== true);
 
-const allCategories = [...new Set(blogPosts.flatMap((post) => post.category || []))];
+
 ---
 
 <Layout

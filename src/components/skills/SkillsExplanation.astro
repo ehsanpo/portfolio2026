@@ -1,6 +1,10 @@
 ---
-import { getPortfolioData } from "../../utils/data";
-const { skills } = await getPortfolioData();
+const skills = [
+	{ range: "Beginner", description: "Experimented and built basic personal projects." },
+	{ range: "Professional", description: "Worked professionally and deployed to production." },
+	{ range: "Advanced", description: "Several years of production experience." },
+	{ range: "Expert", description: "Highly confident, capable of mentoring and architecting." },
+];
 ---
 
 <div class="relative inline-block">

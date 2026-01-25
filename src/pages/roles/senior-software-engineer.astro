@@ -9,7 +9,7 @@ import { Heading } from "@/components/ui/heading";
 import { getPortfolioData, getRoles } from "@/utils/data";
 import BoxReveal from "@/components/ui/box-reveal";
 
-const { stacks } = await getPortfolioData();
+const { stacks } = getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "senior-software-engineer");
 
@@ -169,8 +169,8 @@ const seniorChart = {
 			<Heading level="h2" gradient floating backplate client:idle>Technical Expertise</Heading>
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
 				{
-					seniorStacks.map((stack, index) => (
-						<StackCard {...stack} parentIndex={index} client:load />
+					seniorStacks.map((stack) => (
+						<StackCard {...stack} client:load />
 					))
 				}
 			</div>

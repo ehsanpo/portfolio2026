@@ -18,7 +18,7 @@ const pushToasts = (state: GameStore, items: ToastItem[]): ToastItem[] => {
 
 export const useGameStore = create<GameStore>()(
 	persist(
-		(set, get) => ({
+		(set, _get) => ({
 			...createInitialState(),
 			enableGame: () => {
 				set((state) =>
@@ -45,7 +45,7 @@ export const useGameStore = create<GameStore>()(
 					},
 				}));
 			},
-			addClick: (source = "manual") => {
+			addClick: (_source = "manual") => {
 				const now = Date.now();
 				set((state) => {
 					const combo = nextCombo(state.combo, now);

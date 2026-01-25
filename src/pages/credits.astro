@@ -5,7 +5,7 @@ import { getPortfolioData } from "../utils/data";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import Card3D from "@/components/Card3D";
 
-const { meta } = await getPortfolioData();
+const { meta } = getPortfolioData();
 ---
 
 <Layout title={`Credits - ${meta.author}`}>

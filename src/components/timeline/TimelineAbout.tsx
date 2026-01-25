@@ -3,9 +3,38 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { TimelineSection } from "./TimelineSection";
 import { getPortfolioData } from "../../utils/client-data";
 
-const { experience } = await getPortfolioData();
-const experienceHighlight = experience.filter((item) => item.highlighted === true);
-const sortetExperience = experienceHighlight.sort((a, b) => parseInt(a.year) - parseInt(b.year));
+const { companies, education } = getPortfolioData();
+
+const sortetExperience = [
+	...companies.map((c: any) => ({
+		year: c.year,
+		title: c.position,
+		org: c.name,
+		description: c.description,
+		image: c.image,
+		tags: c.tags,
+		awards: c.awards?.map((a: any) => a.name),
+		team: c.team,
+		project: c.projects?.[0],
+	})),
+	...education
+		.filter((e: any) => e.highlighted)
+		.map((e: any) => ({
+			year: e.year,
+			title: e.degree || e.title,
+			org: e.institution,
+			description: e.description,
+			image: e.image,
+			tags: e.tags,
+			awards: e.awards?.map((a: any) => a.name),
+			team: e.team,
+			project: e.projects?.[0],
+		})),
+].sort((a, b) => {
+	const yearA = parseInt(a.year.split("-")[0]);
+	const yearB = parseInt(b.year.split("-")[0]);
+	return yearB - yearA;
+});
 
 const TimelineAbout: React.FC = () => {
 	return (

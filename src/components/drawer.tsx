@@ -1,65 +1,6 @@
-import * as React from "react";
-import { Minus, Plus } from "lucide-react";
-import {
-	Drawer,
-	DrawerClose,
-	DrawerContent,
-	DrawerDescription,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerTitle,
-	DrawerTrigger,
-} from "@/components/ui/drawer";
-
-const data = [
-	{
-		goal: 400,
-	},
-	{
-		goal: 300,
-	},
-	{
-		goal: 200,
-	},
-	{
-		goal: 300,
-	},
-	{
-		goal: 200,
-	},
-	{
-		goal: 278,
-	},
-	{
-		goal: 189,
-	},
-	{
-		goal: 239,
-	},
-	{
-		goal: 300,
-	},
-	{
-		goal: 200,
-	},
-	{
-		goal: 278,
-	},
-	{
-		goal: 189,
-	},
-	{
-		goal: 349,
-	},
-];
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 export function DrawerDemo() {
-	const [goal, setGoal] = React.useState(350);
-
-	function onClick(adjustment: number) {
-		setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-	}
-
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -80,8 +21,8 @@ export function DrawerDemo() {
 					<iframe
 						src="https://docs.google.com/forms/d/e/1FAIpQLSdh7FqtOF_cNTUyyOQ-_l4adOyRO_QPg4Ax0cf_e0XLj4W_6A/viewform?embedde"
 						height="700"
-						className="w-full"
-						scrolling="no"
+						className="w-full border-0"
+						style={{ overflow: "hidden" }}
 					>
 						Loading…
 					</iframe>

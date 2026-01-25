@@ -1,4 +1,4 @@
-const SkillsInfo = ({ show }: { show?: boolean }) => {
+const SkillsInfo = ({ show: _show }: { show?: boolean }) => {
 	return (
 		<div className="flex justify-center">
 			<div className="group relative m-auto inline-block text-left">

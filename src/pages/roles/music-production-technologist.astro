@@ -7,7 +7,7 @@ import { Heading } from "@/components/ui/heading";
 import { getPortfolioData, getRoles } from "@/utils/data";
 import BoxReveal from "@/components/ui/box-reveal";
 
-const { stacks } = await getPortfolioData();
+const { stacks } = getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "music-production-technologist");
 
@@ -204,8 +204,8 @@ const musicTools = [
 			>
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{
-					musicStacks.map((stack, index) => (
-						<StackCard {...stack} parentIndex={index} client:load />
+					musicStacks.map((stack) => (
+						<StackCard {...stack} client:load />
 					))
 				}
 			</div>

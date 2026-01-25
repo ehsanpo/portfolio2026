@@ -27,13 +27,12 @@ const filteredAndSortedItems = portfolioItems
 					<div class="min-w-[min(100%,320px)] flex-1 lg:min-w-[calc(33.333%-2rem)]">
 						<ProjectCard3D
 							client:load
-							key={item.slug || item.title}
 							title={item.title}
 							description={item.description}
 							date={item.date}
 							categories={item.category}
 							tags={item.tag}
-							image={item.cover}
+							image={item.cover ? { ...item.cover, alt: item.title } : undefined}
 							icon={item.logo?.src}
 							glowColor="rgba(255, 238, 8, 0.2)"
 							className="h-full"

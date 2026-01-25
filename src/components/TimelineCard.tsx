@@ -1,5 +1,5 @@
 import React from "react";
-import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
+import { Briefcase, GraduationCap, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import Card3D from "./Card3D";
 

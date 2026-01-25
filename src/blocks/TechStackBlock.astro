@@ -25,7 +25,7 @@ const { showAll = false } = Astro.props;
 			{
 				stacks
 					.slice(0, showAll ? stacks.length : 3)
-					.map((stack, index) => <StackCard {...stack} parentIndex={index} client:load />)
+					.map((stack) => <StackCard {...stack} client:load />)
 			}
 		</div>
 		<SkillsInfo />

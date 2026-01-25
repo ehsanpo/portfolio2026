@@ -18,7 +18,7 @@ interface TestimonialCardProps {
 
 export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 	testimonial,
-	date = "Jan 2026",
+	date: _date = "Jan 2026",
 }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [mounted, setMounted] = useState(false);

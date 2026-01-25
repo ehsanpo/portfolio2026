@@ -18,7 +18,7 @@ export const Project: React.FC<ProjectProps> = ({
 	description,
 	image,
 	link,
-	github,
+	github: _github,
 	technologies,
 }) => {
 	return (

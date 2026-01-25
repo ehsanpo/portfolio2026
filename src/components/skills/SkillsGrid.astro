@@ -4,11 +4,11 @@ const { stacks } = Astro.props;
 
 <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 	{
-		stacks.map((stack) => (
+		stacks.map((stack: { slug: string; labels: string[]; data: any[] }) => (
 			<div>
 				<h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{stack.slug}</h3>
 				<div class="space-y-4">
-					{stack.labels.map((label, index) => (
+					{stack.labels.map((label: string, index: number) => (
 						<div>
 							<div class="mb-1 flex justify-between">
 								<span class="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>

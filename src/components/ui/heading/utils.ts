@@ -1,6 +1,6 @@
 import type { HeadingStyles } from "./types";
 
-export function getHeadingClass({ gradient, shadow, floating }: HeadingStyles): string {
+export function getHeadingClass({ gradient, shadow: _shadow, floating }: HeadingStyles): string {
 	const baseClasses = ["font-bold", "text-gray-900", "text-white", "transition-all"];
 
 	if (gradient) {

@@ -12,7 +12,7 @@ interface PromptsViewerProps {
 }
 
 export function PromptsViewer({ prompts }: PromptsViewerProps) {
-	const [activeSlug, setActiveSlug] = useState(prompts[0]?.slug);
+	const [activeSlug] = useState(prompts[0]?.slug);
 
 	const activePrompt = prompts.find((p) => p.slug === activeSlug) || prompts[0];
 

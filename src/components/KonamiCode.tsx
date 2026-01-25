@@ -17,7 +17,7 @@ const KONAMI_CODE = [
 
 export default function KonamiCode() {
 	const [mounted, setMounted] = useState(false);
-	const [keys, setKeys] = useState<string[]>([]);
+	const [, setKeys] = useState<string[]>([]);
 	const [activated, setActivated] = useState(false);
 	const enableGame = useGameStore((s) => s.enableGame);
 	const setHUD = useGameStore((s) => s.setHUD);

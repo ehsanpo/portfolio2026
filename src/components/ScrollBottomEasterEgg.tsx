@@ -4,7 +4,7 @@ import { PixelWorld } from "./pixelworld";
 
 export default function ScrollBottomEasterEgg() {
 	const [showBanner, setShowBanner] = useState(false);
-	const [extraScrollAttempts, setExtraScrollAttempts] = useState(0);
+	const [, setExtraScrollAttempts] = useState(0);
 	const [lastWheelTime, setLastWheelTime] = useState(0);
 	const [lastScrollPos, setLastScrollPos] = useState(0);
 

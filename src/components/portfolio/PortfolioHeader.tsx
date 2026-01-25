@@ -51,7 +51,6 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 		background_image,
 		images,
 		category,
-		permalink,
 		date,
 	} = item;
 
@@ -63,7 +62,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 						<div className="grid md:grid-cols-2">
 							<div className="self-center">
 								<Heading
-									className="mb-4 !text-left"
+									className="mb-4 text-left!"
 									level="h1"
 									gradient
 									style={{
@@ -152,7 +151,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 										</Parallax>
 									</div>
 									{images && images[0] && (
-										<div className="portfolio-hero-image absolute top-[100%] left-0 w-full">
+										<div className="portfolio-hero-image absolute top-full left-0 w-full">
 											<Parallax speed={10}>
 												<img
 													height={images[0].height}
@@ -166,7 +165,7 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 									)}
 
 									{logo2 && (
-										<div className="portfolio-hero-image absolute top-[100%] left-0 w-full">
+										<div className="portfolio-hero-image absolute top-full left-0 w-full">
 											<Parallax speed={5} className="portfolio-hero-box porfolio-hero-small">
 												<img
 													height={logo2?.height}

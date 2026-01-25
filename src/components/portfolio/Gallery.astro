@@ -12,7 +12,7 @@ const { images, alt } = Astro.props;
 
 <div class="my-8 grid grid-cols-1 gap-4 md:grid-cols-2">
 	{
-		images?.map((image, index) => (
+		images?.map((image: any, index: number) => (
 			<a
 				href={image.src}
 				data-pswp-width={image.width}
@@ -40,7 +40,9 @@ const { images, alt } = Astro.props;
 
 		items.forEach((item) => {
 			const newItem = item.cloneNode(true);
-			item.parentNode.replaceChild(newItem, item);
+			if (item.parentNode) {
+				item.parentNode.replaceChild(newItem, item);
+			}
 		});
 
 		const updatedItems = document.querySelectorAll(".gallery-item");
@@ -51,9 +53,9 @@ const { images, alt } = Astro.props;
 
 				const gallery = new PhotoSwipe({
 					dataSource: Array.from(updatedItems).map((item) => ({
-						src: item.getAttribute("href"),
-						w: parseInt(item.getAttribute("data-pswp-width")),
-						h: parseInt(item.getAttribute("data-pswp-height")),
+						src: item.getAttribute("href") || "",
+						w: parseInt(item.getAttribute("data-pswp-width") || "0"),
+						h: parseInt(item.getAttribute("data-pswp-height") || "0"),
 					})),
 					pswpModule: PhotoSwipe,
 					index,

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { decayCombo } from "./combo";
-import { getAutoAmount, getAutoInterval } from "./autoclicker";
+import { getAutoInterval } from "./autoclicker";
 import { useGameStore } from "./state";
 
 export const useGameEngine = () => {

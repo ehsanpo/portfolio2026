@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Calendar, Users, Star, Eye, Heart, MoreHorizontal } from "lucide-react";
+import { ExternalLink, Calendar, Users, Star, Eye, MoreHorizontal } from "lucide-react";
 import { cn } from "../../lib/utils";
 
 interface PortfolioItem {

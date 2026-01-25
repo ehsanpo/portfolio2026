@@ -42,7 +42,7 @@ export default function StackCard({ slug, labels, icon, data }: StackCardProps) 
 
 						return (
 							<div key={label} className="group/stat relative">
-								<div className="clip2 rounded bg-neutral-700/30 px-2 py-2 transition-all duration-300 group-hover/stat:translate-z-2 group-hover/stat:scale-112 group-hover/stat:shadow-xl">
+								<div className="clip2 rounded bg-white/40 dark:bg-black/70 px-2 py-2 transition-all duration-300 group-hover/stat:translate-z-2 group-hover/stat:scale-112 group-hover/stat:shadow-xl">
 									<div className="flex justify-between gap-2">
 										<span className="text-gray-700 dark:text-gray-300">
 											<span
@@ -52,9 +52,9 @@ export default function StackCard({ slug, labels, icon, data }: StackCardProps) 
 											></span>
 											{label}
 											{yearsOfExperience && (
-												<span className="text-xs text-gray-500 opacity-0 transition-all duration-300 ease-in-out group-hover/stat:opacity-100 dark:text-gray-400">
-													{" "}
-													- {yearsOfExperience} Years
+												<span className="ml-1 text-sm text-gray-500 opacity-0 transition-all duration-300 ease-in-out group-hover/stat:opacity-100 dark:text-secondary-400">
+													
+													{yearsOfExperience} Years
 												</span>
 											)}
 										</span>

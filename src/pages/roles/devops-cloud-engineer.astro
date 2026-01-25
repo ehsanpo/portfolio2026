@@ -34,7 +34,7 @@ const devopsChart = {
 <Layout title="DevOps Cloud Engineer - Ehsan Pourhadi">
 	<Hero fullHeight title="DevOps Cloud Engineer" img={currentRole?.image}>
 		<div>
-			<BoxReveal boxColor="bg-secondary-500" duration={0.1} delay={0.2} client:load>
+			<BoxReveal boxColor="bg-secondary-400" duration={0.1} delay={0.2} client:load>
 				<p class="mb-5 text-2xl dark:text-gray-300">
 					{currentRole?.description}
 				</p>
@@ -113,7 +113,7 @@ const devopsChart = {
 						</p>
 					</div>
 
-					<div class="from-secondary-500/10 to-secondary-600/10 rounded-lg bg-gradient-to-br p-6">
+					<div class="from-secondary-400/10 to-secondary-600/10 rounded-lg bg-gradient-to-br p-6">
 						<div class="text-secondary-600 dark:text-secondary-400 mb-2 text-3xl font-bold">
 							AWS Certified
 						</div>
@@ -157,11 +157,7 @@ const devopsChart = {
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>DevOps & Cloud Stacks</Heading>
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
-				{
-					devopsStacks.map((stack) => (
-						<StackCard {...stack} client:load />
-					))
-				}
+				{devopsStacks.map((stack) => <StackCard {...stack} client:load />)}
 			</div>
 		</div>
 	</section>

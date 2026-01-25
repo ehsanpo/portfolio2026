@@ -24,9 +24,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
 	const getColorClasses = () => {
 		if (variant === "secondary") {
-			return "from-accent via-accent-500 to-accent-600 hover:to-secondary-600 focus:outline-secondary-600 outline-accent-600 hover:outline-accent-500";
+			return "from-accent-400 to-accent-700 focus:outline-accent-600 outline-accent-600 hover:outline-accent-500";
 		}
-		return "from-primary via-from-primary-600 to-secondary-500 hover:to-accent-600 focus:outline-accent-600 outline-secondary-600 hover:outline-accent-600";
+		return "from-primary-400 to-secondary-400 focus:outline-secondary-400 outline-secondary-600 hover:outline-secondary-600";
 	};
 
 	const Tag = href ? "a" : "button";
@@ -37,12 +37,12 @@ const Button: React.FC<ButtonProps> = ({
 			{...(Tag === "a" ? { href, target } : { type })}
 			onClick={onClick as any}
 			className={twMerge(
-				`group oultine-offset-base-900 relative inline-flex h-12 items-center justify-center rounded-xl bg-linear-to-tr/oklch px-8 py-3 text-center text-lg font-medium text-black outline transition-all duration-400 ease-in-out focus:outline-2 focus:outline-offset-4 focus-visible:outline-none`,
+				`group hover:bg-position-[0%_0%] bg-size-[100%_200%] bg-position-[0%_100%] oultine-offset-base-900 relative inline-flex h-12 items-center justify-center rounded-xl bg-linear-to-tr/oklch px-8 py-3 text-center text-lg font-medium text-black outline transition-all duration-400 ease-in-out focus:outline-2 focus:outline-offset-4 focus-visible:outline-none`,
 				getColorClasses(),
 				className
 			)}
 		>
-			<div className="font-basement relative flex items-center justify-center overflow-hidden px-4 pt-[11px] pb-2">
+			<div className="font-basement relative flex items-center justify-center overflow-hidden px-4 pt-2.75 pb-2">
 				<div className="relative z-20">
 					<div className="transform transition-transform duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-10">
 						{content}

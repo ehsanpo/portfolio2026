@@ -20,7 +20,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 	return (
 		<article
 			className={cn(
-				"clip group relative overflow-hidden rounded bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl bg-opium dark:bg-neutral-800",
+				"clip group bg-opium relative overflow-hidden rounded bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-neutral-800",
 				featured && "md:col-span-1",
 				className
 			)}
@@ -92,7 +92,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 
 					<h3
 						className={cn(
-							"group-hover:text-primary-600 dark:text-primary-500 dark:group-hover:text-secondary-500 mb-3 font-bold text-gray-900 transition-colors",
+							"group-hover:text-primary-600 dark:text-primary-500 dark:group-hover:text-secondary-400 mb-3 font-bold text-gray-900 transition-colors",
 							featured ? "text-2xl" : "text-xl"
 						)}
 					>

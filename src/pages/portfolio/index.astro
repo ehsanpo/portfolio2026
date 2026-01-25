@@ -12,9 +12,9 @@ const sortedItems = portfolioItems.sort((a, b) => {
 	return new Date(b.date).getTime() - new Date(a.date).getTime();
 });
 
-const allCategories = [
-	...new Set(portfolioItems.flatMap((entry) => entry.category || [])),
-].filter((c): c is string => !!c);
+const allCategories = [...new Set(portfolioItems.flatMap((entry) => entry.category || []))].filter(
+	(c): c is string => !!c
+);
 ---
 
 <Layout

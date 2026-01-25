@@ -88,7 +88,7 @@ export const Card3D: React.FC<Card3DProps> = ({
 				<div className="relative z-10 h-full w-full" style={{ transformStyle: "preserve-3d" }}>
 					<div
 						className={cn(
-							"absolute inset-0 rounded-2xl border border-white/15 bg-linear-to-br from-white/10 to-white/5 shadow-2xl backdrop-blur-2xl bg-opium dark:bg-transparent transition-colors duration-500",
+							"bg-opium absolute inset-0 rounded-2xl border border-white/15 bg-linear-to-br from-white/10 to-white/5 shadow-2xl backdrop-blur-2xl transition-colors duration-500 dark:bg-transparent",
 							childClassName
 						)}
 					/>
@@ -111,7 +111,10 @@ export const Card3D: React.FC<Card3DProps> = ({
 						/>
 					)}
 
-					<div className="relative z-20 h-full w-full preserve-3d" style={{ transformStyle: "preserve-3d" }}>
+					<div
+						className="preserve-3d relative z-20 h-full w-full"
+						style={{ transformStyle: "preserve-3d" }}
+					>
 						{children}
 					</div>
 				</div>

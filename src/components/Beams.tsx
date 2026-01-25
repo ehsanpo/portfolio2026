@@ -62,7 +62,7 @@ export function ProcessFlowDiagram() {
 	) => (
 		<div className="group relative flex flex-col items-center gap-2">
 			<Circle ref={circleRef}>
-				<IconComponent className="stroke-secondary-500 h-6 w-6" />
+				<IconComponent className="stroke-secondary-400 h-6 w-6" />
 			</Circle>
 
 			<div className="clip4 pointer-events-none w-max rounded bg-gray-800 px-2 py-1 pb-2 text-sm text-white shadow-md transition-opacity">

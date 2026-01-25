@@ -2,6 +2,7 @@
 import type React from "react";
 import { Heading } from "../ui/heading";
 import Tilt from "react-parallax-tilt";
+import Island from "./island.astro";
 
 interface Props {
 	text?: string;
@@ -9,17 +10,18 @@ interface Props {
 	subtitle?: string | React.ReactNode;
 	subtitleText?: string;
 	children?: React.ReactNode;
+	island?: boolean;
 	fullHeight?: boolean;
 	img?: string;
 }
 
-const { title, subtitle, text, subtitleText, fullHeight = false, img } = Astro.props;
+const { title, subtitle, text, subtitleText, fullHeight = false, img, island } = Astro.props;
 ---
 
 <section
 	class={`bg-offwhite dark:bg-neutral-900 ${fullHeight ? "min-h-screen" : "pt-24 pb-8"} flex items-center`}
 >
-	<div class={`container mx-auto px-4 ${img && "flex flex-col md:flex-row items-center gap-4"}`}>
+	<div class={`container mx-auto px-4 flex flex-col md:flex-row items-center gap-4`}>
 		<div class="mx-auto flex-1 self-center">
 			{
 				text && (
@@ -40,7 +42,7 @@ const { title, subtitle, text, subtitleText, fullHeight = false, img } = Astro.p
 			{
 				subtitle && (
 					<p
-						class={`${fullHeight ? "text-xl font-bold md:text-4xl" : "text-xl"} dark:text-secondary-500 mb-2 text-black`}
+						class={`${fullHeight ? "text-xl font-bold md:text-4xl" : "text-xl"} dark:text-secondary-400 mb-2 text-black`}
 					>
 						{subtitle}
 					</p>
@@ -53,6 +55,7 @@ const { title, subtitle, text, subtitleText, fullHeight = false, img } = Astro.p
 			}
 			<slot />
 		</div>
+		{island && <Island />}
 		{
 			img && (
 				<div class="flex-1">
@@ -68,9 +71,8 @@ const { title, subtitle, text, subtitleText, fullHeight = false, img } = Astro.p
 					>
 						<div class="w-full">
 							<div>
-								{" "}
 								<img src={img} class="relative z-20 w-full rounded-lg object-cover shadow-lg" />
-								<div class="from-primary-500/80 to-secondary-500/80 absolute inset-0 z-20 rotate-3 transform rounded-lg bg-gradient-to-r mix-blend-soft-light" />
+								<div class="from-primary-500/80 to-secondary-400 absolute inset-0 z-20 rotate-3 transform rounded-lg bg-gradient-to-r mix-blend-soft-light" />
 							</div>
 						</div>
 					</Tilt>

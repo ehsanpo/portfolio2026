@@ -81,12 +81,12 @@ const PortfolioHeader: React.FC<Props> = ({ item, agencySlug }) => {
 								</p>
 								<div className="flex flex-col gap-4">
 									<div className="flex gap-4">
-										<h3 className="text-secondary-500 min-w-20 font-medium uppercase">Client</h3>
-										<p className="font-basement text-secondary-500">{client}</p>
+										<h3 className="text-secondary-400 min-w-20 font-medium uppercase">Client</h3>
+										<p className="font-basement text-secondary-400">{client}</p>
 									</div>
 									<div className="flex gap-4">
-										<h3 className="text-secondary-500 min-w-20 font-medium uppercase">Year</h3>
-										<p className="font-basement text-secondary-500">{date}</p>
+										<h3 className="text-secondary-400 min-w-20 font-medium uppercase">Year</h3>
+										<p className="font-basement text-secondary-400">{date}</p>
 									</div>
 									{agency && (
 										<div className="flex gap-4">

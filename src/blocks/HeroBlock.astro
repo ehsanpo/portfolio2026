@@ -1,9 +1,8 @@
 ---
 import React from "react";
-import Hero from "../components/hero/Hero.astro";
+import Hero from "@/components/hero/Hero.astro";
 import Button from "@/components/ui/Button";
 import { getPortfolioData, getPortfolioItems } from "@/utils/data";
-
 const { contact } = getPortfolioData();
 const portfolioItems = await getPortfolioItems();
 ---
@@ -14,6 +13,7 @@ const portfolioItems = await getPortfolioItems();
 	subtitleText={contact.description}
 	fullHeight={true}
 	text="Hey! ✌️ I'm"
+	island
 >
 	<React.Fragment>
 		<div class="flex flex-wrap gap-4">

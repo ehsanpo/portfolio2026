@@ -24,160 +24,172 @@ interface ProjectCard3DProps {
 	href?: string;
 }
 
-const useFilters = (layout: number, idSuffix: string, imageWidth: number, maskRef: React.RefObject<SVGCircleElement | null>) => {
-	return useMemo(() => [
-		<defs key="f1">
-			<filter id={`displacementFilter1-${layout}-${idSuffix}`}>
-				<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise" />
-				<feDisplacementMap
-					in="SourceGraphic"
-					in2="noise"
-					scale="50"
-					xChannelSelector="R"
-					yChannelSelector="G"
-				/>
-			</filter>
-			<mask id={`circleMask${layout}-${idSuffix}`}>
-				<circle
-					ref={maskRef}
-					cx="50%"
-					cy="50%"
-					r="0"
-					data-value-final={imageWidth}
-					fill="white"
-					className="mask"
-					style={{ filter: `url(#displacementFilter1-${layout}-${idSuffix})` }}
-				/>
-			</mask>
-		</defs>,
-		<defs key="f2">
-			<filter id={`displacementFilter2-${layout}-${idSuffix}`}>
-				<feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise" />
-				<feDisplacementMap
-					in="SourceGraphic"
-					in2="noise"
-					result="displacement"
-					scale="100"
-					xChannelSelector="R"
-					yChannelSelector="G"
-				/>
-				<feMorphology operator="dilate" radius="2" result="morph" in="displacement" />
-			</filter>
-			<mask id={`circleMask${layout}-${idSuffix}`}>
-				<circle
-					ref={maskRef}
-					cx="50%"
-					cy="50%"
-					r="0"
-					data-value-final={imageWidth}
-					fill="white"
-					className="mask"
-					style={{ filter: `url(#displacementFilter2-${layout}-${idSuffix})` }}
-				/>
-			</mask>
-		</defs>,
-		<defs key="f3">
-			<filter id={`displacementFilter4-${layout}-${idSuffix}`}>
-				<feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="1" result="noise" />
-				<feDisplacementMap
-					in="SourceGraphic"
-					in2="noise"
-					scale="50"
-					xChannelSelector="R"
-					yChannelSelector="G"
-				/>
-			</filter>
-			<mask id={`circleMask${layout}-${idSuffix}`}>
-				<circle
-					ref={maskRef}
-					cx="50%"
-					cy="50%"
-					r="0"
-					data-value-final={imageWidth}
-					fill="white"
-					className="mask"
-					style={{ filter: `url(#displacementFilter4-${layout}-${idSuffix})` }}
-				/>
-			</mask>
-		</defs>,
-		<defs key="f4">
-			<filter id={`displacementFilter5-${layout}-${idSuffix}`}>
-				<feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
-				<feDisplacementMap
-					in="SourceGraphic"
-					in2="noise"
-					scale="150"
-					xChannelSelector="R"
-					yChannelSelector="G"
-				/>
-			</filter>
-			<mask id={`circleMask${layout}-${idSuffix}`}>
-				<circle
-					ref={maskRef}
-					cx="50%"
-					cy="50%"
-					r="0"
-					data-value-final={imageWidth}
-					fill="white"
-					className="mask"
-					style={{ filter: `url(#displacementFilter5-${layout}-${idSuffix})` }}
-				/>
-			</mask>
-		</defs>,
-		<defs key="f5">
-			<filter id={`displacementFilter6-${layout}-${idSuffix}`}>
-				<feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="noise" />
-				<feDisplacementMap
-					in="SourceGraphic"
-					in2="noise"
-					result="displacement"
-					scale="150"
-					xChannelSelector="R"
-					yChannelSelector="G"
-				/>
-				<feGaussianBlur in="displacement" stdDeviation="10" />
-			</filter>
-			<mask id={`circleMask${layout}-${idSuffix}`}>
-				<circle
-					ref={maskRef}
-					cx="50%"
-					cy="50%"
-					r="0"
-					data-value-final={imageWidth}
-					fill="white"
-					className="mask"
-					style={{ filter: `url(#displacementFilter6-${layout}-${idSuffix})` }}
-				/>
-			</mask>
-		</defs>,
-		<defs key="f6">
-			<filter id={`displacementFilter7-${layout}-${idSuffix}`}>
-				<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" />
-				<feDisplacementMap
-					in="SourceGraphic"
-					in2="noise"
-					scale="120"
-					xChannelSelector="R"
-					yChannelSelector="G"
-				/>
-			</filter>
-			<mask id={`circleMask${layout}-${idSuffix}`}>
-				<circle
-					ref={maskRef}
-					cx="50%"
-					cy="50%"
-					r="0"
-					data-value-final={imageWidth}
-					fill="white"
-					className="mask"
-					style={{ filter: `url(#displacementFilter7-${layout}-${idSuffix})` }}
-				/>
-			</mask>
-		</defs>,
-	], [layout, idSuffix, imageWidth, maskRef]);
+const useFilters = (
+	layout: number,
+	idSuffix: string,
+	imageWidth: number,
+	maskRef: React.RefObject<SVGCircleElement | null>
+) => {
+	return useMemo(
+		() => [
+			<defs key="f1">
+				<filter id={`displacementFilter1-${layout}-${idSuffix}`}>
+					<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise" />
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="noise"
+						scale="50"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<mask id={`circleMask${layout}-${idSuffix}`}>
+					<circle
+						ref={maskRef}
+						cx="50%"
+						cy="50%"
+						r="0"
+						data-value-final={imageWidth}
+						fill="white"
+						className="mask"
+						style={{ filter: `url(#displacementFilter1-${layout}-${idSuffix})` }}
+					/>
+				</mask>
+			</defs>,
+			<defs key="f2">
+				<filter id={`displacementFilter2-${layout}-${idSuffix}`}>
+					<feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" result="noise" />
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="noise"
+						result="displacement"
+						scale="100"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+					<feMorphology operator="dilate" radius="2" result="morph" in="displacement" />
+				</filter>
+				<mask id={`circleMask${layout}-${idSuffix}`}>
+					<circle
+						ref={maskRef}
+						cx="50%"
+						cy="50%"
+						r="0"
+						data-value-final={imageWidth}
+						fill="white"
+						className="mask"
+						style={{ filter: `url(#displacementFilter2-${layout}-${idSuffix})` }}
+					/>
+				</mask>
+			</defs>,
+			<defs key="f3">
+				<filter id={`displacementFilter4-${layout}-${idSuffix}`}>
+					<feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="1" result="noise" />
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="noise"
+						scale="50"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<mask id={`circleMask${layout}-${idSuffix}`}>
+					<circle
+						ref={maskRef}
+						cx="50%"
+						cy="50%"
+						r="0"
+						data-value-final={imageWidth}
+						fill="white"
+						className="mask"
+						style={{ filter: `url(#displacementFilter4-${layout}-${idSuffix})` }}
+					/>
+				</mask>
+			</defs>,
+			<defs key="f4">
+				<filter id={`displacementFilter5-${layout}-${idSuffix}`}>
+					<feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="3" result="noise" />
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="noise"
+						scale="150"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<mask id={`circleMask${layout}-${idSuffix}`}>
+					<circle
+						ref={maskRef}
+						cx="50%"
+						cy="50%"
+						r="0"
+						data-value-final={imageWidth}
+						fill="white"
+						className="mask"
+						style={{ filter: `url(#displacementFilter5-${layout}-${idSuffix})` }}
+					/>
+				</mask>
+			</defs>,
+			<defs key="f5">
+				<filter id={`displacementFilter6-${layout}-${idSuffix}`}>
+					<feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3" result="noise" />
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="noise"
+						result="displacement"
+						scale="150"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+					<feGaussianBlur in="displacement" stdDeviation="10" />
+				</filter>
+				<mask id={`circleMask${layout}-${idSuffix}`}>
+					<circle
+						ref={maskRef}
+						cx="50%"
+						cy="50%"
+						r="0"
+						data-value-final={imageWidth}
+						fill="white"
+						className="mask"
+						style={{ filter: `url(#displacementFilter6-${layout}-${idSuffix})` }}
+					/>
+				</mask>
+			</defs>,
+			<defs key="f6">
+				<filter id={`displacementFilter7-${layout}-${idSuffix}`}>
+					<feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" />
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="noise"
+						scale="120"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<mask id={`circleMask${layout}-${idSuffix}`}>
+					<circle
+						ref={maskRef}
+						cx="50%"
+						cy="50%"
+						r="0"
+						data-value-final={imageWidth}
+						fill="white"
+						className="mask"
+						style={{ filter: `url(#displacementFilter7-${layout}-${idSuffix})` }}
+					/>
+				</mask>
+			</defs>,
+		],
+		[layout, idSuffix, imageWidth, maskRef]
+	);
 };
 
-const useScrollTriggerAnimation = (contentWrapRef: React.RefObject<HTMLDivElement | null>, maskRef: React.RefObject<SVGCircleElement | null>, imageRef: React.RefObject<SVGImageElement | null>) => {
+const useScrollTriggerAnimation = (
+	contentWrapRef: React.RefObject<HTMLDivElement | null>,
+	maskRef: React.RefObject<SVGCircleElement | null>,
+	imageRef: React.RefObject<SVGImageElement | null>
+) => {
 	useEffect(() => {
 		if (!contentWrapRef.current || !maskRef.current || !imageRef.current) return;
 

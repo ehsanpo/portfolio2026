@@ -162,7 +162,7 @@ export function Footer({
 														href={link.href}
 														target={link.href.startsWith("http") ? "_blank" : "_self"}
 														rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-														className="font-kabel group hover:text-primary flex items-center text-sm dark:text-gray-400 text-black transition-colors"
+														className="font-kabel group hover:text-primary flex items-center text-sm text-black transition-colors dark:text-gray-400"
 													>
 														<Icon className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
 														{link.name}

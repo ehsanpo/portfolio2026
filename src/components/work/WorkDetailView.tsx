@@ -103,7 +103,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 								className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-110"
 							/>
 						) : (
-							<div className="text-4xl font-bold dark:text-white text-black uppercase">
+							<div className="text-4xl font-bold text-black uppercase dark:text-white">
 								{company.name.charAt(0)}
 							</div>
 						)}
@@ -148,7 +148,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 							viewport={{ once: true, margin: "-100px" }}
 							variants={containerVariants}
 						>
-							<h2 className="border-accent-500 mb-6 border-l-4 pl-4 text-sm font-bold tracking-widest dark:text-white text-black uppercase">
+							<h2 className="border-accent-500 mb-6 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
 								Focus Areas
 							</h2>
 							<div className="flex flex-wrap gap-2">
@@ -171,7 +171,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 						viewport={{ once: true, margin: "-100px" }}
 						variants={containerVariants}
 					>
-						<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest dark:text-white text-black uppercase">
+						<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
 							Overview
 						</h2>
 						<div className="grid grid-cols-1 gap-4">
@@ -181,7 +181,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 									variants={itemVariants}
 									className="hover:border-accent-500/30 group rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300"
 								>
-									<p className="leading-6 dark:text-slate-300 text-slate-700 transition-colors dark:group-hover:text-white">
+									<p className="leading-6 text-slate-700 transition-colors dark:text-slate-300 dark:group-hover:text-white">
 										{item}
 									</p>
 								</motion.div>
@@ -196,7 +196,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 							viewport={{ once: true, margin: "-100px" }}
 							variants={containerVariants}
 						>
-							<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest dark:text-white text-black uppercase">
+							<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
 								Awards & Recognition
 							</h2>
 							<div className="space-y-4">
@@ -214,7 +214,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 											/>
 										)}
 										<div>
-											<h3 className="text-xl font-bold dark:text-white text-black">{award.name}</h3>
+											<h3 className="text-xl font-bold text-black dark:text-white">{award.name}</h3>
 											<p className="text-yellow-500/80">{award.description}</p>
 										</div>
 									</motion.div>
@@ -230,7 +230,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 							viewport={{ once: true, margin: "-100px" }}
 							variants={containerVariants}
 						>
-							<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest dark:text-white text-black uppercase">
+							<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
 								Projects & Case Studies
 							</h2>
 							<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -261,7 +261,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 						viewport={{ once: true, margin: "-100px" }}
 						variants={containerVariants}
 					>
-						<h2 className="border-accent-500 mb-6 border-l-4 pl-4 text-sm font-bold tracking-widest dark:text-white text-black uppercase">
+						<h2 className="border-accent-500 mb-6 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
 							Technical Expertise
 						</h2>
 						<div className="space-y-3">
@@ -269,9 +269,9 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 								<motion.div
 									key={idx}
 									variants={itemVariants}
-									className="group flex items-center justify-between rounded-xl border border-black/10 dark:border-white/10 bg-white/5 p-4 transition-colors hover:bg-white/10"
+									className="group flex items-center justify-between rounded-xl border border-black/10 bg-white/5 p-4 transition-colors hover:bg-white/10 dark:border-white/10"
 								>
-									<span className="group-hover:text-accent-400 font-medium dark:text-slate-300 transition-colors">
+									<span className="group-hover:text-accent-400 font-medium transition-colors dark:text-slate-300">
 										{skill}
 									</span>
 									<span className="font-mono text-xs text-slate-500">
@@ -289,7 +289,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 							viewport={{ once: true, margin: "-100px" }}
 							variants={containerVariants}
 						>
-							<h2 className="mb-6 text-sm font-bold tracking-widest dark:text-white text-black uppercase">
+							<h2 className="mb-6 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
 								Team Members
 							</h2>
 							<div className="space-y-4">
@@ -311,7 +311,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 											)}
 										</div>
 										<div>
-											<div className="group-hover:text-accent-400 text-sm font-medium dark:text-white text-black transition-colors">
+											<div className="group-hover:text-accent-400 text-sm font-medium text-black transition-colors dark:text-white">
 												{member.name}
 											</div>
 											<div className="text-xs text-slate-500">{member.role}</div>

@@ -2,7 +2,7 @@
 onHome: false
 title: The Fan Club
 description: Worked on both front-end and back-end development for The Fan Club's website, delivering a robust and dynamic web solution using WordPress.
-date: "2012"
+port_date: "2012"
 status: publish
 permalink: the-fan-club
 author: Ehsan

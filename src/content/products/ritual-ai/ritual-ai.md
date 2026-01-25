@@ -29,8 +29,7 @@ images:
   - "2.png"
   - "3.png"
   - "4.png"
-port_date:
-  - "2025"
+port_date: "2025"
 ---
 
 ## Ritual-AI: Cultural Exploration Through Artificial Intelligence

@@ -7,7 +7,8 @@
 
 :root {
 	--primary: oklch(85.75% 0.175 88.49);
-	--secondary: oklch(62.8% 0.245 30.64) --accent: oklch(73.41% 0.158 236.01);
+	--secondary: oklch(62.8% 0.245 30.64);
+	--accent: oklch(73.41% 0.158 236.01);
 	--background: #f9f4ea;
 	--foreground: #050809;
 	--neutral-900: #050809;

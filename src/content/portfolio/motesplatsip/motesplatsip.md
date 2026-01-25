@@ -1,6 +1,5 @@
 ---
 title: Mötesplats IP
-date: "2019-03-28T10:34:13+00:00"
 status: publish
 permalink: motesplatsip
 author: Ehsan
@@ -25,6 +24,5 @@ logo: "logo.png"
 video: ""
 images:
   - "1.jpg"
-port_date:
-  - "2018"
+port_date: "2018"
 ---

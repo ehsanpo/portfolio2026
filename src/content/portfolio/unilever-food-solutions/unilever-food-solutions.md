@@ -1,6 +1,5 @@
 ---
 title: "Unilever Food Solutions"
-date: "2019-03-28T12:58:42+00:00"
 status: publish
 permalink: unilever-food-solutions
 author: Ehsan
@@ -30,6 +29,5 @@ images:
   - "1.png"
   - "2.png"
   - "3.png"
-port_date:
-  - "2016"
+port_date: "2016"
 ---

@@ -8,8 +8,7 @@ import { getProjectImage } from "@/utils/projectHelpers";
 
 const portfolioItems = await getPortfolioItems();
 const sortedItems = portfolioItems.sort((a, b) => {
-	if (a.onHome !== b.onHome) return b.onHome ? 1 : -1;
-	return new Date(b.port_date).getTime() - new Date(a.port_date).getTime();
+	return Number(b.port_date) - Number(a.port_date);
 });
 
 const allCategories = [...new Set(portfolioItems.flatMap((entry) => entry.category || []))].filter(

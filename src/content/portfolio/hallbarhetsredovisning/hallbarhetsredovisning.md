@@ -1,6 +1,5 @@
 ---
 title: Hållbarhetsredovisning
-date: "2019-03-28T10:24:21+00:00"
 status: publish
 permalink: hallbarhetsredovisning
 author: Ehsan
@@ -26,6 +25,5 @@ logo: "hallbarhet-logo.png"
 video: ""
 images:
   - "hallbarhet-1.jpg"
-port_date:
-  - "2017"
+port_date: "2017"
 ---

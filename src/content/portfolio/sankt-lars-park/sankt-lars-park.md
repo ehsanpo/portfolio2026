@@ -1,6 +1,5 @@
 ---
 title: "Sankt Lars Park"
-date: "2019-03-28T12:54:27+00:00"
 status: publish
 permalink: sankt-lars-park
 author: Ehsan
@@ -23,6 +22,5 @@ logo: "logo.png"
 video:
 images:
   - "1.jpg"
-port_date:
-  - "2019"
+port_date: "2019"
 ---

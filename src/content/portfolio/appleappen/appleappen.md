@@ -26,8 +26,7 @@ logo: "appleappen-logo.jpg"
 video: ""
 images:
   - "appleappen-1.jpg"
-port_date:
-  - "2016"
+port_date: "2016"
 ---
 
 <h2>Nordiska Museet Swedish Apples App: A Case Study in Building a Comprehensive App for Swedish Apple Enthusiasts</h2>

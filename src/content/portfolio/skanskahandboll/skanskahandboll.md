@@ -1,6 +1,5 @@
 ---
 title: "Skånsk handboll"
-date: "2019-03-28T12:54:27+00:00"
 status: publish
 permalink: skanskahandboll
 author: Ehsan
@@ -24,6 +23,5 @@ video:
 images:
   - "1.jpg"
   - "2.png"
-port_date:
-  - "2019"
+port_date: "2019"
 ---

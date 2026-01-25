@@ -29,8 +29,7 @@ images:
   - File_6.png
   - File_1.png
 
-port_date:
-  - "2009"
+port_date: "2009"
 ---
 
 <h2>Background:</h2>

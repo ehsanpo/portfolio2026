@@ -3,7 +3,7 @@ onHome: false
 title: Video Conferencing
 title2: Video Conferencing Integration
 description: Finalized and productized a WebRTC-based video conferencing solution, integrating it seamlessly into the main Telavox application.
-date: "2024"
+port_date: "2024"
 status: publish
 permalink: telavox-video
 author: Ehsan

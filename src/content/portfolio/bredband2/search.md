@@ -3,7 +3,7 @@ onHome: false
 title: Advanced Search
 title2: Advanced Search with Algolia
 description: Implemented a robust search functionality across the website and portal using Algolia, Contentful API, and InstantSearch.
-date: "2023"
+port_date: "2023"
 status: publish
 permalink: bredband2-search
 author: Ehsan

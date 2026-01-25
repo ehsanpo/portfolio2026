@@ -2,7 +2,7 @@
 onHome: false
 title: Björnekulla
 description: Developed a 3D interactive, rotatable product image solution using only jQuery and JavaScript for Björnekulla.
-date: "2012"
+port_date: "2012"
 status: publish
 permalink: bjornekulla
 author: Ehsan

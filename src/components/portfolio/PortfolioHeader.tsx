@@ -35,7 +35,7 @@ interface Props {
 		}[];
 		case_link_url?: string;
 		content: any;
-		port_date: string;
+		port_date:  string;
 	};
 }
 

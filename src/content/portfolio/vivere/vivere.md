@@ -2,7 +2,7 @@
 onHome: false
 title: Vivere
 description: Added a new page showcasing local venues with Google Maps integration, focusing primarily on front-end development.
-date: "2018"
+port_date: "2018"
 status: publish
 permalink: vivere
 author: Whitespace

@@ -1,6 +1,5 @@
 ---
 title: "Muslimix"
-date: "2019-03-28T10:23:01+00:00"
 status: publish
 permalink: muslimix
 author: Ehsan
@@ -27,6 +26,5 @@ images:
   - "Knapp-ny-2-kopia.jpg"
   - "mm-2.jpg"
 
-port_date:
-  - "2012"
+port_date: "2012"
 ---

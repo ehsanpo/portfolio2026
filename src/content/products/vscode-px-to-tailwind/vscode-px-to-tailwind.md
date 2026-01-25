@@ -23,8 +23,7 @@ logo: "vscodelogo.png"
 images:
   - "2.png"
 
-port_date:
-  - "2024"
+port_date: "2024"
 ---
 
 Convert pixel values to REM units and Tailwind CSS classes directly in Visual Studio Code.

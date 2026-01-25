@@ -34,8 +34,7 @@ images:
   - "settings.png"
   - "ship-insop.png"
 
-port_date:
-  - "2025"
+port_date: "2025"
 ---
 
 <h2>The Origin Story:</h2>

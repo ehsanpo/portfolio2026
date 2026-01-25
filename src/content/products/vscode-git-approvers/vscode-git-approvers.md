@@ -23,8 +23,7 @@ logo: "vscodelogo.png"
 images:
   - "vscode3.png"
 
-port_date:
-  - "2024"
+port_date: "2024"
 ---
 
 See pull request approvers when hovering over code lines in VS Code.

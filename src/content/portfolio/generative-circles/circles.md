@@ -1,6 +1,5 @@
 ---
 title: Generative Circles
-date: "2019-03-28T13:39:40+00:00"
 status: publish
 permalink: generative-circles
 author: Ehsan
@@ -35,8 +34,7 @@ images:
   - "circle-16.png"
   - "circle-17.png"
 
-port_date:
-  - "2020"
+port_date: "2020"
 ---
 
 Recently, I've been playing around with some generative music using Propellerhead Reason, mostly for fun, you can find some of it on my Soundcloud:

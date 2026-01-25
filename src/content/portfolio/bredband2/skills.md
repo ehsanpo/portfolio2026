@@ -3,7 +3,7 @@ onHome: false
 title: Professional Growth
 title2: Professional Growth & Skills
 description: A summary of technical skills and certifications acquired during my tenure at Bredband2.
-date: "2023"
+port_date: "2023"
 status: publish
 permalink: bredband2-skills
 author: Ehsan

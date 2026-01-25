@@ -1,6 +1,5 @@
 ---
 title: "Holy Greens"
-date: "2019-03-28T12:51:30+00:00"
 status: publish
 permalink: holy-greens
 author: Ehsan
@@ -28,8 +27,7 @@ logo: "hg.png"
 video: ""
 images:
   - "hoolygreens -fsc.jpg"
-port_date:
-  - "2018"
+port_date: "2018"
 ---
 
 <h2>Holy Green Salad Bar Website: A Case Study in Rebranding and Website Development</h2>

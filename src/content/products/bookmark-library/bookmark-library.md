@@ -27,8 +27,7 @@ images:
   - "home.png"
   - "upload.png"
 
-port_date:
-  - "2025"
+port_date: "2025"
 ---
 
 # Bookmark Library

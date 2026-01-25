@@ -1,7 +1,7 @@
 ---
 title: Cecilia Björk
 description: Developed a one-page WordPress website for Cecilia Björk, showcasing her work as an Intuitive Messenger, Transformational Healer, and Artist, with the ability to manage and display events.
-date: "2019"
+port_date: "2019"
 status: publish
 permalink: cecilia-bjork
 author: Ehsan

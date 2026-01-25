@@ -3,7 +3,7 @@ onHome: false
 title: Chat Microservice
 title2: Chat Microservice & Feature Enhancements
 description: Separated chat functionality into its own microservice and implemented advanced features like message reactions, quoted replies, conversation threads, and Tenor GIF integration.
-date: "2024"
+port_date: "2024"
 status: publish
 permalink: telavox-chat
 author: Ehsan

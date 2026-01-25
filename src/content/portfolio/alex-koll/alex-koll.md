@@ -24,6 +24,5 @@ logo: "alex-koll-logo.png"
 video: ""
 images:
   - "alex-koll-1.jpg"
-port_date:
-  - "2019"
+port_date:  "2019"
 ---

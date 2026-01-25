@@ -22,8 +22,7 @@ logo: "vscodelogo.png"
 images:
   - "vscode2.png"
 
-port_date:
-  - "2024"
+port_date: "2024"
 ---
 
 Remove all console.log statements with one click in VS Code.

@@ -2,7 +2,7 @@
 onHome: false
 title: Library Event Display
 description: Developed a TV display system for Stockholm's City Library, showcasing events with a focus on front-end and API integration with a Drupal backend.
-date: "2018" # Replace with the exact year
+port_date: "2018" # Replace with the exact year
 status: publish
 permalink: library-event-display
 type: portfolio

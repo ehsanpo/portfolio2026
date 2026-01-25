@@ -1,6 +1,5 @@
 ---
 title: Kockens kamrater
-date: "2019-03-28T10:16:58+00:00"
 status: publish
 permalink: kockenskamrater
 author: Ehsan
@@ -25,8 +24,7 @@ logo: "logo.png"
 video: ""
 images:
   - "1.png"
-port_date:
-  - "2018"
+port_date: "2018"
 ---
 
 I work as a Fullstack developer in the team to make a new website for a government organization. The development was focused on accessibility for the frontend and a lot of security restrictions and the external APIs for the backend. Mostly focused to make js accessibility to help front end developers and making the APIs for the backend.

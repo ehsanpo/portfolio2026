@@ -1,6 +1,6 @@
 ---
 title: "Bra Energi"
-date: "2017"
+port_date: "2017"
 status: publish
 permalink: bra-energi
 author: Ehsan

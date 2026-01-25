@@ -1,6 +1,5 @@
 ---
 title: "Lundaspelen"
-date: "2019-03-28T10:23:01+00:00"
 status: publish
 permalink: lundaspelen
 author: Ehsan
@@ -26,6 +25,5 @@ video: ""
 images:
   - "2.png"
 
-port_date:
-  - "2018"
+port_date: "2018"
 ---

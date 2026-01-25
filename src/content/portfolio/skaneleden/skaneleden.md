@@ -2,7 +2,7 @@
 onHome: false
 title: Skåneleden
 description: Developed a front-end solution for Skåneleden's website to promote and showcase 130 miles of stunning nature trails.
-date: "2011"
+port_date: "2011"
 status: publish
 permalink: skaneleden
 author: Ehsan

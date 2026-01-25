@@ -1,7 +1,6 @@
 ---
 onHome: false
 title: "Wilfa Svart"
-date: "2019-03-28T12:54:27+00:00"
 status: publish
 permalink: wilfa
 author: Ehsan
@@ -30,6 +29,5 @@ images:
   - "1.png"
   - "3.jpg"
   - "33.jpg"
-port_date:
-  - "2019"
+port_date: "2019"
 ---

@@ -25,6 +25,5 @@ logo: "logo.png"
 video: ""
 images:
   - "2.png"
-port_date:
-  - "2015"
+port_date: "2015"
 ---

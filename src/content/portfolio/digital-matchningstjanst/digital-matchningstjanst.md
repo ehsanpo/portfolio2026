@@ -2,7 +2,7 @@
 onHome: false
 title: Digital Matchningstjänst
 description: Built a job advertisement platform enabling companies to post job ads, manage applications, and handle payments and invoicing seamlessly, while users can create profiles and apply for jobs.
-date: "2012"
+port_date: "2012"
 status: publish
 agency: Whitespace
 permalink: digital-matchningstjanst

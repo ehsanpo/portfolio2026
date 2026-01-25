@@ -8,7 +8,7 @@ const portfolio = defineCollection({
 			title2: z.string().optional(),
 			description: z.string().optional(),
 			tagline: z.string(),
-			port_date: z.string(),
+			port_date:  z.string(),
 			permalink: z.string(),
 			client: z.string(),
 			agency: z.string(),

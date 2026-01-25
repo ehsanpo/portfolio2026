@@ -1,6 +1,6 @@
 ---
 title: Clever
-date: "2018"
+port_date: "2018"
 status: publish
 permalink: clever
 author: Ehsan

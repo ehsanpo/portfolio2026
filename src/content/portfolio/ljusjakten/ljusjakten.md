@@ -1,6 +1,5 @@
 ---
 title: Ljusjakten
-date: "2019-03-28T13:00:28+00:00"
 status: publish
 permalink: ljusjakten
 author: Ehsan
@@ -32,8 +31,7 @@ images:
   - "jj-1-Rotato-Snapshot.png"
   - "11.png"
   - "1.png"
-port_date:
-  - "2018"
+port_date: "2018"
 side_image:
   - ""
 ---

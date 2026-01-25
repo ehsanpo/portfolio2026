@@ -1,6 +1,5 @@
 ---
 title: Triwa
-date: "2019-03-28T10:28:00+00:00"
 status: publish
 permalink: triwa
 author: Ehsan
@@ -29,8 +28,7 @@ logo: "triwa.png"
 video: ""
 images:
   - "home.jpg"
-port_date:
-  - "2017"
+port_date: "2017"
 
 side_image:
   - ""

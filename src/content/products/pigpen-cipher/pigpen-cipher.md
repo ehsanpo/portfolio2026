@@ -26,8 +26,7 @@ background_image: "pigpen-cipher-key-1.png"
 images:
   - "pigpen-cipher-key-1.png"
 
-port_date:
-  - "2020"
+port_date: "2020"
 onHome: false
 ---
 

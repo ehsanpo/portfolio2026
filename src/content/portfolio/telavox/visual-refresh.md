@@ -3,7 +3,7 @@ onHome: true
 title: Visual Refresh
 title2: Visual Refresh & RTL Support
 description: Redesigned Telavox's softphone application with a sleek, modern interface, adding RTL support for Arabic users. Rewrote the application in TypeScript and migrated from MUI4 to Tailwind CSS.
-date: "2024"
+port_date: "2024"
 status: publish
 permalink: telavox
 author: Ehsan

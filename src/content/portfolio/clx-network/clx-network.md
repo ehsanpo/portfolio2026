@@ -1,6 +1,6 @@
 ---
 title: "CLX Network"
-date: "2016"
+port_date: "2016"
 status: publish
 permalink: clx-network
 author: Ehsan

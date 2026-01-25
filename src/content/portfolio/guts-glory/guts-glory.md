@@ -1,6 +1,6 @@
 ---
 title: "Guts & Glory"
-date: "2019"
+port_date: "2019"
 status: publish
 permalink: guts-glory
 author: Ehsan
@@ -28,8 +28,6 @@ logo: "gg-logo.png"
 video: ""
 images:
   - "gg-1.jpg"
-port_date:
-  - "2019"
 ---
 
  <h2>Guts & Glory Agency Website: A Case Study in WordPress Development</h2>

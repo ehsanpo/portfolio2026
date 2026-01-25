@@ -1,6 +1,6 @@
 ---
 title: "Kompis Klubben"
-date: "2017"
+port_date: "2017"
 status: publish
 permalink: kompisklubben
 author: Ehsan

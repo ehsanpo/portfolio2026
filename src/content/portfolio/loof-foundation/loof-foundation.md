@@ -2,7 +2,7 @@
 onHome: false
 title: Lööf Foundation
 description: Designed and developed the front-end for the Lööf Foundation’s website, focusing on responsive design and user-friendly navigation.
-date: "2013"
+port_date: "2013"
 status: publish
 permalink: loof-foundation
 author: Ehsan

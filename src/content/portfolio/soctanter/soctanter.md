@@ -1,6 +1,5 @@
 ---
 title: Soctanter
-date: "2019-03-28T12:03:32+00:00"
 status: publish
 permalink: soctanter
 author: Ehsan
@@ -28,8 +27,7 @@ logo: "logo.png"
 images:
   - "1.png"
   - "2.png"
-port_date:
-  - "2016"
+port_date: "2016"
 ---
 
 <h2>Soctanter på nätet: A Case Study in Developing a User-Friendly Platform for Social Guidance</h2>

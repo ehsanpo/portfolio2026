@@ -1,6 +1,5 @@
 ---
 title: Zhowtime
-date: "2019-03-19T13:34:20+00:00"
 status: publish
 permalink: zhowtime
 author: Ehsan
@@ -29,8 +28,7 @@ images:
 case_link_url: ""
 body_text: ""
 client: "Freelance"
-port_date:
-  - "2017"
+port_date: "2017"
 ---
 
 Zhowtime was a passion project that emerged from a deep admiration for Zlatan Ibrahimovic, a local hero. Ehsan, along with Art Director Luang Lu, embarked on this journey to create a website dedicated to showcasing every goal scored by Zlatan Ibrahimovic. The project aimed to celebrate and honor Zlatan's remarkable football career.

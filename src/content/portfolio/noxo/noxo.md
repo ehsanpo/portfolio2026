@@ -1,6 +1,5 @@
 ---
 title: Noxo
-date: "2019-03-28T10:14:02+00:00"
 status: publish
 permalink: noxo
 author: Ehsan
@@ -26,6 +25,5 @@ video: ""
 images:
   - "noxo.jpg"
 case_link_url: "http://www.noxo.se/"
-port_date:
-  - "2017"
+port_date: "2017"
 ---

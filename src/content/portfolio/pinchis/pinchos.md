@@ -2,7 +2,7 @@
 onHome: false
 title: Pinchos
 description: Developed a mobile app for Pinchos, allowing users to conveniently order food directly to their table using a seamless and intuitive interface.
-date: "2013"
+port_date: "2013"
 status: publish
 permalink: pinchos
 author: Ehsan

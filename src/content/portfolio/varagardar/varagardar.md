@@ -2,7 +2,7 @@
 onHome: false
 title: Våra Gårdar
 description: Developed an interactive map with filters for Våra Gårdar to help users easily find local venues and activities.
-date: "2018"
+port_date: "2018"
 status: publish
 permalink: varagardar
 author: Your Name

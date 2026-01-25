@@ -28,8 +28,7 @@ images:
   - "00.png"
   - "1.png"
   - "2.png"
-port_date:
-  - "2025"
+port_date: "2025"
 ---
 
 A comprehensive collection of web-based audio visualization and analysis applications designed for professionals, developers, and enthusiasts. Built with modern web technologies for real-time browser-based audio processing.

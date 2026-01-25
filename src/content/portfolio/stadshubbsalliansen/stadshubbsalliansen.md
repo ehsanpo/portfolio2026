@@ -1,6 +1,5 @@
 ---
 title: StadshubbsAlliansen
-date: "2019-03-28T13:03:13+00:00"
 status: publish
 permalink: stadshubbsalliansen
 author: Ehsan
@@ -30,6 +29,5 @@ logo: "SHA-Rotato-Snapshot.png"
 
 images:
   - "Screenshot_2019-04-01-StadshubbsAlliansen1.jpg"
-port_date:
-  - "2018"
+port_date: "2018"
 ---

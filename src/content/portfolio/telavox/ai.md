@@ -3,7 +3,7 @@ onHome: false
 title: AI Integration
 title2: AI Integration & Voice Solutions
 description: Contributed to AI-powered features including a translation pipeline, AI agent monitoring profiles, and ElevenLabs-powered Text-to-Speech solutions.
-date: "2024"
+port_date: "2024"
 status: publish
 permalink: telavox-ai
 author: Ehsan

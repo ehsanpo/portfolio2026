@@ -1,6 +1,5 @@
 ---
 title: "Miss Mary"
-date: "2019-03-28T10:23:01+00:00"
 status: publish
 permalink: missmary
 author: Ehsan
@@ -26,6 +25,5 @@ images:
   - "1.png"
   - "mockup-4.jpg"
 
-port_date:
-  - "2018"
+port_date: "2018"
 ---

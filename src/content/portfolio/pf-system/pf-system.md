@@ -1,6 +1,5 @@
 ---
 title: "PF System"
-date: "2019-03-28T14:21:42+00:00"
 status: publish
 permalink: pf-system
 author: Ehsan
@@ -30,8 +29,7 @@ video: ""
 images:
   - "Screenshot_2019-04-08-PF-System1.jpg"
   - "Screenshot_2019-04-08-Om-oss-–-PF-System1.png"
-port_date:
-  - "2018"
+port_date: "2018"
 images_0_bild:
   - "1735"
 images_1_bild:

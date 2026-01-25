@@ -26,8 +26,7 @@ logo: "logo.png"
 images:
   - "1.png"
   - "2.png"
-port_date:
-  - "2025"
+port_date: "2025"
 ---
 
 # HerbalAI 🌿

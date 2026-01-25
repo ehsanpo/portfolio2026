@@ -3,7 +3,7 @@ onHome: true
 title: Platform Migration
 title2: Redesigning the Digital Identity
 description: Led major platform migrations from WordPress to Gatsby and then to Next.js while redesigning Bredband2's visual identity and e-commerce flow.
-date: "2023"
+port_date: "2023"
 status: publish
 permalink: bredband2
 author: Ehsan

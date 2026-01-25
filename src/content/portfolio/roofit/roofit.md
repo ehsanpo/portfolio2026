@@ -1,6 +1,5 @@
 ---
 title: RooFit
-date: "2019-03-28T12:54:27+00:00"
 status: publish
 permalink: roofit
 author: Ehsan
@@ -24,8 +23,7 @@ video: "https://www.youtube.com/watch?v=JrqKl-BfedI"
 images:
   - "12.jpg"
   - "3.jpg"
-port_date:
-  - "2018"
+port_date: "2018"
 ---
 
 <h3>Roofit Campaign Website: A Case Study in Promoting Lindab's Administration Services for Roofers and Tinsmith Workers</h3>

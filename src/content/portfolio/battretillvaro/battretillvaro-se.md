@@ -23,6 +23,5 @@ logo: "btv-logo.png"
 video: ""
 images:
   - "btv-1.png"
-port_date:
-  - "2018"
+port_date: "2018"
 ---

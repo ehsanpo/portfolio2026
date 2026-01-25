@@ -2,7 +2,6 @@ import React from "react";
 import { Timeline } from "./Timeline";
 import type { Resume } from "@/types/resume";
 import { Section } from "./Section";
-import { Tag } from "./Tag";
 import { translations, type Language } from "@/translations";
 
 interface MainProps {
@@ -49,7 +48,7 @@ export const Main: React.FC<MainProps> = ({ data, mainColor, language }) => {
 					{data.certificates.map((cert, index) => (
 						<li key={index} className="flex items-baseline justify-between">
 							<span className="font-medium">{cert.name}</span>
-							<span className="text-sm text-gray-600">{cert.date}</span>
+							<span className="text-sm text-gray-600">{cert.year}</span>
 						</li>
 					))}
 				</ul>

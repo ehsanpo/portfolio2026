@@ -1,4 +1,3 @@
-import React from "react";
 import { ProjectLink } from "./ProjectLink";
 import { Parallax } from "react-scroll-parallax";
 

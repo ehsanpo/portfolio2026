@@ -1,4 +1,3 @@
-import React from "react";
 import { Code2, Laptop, Music2, School } from "lucide-react";
 import one from "../assets/images/0_1.png";
 

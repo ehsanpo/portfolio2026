@@ -4,7 +4,7 @@ import Hero from "../components/hero/Hero.astro";
 import Button from "@/components/ui/Button";
 import { getPortfolioData, getPortfolioItems } from "@/utils/data";
 
-const { contact } = await getPortfolioData();
+const { contact } = getPortfolioData();
 const portfolioItems = await getPortfolioItems();
 ---
 

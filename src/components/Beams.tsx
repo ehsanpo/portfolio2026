@@ -56,7 +56,7 @@ export function ProcessFlowDiagram() {
 	const bugFixesRef = useRef<HTMLDivElement>(null);
 
 	const CircleWithTooltip = (
-		circleRef: React.RefObject<HTMLDivElement>,
+		circleRef: React.RefObject<HTMLDivElement | null>,
 		IconComponent: React.FC<React.SVGProps<SVGSVGElement>>,
 		tooltipText: string
 	) => (

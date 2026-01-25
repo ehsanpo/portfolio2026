@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { findTimelineMatch } from "../utils/client-data";
 import Card3D from "./Card3D";
@@ -8,7 +7,6 @@ interface StackCardProps {
 	readonly labels: string[];
 	readonly icon: string;
 	readonly data: string[];
-	readonly parentIndex: number;
 }
 
 function getExpertiseColor(level: number): string {
@@ -18,21 +16,7 @@ function getExpertiseColor(level: number): string {
 	return "bg-gray-400";
 }
 
-export default function StackCard({ slug, labels, icon, data, parentIndex }: StackCardProps) {
-	const colors = [
-		"from-primary-500/50 to-primary-500",
-		"from-primary-500/50 to-primary-500",
-		"from-primary-500/50 to-primary-500",
-
-		"from-orange-500/50 to-orange-500 ",
-		"from-orange-500/50 to-orange-500",
-		"from-orange-500/50 to-orange-500 ",
-
-		"from-blue-500/50 to-secondary-500 ",
-		"from-blue-500/50 to-secondary-500 ",
-		"from-blue-500/50 to-secondary-500 ",
-	];
-
+export default function StackCard({ slug, labels, icon, data }: StackCardProps) {
 	const getExpertiseLevel = (level: number): string => {
 		if (level === 10) return "Expert";
 		if (level >= 7 && level <= 9) return "Advanced";
@@ -63,7 +47,7 @@ export default function StackCard({ slug, labels, icon, data, parentIndex }: Sta
 										<span className="text-gray-700 dark:text-gray-300">
 											<span
 												className={`mr-1 inline-block h-3 w-3 rounded-full ${getExpertiseColor(
-													timelineMatch?.stillActive
+													parseInt(data[index]) || 0
 												)}`}
 											></span>
 											{label}

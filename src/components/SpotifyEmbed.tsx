@@ -1,4 +1,3 @@
-import React from "react";
 interface SpotifyEmbedProps {
 	playlistId: string;
 	title: string;

@@ -1,5 +1,3 @@
-import React from "react";
-
 const SkillsInfo = ({ show }: { show?: boolean }) => {
 	return (
 		<div className="flex justify-center">

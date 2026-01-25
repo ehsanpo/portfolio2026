@@ -1,4 +1,3 @@
-import React from "react";
 import "./RankTimeline.css";
 import { getPortfolioData } from "../utils/client-data.ts";
 

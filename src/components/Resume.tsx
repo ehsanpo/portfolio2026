@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { Toolbar } from "@/components/resume/Toolbar";
 import { Main } from "@/components/resume/Main";

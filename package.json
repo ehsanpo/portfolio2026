@@ -6,9 +6,11 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"check": "astro check"
 	},
 	"dependencies": {
+		"@astrojs/check": "^0.9.6",
 		"@astrojs/mdx": "^4.3.13",
 		"@astrojs/react": "^4.4.2",
 		"@astrojs/sitemap": "^3.7.0",
@@ -34,12 +36,14 @@
 		"react-tooltip": "^5.30.0",
 		"tailwind-merge": "^3.4.0",
 		"tailwindcss": "^4.1.18",
+		"typescript": "^5.9.3",
 		"vaul": "^1.1.2",
 		"zustand": "^5.0.10"
 	},
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.19",
 		"@types/canvas-confetti": "^1.9.0",
+		"@types/react-calendar-heatmap": "^1.9.0",
 		"prettier": "3.8.1",
 		"prettier-plugin-tailwindcss": "^0.7.2"
 	}

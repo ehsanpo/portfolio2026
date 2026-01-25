@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CalendarHeatmap from "react-calendar-heatmap";
+import CalendarHeatmap, { type ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
@@ -222,7 +222,7 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 								startDate={new Date(`${selectedYear}-01-01`)}
 								endDate={new Date(`${selectedYear}-12-31`)}
 								values={heatMapData}
-								classForValue={(value) => {
+								classForValue={(value: ReactCalendarHeatmapValue<string> | undefined) => {
 									if (!value || value.count === 0) {
 										return "color-empty";
 									}
@@ -232,11 +232,12 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 									if (value.count >= 7 && value.count <= 9) return "color-scale-3";
 									return "color-scale-4";
 								}}
-								tooltipDataAttrs={(value) =>
-									({
+								tooltipDataAttrs={(value: ReactCalendarHeatmapValue<string> | undefined) => {
+									if (!value) return {};
+									return {
 										"data-tooltip-content": `${new Date(value.date).toISOString().slice(0, 10)} has count: ${value.count}`,
-									}) as Record<string, string>
-								}
+									} as Record<string, string>;
+								}}
 							/>
 							<ReactTooltip id="tooltip-graph" />
 						</div>

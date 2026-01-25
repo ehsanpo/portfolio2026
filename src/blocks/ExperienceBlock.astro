@@ -1,10 +1,9 @@
 ---
 import { getPortfolioData } from "@/utils/data";
-import { calculatePreciseDuration } from "@/utils/client-data";
 import TimelineCard from "@/components/TimelineCard";
 import BoxReveal from "@/components/ui/box-reveal";
 
-const { companies, education, basics } = getPortfolioData();
+const { companies, education } = getPortfolioData();
 
 const workItems = companies
 	.map((c) => ({

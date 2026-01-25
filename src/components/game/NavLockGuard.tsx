@@ -7,7 +7,6 @@ const isUnlocked = (href: string, unlocks: Record<UnlockablePage, boolean>) => {
 	return unlocks[key] ?? true;
 };
 
-
 let lockStateApplied = false;
 
 const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) => {
@@ -23,7 +22,6 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 		const locked = mode === "active" && href !== "/" && !isUnlocked(href, unlocks);
 		const hideLife = isLife && (mode !== "active" || !unlocks["/life"]);
 
-		
 		if (hideLife) {
 			el.style.display = "none";
 			return;
@@ -31,7 +29,6 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 
 		el.style.display = "";
 
-		
 		const originalText = el.textContent?.replace(/🔒\s*/, "") || "";
 
 		if (locked) {
@@ -39,7 +36,6 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 			el.title = "Locked - unlock in Shop";
 			el.classList.add("pointer-events-none", "opacity-60");
 
-			
 			if (!el.textContent?.includes("🔒")) {
 				el.textContent = `🔒 ${originalText}`;
 			}
@@ -54,7 +50,6 @@ const applyLockState = (mode: string, unlocks: Record<UnlockablePage, boolean>) 
 			el.removeAttribute("aria-disabled");
 			el.classList.remove("pointer-events-none", "opacity-60");
 
-			
 			if (el.textContent?.includes("🔒")) {
 				el.textContent = originalText;
 			}
@@ -76,7 +71,6 @@ export function NavLockGuard() {
 	useEffect(() => {
 		if (!mounted) return;
 
-		
 		const cleanup = applyLockState(mode, unlocks);
 		lockStateApplied = true;
 

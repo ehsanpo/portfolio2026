@@ -2,7 +2,6 @@
 @plugin "@tailwindcss/typography";
 @import "./duck-sprite.css";
 
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
@@ -340,7 +339,6 @@ body {
 		transform: translateX(-20%) translateY(-10%);
 	}
 }
-
 
 .fire-sprite {
 	background-image: url("/img/px/fire/fire_spritesheet.png");

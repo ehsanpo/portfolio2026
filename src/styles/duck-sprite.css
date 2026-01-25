@@ -1,7 +1,3 @@
-
-
-
-
 .duck-container {
 	pointer-events: none;
 	overflow: hidden;
@@ -50,7 +46,6 @@
 .duck-sprite {
 	transition: transform 0.3s ease;
 }
-
 
 .duck-sprite.idle_normal {
 	animation: duck-idle_normal 1000ms infinite steps(2);

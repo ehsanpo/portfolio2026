@@ -13,11 +13,9 @@ const { stacks, charts } = await getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "engineering-manager");
 
-
 const managementStacks = stacks.filter((stack) =>
 	["Front-end", "Backend", "DevOps", "CI/CD"].includes(stack.slug)
 );
-
 
 const managementChart = {
 	slug: "Engineering Leadership",
@@ -53,7 +51,6 @@ const managementChart = {
 
 	<section class="container mx-auto px-4 pb-12">
 		<div class="mx-auto max-w-4xl">
-			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
 				<p class="text-lg text-gray-700 dark:text-gray-300">
@@ -64,7 +61,6 @@ const managementChart = {
 				</p>
 			</div>
 
-			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
 				<div class="space-y-6">
@@ -102,7 +98,6 @@ const managementChart = {
 				</div>
 			</div>
 
-			
 			<div class="mb-16">
 				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
 				<div class="grid gap-6 md:grid-cols-2">
@@ -159,7 +154,6 @@ const managementChart = {
 		</div>
 	</section>
 
-	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Technical Stacks</Heading>
@@ -173,7 +167,6 @@ const managementChart = {
 		</div>
 	</section>
 
-	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Leadership Skills</Heading>
@@ -181,10 +174,8 @@ const managementChart = {
 		</div>
 	</section>
 
-	
 	<ToolsList />
 
-	
 	<section class="py-12">
 		<div class="container mx-auto">
 			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
@@ -192,7 +183,6 @@ const managementChart = {
 		</div>
 	</section>
 
-	
 	<section class="container mx-auto px-4 py-16">
 		<div class="gradient-bg rounded-lg py-12 text-center">
 			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">

@@ -4,7 +4,7 @@ interface GuestbookFormProps {
 	onSuccess: () => void;
 }
 
-const API_URL = "https:
+const API_URL = "https://guestbook-serverless-er4f3.vercel.app/api/guestbook";
 
 export default function GuestbookForm({ onSuccess }: GuestbookFormProps) {
 	const [name, setName] = useState("");

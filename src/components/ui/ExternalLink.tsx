@@ -9,7 +9,6 @@ interface ExternalLinkProps {
 	showIcon?: boolean;
 }
 
-
 export const ExternalLink: React.FC<ExternalLinkProps> = ({
 	href,
 	children,

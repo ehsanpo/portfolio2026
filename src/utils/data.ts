@@ -2,7 +2,6 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { BlogPost } from "./client-data";
 
-
 export type { BlogPost };
 export {
 	getPortfolioData,

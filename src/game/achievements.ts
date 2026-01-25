@@ -17,7 +17,7 @@ export const achievementDefinitions: AchievementDefinition[] = [
 		id: "link-liberator",
 		title: "Link Liberator",
 		description: "Unlock three header links.",
-		condition: (state) => Object.values(state.unlocks).filter(Boolean).length >= 4, 
+		condition: (state) => Object.values(state.unlocks).filter(Boolean).length >= 4,
 	},
 	{
 		id: "combo-master",

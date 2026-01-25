@@ -28,7 +28,6 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 		return () => setMounted(false);
 	}, []);
 
-	
 	useEffect(() => {
 		if (isExpanded) {
 			document.body.style.overflow = "hidden";

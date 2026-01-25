@@ -6,7 +6,6 @@ export default function LifeGuard() {
 		const mode = useGameStore.getState().mode;
 		const unlocked = useGameStore.getState().unlocks["/life"];
 
-		
 		if (mode !== "active" || !unlocked) {
 			window.location.href = "/";
 		}

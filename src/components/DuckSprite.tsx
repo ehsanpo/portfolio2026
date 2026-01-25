@@ -16,10 +16,9 @@ const DuckSprite: React.FC<DuckSpriteProps> = ({ className = "" }) => {
 	};
 
 	useEffect(() => {
-		
 		const getContainerWidth = () => {
 			const bodyWidth = document.body.clientWidth;
-			return Math.max(320, bodyWidth - 32); 
+			return Math.max(320, bodyWidth - 32);
 		};
 
 		const containerWidth = getContainerWidth();
@@ -51,9 +50,9 @@ const DuckSprite: React.FC<DuckSpriteProps> = ({ className = "" }) => {
 			setPosition((prev) => {
 				const speed = direction === "right" ? 2 : -2;
 				const newPos = prev + speed;
-				
+
 				const bodyWidth = document.body.clientWidth;
-				const maxX = Math.max(0, bodyWidth - 96); 
+				const maxX = Math.max(0, bodyWidth - 96);
 
 				if (newPos <= 0) {
 					setDirection("right");

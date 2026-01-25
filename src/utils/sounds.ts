@@ -47,7 +47,6 @@ export const generateSound = (type: "duck" | "cat" | "click" | "fire") => {
 		filterNode.frequency.setValueAtTime(2000, audioContext.currentTime);
 		filterNode.Q.setValueAtTime(1, audioContext.currentTime);
 
-		
 		const startFreq = 900 + Math.random() * 300;
 		const midFreq = 600 + Math.random() * 200;
 		const endFreq = 250 + Math.random() * 150;
@@ -100,7 +99,6 @@ export const generateSound = (type: "duck" | "cat" | "click" | "fire") => {
 		filterNode.connect(gainNode);
 		gainNode.connect(audioContext.destination);
 
-		
 		const baseFreq = 80 + Math.random() * 120;
 		oscillator.frequency.setValueAtTime(baseFreq, audioContext.currentTime);
 		oscillator.frequency.linearRampToValueAtTime(
@@ -110,7 +108,6 @@ export const generateSound = (type: "duck" | "cat" | "click" | "fire") => {
 
 		oscillator.type = "sawtooth";
 
-		
 		filterNode.type = "bandpass";
 		filterNode.frequency.setValueAtTime(400 + Math.random() * 800, audioContext.currentTime);
 		filterNode.Q.setValueAtTime(0.5, audioContext.currentTime);

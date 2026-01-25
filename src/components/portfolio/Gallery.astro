@@ -38,7 +38,6 @@ const { images, alt } = Astro.props;
 	const initPhotoSwipe = () => {
 		const items = document.querySelectorAll(".gallery-item");
 
-		
 		items.forEach((item) => {
 			const newItem = item.cloneNode(true);
 			item.parentNode.replaceChild(newItem, item);
@@ -57,7 +56,7 @@ const { images, alt } = Astro.props;
 						h: parseInt(item.getAttribute("data-pswp-height")),
 					})),
 					pswpModule: PhotoSwipe,
-					index, 
+					index,
 				});
 
 				gallery.init();
@@ -65,9 +64,7 @@ const { images, alt } = Astro.props;
 		});
 	};
 
-	
 	initPhotoSwipe();
 
-	
 	document.addEventListener("astro:page-load", initPhotoSwipe);
 </script>

@@ -14,7 +14,6 @@ interface TimelineCardProps {
 const TimelineCard: React.FC<TimelineCardProps> = ({ title, subTitle, date, type, delay = 0 }) => {
 	const Icon = type === "work" ? Briefcase : GraduationCap;
 
-	
 	const iconSettings =
 		type === "work"
 			? { bg: "rgba(231, 74, 131, 0.1)", color: "#e74a83", glow: "rgba(231, 74, 131, 0.3)" }

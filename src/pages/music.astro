@@ -1,7 +1,116 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SpotifyEmbed from "../components/SpotifyEmbed";
+import SpotifyEmbed from "../components/audio/SpotifyEmbed";
 import PageHero from "@/components/hero/PageHero.astro";
+import AudioVisualizer from "@/components/audio/AudioVisualizer";
+import LocalMusicPlayer from "@/components/audio/LocalMusicPlayer";
+
+// Get local music tracks from /public/music
+const musicFiles = [
+	{
+		filename: "Ehsan Pourhadi - Call me_output.wav",
+		title: "Call me",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Call me_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Comes Again (Extend)_output.wav",
+		title: "Comes Again (Extend)",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Comes Again (Extend)_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Doom_output.wav",
+		title: "Doom",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Doom_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Exit_output.wav",
+		title: "Exit",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Exit_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Falling_output.wav",
+		title: "Falling",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Falling_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Falling_output_output.wav",
+		title: "Falling",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Falling_output_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Habbits_output.wav",
+		title: "Habbits",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Habbits_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - livet går vidare_output.wav",
+		title: "Livet går vidare",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - livet går vidare_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Never Be Loanly_output.wav",
+		title: "Never Be Lonely",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Never Be Loanly_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Skyline_output.wav",
+		title: "Skyline",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Skyline_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Sometimes _output.wav",
+		title: "Sometimes",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Sometimes _output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Spaced Out Remix_output.wav",
+		title: "Spaced Out Remix",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Spaced Out Remix_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - trap_output.wav",
+		title: "Trap",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - trap_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - untiteled 17 -2 _output.wav",
+		title: "Untitled 17",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - untiteled 17 -2 _output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - untitled 9 _output.wav",
+		title: "Untitled 9",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - untitled 9 _output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - Voices in my head_output.wav",
+		title: "Voices in my head",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - Voices in my head_output.wav",
+	},
+	{
+		filename: "Ehsan Pourhadi - WORK IT OUT!_output.wav",
+		title: "Work It Out!",
+		artist: "Ehsan Pourhadi",
+		src: "/music/Ehsan Pourhadi - WORK IT OUT!_output.wav",
+	},
+	{ filename: "L.mp3", title: "L", artist: "Ehsan Pourhadi", src: "/music/L.mp3" },
+];
 
 const playlists = [
 	{
@@ -78,8 +187,27 @@ const playlists = [
 <Layout title="Music - Developer Portfolio">
 	<PageHero title="Music" />
 	<div class="container mx-auto px-4 py-20">
-		<div class="grid gap-4 md:grid-cols-3">
-			{playlists.map((playlist) => <SpotifyEmbed {...playlist} client:visible />)}
+		{/* Local Music Section */}
+		{/* Local Music Section */}
+		<div class="mb-20">
+			<h2 class="mb-8 text-3xl font-bold dark:text-white">My Compositions</h2>
+			<div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
+				<div class="order-2 h-full lg:order-1">
+					<p class="text-muted-foreground mb-4">Click any track to start playing:</p>
+					<LocalMusicPlayer client:only="react" tracks={musicFiles} />
+				</div>
+				<div class="order-1 h-full min-h-[400px] lg:order-2">
+					<AudioVisualizer client:only="react" />
+				</div>
+			</div>
+		</div>
+
+		{/* Spotify Playlists Section */}
+		<div>
+			<h2 class="mb-8 text-3xl font-bold dark:text-white">Spotify Playlists</h2>
+			<div class="grid gap-4 md:grid-cols-3">
+				{playlists.map((playlist) => <SpotifyEmbed {...playlist} client:visible />)}
+			</div>
 		</div>
 	</div>
 </Layout>

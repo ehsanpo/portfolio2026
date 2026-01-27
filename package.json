@@ -8,7 +8,7 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"check": "astro check",
-		"deploy": "npm run build && gcloud builds submit --tag gcr.io/ep-portfolio2026/web && gcloud run deploy web --image gcr.io/ep-portfolio2026/web --platform managed --region us-central1 --allow-unauthenticated"
+		"deploy": "npm run build && gcloud builds submit --tag gcr.io/ep-portfolio2026/web && gcloud run deploy web --image gcr.io/ep-portfolio2026/web --platform managed --region europe-west4 --allow-unauthenticated"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.6",

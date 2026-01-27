@@ -1,0 +1,10 @@
+# Ignore everything by default
+**
+
+# Allow the built site
+!dist/**
+!dist
+
+# Allow Docker + server config
+!Dockerfile
+!Caddyfile

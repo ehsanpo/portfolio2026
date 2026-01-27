@@ -29,7 +29,7 @@ const SkillsInfo = ({ show: _show }: { show?: boolean }) => {
 								I’ve worked with it professionally and deployed it to production.
 							</li>
 							<li>
-								<span className="font-basement text-primary">Advanced (7-9): </span>I have several years
+								<span className="font-basement text-primary">Advanced (8-9): </span>I have several years
 								of experience, regularly working with it in production environments.
 							</li>
 							<li>

@@ -7,6 +7,7 @@ const { companies, education } = getPortfolioData();
 
 const workItems = companies
 	.map((c) => ({
+		id: c.id,
 		title: c.position,
 		subTitle: c.name,
 		date: c.year,
@@ -39,7 +40,9 @@ const educationItems = education
 				<div class="flex flex-col gap-4">
 					{
 						workItems.map((item, index) => (
-							<TimelineCard {...item} delay={index * 0.1} client:load />
+							<a href={`/work/${item.id}`} style="text-decoration: none;">
+								<TimelineCard {...item} delay={index * 0.1} client:load />
+							</a>
 						))
 					}
 				</div>

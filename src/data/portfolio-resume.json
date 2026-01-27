@@ -27,6 +27,7 @@
 			"year": "2023 - 2025",
 			"image": "/img/company/Tlogo.jpg",
 			"description": "Collaborated on the development of various software projects using React, Java, and ElectronJs.",
+			"link": "/work/telavox",
 			"detailedDescription": [
 				"Developed and maintained softphone, messaging, and video conferencing applications used in a large-scale communications platform.",
 				"Contributed to the design and architecture of web-based applications with a focus on performance and maintainability.",
@@ -35,8 +36,6 @@
 			],
 			"tags": ["Electron", "TypeScript", "React", "Node.js", "Java", "ElectronJs"],
 			"awards": [],
-			"featuredProjectMarkdown": "/projects/telavox/next-gen-video-conferencing.md",
-			"agencyId": null,
 			"softSkills": [
 				"Cross-functional collaboration",
 				"Technical leadership",
@@ -108,6 +107,7 @@
 			"year": "2020 - 2023",
 			"image": "/img/company/bb2logo.jpg",
 			"description": "Contributed to the implementation of web applications utilizing Gatsby, NextJs, and Ruby on Rails. Also managed projects and team.",
+			"link": "/work/bredband2",
 			"detailedDescription": [
 				"Developed and maintained the company's main website, e-commerce shop, and customer self-service portals.",
 				"Implemented both frontend and backend features to support new product offerings and customer workflows.",
@@ -117,8 +117,6 @@
 			],
 			"tags": ["Gatsby", "Next.js", "Ruby on Rails", "TypeScript", "React"],
 			"awards": [],
-			"featuredProjectMarkdown": "/projects/bredband2/customer-service-portal.md",
-			"agencyId": null,
 			"softSkills": [
 				"UX collaboration",
 				"Project management",
@@ -202,6 +200,7 @@
 			"year": "2019 - 2020",
 			"image": "/img/company/EPlogo.jpg",
 			"description": "Operated as an independent web developer, delivering high-quality responsive websites and web applications to clients.",
+			"link": "/work/freelance-2019",
 			"detailedDescription": [
 				"Delivered multiple client-facing WordPress websites tailored to specific business needs.",
 				"Designed and built custom WordPress themes to strengthen branding and usability.",
@@ -211,8 +210,6 @@
 			],
 			"tags": ["Node.js", "WordPress", "WooCommerce", "SEO"],
 			"awards": [],
-			"featuredProjectMarkdown": null,
-			"agencyId": null,
 			"softSkills": [
 				"Client management",
 				"Business consulting",
@@ -241,6 +238,7 @@
 			"year": "2017 - 2019",
 			"image": "/img/company/GGlogo.jpg",
 			"description": "Served as a technical lead at an advertising agency, offering clients strategic digital communication solutions for expanding their market reach.",
+			"link": "/work/guts-glory",
 			"detailedDescription": [
 				"Led technical execution of WordPress-based web projects from planning to delivery.",
 				"Oversaw architecture decisions and ensured code quality through reviews and mentoring.",
@@ -257,8 +255,6 @@
 					"link": "portfolio/malmo-saluhall"
 				}
 			],
-			"featuredProjectMarkdown": "/projects/guts-glory/malmo-saluhall.md",
-			"agencyMarkdown": "/agencies/guts-glory.md",
 			"softSkills": [
 				"Technical leadership",
 				"Mentoring",
@@ -355,6 +351,7 @@
 			"year": "2014 - 2017",
 			"image": "/img/company/WSlogo.jpg",
 			"description": "Managed end-to-end development projects for a global web agency, specializing in UX/UI design, web development, and digital marketing.",
+			"link": "/work/whitespace",
 			"detailedDescription": [
 				"Delivered end-to-end web solutions for international clients across multiple industries.",
 				"Built responsive user interfaces and backend functionality for complex web applications.",
@@ -364,8 +361,6 @@
 			],
 			"tags": ["PHP", "Node.js", "UX/UI Design", "Agile"],
 			"awards": [],
-			"featuredProjectMarkdown": "/projects/whitespace/job-ad-platform.md",
-			"agencyMarkdown": "/agencies/whitespace.md",
 			"softSkills": [
 				"Client consulting",
 				"Agile methodology",
@@ -466,8 +461,6 @@
 					"link": "portfolio/toolpool"
 				}
 			],
-			"featuredProjectMarkdown": "/projects/the-fan-club/toolpool.md",
-			"agencyMarkdown": "/agencies/the-fan-club.md",
 			"softSkills": [
 				"Creative collaboration",
 				"Campaign strategy",
@@ -577,8 +570,6 @@
 			],
 			"tags": ["WordPress", "JavaScript", "Web Development"],
 			"awards": [],
-			"featuredProjectMarkdown": "/projects/next-g-design/ecommerce-artisans.md",
-			"agencyMarkdown": "/agencies/next-g-design.md",
 			"softSkills": [
 				"Entrepreneurship",
 				"Business development",

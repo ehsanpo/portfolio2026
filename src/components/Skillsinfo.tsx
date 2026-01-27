@@ -21,19 +21,19 @@ const SkillsInfo = ({ show: _show }: { show?: boolean }) => {
 					<div className="relative rounded-2xl border bg-gray-300 bg-gradient-to-br p-4 shadow-[0_0_30px_rgba(79,70,229,0.15)] backdrop-blur-md dark:border-white/10 dark:bg-neutral-700">
 						<ul className="space-y-2">
 							<li>
-								<span className="font-basement text-primary/60">Beginner: </span>
-								I’ve experimented and built something basic for personal use.
+								<span className="font-basement text-accent">Beginner (1-4): </span>
+								XXX I’ve experimented and built something basic for personal use.
 							</li>
 							<li>
-								<span className="font-basement text-primary/80">Professional: </span>
+								<span className="font-basement text-primary-300">Professional (5-7): </span>
 								I’ve worked with it professionally and deployed it to production.
 							</li>
 							<li>
-								<span className="font-basement text-primary">Advanced: </span>I have several years
+								<span className="font-basement text-primary">Advanced (7-9): </span>I have several years
 								of experience, regularly working with it in production environments.
 							</li>
 							<li>
-								<span className="font-basement text-secondary">Expert: </span>: I’m highly
+								<span className="font-basement text-secondary-400">Expert (10): </span>: I’m highly
 								confident, capable of mentoring others, and comfortable making architectural
 								decisions.
 							</li>

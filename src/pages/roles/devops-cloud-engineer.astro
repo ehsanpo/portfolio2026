@@ -1,4 +1,5 @@
 ---
+
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/hero/Hero.astro";
 import StackCard from "@/components/StackCard";
@@ -9,9 +10,21 @@ import { Heading } from "@/components/ui/heading";
 import { getPortfolioData, getRoles } from "@/utils/data";
 import BoxReveal from "@/components/ui/box-reveal";
 
+
+import { getRoleImage } from "@/utils/roleImageMap";
+
+
 const { stacks } = getPortfolioData();
 const roles = getRoles();
 const currentRole = roles.find((role) => role.slug === "devops-cloud-engineer");
+const mappedImage = currentRole?.image ? getRoleImage(currentRole.image) : undefined;
+const displayImage = mappedImage && {
+	src: mappedImage.src,
+	alt: currentRole?.title,
+	width: mappedImage.width,
+	height: mappedImage.height,
+};
+
 
 const devopsStacks = stacks.filter((stack) =>
 	["DevOps", "CI/CD", "Cloud", "Backend"].includes(stack.slug)
@@ -32,7 +45,7 @@ const devopsChart = {
 ---
 
 <Layout title="DevOps Cloud Engineer - Ehsan Pourhadi">
-	<Hero fullHeight title="DevOps Cloud Engineer" img={currentRole?.image}>
+	<Hero fullHeight title="DevOps Cloud Engineer" img={displayImage.src}>
 		<div>
 			<BoxReveal boxColor="bg-secondary-400" duration={0.1} delay={0.2} client:load>
 				<p class="mb-5 text-2xl dark:text-gray-300">

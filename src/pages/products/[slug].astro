@@ -53,7 +53,7 @@ const { Content } = await item.content.render();
 <Layout
 	title={`${item.title} - Products`}
 	description={item.description || item.tagline || `${item.title} - ${item.client}`}
-	image={item.background_image?.src || item.logo?.src || "/img/og-default.jpg"}
+	image={item.background_image?.src || item.logo?.src || "/img/ogdefault.jpg"}
 	imageAlt={`${item.title} - ${item.client}`}
 >
 	<article class="relative min-h-screen bg-white pt-4 dark:bg-neutral-900">

@@ -13,10 +13,10 @@ cover: cover.png
 
 Alright, this one started as a couple of bookmarks… and then somehow turned into a tiny design museum I built in my browser at 1:47am.
 
-I kept seeing these words everywhere — *glassmorphism*, *neubrutalism*, *claymorphism* — and my brain did that thing where it nods confidently while understanding absolutely nothing. So instead of reading another “Top UI Trends” post, I did what usually works for me:
+I kept seeing these words everywhere, *glassmorphism*, *neubrutalism*, *claymorphism* and my brain did that thing where it nods confidently while understanding absolutely nothing. So instead of reading another “Top UI Trends” post, I did what usually works for me:
 I opened an empty HTML file and started breaking things until the vibes made sense.
 
-Whats is this "ism" thing?
+What is this "ism" thing?
 In the context of design and art, adding "-ism" to the end of a word turns a specific technique or philosophy into a distinct movement or category. In the digital design world, new trends pop up every few years. To make them easier to discuss, designers give them a name ending in "-ism" (or "-morphism" for form/shape).
 
 This post is that experiment.
@@ -27,7 +27,7 @@ We’re going to build **tiny ui element per design style**, tweak a couple of p
 Think of it like switching CSS environments and noticing how your app’s mood changes.
 
 Design styles aren’t decorations.
-They’re **constraint systems** — opinions about depth, hierarchy, feedback, and affordances.
+They’re **constraint systems**, opinions about depth, hierarchy, feedback, and affordances.
 
 So instead of talking about styles abstractly, I built the same small UI _six times_.
 Same intent. Same structure.
@@ -35,7 +35,7 @@ Different rules.
 
 
 ---
-## Glassmorphism — UI as atmosphere
+## Glassmorphism - UI as atmosphere
 
 Glassmorphism works when the interface feels like a _layer_, not a surface.
 It only works if there’s something *behind* it. Otherwise, it’s just a semi-transparent rectangle having an identity crisis.
@@ -193,7 +193,7 @@ The real levers here are:
 
 ---
 
-## Neumorphism / skeuomorphism — memory as affordance
+## Neumorphism / skeuomorphism - memory as affordance
 
 Skeuomorphism doesn’t want you to *learn* the interface.
 
@@ -335,7 +335,7 @@ Skeuomorphism fails quietly, it just starts feeling fake.
 
 ---
 
-## Neobrutalism — clarity through aggression
+## Neobrutalism - clarity through aggression
 
 Neobrutalism has no interest in being polite.
 
@@ -479,7 +479,7 @@ Neobrutalism lives or dies by separation.
 
 ---
 
-## Claymorphism — volume-first UI
+## Claymorphism - volume-first UI
 
 Claymorphism feels like neumorphism that discovered depth sliders and never looked back.
 
@@ -620,13 +620,13 @@ The real controls:
 Lower the lift too much and the UI loses authority.
 Clay needs weight to feel believable.
 
-🧠 *Mental model*: claymorphism is depth without sharpness — like rendering UI in a softer physics engine.
+🧠 *Mental model*: claymorphism is depth without sharpness, like rendering UI in a softer physics engine.
 
 🧰 Tool to use: https://hype4.academy/tools/claymorphism-generator
 
 ---
 
-## Minimalism — hierarchy without decoration
+## Minimalism - hierarchy without decoration
 
 Minimalism isn’t about removing things.
 It’s about removing excuses.
@@ -730,13 +730,13 @@ There’s only one honest control here:
 
 If spacing becomes arbitrary, hierarchy collapses instantly.
 
-Minimalism is unforgiving — which is why it’s powerful.
+Minimalism is unforgiving, which is why it’s powerful.
 
 🧠 *Mental model*: minimalism is aggressive refactoring of UI.
 
 ---
 
-## Terminalism (I made this up my self) — information over comfort 
+## Terminalism (I made this up my self) - information over comfort 
 
 Terminal-style UI isn’t cosplay.
 
@@ -750,7 +750,7 @@ This style assumes a few things up front:
 
 There’s no depth here. No illusion of touch.
 
-Everything is explicit, linear, and slightly uncomfortable — on purpose.
+Everything is explicit, linear, and slightly uncomfortable, on purpose.
 
 The constraints are brutal but clarifying:
 
@@ -772,7 +772,7 @@ That tension is the whole lesson.
 
 ---
 
-## Terminalism  — Interactive Demo (HTML + CSS + JS)
+## Terminalism  - Interactive Demo (HTML + CSS + JS)
 
 <style>
 .term-demo {

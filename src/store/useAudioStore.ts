@@ -13,12 +13,23 @@ interface AudioState {
   isPlaying: boolean;
   playlist: Track[];
   currentIndex: number;
+  currentTime: number;
+  duration: number;
+  volume: number;
+  isMuted: boolean;
+  seekVersion: number;
+  seekTime: number;
   setPlaylist: (tracks: Track[]) => void;
   playTrack: (track: Track) => void;
   pauseTrack: () => void;
   resumeTrack: () => void;
   nextTrack: () => void;
   prevTrack: () => void;
+  setCurrentTime: (time: number) => void;
+  setDuration: (duration: number) => void;
+  setVolume: (volume: number) => void;
+  setMuted: (muted: boolean) => void;
+  requestSeek: (time: number) => void;
 }
 
 export const useAudioStore = create<AudioState>((set, get) => ({
@@ -26,6 +37,12 @@ export const useAudioStore = create<AudioState>((set, get) => ({
   isPlaying: false,
   playlist: [],
   currentIndex: 0,
+  currentTime: 0,
+  duration: 0,
+  volume: 0.75,
+  isMuted: false,
+  seekVersion: 0,
+  seekTime: 0,
   setPlaylist: (tracks) => set({ playlist: tracks }),
   playTrack: (track) => {
     const { playlist } = get();
@@ -40,6 +57,8 @@ export const useAudioStore = create<AudioState>((set, get) => ({
       isPlaying: true,
       playlist: newPlaylist,
       currentIndex: trackIndex,
+      currentTime: 0,
+      duration: 0,
     });
   },
   pauseTrack: () => set({ isPlaying: false }),
@@ -52,6 +71,8 @@ export const useAudioStore = create<AudioState>((set, get) => ({
         currentIndex: nextIndex,
         currentTrack: playlist[nextIndex],
         isPlaying: true,
+        currentTime: 0,
+        duration: 0,
       });
     }
   },
@@ -63,7 +84,19 @@ export const useAudioStore = create<AudioState>((set, get) => ({
         currentIndex: prevIndex,
         currentTrack: playlist[prevIndex],
         isPlaying: true,
+        currentTime: 0,
+        duration: 0,
       });
     }
   },
+  setCurrentTime: (time) => set({ currentTime: time }),
+  setDuration: (duration) => set({ duration }),
+  setVolume: (volume) => set({ volume: Math.min(1, Math.max(0, volume)) }),
+  setMuted: (muted) => set({ isMuted: muted }),
+  requestSeek: (time) =>
+    set((state) => ({
+      seekVersion: state.seekVersion + 1,
+      seekTime: Math.max(0, time),
+      currentTime: Math.max(0, time),
+    })),
 }));

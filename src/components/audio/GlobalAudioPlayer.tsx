@@ -1,18 +1,29 @@
 import { useAudioStore } from "@/store/useAudioStore";
-import type { Track } from "@/store/useAudioStore";
 import { useState, useRef, useEffect } from "react";
 import Button from "@/components/ui/Button";
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Minimize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function GlobalAudioPlayer() {
-	const { currentTrack, isPlaying, pauseTrack, resumeTrack, nextTrack, prevTrack, playlist } =
-		useAudioStore();
-	const [volume, setVolume] = useState(0.7);
-	const [isMuted, setIsMuted] = useState(false);
+	const {
+		currentTrack,
+		isPlaying,
+		pauseTrack,
+		resumeTrack,
+		nextTrack,
+		prevTrack,
+		playlist,
+		volume,
+		isMuted,
+		setMuted,
+		currentTime,
+		duration,
+		setCurrentTime,
+		setDuration,
+		seekVersion,
+		seekTime,
+	} = useAudioStore();
 	const [isMinimized, setIsMinimized] = useState(false);
-	const [currentTime, setCurrentTime] = useState(0);
-	const [duration, setDuration] = useState(0);
 
 	// Visual equalizer state
 	const [audioData, setAudioData] = useState<number[]>(new Array(20).fill(0));
@@ -57,6 +68,20 @@ export function GlobalAudioPlayer() {
 			audioRef.current.volume = isMuted ? 0 : volume;
 		}
 	}, [volume, isMuted]);
+
+	// Handle external seek requests
+	useEffect(() => {
+		const audio = audioRef.current;
+		if (!audio) return;
+		if (!Number.isFinite(seekTime)) return;
+		if (seekVersion === 0) return;
+
+		const clamped =
+			Number.isFinite(audio.duration) && audio.duration > 0
+				? Math.min(Math.max(seekTime, 0), audio.duration)
+				: Math.max(seekTime, 0);
+		audio.currentTime = clamped;
+	}, [seekVersion, seekTime]);
 
 	// Visual equalizer animation using simple random data for now
 	// In a real implementation with Web Audio API, we could analyze the actual stream
@@ -106,10 +131,11 @@ export function GlobalAudioPlayer() {
 	};
 
 	const toggleMute = () => {
-		setIsMuted(!isMuted);
+		setMuted(!isMuted);
 	};
 
 	const formatTime = (seconds: number) => {
+		if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
 		const mins = Math.floor(seconds / 60);
 		const secs = Math.floor(seconds % 60);
 		return `${mins}:${secs.toString().padStart(2, "0")}`;

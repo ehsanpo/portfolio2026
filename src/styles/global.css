@@ -360,7 +360,7 @@ body {
 
 .dark .skeu-panel {
 	border-color: rgba(255, 255, 255, 0.06);
-	background: linear-gradient(145deg, #0b0b0b, #050505);
+	background: linear-gradient(5deg, #1f1f1f, #313131);
 	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -460,6 +460,7 @@ body {
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
 }
 
+
 @keyframes pulse-glow {
 	0%,
 	100% {
@@ -475,4 +476,3 @@ body {
 .animate-pulse-glow {
 	animation: pulse-glow 2.6s ease-in-out infinite;
 }
-

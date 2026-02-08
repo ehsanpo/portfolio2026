@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { Disc3, Music, Pause, Play, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
 import AudioVisualizer from "@/components/audio/AudioVisualizer";
 import { useAudioStore } from "@/store/useAudioStore";
+import Decorator from "./Decorator";
 
 interface MusicTrack {
 	filename: string;
@@ -103,11 +104,16 @@ const LocalMusicPlayer: React.FC<LocalMusicPlayerProps> = ({ tracks = [] }) => {
 	}
 
 	return (
-		<div className="mx-auto w-full max-w-5xl">
+		<div className="mx-auto w-full max-w-5xl" data-local-music-player>
 			<div className="skeu-panel p-6">
 				<div className="flex flex-col gap-4 min-h-0 lg:flex-row max-h-[600px]">
 					{/* Left - Visualizer */}
 					<div className="flex-1 skeu-inset p-4 flex flex-col relative">
+
+						<Decorator isOn={isPlaying} /> 
+
+
+
 				
 
 						{/* Spinning Disc */}
@@ -160,7 +166,7 @@ const LocalMusicPlayer: React.FC<LocalMusicPlayerProps> = ({ tracks = [] }) => {
 					{/* Right - Playlist */}
 					<div className="w-full lg:w-72 skeu-inset flex flex-col">
 						{/* Playlist Header */}
-						<div className="p-4 border-b border-border/30">
+						<div className="p-4 border-b border-gray-400/30">
 							<div className="flex items-center gap-2">
 								<Music className="w-4 h-4 text-primary" />
 								<span className="font-semibold text-foreground">Playlist</span>

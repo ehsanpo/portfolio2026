@@ -276,27 +276,6 @@ const AudioVisualizer: React.FC = () => {
 	return (
 		<div className="relative flex h-full min-h-[400px] w-full items-center justify-center overflow-hidden rounded-xl p-4">
 			<canvas ref={canvasRef} className="absolute inset-0 h-full w-full object-contain" />
-
-			{/* Inline SVG without liquid filters */}
-			<svg
-				ref={logoRef}
-				width="60"
-				height="60"
-				viewBox="0 0 27.8 26.7"
-				className="relative z-10 h-16 w-16 opacity-90 transition-transform duration-75 ease-out"
-				style={{ transformStyle: "preserve-3d" }}
-			>
-				<path
-					fill="#efb503"
-					d="M0.5,19.4C0.2,19,0,18.7,0,18.2c0-0.4,0.2-0.8,0.5-1.1L17.1,0.5C17.4,0.2,17.8,0,18.2,0c0.4,0,0.8,0.2,1.1,0.5 c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1L2.7,19.4c-0.3,0.3-0.7,0.5-1.1,0.5C1.2,19.8,0.8,19.7,0.5,19.4z M12.4,25.6 c-0.3,0.3-0.8,0.6-1.3,0.8s-1,0.3-1.5,0.3c-0.5,0-1.1-0.1-1.6-0.3c-0.5-0.2-1.1-0.5-1.5-1l-2.1-2.1c-0.4-0.4-0.6-0.8-0.5-1.2 c0.1-0.4,0.4-0.8,0.9-1.3L20.6,5c0.3-0.3,0.7-0.5,1.1-0.5c0.4,0,0.8,0.2,1.1,0.5c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1 l-15,15L9,23.4c0.2,0.2,0.4,0.2,0.6,0.2c0.2,0,0.5-0.1,0.7-0.4L25.1,8.4C25.4,8.1,25.8,8,26.2,8c0.4,0,0.8,0.2,1.1,0.5 c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1L12.4,25.6z"
-				/>
-			</svg>
-
-			{!isPlaying && (
-				<div className="font-basement pointer-events-none absolute inset-0 flex items-center justify-center text-xl tracking-widest text-white/20 uppercase">
-					Play to Visualize
-				</div>
-			)}
 		</div>
 	);
 };

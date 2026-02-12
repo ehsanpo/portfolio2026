@@ -6,7 +6,7 @@ permalink: telenor
 author: Ehsan
 type: portfolio
 id: 1337
-agency: Ehsan Pourhadi
+agency: Freelance
 category:
   - Backend
   - Front-end

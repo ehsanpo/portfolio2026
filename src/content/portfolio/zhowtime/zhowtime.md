@@ -6,7 +6,7 @@ author: Ehsan
 excerpt: ""
 type: portfolio
 id: 30
-agency: Ehsan Pourhadi
+agency: Freelance
 category:
   - Backend
   - Front-end

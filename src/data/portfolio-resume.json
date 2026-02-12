@@ -191,7 +191,7 @@
 			]
 		},
 		{
-			"id": "freelance-2019",
+			"id": "Freelance",
 			"name": "Ehsan Pourhadi Freelance",
 			"position": "Senior Web Developer & Consultant",
 			"type": "experience",
@@ -201,7 +201,7 @@
 			"image": "/img/company/EPlogo.jpg",
 			"description": "Operated as an independent consultant, delivering high-quality responsive websites and web applications to clients including local businesses and startups.",
 			"link": "/work/freelance-2019",
-			"clients": ["Local businesses", "E-commerce startups", "Service-based companies"],
+			"clients": ["Mocka Master", "Telenor", "Bilcleaniken"],
 			"detailedDescription": [
 				"Delivered multiple client-facing WordPress websites tailored to specific business needs.",
 				"Designed and built custom WordPress themes to strengthen branding and usability.",
@@ -240,7 +240,7 @@
 			"image": "/img/company/GGlogo.jpg",
 			"description": "Served as a technical lead at an advertising agency, offering clients strategic digital communication solutions for expanding their market reach.",
 			"link": "/work/guts-glory",
-			"clients": ["Unilever Food Solutions", "Öresundskraft"],
+			"clients": ["Unilever Food Solutions", "Öresundskraft", "Orkla", "Malmö Saluhall"],
 			"detailedDescription": [
 				"Led technical execution and project delivery of WordPress-based web projects for major clients like Unilever Food Solutions and Öresundskraft from planning through completion.",
 				"Oversaw architecture decisions and ensured code quality through reviews and mentoring.",
@@ -354,9 +354,9 @@
 			"image": "/img/company/WSlogo.jpg",
 			"description": "Managed end-to-end development projects for a global web agency, specializing in UX/UI design, web development, and digital marketing.",
 			"link": "/work/whitespace",
-			"clients": ["Mekonomen", "Malmö Stad", "Triwa", "Kammarkollegiet"],
+			"clients": ["Mekonomen", "Malmö Stad", "Kammarkollegiet", "Triwa"],
 			"detailedDescription": [
-				"Led project development and consulting for international clients like Mekonomen, Triwa, Malmö Stad, Kammarkollegiet across multiple industries.",
+				"Led project development and consulting for international clients across multiple industries.",
 				"Delivered end-to-end web solutions including full-stack development and technical consulting.",
 				"Built responsive user interfaces and backend functionality for complex web applications.",
 				"Worked closely with UX/UI designers to deliver consistent experiences across platforms.",
@@ -569,8 +569,7 @@
 			"detailedDescription": [
 				"Co-founded and operated a design and development agency.",
 				"Built and maintained the company website and multiple client WordPress sites.",
-				"Managed full project lifecycles from client consultation to deployment and support.",
-				"Optimized websites for performance, SEO, and security."
+				"Managed full project lifecycles from client consultation to deployment and support."
 			],
 			"tags": ["WordPress", "JavaScript", "Web Development"],
 			"awards": [],
@@ -601,6 +600,47 @@
 		}
 	],
 	"education": [
+		{
+			"id": "scrimba-ai-engineer",
+			"type": "education",
+			"highlighted": false,
+			"institution": "Scrimba",
+			"degree": "AI Engineer",
+			"title": "AI Engineer",
+			"startDate": "2026",
+			"endDate": "ongoing",
+			"year": "2026 - Ongoing",
+			"description": "Currently pursuing an AI Engineer specialization at Scrimba, developing expertise in artificial intelligence and machine learning technologies.",
+			"detailedDescription": [
+				"Building practical AI applications and solutions.",
+				"Working with Cloudflare Pages and Workers to deploy AI-powered applications.",
+				"Vercel AI SDK for building AI agents and integrating AI capabilities into web applications."
+			],
+			"tags": ["AI", "RAG", "MCP","Developing Agents", "Multimodality"],
+			"image": "/img/experience/education.jpg",
+			"awards": [],
+			"projects": []
+		},
+		{
+			"id": "michigan-leading-people",
+			"type": "education",
+			"highlighted": false,
+			"institution": "University of Michigan / Coursera",
+			"degree": "Leading People and Teams Specialization",
+			"title": "Leading People and Teams Specialization",
+			"startDate": "2026",
+			"endDate": "ongoing",
+			"year": "2026 - Ongoing",
+			"description": "Currently enrolled in the Leading People and Teams Specialization from University of Michigan, developing leadership and team management skills.",
+			"detailedDescription": [
+				"Developing expertise in leading and managing teams.",
+				"Learning best practices in organizational leadership and people management."
+			],
+			"tags": ["Leadership", "Team Management", "Professional Development"],
+			"image": "/img/experience/education.jpg",
+			"awards": [],
+			"projects": []
+		},
 		{
 			"id": "ruby-on-rails-course",
 			"type": "education",
@@ -712,9 +752,7 @@
 			"description": "Pursued an Electricity Program with a specialization in Automation at Universitetsholmen's High School, gaining skills in PLC programming, control engineering, pneumatic systems, and complemented by a comprehensive Web Design course.",
 			"detailedDescription": [
 				"Learned PLC programming, control engineering, and pneumatic systems.",
-				"Built a strong foundation in industrial automation and electrical systems.",
-				"Gained hands-on experience with electrical circuits and automation technologies.",
-				"Complemented technical studies with a Web Design course to enhance digital skills."
+				"Built a strong foundation in industrial automation and electrical systems."
 			],
 			"tags": [],
 			"image": "/img/1110_0.png",
@@ -774,7 +812,7 @@
 		},
 		{
 			"name": "Mekonomen",
-			"type": "Financial Services"
+			"type": "Automotive Services"
 		},
 		{
 			"name": "Öresundskraft",
@@ -797,7 +835,7 @@
 			"type": "Public Library / Culture"
 		},
 		{
-			"name": "CLX Network",
+			"name": "CLX Network (Sinch)",
 			"type": "Communications/Technology"
 		}
 	],

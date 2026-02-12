@@ -75,20 +75,25 @@ export const Timeline: React.FC<TimelineProps> = ({ items, mainColor }) => {
 						))}
 					</ul>
 					{item.tags && (
-						<div className="mb-3 flex flex-wrap gap-2">
-							{item.tags.map((tag, tagIndex) => (
-								<span
-									key={tagIndex}
-									style={{ color: mainColor }}
-									className="rounded-full bg-gray-100 px-2 py-1 text-xs"
-								>
-									{tag}
-								</span>
-							))}
+						<div className="mb-1 flex items-center gap-2">
+							<p className="mb-1 text-xs font-semibold" style={{ color: mainColor }}>
+								Tech:
+							</p>
+							<div className="flex flex-wrap gap-2">
+								{item.tags.map((tag, tagIndex) => (
+									<span
+										key={tagIndex}
+										style={{ color: mainColor }}
+										className="rounded-full bg-gray-100 px-2 py-1 text-xs"
+									>
+										{tag}
+									</span>
+								))}
+							</div>
 						</div>
 					)}
 					{item.clients && item.clients.length > 0 && (
-						<div className="mb-2">
+						<div className="mb-2 flex items-center gap-4">
 							<p className="mb-1 text-xs font-semibold" style={{ color: mainColor }}>
 								Key Clients:
 							</p>

@@ -66,7 +66,7 @@ export const Aside: React.FC<AsideProps> = ({ data, mainColor, language }) => {
 			</Section>
 
 			<Section title={t.languages} mainColor={mainColor}>
-				<div className="mb-16 flex flex-wrap gap-2">
+				<div className="mb-6 flex flex-wrap gap-2">
 					{data.languages.map((lang, index) => (
 						<Tag key={index}>{lang}</Tag>
 					))}

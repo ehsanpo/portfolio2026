@@ -99,7 +99,7 @@ const ResumeCv = () => {
 					</div>
 				</div>
 
-				<div className="mx-auto flex max-w-4xl gap-8 px-4 py-8 print:block print:gap-0 print:space-y-4">
+				<div className="mx-auto flex max-w-4xl gap-8 px-3 py-2 print:block print:gap-0 print:space-y-4">
 					<div className="w-1/4 shrink-0 print:w-full">
 						<Aside data={resumeData} mainColor={mainColor} language={language} />
 					</div>

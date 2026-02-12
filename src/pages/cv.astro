@@ -20,7 +20,7 @@ import Layout from "@/layouts/Layout.astro";
 	@media print {
 		@page {
 			size: A4;
-			margin: 24px 16px;
+			margin: 16px 16px;
 			page-break-inside: avoid;
 		}
 		header, nav, 
@@ -37,5 +37,9 @@ import Layout from "@/layouts/Layout.astro";
 			order: 2;
 			margin-top: 16px;
 		}
+		.timeline-item {
+			page-break-inside: avoid;
+		}
+
 	}
 </style>

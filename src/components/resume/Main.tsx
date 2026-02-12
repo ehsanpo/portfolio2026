@@ -4,13 +4,19 @@ import type { Resume } from "@/types/resume";
 import { Section } from "./Section";
 import { translations, type Language } from "@/translations";
 
+interface ClientData {
+	name: string;
+	type: string;
+}
+
 interface MainProps {
 	data: Resume;
 	mainColor: string;
 	language: Language;
+	clients?: ClientData[];
 }
 
-export const Main: React.FC<MainProps> = ({ data, mainColor, language }) => {
+export const Main: React.FC<MainProps> = ({ data, mainColor, language, clients = [] }) => {
 	const t = translations[language].sections;
 
 	return (
@@ -24,6 +30,7 @@ export const Main: React.FC<MainProps> = ({ data, mainColor, language }) => {
 						endDate: exp.endDate,
 						description: exp.description,
 						tags: exp.tags,
+						clients: exp.clients,
 					}))}
 					mainColor={mainColor}
 				/>
@@ -53,6 +60,19 @@ export const Main: React.FC<MainProps> = ({ data, mainColor, language }) => {
 					))}
 				</ul>
 			</Section>
+
+			{clients && clients.length > 0 && (
+				<Section title="Clients" mainColor={mainColor}>
+					<div className="grid grid-cols-2 gap-3">
+						{clients.map((client, index) => (
+							<div key={index} className="border-l-4 pl-3" style={{ borderColor: mainColor }}>
+								<p className="font-medium">{client.name}</p>
+								<p className="text-sm text-gray-600">{client.type}</p>
+							</div>
+						))}
+					</div>
+				</Section>
+			)}
 		</main>
 	);
 };

@@ -7,10 +7,10 @@
 	},
 	"basics": {
 		"name": "Ehsan Pourhadi",
-		"title": "Software Developer",
+		"title": "Senior Software Developer",
 		"currentPosition": "Open for opportunities",
 		"image": "https://ehsan-pourhadi.com/img/118.jpg",
-		"about": "Experienced software developer with a proven track record in full-stack development and web application architecture. Passionate about delivering scalable and user-focused solutions.",
+		"about": "Senior software developer with over 10 years of experience building scalable web applications and digital solutions for clients including Malmö Stad, Mekonomen, Bredband2, and other leading organizations. Expertise in React, Node.js, TypeScript, and modern web architectures.",
 		"location": "Malmö, Sweden",
 		"email": "ehsan.po@gmail.com",
 		"website": "www.ehsan-pourhadi.com",
@@ -29,7 +29,7 @@
 			"description": "Collaborated on the development of various software projects using React, Java, and ElectronJs.",
 			"link": "/work/telavox",
 			"detailedDescription": [
-				"Developed and maintained softphone, messaging, and video conferencing applications used in a large-scale communications platform.",
+				"Led project development for softphone, messaging, and video conferencing applications used in large-scale communications platform.",
 				"Contributed to the design and architecture of web-based applications with a focus on performance and maintainability.",
 				"Collaborated closely with product, design, and backend teams to deliver features end to end.",
 				"Worked extensively with Electron, TypeScript, and React in a modern frontend environment."
@@ -109,7 +109,7 @@
 			"description": "Contributed to the implementation of web applications utilizing Gatsby, NextJs, and Ruby on Rails. Also managed projects and team.",
 			"link": "/work/bredband2",
 			"detailedDescription": [
-				"Developed and maintained the company's main website, e-commerce shop, and customer self-service portals.",
+				"Led project development for the company's main website, e-commerce shop, and customer self-service portals.",
 				"Implemented both frontend and backend features to support new product offerings and customer workflows.",
 				"Partnered with UX designers to improve usability and overall customer experience.",
 				"Contributed to new web applications built with Gatsby, Next.js, and Ruby on Rails.",
@@ -192,15 +192,16 @@
 		},
 		{
 			"id": "freelance-2019",
-			"name": "Ehsan Pourhadi",
-			"position": "Web Developer",
+			"name": "Ehsan Pourhadi Freelance",
+			"position": "Senior Web Developer & Consultant",
 			"type": "experience",
 			"startDate": "2019-05",
 			"endDate": "2020-03",
 			"year": "2019 - 2020",
 			"image": "/img/company/EPlogo.jpg",
-			"description": "Operated as an independent web developer, delivering high-quality responsive websites and web applications to clients.",
+			"description": "Operated as an independent consultant, delivering high-quality responsive websites and web applications to clients including local businesses and startups.",
 			"link": "/work/freelance-2019",
+			"clients": ["Local businesses", "E-commerce startups", "Service-based companies"],
 			"detailedDescription": [
 				"Delivered multiple client-facing WordPress websites tailored to specific business needs.",
 				"Designed and built custom WordPress themes to strengthen branding and usability.",
@@ -239,8 +240,9 @@
 			"image": "/img/company/GGlogo.jpg",
 			"description": "Served as a technical lead at an advertising agency, offering clients strategic digital communication solutions for expanding their market reach.",
 			"link": "/work/guts-glory",
+			"clients": ["Unilever Food Solutions", "Öresundskraft"],
 			"detailedDescription": [
-				"Led technical execution of WordPress-based web projects from planning to delivery.",
+				"Led technical execution and project delivery of WordPress-based web projects for major clients like Unilever Food Solutions and Öresundskraft from planning through completion.",
 				"Oversaw architecture decisions and ensured code quality through reviews and mentoring.",
 				"Mentored junior developers and supported skill development within the team.",
 				"Collaborated with designers to ensure smooth integration between design and implementation.",
@@ -352,12 +354,13 @@
 			"image": "/img/company/WSlogo.jpg",
 			"description": "Managed end-to-end development projects for a global web agency, specializing in UX/UI design, web development, and digital marketing.",
 			"link": "/work/whitespace",
+			"clients": ["Mekonomen", "Malmö Stad", "Triwa", "Kammarkollegiet"],
 			"detailedDescription": [
-				"Delivered end-to-end web solutions for international clients across multiple industries.",
+				"Led project development and consulting for international clients like Mekonomen, Triwa, Malmö Stad, Kammarkollegiet across multiple industries.",
+				"Delivered end-to-end web solutions including full-stack development and technical consulting.",
 				"Built responsive user interfaces and backend functionality for complex web applications.",
 				"Worked closely with UX/UI designers to deliver consistent experiences across platforms.",
-				"Applied Agile methodologies to improve collaboration and delivery predictability.",
-				"Acted as a technical consultant, translating business requirements into scalable solutions."
+				"Applied Agile methodologies and acted as technical consultant, translating business requirements into scalable solutions."
 			],
 			"tags": ["PHP", "Node.js", "UX/UI Design", "Agile"],
 			"awards": [],
@@ -446,6 +449,7 @@
 				"Collaborated with creative and marketing teams to turn campaign concepts into functional digital products.",
 				"Provided technical consulting on feasibility and implementation strategies."
 			],
+			"clients": ["Sydvsenskan", "Felix", "Malmö Järnhandel"],
 			"tags": ["Web Development", "Facebook API", "Campaign Websites", "jQuery", "PHP"],
 			"awards": [
 				{
@@ -761,6 +765,40 @@
 		{
 			"name": "Persian",
 			"proficiency": "Native"
+		}
+	],
+	"clients": [
+		{
+			"name": "Malmö Stad",
+			"type": "Government/Public Administration"
+		},
+		{
+			"name": "Mekonomen",
+			"type": "Financial Services"
+		},
+		{
+			"name": "Öresundskraft",
+			"type": "Energy & Utilities"
+		},
+		{
+			"name": "Kammarkollegiet",
+			"type": "Government Agency"
+		},
+		{
+			"name": "Unilever Food Solutions",
+			"type": "Food & Beverage"
+		},
+		{
+			"name": "Miss Mary",
+			"type": "Fashion & Retail"
+		},
+		{
+			"name": "Stockholms stadsbibliotek",
+			"type": "Public Library / Culture"
+		},
+		{
+			"name": "CLX Network",
+			"type": "Communications/Technology"
 		}
 	],
 	"timeline": [

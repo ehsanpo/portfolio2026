@@ -7,6 +7,7 @@ interface TimelineItem {
 	endDate: string;
 	description: string[];
 	tags?: string[];
+	clients?: string[];
 }
 
 interface TimelineProps {
@@ -51,7 +52,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, mainColor }) => {
 					className="timeline-item relative border-l-2 border-current pb-4 pl-8"
 					style={{ color: mainColor }}
 				>
-					<div className="absolute top-1 -left-[11px] h-4 w-4 rounded-full bg-current" />
+					<div className="absolute top-1 -left-2.25 h-4 w-4 rounded-full bg-current" />
 					<div className="mb-1 text-black">
 						<div className="flex items-baseline justify-between">
 							<h3
@@ -74,7 +75,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, mainColor }) => {
 						))}
 					</ul>
 					{item.tags && (
-						<div className="flex flex-wrap gap-2">
+						<div className="mb-3 flex flex-wrap gap-2">
 							{item.tags.map((tag, tagIndex) => (
 								<span
 									key={tagIndex}
@@ -84,6 +85,24 @@ export const Timeline: React.FC<TimelineProps> = ({ items, mainColor }) => {
 									{tag}
 								</span>
 							))}
+						</div>
+					)}
+					{item.clients && item.clients.length > 0 && (
+						<div className="mb-2">
+							<p className="mb-1 text-xs font-semibold" style={{ color: mainColor }}>
+								Key Clients:
+							</p>
+							<div className="flex flex-wrap gap-2">
+								{item.clients.map((client, clientIndex) => (
+									<span
+										key={clientIndex}
+										className="rounded-full px-3 py-1 text-xs font-medium"
+										style={{ backgroundColor: `${mainColor}20`, color: mainColor }}
+									>
+										{client}
+									</span>
+								))}
+							</div>
 						</div>
 					)}
 				</div>

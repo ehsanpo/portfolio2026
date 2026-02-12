@@ -16,6 +16,7 @@ export interface Resume {
 		endDate: string;
 		description: string[];
 		tags: string[];
+		clients?: string[];
 	}[];
 	education: {
 		institution: string;

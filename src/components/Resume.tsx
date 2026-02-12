@@ -7,6 +7,11 @@ import type { Resume } from "@/types/resume";
 import type { Language } from "@/translations/index";
 import portfolioData from "@/data/portfolio-resume.json";
 
+interface ClientData {
+	name: string;
+	type: string;
+}
+
 const ResumeCv = () => {
 	const [mainColor, setMainColor] = useState("#4f46e5");
 	const [language, setLanguage] = useState<Language>("en");
@@ -29,6 +34,7 @@ const ResumeCv = () => {
 			endDate: c.endDate,
 			description: c.detailedDescription,
 			tags: c.tags,
+			clients: c.clients,
 		})),
 		education: portfolioData.education.map((e) => ({
 			institution: e.institution,
@@ -41,6 +47,9 @@ const ResumeCv = () => {
 		skills: portfolioData.skills,
 		languages: portfolioData.languages.map((l) => l.name),
 	};
+
+	const clients: ClientData[] = portfolioData.clients || [];
+	const headerSkills = ["React", "Node.js", "TypeScript"];
 
 	useEffect(() => {
 		document.documentElement.style.setProperty("--main-color", mainColor);
@@ -60,7 +69,7 @@ const ResumeCv = () => {
 			/>
 
 			<div className="bg-white pt-16 text-gray-900">
-				<div className="mx-auto max-w-4xl px-4">
+				<div className="mx-auto max-w-4xl px-4 flex gap-4">
 					<div>
 						<img
 							src="/img/profile.jpg"
@@ -75,7 +84,18 @@ const ResumeCv = () => {
 						<h1 className="text-6xl font-bold" style={{ color: mainColor }}>
 							{resumeData.basics.name}
 						</h1>
-						<p className="text-4xl">{resumeData.basics.title}</p>
+						<p className="text-4xl mb-3">{resumeData.basics.title}</p>
+						<div className="flex flex-wrap gap-2 mb-4">
+							{headerSkills.map((skill, index) => (
+								<span
+									key={index}
+									className="inline-block px-3 py-1 rounded-full text-sm font-medium"
+									style={{ backgroundColor: `${mainColor}15`, color: mainColor }}
+								>
+									{skill}
+								</span>
+							))}
+						</div>
 					</div>
 				</div>
 
@@ -84,7 +104,7 @@ const ResumeCv = () => {
 						<Aside data={resumeData} mainColor={mainColor} language={language} />
 					</div>
 					<div className="flex-1 print:w-full">
-						<Main data={resumeData} mainColor={mainColor} language={language} />
+						<Main data={resumeData} mainColor={mainColor} language={language} clients={clients} />
 					</div>
 				</div>
 			</div>

@@ -6,7 +6,7 @@ author: Ehsan
 excerpt: ""
 type: portfolio
 id: 216
-agency: "Whitespacae"
+agency: Whitespace
 category:
   - Backend
   - Front-end

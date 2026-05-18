@@ -1294,6 +1294,7 @@
 			{ "key": "home", "href": "/", "text": "Home" },
 			{ "key": "work", "href": "/work", "text": "Work" },
 			{ "key": "products", "href": "/products", "text": "Products" },
+			{ "key": "social", "href": "/social", "text": "Social" },
 			{ "key": "skills", "href": "/skills", "text": "Skills" },
 			{ "key": "about", "href": "/about", "text": "About" },
 			{ "key": "contact", "href": "/contact", "text": "Contact" }
@@ -1306,6 +1307,7 @@
 			{ "href": "/prompts", "text": "AI Prompts" },
 			{ "href": "/skills", "text": "Skills" },
 			{ "href": "/music", "text": "Music" },
+			{ "href": "/social", "text": "Social" },
 			{ "href": "/cv", "text": "Resume" },
 			{ "href": "/about", "text": "About" },
 			{ "href": "/life", "text": "Life" },

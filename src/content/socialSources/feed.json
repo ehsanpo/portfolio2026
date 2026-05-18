@@ -1,0 +1,30 @@
+{
+	"tiktokEmbeds": [
+		{
+			"slug": "tiktok-example-01",
+			"title": "TikTok Example 01",
+			"date": "2026-01-16",
+			"embedUrl": "https://www.tiktok.com/embed/v2/7605558515771526422",
+			"href": "https://www.tiktok.com/@your-handle/video/7605558515771526422",
+			"caption": "Replace this with your first real TikTok embed URL.",
+			"ctaLabel": "Open on TikTok",
+			"order": 401
+		},
+		{
+			"slug": "tiktok-example-02",
+			"title": "TikTok Example 02",
+			"date": "2026-01-22",
+			"embedUrl": "https://www.tiktok.com/embed/v2/7455987654321098765",
+			"href": "https://www.tiktok.com/@your-handle/video/7455987654321098765",
+			"caption": "Second example entry for your embed list.",
+			"ctaLabel": "Open on TikTok",
+			"order": 402
+		}
+	],
+	"github": {
+		"enabled": true,
+		"username": "ehsanpo",
+		"fromDate": "2026-01-01",
+		"includeForks": false
+	}
+}

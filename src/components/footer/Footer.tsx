@@ -14,6 +14,7 @@ import {
 	FileText,
 	ArrowUp,
 	Music,
+	Grid3X3,
 	Headphones,
 	Play,
 	Pen,
@@ -53,6 +54,7 @@ const navigationSections: { title: string; links: NavigationLink[] }[] = [
 		title: "Resources",
 		links: [
 			{ name: "Music", href: "/music", icon: Music },
+			{ name: "Social", href: "/social", icon: Grid3X3 },
 			{ name: "Resume", href: "/cv", icon: FileText },
 			{ name: "Contact", href: "/contact", icon: Mail },
 			{ name: "Blog", href: "/blog", icon: Newspaper },

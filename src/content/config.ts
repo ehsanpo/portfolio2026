@@ -80,9 +80,54 @@ const prompt = defineCollection({
 		}),
 });
 
+const social = defineCollection({
+	type: "content",
+	schema: z.object({
+		title: z.string(),
+		caption: z.string(),
+		kind: z.enum(["image", "video", "link", "tiktok", "github"]),
+		date: z.string().optional(),
+		mediaUrl: z.string().optional(),
+		embedUrl: z.string().optional(),
+		href: z.string().optional(),
+		ctaLabel: z.string().optional(),
+		order: z.number().optional(),
+	}),
+});
+
+const socialSources = defineCollection({
+	type: "data",
+	schema: z.object({
+		tiktokEmbeds: z
+			.array(
+				z.object({
+					slug: z.string().optional(),
+					title: z.string(),
+					date: z.string(),
+					embedUrl: z.string(),
+					href: z.string().optional(),
+					caption: z.string().optional(),
+					ctaLabel: z.string().optional(),
+					order: z.number().optional(),
+				})
+			)
+			.default([]),
+		github: z
+			.object({
+				enabled: z.boolean().optional(),
+				username: z.string(),
+				fromDate: z.string().optional(),
+				includeForks: z.boolean().optional(),
+			})
+			.optional(),
+	}),
+});
+
 export const collections = {
 	portfolio,
 	products,
 	blog,
 	prompt,
+	social,
+	socialSources,
 };

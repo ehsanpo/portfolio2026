@@ -1,0 +1,28 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/hero/PageHero.astro";
+import SocialGridFeed from "@/components/social/SocialGridFeed";
+import { getSocialPosts } from "@/utils/social";
+
+export async function getStaticPaths() {
+	const socialPosts = await getSocialPosts();
+
+	return socialPosts.map((post) => ({
+		params: { slug: post.slug },
+		props: { socialPosts, slug: post.slug, title: post.title },
+	}));
+}
+
+const { socialPosts, slug, title } = Astro.props;
+---
+
+<Layout
+	title={`Social - ${title}`}
+	description="Design drops, short videos, and useful links in one TikTok-style feed."
+>
+	<PageHero title="Social" subtitle="Images, videos, links, and quick drops from my creative workflow." />
+
+	<section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+		<SocialGridFeed posts={socialPosts} initialPostSlug={slug} startInFeed client:load />
+	</section>
+</Layout>

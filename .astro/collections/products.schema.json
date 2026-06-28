@@ -1,0 +1,87 @@
+{
+  "$ref": "#/definitions/products",
+  "definitions": {
+    "products": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "title2": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "permalink": {
+          "type": "string"
+        },
+        "client": {
+          "type": "string"
+        },
+        "agency": {
+          "type": "string"
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tag": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "case_link_url": {
+          "type": "string"
+        },
+        "background_image": {
+          "type": "string"
+        },
+        "cover": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "logo2": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "onHome": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string",
+          "const": "product"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "tagline",
+        "date",
+        "permalink",
+        "client",
+        "agency"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

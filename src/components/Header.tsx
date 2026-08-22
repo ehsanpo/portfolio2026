@@ -18,7 +18,7 @@ export interface HeaderMinimalProps {
 export function HeaderMinimal({
 	logoText = "Ehsan Pourhadi",
 	navLinks = [],
-	url = "home",
+	url = "/",
 	className,
 }: HeaderMinimalProps) {
 	const [isOpen, setIsOpen] = useState(false);

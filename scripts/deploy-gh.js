@@ -4,164 +4,80 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const BRANCH = 'deploy-gh';
 const BUILD_DIR = 'dist';
-const TEMP_DIR = path.join(os.tmpdir(), `gh-deploy-${Date.now()}`);
+const WORKTREE_DIR = path.join(os.tmpdir(), `gh-worktree-${Date.now()}`);
 
-function run(command, description) {
+function run(command, description, options = {}) {
   try {
     console.log(`\n📦 ${description}...`);
-    execSync(command, { stdio: 'inherit', shell: true });
+    execSync(command, { stdio: 'inherit', shell: true, ...options });
     console.log(`✅ ${description} completed`);
   } catch (error) {
     console.error(`❌ ${description} failed`);
-    process.exit(1);
+    throw error;
   }
 }
 
 function main() {
-  console.log('🚀 Starting GitHub Pages deployment...\n');
-
-  // Step 1: Build the project
-  run('npm run build', 'Building site');
-
-  // Step 2: Check build directory & copy to outside TEMP directory
-  if (!fs.existsSync(BUILD_DIR)) {
-    console.error(`❌ Build directory '${BUILD_DIR}' not found!`);
-    process.exit(1);
-  }
+  console.log('🚀 Starting GitHub Pages deployment via Git Worktree...\n');
 
   try {
-    console.log(`\n💾 Backing up '${BUILD_DIR}' to temporary directory...`);
-    fs.cpSync(BUILD_DIR, TEMP_DIR, { recursive: true });
-    console.log(`✅ Build backed up to: ${TEMP_DIR}`);
-  } catch (error) {
-    console.error('❌ Failed to back up build directory:', error.message);
-    process.exit(1);
-  }
+    // Step 1: Build project on master
+    run('npm run build', 'Building site');
 
-  // Step 3: Stash uncommitted changes in current working directory
-  try {
-    const status = execSync('git status --porcelain', { encoding: 'utf-8' });
-    if (status.trim()) {
-      console.log('\n📝 Stashing local changes...');
-      execSync('git stash', { stdio: 'inherit', shell: true });
-    }
-  } catch (error) {
-    console.error('❌ Failed to check git status');
-    process.exit(1);
-  }
-
-  // Step 4: Get current branch
-  let currentBranch = 'master';
-  try {
-    currentBranch = execSync('git rev-parse --abbrev-ref HEAD', { 
-      encoding: 'utf-8' 
-    }).trim();
-  } catch (error) {
-    console.warn('⚠️  Could not determine current branch, assuming master');
-  }
-
-  // Step 5: Switch to deploy branch and WIPE everything clean
-  try {
-    const branches = execSync('git branch -a', { encoding: 'utf-8' });
-    if (!branches.includes(BRANCH)) {
-      console.log(`\n🌿 Creating '${BRANCH}' branch...`);
-      run(`git checkout --orphan ${BRANCH}`, `Creating branch '${BRANCH}'`);
-    } else {
-      run(`git checkout ${BRANCH}`, `Switching to '${BRANCH}' branch`);
-    }
-    
-    // Completely purge tracked and untracked files
-    run('git rm -rf .', 'Clearing tracked branch files');
-    run('git clean -fdx', 'Cleaning untracked files');
-  } catch (error) {
-    console.error(`❌ Failed to reset '${BRANCH}' branch`);
-    cleanupTemp();
-    process.exit(1);
-  }
-
-  // Step 6: Copy build contents back from TEMP directory into root
-  try {
-    console.log(`\n📂 Restoring build files from temp directory...`);
-    fs.cpSync(TEMP_DIR, '.', { recursive: true });
-    console.log('✅ Build files restored to repository root');
-  } catch (error) {
-    console.error('❌ Failed to restore build files from temp:', error.message);
-    cleanupTemp();
-    process.exit(1);
-  }
-
-  // Step 7: Stage and commit
-  try {
-    console.log('\n📝 Staging files...');
-    execSync('git add .', { stdio: 'inherit', shell: true });
-    
-    console.log('💾 Creating commit...');
-    const timestamp = new Date().toISOString();
-    execSync(`git commit -m "Deploy: ${timestamp}"`, { 
-      stdio: 'inherit', 
-      shell: true 
-    });
-    console.log('✅ Commit created');
-  } catch (error) {
-    if (error.message.includes('nothing to commit')) {
-      console.log('⚠️  No changes to commit');
-    } else {
-      console.error('❌ Failed to commit changes');
-      cleanupTemp();
+    if (!fs.existsSync(BUILD_DIR)) {
+      console.error(`❌ Build directory '${BUILD_DIR}' not found!`);
       process.exit(1);
     }
-  }
 
-  // Step 8: Push force to deploy branch
-  try {
-    console.log(`\n🚀 Pushing to origin/${BRANCH}...`);
-    execSync(`git push -u origin ${BRANCH} --force`, { 
-      stdio: 'inherit', 
-      shell: true 
-    });
-    console.log(`✅ Pushed to origin/${BRANCH}`);
-  } catch (error) {
-    console.error('❌ Failed to push to remote');
-    cleanupTemp();
-    process.exit(1);
-  }
-
-  // Step 9: Return to original branch & cleanup
-  try {
-    console.log(`\n⏮️  Returning to ${currentBranch} branch...`);
-    execSync(`git checkout ${currentBranch}`, { 
-      stdio: 'inherit', 
-      shell: true 
-    });
-    
-    const stashList = execSync('git stash list', { encoding: 'utf-8' });
-    if (stashList.length > 0) {
-      console.log('Restoring stashed changes...');
-      execSync('git stash pop', { stdio: 'inherit', shell: true });
+    // Step 2: Ensure deploy branch exists
+    const branches = execSync('git branch -a', { encoding: 'utf-8' });
+    if (!branches.includes(BRANCH)) {
+      run(`git branch ${BRANCH}`, `Creating local '${BRANCH}' branch`);
     }
+
+    // Step 3: Create temporary worktree for deploy branch
+    run(`git worktree add --detach "${WORKTREE_DIR}"`, 'Creating temporary worktree');
+
+    // Step 4: Checkout orphan/deploy branch inside worktree and clear old files
+    run(`git checkout --orphan ${BRANCH}`, 'Checking out deploy branch in worktree', { cwd: WORKTREE_DIR });
+    run('git rm -rf .', 'Clearing old deploy files in worktree', { cwd: WORKTREE_DIR });
+    run('git clean -fdx', 'Cleaning untracked worktree files', { cwd: WORKTREE_DIR });
+
+    // Step 5: Copy build contents into worktree root
+    console.log('\n📂 Copying build files to worktree...');
+    fs.cpSync(BUILD_DIR, WORKTREE_DIR, { recursive: true });
+    console.log('✅ Build files copied');
+
+    // Step 6: Stage, commit, and force-push from worktree
+    run('git add .', 'Staging build files', { cwd: WORKTREE_DIR });
     
-    console.log(`✅ Back on ${currentBranch} branch`);
-  } catch (error) {
-    console.warn(`⚠️  Could not return to ${currentBranch} branch`);
-  } finally {
-    cleanupTemp();
-  }
-
-  console.log('\n✨ Deployment complete!\n');
-}
-
-function cleanupTemp() {
-  if (fs.existsSync(TEMP_DIR)) {
+    const timestamp = new Date().toISOString();
     try {
-      fs.rmSync(TEMP_DIR, { recursive: true, force: true });
+      run(`git commit -m "Deploy: ${timestamp}"`, 'Creating deployment commit', { cwd: WORKTREE_DIR });
+    } catch (err) {
+      console.log('⚠️ No changes detected to commit.');
+    }
+
+    run(`git push -u origin ${BRANCH} --force`, `Pushing to origin/${BRANCH}`, { cwd: WORKTREE_DIR });
+
+    console.log('\n✨ Deployment complete!');
+
+  } catch (error) {
+    console.error('\n❌ Deployment failed');
+  } finally {
+    // Step 7: Cleanup worktree (master stays completely clean and unchanged)
+    console.log('\n🧹 Cleaning up worktree...');
+    try {
+      execSync(`git worktree remove --force "${WORKTREE_DIR}"`, { stdio: 'ignore', shell: true });
     } catch (_) {}
+    
+    if (fs.existsSync(WORKTREE_DIR)) {
+      fs.rmSync(WORKTREE_DIR, { recursive: true, force: true });
+    }
+    console.log('✅ Master branch left clean and untouched.');
   }
 }
 

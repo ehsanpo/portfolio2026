@@ -32,17 +32,18 @@ function main() {
       process.exit(1);
     }
 
-    // Step 2: Ensure deploy branch exists
+    // Step 2: Check if local/remote branch exists
     const branches = execSync('git branch -a', { encoding: 'utf-8' });
-    if (!branches.includes(BRANCH)) {
-      run(`git branch ${BRANCH}`, `Creating local '${BRANCH}' branch`);
+    const branchExists = branches.includes(BRANCH);
+
+    // Step 3: Set up worktree on deploy-gh
+    if (branchExists) {
+      run(`git worktree add "${WORKTREE_DIR}" ${BRANCH}`, 'Attaching worktree to existing branch');
+    } else {
+      run(`git worktree add --orphan -b ${BRANCH} "${WORKTREE_DIR}"`, 'Creating worktree with new branch');
     }
 
-    // Step 3: Create temporary worktree for deploy branch
-    run(`git worktree add --detach "${WORKTREE_DIR}"`, 'Creating temporary worktree');
-
-    // Step 4: Checkout orphan/deploy branch inside worktree and clear old files
-    run(`git checkout --orphan ${BRANCH}`, 'Checking out deploy branch in worktree', { cwd: WORKTREE_DIR });
+    // Step 4: Clear existing branch contents inside worktree
     run('git rm -rf .', 'Clearing old deploy files in worktree', { cwd: WORKTREE_DIR });
     run('git clean -fdx', 'Cleaning untracked worktree files', { cwd: WORKTREE_DIR });
 
@@ -68,7 +69,7 @@ function main() {
   } catch (error) {
     console.error('\n❌ Deployment failed');
   } finally {
-    // Step 7: Cleanup worktree (master stays completely clean and unchanged)
+    // Step 7: Cleanup worktree
     console.log('\n🧹 Cleaning up worktree...');
     try {
       execSync(`git worktree remove --force "${WORKTREE_DIR}"`, { stdio: 'ignore', shell: true });

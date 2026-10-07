@@ -56,40 +56,35 @@ function main() {
     console.warn('⚠️  Could not determine current branch, assuming master');
   }
 
-  // Step 5: Check if spec branch exists, create if not
+  // Step 5: Check if branch exists, checkout, and CLEAR old files
   try {
     const branches = execSync('git branch -a', { encoding: 'utf-8' });
     if (!branches.includes(BRANCH)) {
       console.log(`\n🌿 Creating '${BRANCH}' branch...`);
       run(`git checkout --orphan ${BRANCH}`, `Creating branch '${BRANCH}'`);
-      // Remove all files from the new orphan branch
-      run('git rm -rf .', 'Clearing branch');
     } else {
       run(`git checkout ${BRANCH}`, `Switching to '${BRANCH}' branch`);
     }
+    
+    // Clear tracked files and untracked artifacts from previous deploys
+    run('git rm -rf .', 'Clearing tracked branch files');
+    run('git clean -fdx', 'Cleaning untracked files');
   } catch (error) {
-    console.error(`❌ Failed to create or checkout '${BRANCH}' branch`);
+    console.error(`❌ Failed to reset '${BRANCH}' branch`);
     process.exit(1);
   }
 
-  // Step 6: Copy build contents to root
+  // Step 6: Copy build contents to root using cross-platform fs.cpSync
   try {
     console.log(`\n📂 Copying build files...`);
-    const files = fs.readdirSync(BUILD_DIR);
-    files.forEach(file => {
-      const src = path.join(BUILD_DIR, file);
-      const dest = path.join('.', file);
-      
-      if (fs.lstatSync(src).isDirectory()) {
-        // Recursive copy for directories
-        execSync(`xcopy "${src}" "${dest}" /E /I /Y`, { shell: true });
-      } else {
-        fs.copyFileSync(src, dest);
-      }
-    });
+    fs.cpSync(BUILD_DIR, '.', { recursive: true });
+    
+    // Remove the original dist directory so it isn't duplicated in git add .
+    fs.rmSync(BUILD_DIR, { recursive: true, force: true });
+    
     console.log('✅ Build files copied');
   } catch (error) {
-    console.error('❌ Failed to copy build files');
+    console.error('❌ Failed to copy build files:', error.message);
     process.exit(1);
   }
 
@@ -137,7 +132,7 @@ function main() {
     
     // Unstash changes if they were stashed
     const stashList = execSync('git stash list', { encoding: 'utf-8' });
-    if (stashList.includes('WIP on')) {
+    if (stashList.length > 0) {
       console.log('Restoring stashed changes...');
       execSync('git stash pop', { stdio: 'inherit', shell: true });
     }
@@ -147,7 +142,7 @@ function main() {
     console.warn(`⚠️  Could not return to ${currentBranch} branch`);
   }
 
-  console.log('\n✨ Deployment complete! Your site is now available on the spec branch.\n');
+  console.log('\n✨ Deployment complete!\n');
 }
 
 main();

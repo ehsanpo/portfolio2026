@@ -34,7 +34,14 @@
 				"Collaborated closely with product, design, and backend teams to deliver features end to end.",
 				"Worked extensively with Electron, TypeScript, and React in a modern frontend environment."
 			],
-			"tags": ["Electron", "TypeScript", "React", "Node.js", "Java", "ElectronJs"],
+			"tags": [
+				"Electron",
+				"TypeScript",
+				"React",
+				"Node.js",
+				"Java",
+				"ElectronJs"
+			],
 			"awards": [],
 			"softSkills": [
 				"Cross-functional collaboration",
@@ -115,7 +122,13 @@
 				"Contributed to new web applications built with Gatsby, Next.js, and Ruby on Rails.",
 				"Took responsibility for project coordination and team collaboration on selected initiatives."
 			],
-			"tags": ["Gatsby", "Next.js", "Ruby on Rails", "TypeScript", "React"],
+			"tags": [
+				"Gatsby",
+				"Next.js",
+				"Ruby on Rails",
+				"TypeScript",
+				"React"
+			],
 			"awards": [],
 			"softSkills": [
 				"UX collaboration",
@@ -201,7 +214,11 @@
 			"image": "/img/company/EPlogo.jpg",
 			"description": "Operated as an independent consultant, delivering high-quality responsive websites and web applications to clients including local businesses and startups.",
 			"link": "/work/freelance-2019",
-			"clients": ["Mocka Master", "Telenor", "Bilcleaniken"],
+			"clients": [
+				"Mocka Master",
+				"Telenor",
+				"Bilcleaniken"
+			],
 			"detailedDescription": [
 				"Delivered multiple client-facing WordPress websites tailored to specific business needs.",
 				"Designed and built custom WordPress themes to strengthen branding and usability.",
@@ -209,7 +226,12 @@
 				"Conducted SEO audits and implemented improvements to increase search visibility.",
 				"Built e-commerce solutions using WooCommerce, including multilingual configurations."
 			],
-			"tags": ["Node.js", "WordPress", "WooCommerce", "SEO"],
+			"tags": [
+				"Node.js",
+				"WordPress",
+				"WooCommerce",
+				"SEO"
+			],
 			"awards": [],
 			"softSkills": [
 				"Client management",
@@ -240,7 +262,12 @@
 			"image": "/img/company/GGlogo.jpg",
 			"description": "Served as a technical lead at an advertising agency, offering clients strategic digital communication solutions for expanding their market reach.",
 			"link": "/work/guts-glory",
-			"clients": ["Unilever Food Solutions", "Öresundskraft", "Orkla", "Malmö Saluhall"],
+			"clients": [
+				"Unilever Food Solutions",
+				"Öresundskraft",
+				"Orkla",
+				"Malmö Saluhall"
+			],
 			"detailedDescription": [
 				"Led technical execution and project delivery of WordPress-based web projects for major clients like Unilever Food Solutions and Öresundskraft from planning through completion.",
 				"Oversaw architecture decisions and ensured code quality through reviews and mentoring.",
@@ -248,7 +275,12 @@
 				"Collaborated with designers to ensure smooth integration between design and implementation.",
 				"Improved internal development processes to increase delivery speed and team efficiency."
 			],
-			"tags": ["Node.js", "WordPress", "TypeScript", "Team Leadership"],
+			"tags": [
+				"Node.js",
+				"WordPress",
+				"TypeScript",
+				"Team Leadership"
+			],
 			"awards": [
 				{
 					"name": "Svenska Design",
@@ -354,7 +386,12 @@
 			"image": "/img/company/WSlogo.jpg",
 			"description": "Managed end-to-end development projects for a global web agency, specializing in UX/UI design, web development, and digital marketing.",
 			"link": "/work/whitespace",
-			"clients": ["Mekonomen", "Malmö Stad", "Kammarkollegiet", "Triwa"],
+			"clients": [
+				"Mekonomen",
+				"Malmö Stad",
+				"Kammarkollegiet",
+				"Triwa"
+			],
 			"detailedDescription": [
 				"Led project development and consulting for international clients across multiple industries.",
 				"Delivered end-to-end web solutions including full-stack development and technical consulting.",
@@ -362,7 +399,12 @@
 				"Worked closely with UX/UI designers to deliver consistent experiences across platforms.",
 				"Applied Agile methodologies and acted as technical consultant, translating business requirements into scalable solutions."
 			],
-			"tags": ["PHP", "Node.js", "UX/UI Design", "Agile"],
+			"tags": [
+				"PHP",
+				"Node.js",
+				"UX/UI Design",
+				"Agile"
+			],
 			"awards": [],
 			"softSkills": [
 				"Client consulting",
@@ -449,8 +491,18 @@
 				"Collaborated with creative and marketing teams to turn campaign concepts into functional digital products.",
 				"Provided technical consulting on feasibility and implementation strategies."
 			],
-			"clients": ["Sydvsenskan", "Felix", "Malmö Järnhandel"],
-			"tags": ["Web Development", "Facebook API", "Campaign Websites", "jQuery", "PHP"],
+			"clients": [
+				"Sydvsenskan",
+				"Felix",
+				"Malmö Järnhandel"
+			],
+			"tags": [
+				"Web Development",
+				"Facebook API",
+				"Campaign Websites",
+				"jQuery",
+				"PHP"
+			],
 			"awards": [
 				{
 					"name": "Guldägget",
@@ -571,7 +623,11 @@
 				"Built and maintained the company website and multiple client WordPress sites.",
 				"Managed full project lifecycles from client consultation to deployment and support."
 			],
-			"tags": ["WordPress", "JavaScript", "Web Development"],
+			"tags": [
+				"WordPress",
+				"JavaScript",
+				"Web Development"
+			],
 			"awards": [],
 			"softSkills": [
 				"Entrepreneurship",
@@ -616,7 +672,13 @@
 				"Working with Cloudflare Pages and Workers to deploy AI-powered applications.",
 				"Vercel AI SDK for building AI agents and integrating AI capabilities into web applications."
 			],
-			"tags": ["AI", "RAG", "MCP","Developing Agents", "Multimodality"],
+			"tags": [
+				"AI",
+				"RAG",
+				"MCP",
+				"Developing Agents",
+				"Multimodality"
+			],
 			"image": "/img/experience/education.jpg",
 			"awards": [],
 			"projects": []
@@ -636,7 +698,11 @@
 				"Developing expertise in leading and managing teams.",
 				"Learning best practices in organizational leadership and people management."
 			],
-			"tags": ["Leadership", "Team Management", "Professional Development"],
+			"tags": [
+				"Leadership",
+				"Team Management",
+				"Professional Development"
+			],
 			"image": "/img/experience/education.jpg",
 			"awards": [],
 			"projects": []
@@ -656,7 +722,10 @@
 				"Gained proficiency in building robust web applications using Ruby on Rails.",
 				"Learned to apply Rails conventions for efficient development."
 			],
-			"tags": ["Ruby on Rails", "Web Development"],
+			"tags": [
+				"Ruby on Rails",
+				"Web Development"
+			],
 			"image": "/img/experience/education.jpg",
 			"awards": [],
 			"projects": []
@@ -841,334 +910,389 @@
 	],
 	"timeline": [
 		{
-			"id": 1,
-			"name": "HTML & CSS",
-			"icon": "/img/timeline-icons/html-css.svg",
-			"duration": "2010-2026"
-		},
-		{
-			"id": 2,
-			"name": "Javascript",
-			"icon": "/img/timeline-icons/javascript.svg",
-			"duration": "2010-2026"
-		},
-		{
-			"id": 20,
-			"name": "TypeScript",
-			"icon": "/img/timeline-icons/typescript.svg",
-			"duration": "2021-2026"
-		},
-		{
-			"id": 110,
-			"name": "Reason Studios",
-			"icon": "/img/timeline-icons/reason-studios.svg",
-			"duration": "2010-2024"
-		},
-		{
-			"id": 117,
-			"name": "Docker",
-			"icon": "/img/timeline-icons/docker.svg",
-			"duration": "2019-2026"
-		},
-		{
-			"id": 118,
-			"name": "Linux",
-			"icon": "/img/timeline-icons/linux.svg",
-			"duration": "2011-2026"
-		},
-		{
-			"id": 111,
-			"name": "Cubase",
-			"icon": "/img/timeline-icons/cubase.svg",
-			"duration": "2010-2019"
-		},
-		{
-			"id": 0,
-			"name": "Photoshop",
-			"icon": "/img/timeline-icons/photoshop.svg",
-			"duration": "2010-2025"
-		},
-		{
-			"id": 113,
-			"name": "After Effects",
-			"icon": "/img/timeline-icons/after-effects.svg",
-			"duration": "2010-2014"
-		},
-		{
 			"id": 100,
 			"name": "Adobe Flash",
 			"icon": "/img/timeline-icons/adobe-flash.svg",
-			"duration": "2010-2012"
-		},
-		{
-			"id": 101,
-			"name": "Rest API",
-			"icon": "/img/timeline-icons/rest-api.svg",
-			"duration": "2012-2026"
-		},
-		{
-			"id": 4,
-			"name": "PHP",
-			"icon": "/img/timeline-icons/php.svg",
-			"duration": "2012-2020"
+			"duration": "2010-2012",
+			"category": "Frontend"
 		},
 		{
 			"id": 5,
 			"name": "jQuery",
 			"icon": "/img/timeline-icons/jquery.svg",
-			"duration": "2012-2015"
-		},
-		{
-			"id": 104,
-			"name": "Motion Graphics",
-			"icon": "/img/timeline-icons/motion-graphics.svg",
-			"duration": "2012-2020"
-		},
-		{
-			"id": 6,
-			"name": "Wordpress",
-			"icon": "/img/timeline-icons/wordpress.svg",
-			"duration": "2013-2020"
-		},
-		{
-			"id": 7,
-			"name": "Python",
-			"icon": "/img/timeline-icons/python.svg",
-			"duration": "2013-2014"
-		},
-		{
-			"id": 8,
-			"name": "MySQL",
-			"icon": "/img/timeline-icons/mysql.svg",
-			"duration": "2013-2020"
-		},
-		{
-			"id": 9,
-			"name": "Drupal",
-			"icon": "/img/timeline-icons/drupal.svg",
-			"duration": "2014-2018"
-		},
-		{
-			"id": 24,
-			"name": "Laravel",
-			"icon": "/img/timeline-icons/laravel.svg",
-			"duration": "2014-2017"
+			"duration": "2012-2015",
+			"category": "Frontend"
 		},
 		{
 			"id": 10,
 			"name": "Angular",
 			"icon": "/img/timeline-icons/angular.svg",
-			"duration": "2015-2016"
-		},
-		{
-			"id": 23,
-			"name": "Node.js",
-			"icon": "/img/timeline-icons/node-js.svg",
-			"duration": "2016-2026"
-		},
-		{
-			"id": 32,
-			"name": "UX Design",
-			"icon": "/img/timeline-icons/ux-design.svg",
-			"duration": "2016-2026"
-		},
-		{
-			"id": 25,
-			"name": "AWS",
-			"icon": "/img/timeline-icons/aws.svg",
-			"duration": "2017-2018"
-		},
-		{
-			"id": 8,
-			"name": "NoSQL",
-			"icon": "/img/timeline-icons/nosql.svg",
-			"duration": "2017-2018"
+			"duration": "2015-2016",
+			"category": "Frontend"
 		},
 		{
 			"id": 11,
 			"name": "ReactJS",
 			"icon": "/img/timeline-icons/reactjs.svg",
-			"duration": "2018-2026"
-		},
-		{
-			"id": 27,
-			"name": "Webpack",
-			"icon": "/img/timeline-icons/webpack.svg",
-			"duration": "2018-2025"
-		},
-		{
-			"id": 26,
-			"name": "ExpressJS",
-			"icon": "/img/timeline-icons/expressjs.svg",
-			"duration": "2018-2019"
-		},
-		{
-			"id": 107,
-			"name": "Nginx",
-			"icon": "/img/timeline-icons/nginx.svg",
-			"duration": "2018-2025"
-		},
-		{
-			"id": 108,
-			"name": "Shell Script",
-			"icon": "/img/timeline-icons/shell-script.svg",
-			"duration": "2018-2026"
-		},
-		{
-			"id": 102,
-			"name": "MongoDB",
-			"icon": "/img/timeline-icons/mongodb.svg",
-			"duration": "2019-2020"
-		},
-		{
-			"id": 27,
-			"name": "Redux",
-			"icon": "/img/timeline-icons/redux.svg",
-			"duration": "2019-2026"
-		},
-		{
-			"id": 13,
-			"name": "Ruby on Rails",
-			"icon": "/img/timeline-icons/ruby-on-rails.svg",
-			"duration": "2019-2023"
-		},
-		{
-			"id": 12,
-			"name": "Adobe XD",
-			"icon": "/img/timeline-icons/adobe-xd.svg",
-			"duration": "2019-2022"
-		},
-		{
-			"id": 115,
-			"name": "GitLab CI",
-			"icon": "/img/timeline-icons/gitlab-ci.svg",
-			"duration": "2019-2021"
-		},
-		{
-			"id": 103,
-			"name": "Redis",
-			"icon": "/img/timeline-icons/redis.svg",
-			"duration": "2020-2026"
-		},
-		{
-			"id": 104,
-			"name": "Elasticsearch",
-			"icon": "/img/timeline-icons/elasticsearch.svg",
-			"duration": "2020-2021"
-		},
-		{
-			"id": 114,
-			"name": "CircleCI",
-			"icon": "/img/timeline-icons/circleci.svg",
-			"duration": "2020-2022"
-		},
-		{
-			"id": 14,
-			"name": "GraphQL",
-			"icon": "/img/timeline-icons/graphql.svg",
-			"duration": "2020-2022"
-		},
-		{
-			"id": 15,
-			"name": "Gatsby",
-			"icon": "/img/timeline-icons/gatsby.svg",
-			"duration": "2020-2023"
-		},
-		{
-			"id": 31,
-			"name": "Cypress",
-			"icon": "/img/timeline-icons/cypress.svg",
-			"duration": "2020-2023"
+			"duration": "2018-2026",
+			"category": "Frontend"
 		},
 		{
 			"id": 28,
 			"name": "VueJS",
 			"icon": "/img/timeline-icons/vuejs.svg",
-			"duration": "2020-2021"
-		},
-		{
-			"id": 112,
-			"name": "FFmpeg",
-			"icon": "/img/timeline-icons/ffmpeg.svg",
-			"duration": "2020-2024"
-		},
-		{
-			"id": 16,
-			"name": "Figma",
-			"icon": "/img/timeline-icons/figma.svg",
-			"duration": "2021-2026"
-		},
-		{
-			"id": 17,
-			"name": "PostgreSQL",
-			"icon": "/img/timeline-icons/postgresql.svg",
-			"duration": "2021-2026"
+			"duration": "2020-2021",
+			"category": "Frontend"
 		},
 		{
 			"id": 18,
 			"name": "Next.js",
 			"icon": "/img/timeline-icons/next-js.svg",
-			"duration": "2021-2026"
+			"duration": "2021-2026",
+			"category": "Frontend"
 		},
 		{
-			"id": 109,
-			"name": "Github Actions",
-			"icon": "/img/timeline-icons/github-actions.svg",
-			"duration": "2021-2026"
-		},
-		{
-			"id": 29,
-			"name": "Vite",
-			"icon": "/img/timeline-icons/vite.svg",
-			"duration": "2022-2026"
-		},
-		{
-			"id": 30,
-			"name": "React Native",
-			"icon": "/img/timeline-icons/react-native.svg",
-			"duration": "2022-2026"
-		},
-		{
-			"id": 30,
-			"name": "Jenkins",
-			"icon": "/img/timeline-icons/jenkins.svg",
-			"duration": "2022-2025"
-		},
-		{
-			"id": 19,
-			"name": "Tailwind",
-			"icon": "/img/timeline-icons/tailwind.svg",
-			"duration": "2022-2026"
-		},
-		{
-			"id": 21,
-			"name": "Electron JS",
-			"icon": "/img/timeline-icons/electron-js.svg",
-			"duration": "2022-2025"
-		},
-		{
-			"id": 29,
-			"name": "Zustand",
-			"icon": "/img/timeline-icons/zustand.svg",
-			"duration": "2024-2026"
+			"id": 15,
+			"name": "Gatsby",
+			"icon": "/img/timeline-icons/gatsby.svg",
+			"duration": "2020-2023",
+			"category": "Frontend"
 		},
 		{
 			"id": 22,
 			"name": "Astro",
 			"icon": "/img/timeline-icons/astro.svg",
-			"duration": "2024-2026"
+			"duration": "2024-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 1,
+			"name": "HTML & CSS",
+			"icon": "/img/timeline-icons/html-css.svg",
+			"duration": "2010-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 2,
+			"name": "Javascript",
+			"icon": "/img/timeline-icons/javascript.svg",
+			"duration": "2010-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 20,
+			"name": "TypeScript",
+			"icon": "/img/timeline-icons/typescript.svg",
+			"duration": "2021-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 27,
+			"name": "Webpack",
+			"icon": "/img/timeline-icons/webpack.svg",
+			"duration": "2018-2025",
+			"category": "Frontend"
+		},
+		{
+			"id": 29,
+			"name": "Vite",
+			"icon": "/img/timeline-icons/vite.svg",
+			"duration": "2022-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 27,
+			"name": "Redux",
+			"icon": "/img/timeline-icons/redux.svg",
+			"duration": "2019-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 29,
+			"name": "Zustand",
+			"icon": "/img/timeline-icons/zustand.svg",
+			"duration": "2024-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 19,
+			"name": "Tailwind",
+			"icon": "/img/timeline-icons/tailwind.svg",
+			"duration": "2022-2026",
+			"category": "Frontend"
+		},
+		{
+			"id": 31,
+			"name": "Cypress",
+			"icon": "/img/timeline-icons/cypress.svg",
+			"duration": "2020-2023",
+			"category": "Frontend"
+		},
+		{
+			"id": 4,
+			"name": "PHP",
+			"icon": "/img/timeline-icons/php.svg",
+			"duration": "2012-2020",
+			"category": "Backend"
 		},
 		{
 			"id": 116,
 			"name": "Go",
 			"icon": "/img/timeline-icons/go.svg",
-			"duration": "2025-2026"
+			"duration": "2025-2026",
+			"category": "Backend"
+		},
+		{
+			"id": 7,
+			"name": "Python",
+			"icon": "/img/timeline-icons/python.svg",
+			"duration": "2013-2014",
+			"category": "Backend"
+		},
+		{
+			"id": 24,
+			"name": "Laravel",
+			"icon": "/img/timeline-icons/laravel.svg",
+			"duration": "2014-2017",
+			"category": "Backend"
+		},
+		{
+			"id": 13,
+			"name": "Ruby on Rails",
+			"icon": "/img/timeline-icons/ruby-on-rails.svg",
+			"duration": "2019-2023",
+			"category": "Backend"
+		},
+		{
+			"id": 6,
+			"name": "Wordpress",
+			"icon": "/img/timeline-icons/wordpress.svg",
+			"duration": "2013-2020",
+			"category": "Backend"
+		},
+		{
+			"id": 9,
+			"name": "Drupal",
+			"icon": "/img/timeline-icons/drupal.svg",
+			"duration": "2014-2018",
+			"category": "Backend"
+		},
+		{
+			"id": 23,
+			"name": "Node.js",
+			"icon": "/img/timeline-icons/node-js.svg",
+			"duration": "2016-2026",
+			"category": "Backend"
+		},
+		{
+			"id": 26,
+			"name": "ExpressJS",
+			"icon": "/img/timeline-icons/expressjs.svg",
+			"duration": "2018-2019",
+			"category": "Backend"
+		},
+		{
+			"id": 101,
+			"name": "Rest API",
+			"icon": "/img/timeline-icons/rest-api.svg",
+			"duration": "2012-2026",
+			"category": "Backend"
+		},
+		{
+			"id": 14,
+			"name": "GraphQL",
+			"icon": "/img/timeline-icons/graphql.svg",
+			"duration": "2020-2022",
+			"category": "Backend"
+		},
+		{
+			"id": 8,
+			"name": "MySQL",
+			"icon": "/img/timeline-icons/mysql.svg",
+			"duration": "2013-2020",
+			"category": "Database"
+		},
+		{
+			"id": 17,
+			"name": "PostgreSQL",
+			"icon": "/img/timeline-icons/postgresql.svg",
+			"duration": "2021-2026",
+			"category": "Database"
+		},
+		{
+			"id": 8,
+			"name": "NoSQL",
+			"icon": "/img/timeline-icons/nosql.svg",
+			"duration": "2017-2018",
+			"category": "Database"
+		},
+		{
+			"id": 102,
+			"name": "MongoDB",
+			"icon": "/img/timeline-icons/mongodb.svg",
+			"duration": "2019-2020",
+			"category": "Database"
+		},
+		{
+			"id": 103,
+			"name": "Redis",
+			"icon": "/img/timeline-icons/redis.svg",
+			"duration": "2020-2026",
+			"category": "Database"
+		},
+		{
+			"id": 104,
+			"name": "Elasticsearch",
+			"icon": "/img/timeline-icons/elasticsearch.svg",
+			"duration": "2020-2021",
+			"category": "Database"
+		},
+		{
+			"id": 118,
+			"name": "Linux",
+			"icon": "/img/timeline-icons/linux.svg",
+			"duration": "2011-2026",
+			"category": "DevOps"
+		},
+		{
+			"id": 25,
+			"name": "AWS",
+			"icon": "/img/timeline-icons/aws.svg",
+			"duration": "2017-2018",
+			"category": "DevOps"
+		},
+		{
+			"id": 117,
+			"name": "Docker",
+			"icon": "/img/timeline-icons/docker.svg",
+			"duration": "2019-2026",
+			"category": "DevOps"
+		},
+		{
+			"id": 107,
+			"name": "Nginx",
+			"icon": "/img/timeline-icons/nginx.svg",
+			"duration": "2018-2025",
+			"category": "DevOps"
+		},
+		{
+			"id": 108,
+			"name": "Shell Script",
+			"icon": "/img/timeline-icons/shell-script.svg",
+			"duration": "2018-2026",
+			"category": "DevOps"
+		},
+		{
+			"id": 115,
+			"name": "GitLab CI",
+			"icon": "/img/timeline-icons/gitlab-ci.svg",
+			"duration": "2019-2021",
+			"category": "DevOps"
+		},
+		{
+			"id": 114,
+			"name": "CircleCI",
+			"icon": "/img/timeline-icons/circleci.svg",
+			"duration": "2020-2022",
+			"category": "DevOps"
+		},
+		{
+			"id": 30,
+			"name": "Jenkins",
+			"icon": "/img/timeline-icons/jenkins.svg",
+			"duration": "2022-2025",
+			"category": "DevOps"
+		},
+		{
+			"id": 109,
+			"name": "Github Actions",
+			"icon": "/img/timeline-icons/github-actions.svg",
+			"duration": "2021-2026",
+			"category": "DevOps"
+		},
+		{
+			"id": 21,
+			"name": "Electron JS",
+			"icon": "/img/timeline-icons/electron-js.svg",
+			"duration": "2022-2025",
+			"category": "Apps"
 		},
 		{
 			"id": 116,
 			"name": "Wails",
 			"icon": "/img/timeline-icons/wails.svg",
-			"duration": "2025-2026"
+			"duration": "2025-2026",
+			"category": "Apps"
+		},
+		{
+			"id": 30,
+			"name": "React Native",
+			"icon": "/img/timeline-icons/react-native.svg",
+			"duration": "2022-2026",
+			"category": "Apps"
+		},
+		{
+			"id": 0,
+			"name": "Photoshop",
+			"icon": "/img/timeline-icons/photoshop.svg",
+			"duration": "2010-2025",
+			"category": "Design"
+		},
+		{
+			"id": 12,
+			"name": "Adobe XD",
+			"icon": "/img/timeline-icons/adobe-xd.svg",
+			"duration": "2019-2022",
+			"category": "Design"
+		},
+		{
+			"id": 16,
+			"name": "Figma",
+			"icon": "/img/timeline-icons/figma.svg",
+			"duration": "2021-2026",
+			"category": "Design"
+		},
+		{
+			"id": 32,
+			"name": "UX Design",
+			"icon": "/img/timeline-icons/ux-design.svg",
+			"duration": "2016-2026",
+			"category": "Design"
+		},
+		{
+			"id": 104,
+			"name": "Motion Graphics",
+			"icon": "/img/timeline-icons/motion-graphics.svg",
+			"duration": "2012-2020",
+			"category": "Design"
+		},
+		{
+			"id": 113,
+			"name": "After Effects",
+			"icon": "/img/timeline-icons/after-effects.svg",
+			"duration": "2010-2014",
+			"category": "Design"
+		},
+		{
+			"id": 112,
+			"name": "FFmpeg",
+			"icon": "/img/timeline-icons/ffmpeg.svg",
+			"duration": "2020-2024",
+			"category": "Design"
+		},
+		{
+			"id": 111,
+			"name": "Cubase",
+			"icon": "/img/timeline-icons/cubase.svg",
+			"duration": "2010-2019",
+			"category": "Design"
+		},
+		{
+			"id": 110,
+			"name": "Reason Studios",
+			"icon": "/img/timeline-icons/reason-studios.svg",
+			"duration": "2010-2024",
+			"category": "Design"
 		}
 	],
 	"roles": [
@@ -1178,7 +1302,11 @@
 			"description": "Delivering technical excellence through experience, leadership, and continuous innovation.",
 			"icon": "👨‍💻",
 			"image": "/img/roles/Senior Software Engineer.png",
-			"tags": ["Leadership", "Architecture", "Mentorship"]
+			"tags": [
+				"Leadership",
+				"Architecture",
+				"Mentorship"
+			]
 		},
 		{
 			"title": "Product Engineer",
@@ -1186,7 +1314,11 @@
 			"description": "Crafting product solutions, not just code , where engineering meets user needs.",
 			"icon": "🎯",
 			"image": "/img/roles/Product Engineer.png",
-			"tags": ["Product Thinking", "User Research", "Full-stack"]
+			"tags": [
+				"Product Thinking",
+				"User Research",
+				"Full-stack"
+			]
 		},
 		{
 			"title": "Engineering Manager",
@@ -1194,7 +1326,11 @@
 			"description": "Leading high-performing engineering teams to deliver exceptional software products.",
 			"icon": "👥",
 			"image": "/img/roles/Engineering Manage.png",
-			"tags": ["Team Leadership", "Strategy", "Process"]
+			"tags": [
+				"Team Leadership",
+				"Strategy",
+				"Process"
+			]
 		},
 		{
 			"title": "DevOps Cloud Engineer",
@@ -1202,7 +1338,11 @@
 			"description": "Building scalable infrastructure and optimizing deployment pipelines.",
 			"icon": "☁️",
 			"image": "/img/roles/devops.png",
-			"tags": ["Cloud", "Automation", "Scalability"]
+			"tags": [
+				"Cloud",
+				"Automation",
+				"Scalability"
+			]
 		},
 		{
 			"title": "Music Production Technologist",
@@ -1210,7 +1350,11 @@
 			"description": "Combining technical expertise with creative audio production and sound design.",
 			"icon": "🎵",
 			"image": "/img/roles/Music Production.png",
-			"tags": ["Audio", "Production", "Technology"]
+			"tags": [
+				"Audio",
+				"Production",
+				"Technology"
+			]
 		}
 	],
 	"life": [
@@ -1220,7 +1364,10 @@
 			"org": "Tehran, Iran",
 			"description": "Born on May 24, 1988 in Tehran, Iran. The beginning of an incredible journey.",
 			"image": "/img/life/littleep.jpg",
-			"tags": ["Life", "Beginning"],
+			"tags": [
+				"Life",
+				"Beginning"
+			],
 			"highlighted": true
 		},
 		{
@@ -1229,7 +1376,10 @@
 			"org": "Malmö, Sweden",
 			"description": "Moved to Malmö, Sweden on May 5, 2003. A new chapter in a new country, embracing new cultures and opportunities.",
 			"image": "/img/life/sweden.jpg",
-			"tags": ["Migration", "New Beginning"],
+			"tags": [
+				"Migration",
+				"New Beginning"
+			],
 			"highlighted": true
 		},
 		{
@@ -1238,7 +1388,12 @@
 			"org": "Technical & Creative Education",
 			"description": "⚡ Studied Electrical Automation (PLC, control engineering)\n🎨 Completed Web Design course – first step into digital creation",
 			"image": "/img/life/education.jpg",
-			"tags": ["Education", "Electrical Automation", "Web Design", "PLC"],
+			"tags": [
+				"Education",
+				"Electrical Automation",
+				"Web Design",
+				"PLC"
+			],
 			"highlighted": true
 		},
 		{
@@ -1247,7 +1402,12 @@
 			"org": "Independent Artist",
 			"description": "Released my first official track 'The Demo' – marking the beginning of my music production journey. A milestone that combined technical skills with creative expression.",
 			"image": "/img/music.jpeg",
-			"tags": ["Music", "Production", "Hip-Hop", "Creative"],
+			"tags": [
+				"Music",
+				"Production",
+				"Hip-Hop",
+				"Creative"
+			],
 			"highlighted": true,
 			"spotifyEmbed": "https://open.spotify.com/embed/track/4ac9ugMH2a90F4LnRN8W01?utm_source=generator"
 		},
@@ -1257,7 +1417,12 @@
 			"org": "Next Generation Design",
 			"description": "Co-founded Next Generation Design, a design and development agency. Started my entrepreneurial journey building WordPress websites, managing client projects, and handling server administration. This was my first step as a professional developer.",
 			"image": "/img/0_3.png",
-			"tags": ["Entrepreneurship", "Web Development", "WordPress", "First Company"],
+			"tags": [
+				"Entrepreneurship",
+				"Web Development",
+				"WordPress",
+				"First Company"
+			],
 			"highlighted": true
 		},
 		{
@@ -1266,7 +1431,11 @@
 			"org": "The Fan Club",
 			"description": "Started my first official job as Web Developer/Designer at The Fan Club advertising agency. This role launched my professional career in web development and creative digital solutions.",
 			"image": "/img/bg5-7.jpg",
-			"tags": ["Career", "Web Development", "First Job"],
+			"tags": [
+				"Career",
+				"Web Development",
+				"First Job"
+			],
 			"highlighted": true
 		},
 		{
@@ -1275,9 +1444,15 @@
 			"org": "Industry Recognition",
 			"description": "Created ToolPool – an award-winning web application that received multiple industry awards including Guldägget (Gold Egg). Recognized for innovation, technical execution, and creative concept.",
 			"image": "/img/life/toolpool-team.jpg",
-			"tags": ["Award", "Innovation", "Web Application"],
+			"tags": [
+				"Award",
+				"Innovation",
+				"Web Application"
+			],
 			"highlighted": true,
-			"awards": ["Guldägget (Gold Egg) - Prestigious Swedish award for creative excellence"]
+			"awards": [
+				"Guldägget (Gold Egg) - Prestigious Swedish award for creative excellence"
+			]
 		},
 		{
 			"year": "2019",
@@ -1285,32 +1460,96 @@
 			"org": "Love & Partnership",
 			"description": "Got married to CharLeen on August 8, 2019 ❤️. A beautiful celebration of love and commitment.",
 			"image": "/img/life/char.jpg",
-			"tags": ["Marriage", "Love", "Family"],
+			"tags": [
+				"Marriage",
+				"Love",
+				"Family"
+			],
 			"highlighted": true
 		}
 	],
 	"navigation": {
 		"main": [
-			{ "key": "home", "href": "/", "text": "Home" },
-			{ "key": "work", "href": "/work", "text": "Work" },
-			{ "key": "products", "href": "/products", "text": "Products" },
-			{ "key": "skills", "href": "/skills", "text": "Skills" },
-			{ "key": "about", "href": "/about", "text": "About" },
-			{ "key": "contact", "href": "/contact", "text": "Contact" }
+			{
+				"key": "home",
+				"href": "/",
+				"text": "Home"
+			},
+			{
+				"key": "work",
+				"href": "/work",
+				"text": "Work"
+			},
+			{
+				"key": "products",
+				"href": "/products",
+				"text": "Products"
+			},
+			{
+				"key": "skills",
+				"href": "/skills",
+				"text": "Skills"
+			},
+			{
+				"key": "about",
+				"href": "/about",
+				"text": "About"
+			},
+			{
+				"key": "contact",
+				"href": "/contact",
+				"text": "Contact"
+			}
 		],
 		"footer": [
-			{ "href": "/", "text": "Home" },
-			{ "href": "/portfolio", "text": "Work" },
-			{ "href": "/products", "text": "Products" },
-			{ "href": "/blog", "text": "Blog" },
-			{ "href": "/prompts", "text": "AI Prompts" },
-			{ "href": "/skills", "text": "Skills" },
-			{ "href": "/music", "text": "Music" },
-			{ "href": "/cv", "text": "Resume" },
-			{ "href": "/about", "text": "About" },
-			{ "href": "/life", "text": "Life" },
-			{ "href": "/contact", "text": "Contact" },
-			{ "href": "/credits", "text": "Credits" }
+			{
+				"href": "/",
+				"text": "Home"
+			},
+			{
+				"href": "/portfolio",
+				"text": "Work"
+			},
+			{
+				"href": "/products",
+				"text": "Products"
+			},
+			{
+				"href": "/blog",
+				"text": "Blog"
+			},
+			{
+				"href": "/prompts",
+				"text": "AI Prompts"
+			},
+			{
+				"href": "/skills",
+				"text": "Skills"
+			},
+			{
+				"href": "/music",
+				"text": "Music"
+			},
+			{
+				"href": "/cv",
+				"text": "Resume"
+			},
+			{
+				"href": "/about",
+				"text": "About"
+			},
+			{
+				"href": "/life",
+				"text": "Life"
+			},
+			{
+				"href": "/contact",
+				"text": "Contact"
+			},
+			{
+				"href": "/credits",
+				"text": "Credits"
+			}
 		]
 	},
 	"contact": {
@@ -1335,7 +1574,11 @@
 			"description": "Building modern, responsive websites with cutting-edge technologies.",
 			"icon": "💻",
 			"image": "/img/110_1.png",
-			"features": ["Custom website development", "Responsive design", "Full-stack development"]
+			"features": [
+				"Custom website development",
+				"Responsive design",
+				"Full-stack development"
+			]
 		},
 		{
 			"id": 2,
@@ -1355,7 +1598,11 @@
 			"description": "Designing intuitive and engaging user interfaces.",
 			"icon": "🎨",
 			"image": "/img/110_3_3.png",
-			"features": ["Wireframing", "Prototyping", "User Research"]
+			"features": [
+				"Wireframing",
+				"Prototyping",
+				"User Research"
+			]
 		},
 		{
 			"id": 4,
@@ -1385,64 +1632,180 @@
 	"charts": [
 		{
 			"slug": "Overall",
-			"labels": ["Front-End", "Backend", "Database", "Design", "Cloud", "Devop"],
-			"data": ["10", "9", "8", "8", "6", "7"]
+			"labels": [
+				"Front-End",
+				"Backend",
+				"Database",
+				"Design",
+				"Cloud",
+				"Devop"
+			],
+			"data": [
+				"10",
+				"9",
+				"8",
+				"8",
+				"6",
+				"7"
+			]
 		}
 	],
 	"stacks": [
 		{
 			"slug": "Front-end",
-			"labels": ["React", "Astro", "Next.js", "TypeScript", "Css"],
+			"labels": [
+				"React",
+				"Astro",
+				"Next.js",
+				"TypeScript",
+				"Css"
+			],
 			"icon": "/img/stacks/front-end.svg",
-			"data": ["10", "9", "9", "8", "10"]
+			"data": [
+				"10",
+				"9",
+				"9",
+				"8",
+				"10"
+			]
 		},
 		{
 			"slug": "Backend",
-			"labels": ["Node.js", "Rest API", "PHP", "Ruby on Rails", "Go"],
+			"labels": [
+				"Node.js",
+				"Rest API",
+				"PHP",
+				"Ruby on Rails",
+				"Go"
+			],
 			"icon": "/img/stacks/back-end.svg",
-			"data": ["10", "10", "8", "7", "4"]
+			"data": [
+				"10",
+				"10",
+				"8",
+				"7",
+				"4"
+			]
 		},
 		{
 			"slug": "Database",
-			"labels": ["MySQL", "PostgreSQL", "MongoDB", "Redis", "Elasticsearch"],
+			"labels": [
+				"MySQL",
+				"PostgreSQL",
+				"MongoDB",
+				"Redis",
+				"Elasticsearch"
+			],
 			"icon": "/img/stacks/database2.svg",
-			"data": ["10", "7", "8", "7", "6"]
+			"data": [
+				"10",
+				"7",
+				"8",
+				"7",
+				"6"
+			]
 		},
 		{
 			"slug": "Design",
-			"labels": ["UI", "UX", "Adobe XD", "Photoshop", "Motion Graphics"],
+			"labels": [
+				"UI",
+				"UX",
+				"Adobe XD",
+				"Photoshop",
+				"Motion Graphics"
+			],
 			"icon": "/img/stacks/design2.svg",
-			"data": ["10", "9", "8", "10", "8"]
+			"data": [
+				"10",
+				"9",
+				"8",
+				"10",
+				"8"
+			]
 		},
 		{
 			"slug": "Apps",
-			"labels": ["Electron js", "Wails", "Tailwind", "Vite", "React Native"],
+			"labels": [
+				"Electron js",
+				"Wails",
+				"Tailwind",
+				"Vite",
+				"React Native"
+			],
 			"icon": "/img/stacks/apps.svg",
-			"data": ["9", "7", "10", "7", "8"]
+			"data": [
+				"9",
+				"7",
+				"10",
+				"7",
+				"8"
+			]
 		},
 		{
 			"slug": "Cloud",
-			"labels": ["AWS API Gateway", "Lambda", "DynamoDB", "S3", "CloudFront"],
+			"labels": [
+				"AWS API Gateway",
+				"Lambda",
+				"DynamoDB",
+				"S3",
+				"CloudFront"
+			],
 			"icon": "/img/stacks/cloud.svg",
-			"data": ["8", "6", "6", "8", "7"]
+			"data": [
+				"8",
+				"6",
+				"6",
+				"8",
+				"7"
+			]
 		},
 		{
 			"slug": "DevOps",
-			"labels": ["Linux", "Docker", "Nginx", "Shell Script"],
+			"labels": [
+				"Linux",
+				"Docker",
+				"Nginx",
+				"Shell Script"
+			],
 			"icon": "/img/stacks/devop2.svg",
-			"data": ["9", "9", "9", "8"]
+			"data": [
+				"9",
+				"9",
+				"9",
+				"8"
+			]
 		},
 		{
 			"slug": "CI/CD",
-			"labels": ["Github Actions", "Jenkins", "CircleCI", "GitLab CI"],
+			"labels": [
+				"Github Actions",
+				"Jenkins",
+				"CircleCI",
+				"GitLab CI"
+			],
 			"icon": "/img/stacks/cicd.svg",
-			"data": ["9", "7", "6", "6"]
+			"data": [
+				"9",
+				"7",
+				"6",
+				"6"
+			]
 		},
 		{
 			"slug": "Multimedia",
-			"labels": ["Reason Studios", "Cubase", "FFmpeg", "After Effects"],
+			"labels": [
+				"Reason Studios",
+				"Cubase",
+				"FFmpeg",
+				"After Effects"
+			],
 			"icon": "/img/stacks/music.svg",
-			"data": ["10", "9", "7", "5"]
+			"data": [
+				"10",
+				"9",
+				"7",
+				"5"
+			]
 		}
 	],
 	"tools": [
@@ -1682,5 +2045,126 @@
 			"img": "/img/cert/GA.png",
 			"year": "2022"
 		}
-	]
+	],
+	"timelineHighlights": {
+		"2010": [
+			"HTML & CSS",
+			"Javascript",
+			"Photoshop",
+			"Adobe Flash",
+			"Reason Studios"
+		],
+		"2011": [
+			"HTML & CSS",
+			"Javascript",
+			"Linux",
+			"Photoshop",
+			"Adobe Flash"
+		],
+		"2012": [
+			"jQuery",
+			"PHP",
+			"Rest API",
+			"HTML & CSS",
+			"Javascript"
+		],
+		"2013": [
+			"jQuery",
+			"PHP",
+			"Wordpress",
+			"MySQL",
+			"Javascript"
+		],
+		"2014": [
+			"Laravel",
+			"Drupal",
+			"PHP",
+			"jQuery",
+			"MySQL"
+		],
+		"2015": [
+			"Angular",
+			"PHP",
+			"Laravel",
+			"MySQL",
+			"Rest API"
+		],
+		"2016": [
+			"Node.js",
+			"Angular",
+			"UX Design",
+			"PHP",
+			"Rest API"
+		],
+		"2017": [
+			"Node.js",
+			"Laravel",
+			"AWS",
+			"UX Design",
+			"NoSQL"
+		],
+		"2018": [
+			"ReactJS",
+			"Node.js",
+			"ExpressJS",
+			"Webpack",
+			"Rest API"
+		],
+		"2019": [
+			"ReactJS",
+			"Redux",
+			"Docker",
+			"Node.js",
+			"Ruby on Rails"
+		],
+		"2020": [
+			"ReactJS",
+			"Gatsby",
+			"Ruby on Rails",
+			"Docker",
+			"GraphQL"
+		],
+		"2021": [
+			"ReactJS",
+			"TypeScript",
+			"Next.js",
+			"PostgreSQL",
+			"Github Actions"
+		],
+		"2022": [
+			"ReactJS",
+			"TypeScript",
+			"Tailwind",
+			"Vite",
+			"React Native"
+		],
+		"2023": [
+			"ReactJS",
+			"TypeScript",
+			"Electron JS",
+			"Tailwind",
+			"Next.js"
+		],
+		"2024": [
+			"ReactJS",
+			"TypeScript",
+			"Astro",
+			"Zustand",
+			"Tailwind"
+		],
+		"2025": [
+			"ReactJS",
+			"TypeScript",
+			"Go",
+			"Wails",
+			"Astro"
+		],
+		"2026": [
+			"ReactJS",
+			"TypeScript",
+			"Astro",
+			"Go",
+			"Zustand"
+		]
+	}
 }

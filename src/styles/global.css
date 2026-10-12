@@ -219,7 +219,7 @@ body {
 	left: -10%;
 }
 
-.portfolio-hero-image-tilt {
+.portfolio-hero-image-tilt,  .preserve-3d{
 	transform-style: preserve-3d;
 }
 

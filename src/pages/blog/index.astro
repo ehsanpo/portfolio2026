@@ -3,10 +3,17 @@ import Layout from "../../layouts/Layout.astro";
 import PageHero from "../../components/hero/PageHero.astro";
 import { getBlogPosts } from "../../utils/data";
 import { BlogCard } from "../../components/blog/BlogCard";
+import Pagination from "../../components/blog/Pagination.astro";
+
+const POSTS_PER_PAGE = 9;
 
 const blogPosts = await getBlogPosts();
-const featuredPosts = blogPosts.filter((post) => post.featured === true);
+const featuredPosts = blogPosts.filter((post) => post.featured === true).slice(0, 4);
 const regularPosts = blogPosts.filter((post) => post.featured !== true);
+
+const totalPages = Math.max(1, Math.ceil(regularPosts.length / POSTS_PER_PAGE));
+const currentPage = 1;
+const paginatedRegularPosts = regularPosts.slice(0, POSTS_PER_PAGE);
 ---
 
 <Layout
@@ -41,8 +48,16 @@ const regularPosts = blogPosts.filter((post) => post.featured !== true);
 			</div>
 
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{regularPosts.map((post) => <BlogCard post={post} client:load />)}
+				{paginatedRegularPosts.map((post) => <BlogCard post={post} client:load />)}
 			</div>
+
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				totalItems={regularPosts.length}
+				itemsPerPage={POSTS_PER_PAGE}
+				basePath="/blog"
+			/>
 
 			{
 				blogPosts.length === 0 && (

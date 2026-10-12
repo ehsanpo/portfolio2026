@@ -1,0 +1,68 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import PageHero from "../../../components/hero/PageHero.astro";
+import { getBlogPosts } from "../../../utils/data";
+import { BlogCard } from "../../../components/blog/BlogCard";
+import Pagination from "../../../components/blog/Pagination.astro";
+
+const POSTS_PER_PAGE = 9;
+
+export async function getStaticPaths() {
+	const POSTS_PER_PAGE = 9;
+	const blogPosts = await getBlogPosts();
+	const regularPosts = blogPosts.filter((post) => post.featured !== true);
+	const totalPages = Math.max(1, Math.ceil(regularPosts.length / POSTS_PER_PAGE));
+
+	// Generate static routes for page 2 .. totalPages
+	const paths = [];
+	for (let p = 2; p <= totalPages; p++) {
+		const start = (p - 1) * POSTS_PER_PAGE;
+		const end = start + POSTS_PER_PAGE;
+		paths.push({
+			params: { page: String(p) },
+			props: {
+				currentPage: p,
+				totalPages,
+				regularPosts: regularPosts.slice(start, end),
+				totalItems: regularPosts.length,
+			},
+		});
+	}
+	return paths;
+}
+
+const { currentPage, totalPages, regularPosts, totalItems } = Astro.props;
+---
+
+<Layout
+	title={`Blog - Page ${currentPage}`}
+	description={`Articles, insights, and stories from my developer journey - Page ${currentPage}`}
+	image="/img/ogdefault.jpg"
+	imageAlt="Ehsan's Blog - Developer Insights and Stories"
+>
+	<PageHero
+		title="Blog"
+		subtitle={`Articles & stories from my creative journey (Page ${currentPage})`}
+	/>
+	<div class="py-20">
+		<div class="container mx-auto px-4">
+			<div class="mb-8">
+				<h2 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
+					Articles (Page {currentPage} of {totalPages})
+				</h2>
+			</div>
+
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{regularPosts.map((post) => <BlogCard post={post} client:load />)}
+			</div>
+
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				totalItems={totalItems}
+				itemsPerPage={POSTS_PER_PAGE}
+				basePath="/blog"
+			/>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,92 @@
+[
+	{
+		"full_name": "mvt-project/mvt",
+		"html_url": "https://github.com/mvt-project/mvt",
+		"description": "MVT (Mobile Verification Toolkit) helps with conducting forensics of mobile devices in order to find signs of a potential compromise.",
+		"stargazers_count": 15315,
+		"forks_count": 1460,
+		"starred_at": "2026-10-11T12:40:41Z",
+		"updated_at": "2026-10-11T12:40:41Z",
+		"fork": false
+	},
+	{
+		"full_name": "humanwhocodes/crosspost",
+		"html_url": "https://github.com/humanwhocodes/crosspost",
+		"description": "A JavaScript utility for posting across multiple social networks at once",
+		"stargazers_count": 577,
+		"forks_count": 28,
+		"starred_at": "2026-10-11T00:22:14Z",
+		"updated_at": "2026-10-11T00:22:14Z",
+		"fork": false
+	},
+	{
+		"full_name": "benoitpetit/signal-sdk",
+		"html_url": "https://github.com/benoitpetit/signal-sdk",
+		"description": "A comprehensive TypeScript SDK for interacting with signal messenger, providing JSON-RPC communication and a powerful bot framework.",
+		"stargazers_count": 25,
+		"forks_count": 4,
+		"starred_at": "2026-10-07T20:42:58Z",
+		"updated_at": "2026-10-07T20:42:58Z",
+		"fork": false
+	},
+	{
+		"full_name": "LeanerCloud/dotclaude",
+		"html_url": "https://github.com/LeanerCloud/dotclaude",
+		"description": "Global Claude Code configuration: CLAUDE.md, coding standards, conventions, workflow docs, and agent definitions",
+		"stargazers_count": 14,
+		"forks_count": 0,
+		"starred_at": "2026-10-06T00:44:03Z",
+		"updated_at": "2026-10-06T00:44:03Z",
+		"fork": false
+	},
+	{
+		"full_name": "charlie947/social-media-skills",
+		"html_url": "https://github.com/charlie947/social-media-skills",
+		"description": "Social media automation and skill workflows.",
+		"stargazers_count": 4009,
+		"forks_count": 912,
+		"starred_at": "2026-09-15T02:57:08Z",
+		"updated_at": "2026-09-15T02:57:08Z",
+		"fork": false
+	},
+	{
+		"full_name": "AnmolSaini16/mapcn",
+		"html_url": "https://github.com/AnmolSaini16/mapcn",
+		"description": "Beautiful map components. 100% Free, Zero config, one command setup.",
+		"stargazers_count": 12248,
+		"forks_count": 719,
+		"starred_at": "2026-09-06T20:55:36Z",
+		"updated_at": "2026-09-06T20:55:36Z",
+		"fork": false
+	},
+	{
+		"full_name": "matallui/artico",
+		"html_url": "https://github.com/matallui/artico",
+		"description": "Artico - WebRTC made simple",
+		"stargazers_count": 115,
+		"forks_count": 8,
+		"starred_at": "2026-08-23T20:25:45Z",
+		"updated_at": "2026-08-23T20:25:45Z",
+		"fork": false
+	},
+	{
+		"full_name": "ZackGphom/GLORP",
+		"html_url": "https://github.com/ZackGphom/GLORP",
+		"description": "Optimized Pixel-Art to SVG converter with Greedy Meshing.",
+		"stargazers_count": 27,
+		"forks_count": 1,
+		"starred_at": "2026-07-10T14:15:00Z",
+		"updated_at": "2026-07-10T14:15:00Z",
+		"fork": false
+	},
+	{
+		"full_name": "molvqingtai/comctx",
+		"html_url": "https://github.com/molvqingtai/comctx",
+		"description": "Use RPC to communicate easily across contexts in any JavaScript environment.",
+		"stargazers_count": 122,
+		"forks_count": 4,
+		"starred_at": "2026-06-15T13:00:12Z",
+		"updated_at": "2026-06-15T13:00:12Z",
+		"fork": false
+	}
+]

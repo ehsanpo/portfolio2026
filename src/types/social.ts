@@ -9,8 +9,15 @@ export interface SocialPost {
 	caption: string;
 	date?: string;
 	mediaUrl?: string;
+	poster?: string;
 	embedUrl?: string;
 	href?: string;
 	ctaLabel?: string;
 	order: number;
+	stars?: number;
+	forks?: number;
+	repoUrl?: string;
+	owner?: string;
+	repoName?: string;
+	published?: boolean;
 }

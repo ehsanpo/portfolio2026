@@ -88,29 +88,46 @@ const social = defineCollection({
 		kind: z.enum(["image", "video", "link", "tiktok", "github"]),
 		date: z.string().optional(),
 		mediaUrl: z.string().optional(),
+		poster: z.string().optional(),
 		embedUrl: z.string().optional(),
 		href: z.string().optional(),
 		ctaLabel: z.string().optional(),
 		order: z.number().optional(),
+		stars: z.number().optional(),
+		forks: z.number().optional(),
+		repoUrl: z.string().optional(),
+		published: z.boolean().default(false).optional(),
 	}),
 });
 
 const socialSources = defineCollection({
 	type: "data",
 	schema: z.object({
+		tiktok: z
+			.object({
+				username: z.string().default("ehsanpourhadi462"),
+				videoIds: z.array(z.string()).default([]),
+			})
+			.optional(),
 		tiktokEmbeds: z
 			.array(
-				z.object({
-					slug: z.string().optional(),
-					title: z.string(),
-					date: z.string(),
-					embedUrl: z.string(),
-					href: z.string().optional(),
-					caption: z.string().optional(),
-					ctaLabel: z.string().optional(),
-					order: z.number().optional(),
-				})
+				z.union([
+					z.string(),
+					z.object({
+						id: z.string().optional(),
+						slug: z.string().optional(),
+						title: z.string().optional(),
+						date: z.string().optional(),
+						embedUrl: z.string().optional(),
+						mediaUrl: z.string().optional(),
+						href: z.string().optional(),
+						caption: z.string().optional(),
+						ctaLabel: z.string().optional(),
+						order: z.number().optional(),
+					}),
+				])
 			)
+			.optional()
 			.default([]),
 		github: z
 			.object({

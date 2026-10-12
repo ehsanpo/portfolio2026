@@ -32,6 +32,7 @@
 		"react-calendar-heatmap": "^1.10.0",
 		"react-chartjs-2": "^5.3.1",
 		"react-dom": "^19.2.3",
+		"react-layout-masonry": "^2.1.0",
 		"react-parallax-tilt": "^1.7.316",
 		"react-scroll-parallax": "^3.5.0",
 		"react-tooltip": "^5.30.0",

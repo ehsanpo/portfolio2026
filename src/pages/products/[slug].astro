@@ -60,7 +60,7 @@ const { Content } = await item.content.render();
 		<PortfolioHeader item={item} client:load />
 
 		<div class="relative z-10 mx-auto max-w-6xl px-4 pt-10">
-			<div class="prose dark:prose-invert mx-auto mb-20 max-w-3xl">
+			<div class={["disibalist", "0perator", "chef"].includes(item.permalink) ? "not-prose mx-auto mb-20 max-w-6xl" : "prose dark:prose-invert mx-auto mb-20 max-w-3xl"}>
 				<slot />
 				<Content />
 			</div>

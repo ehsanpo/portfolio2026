@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Decibelist // Offline Acoustic Intelligence &amp; Neural Mastering</title>
+<!-- Material Symbols & Typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#690005",
+            "inverse-primary": "#006b54",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "on-primary-fixed": "#002118",
+            "tertiary": "#fff3ea",
+            "on-primary-container": "#006b55",
+            "inverse-surface": "#e1e2e8",
+            "on-secondary-container": "#004c4b",
+            "on-secondary": "#003736",
+            "secondary-fixed": "#62f8f6",
+            "surface-dim": "#111418",
+            "surface-container-low": "#191c20",
+            "surface-variant": "#323539",
+            "on-primary": "#00382b",
+            "on-tertiary-container": "#855300",
+            "outline-variant": "#3a4a44",
+            "tertiary-fixed-dim": "#ffb95f",
+            "on-secondary-fixed": "#00201f",
+            "on-surface-variant": "#b9cac2",
+            "surface-container-lowest": "#0b0e12",
+            "on-surface": "#e1e2e8",
+            "secondary-fixed-dim": "#3bdbd9",
+            "primary-fixed-dim": "#00e0b3",
+            "background": "#111418",
+            "on-error-container": "#ffdad6",
+            "primary": "#d4ffed",
+            "surface-container-highest": "#323539",
+            "surface": "#111418",
+            "on-primary-fixed-variant": "#00513f",
+            "tertiary-fixed": "#ffddb8",
+            "surface-container": "#1d2024",
+            "on-tertiary-fixed": "#2a1700",
+            "on-tertiary": "#472a00",
+            "on-background": "#e1e2e8",
+            "secondary-container": "#00c5c3",
+            "outline": "#84948d",
+            "on-tertiary-fixed-variant": "#653e00",
+            "surface-bright": "#36393e",
+            "tertiary-container": "#ffd19c",
+            "primary-fixed": "#28ffcd",
+            "surface-container-high": "#272a2e",
+            "surface-tint": "#00e0b3",
+            "secondary": "#43e1df",
+            "on-secondary-fixed-variant": "#00504f",
+            "inverse-on-surface": "#2e3135",
+            "primary-container": "#00f5c4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-md": "0.875rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.25rem",
+            "gutter-desktop": "1.25rem",
+            "margin-desktop": "1.75rem",
+            "space-xl": "2rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Space Grotesk"],
+            "metric-readout": ["JetBrains Mono"],
+            "title-rack": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "metric-readout-lg": ["JetBrains Mono"],
+            "label-caps": ["Space Grotesk"],
+            "body-default": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"],
+            "label-mono": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "metric-readout": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "title-rack": ["13px", { "lineHeight": "16px", "letterSpacing": "0.14em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "metric-readout-lg": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.18em", "fontWeight": "700" }],
+            "body-default": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-mono": ["10px", { "lineHeight": "12px", "letterSpacing": "0.06em", "fontWeight": "500" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    /* Rack Hardware & Recessed Depth Shadows */
+    .hardware-recessed {
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.85), inset 0 0 1px rgba(0, 0, 0, 0.95);
+    }
+    .hardware-bezel {
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.95);
+      border-left: 1px solid rgba(255, 255, 255, 0.04);
+      border-right: 1px solid rgba(0, 0, 0, 0.85);
+    }
+    .neon-glow-primary {
+      box-shadow: 0 0 14px rgba(0, 245, 196, 0.35);
+    }
+    .neon-glow-amber {
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.35);
+    }
+    .reticle-grid {
+      background-size: 24px 24px;
+      background-image: 
+        linear-gradient(to right, rgba(38, 208, 206, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(38, 208, 206, 0.05) 1px, transparent 1px);
+    }
+    /* Rotary Knob Skeuomorphic Simulation */
+    .rotary-dial {
+      background: radial-gradient(circle at 35% 30%, #2a3038 0%, #161b20 65%, #0d1013 100%);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-default min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- ========================================================================= -->
+<!-- TOP APP BAR (Shared Component JSON Blueprint)                             -->
+<!-- ========================================================================= -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-space-lg py-space-sm bg-surface-container-lowest/95 backdrop-blur-md border-b border-surface-variant/40 shadow-2xl">
+<!-- Brand Anchor -->
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-sm bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-rack text-title-rack tracking-widest text-primary-fixed font-bold flex items-center gap-2">
+          DECIBELIST // ACOUSTIC INTELLIGENCE
+        </span>
+<span class="font-label-mono text-label-mono text-outline">HARDWARE CHASSIS v2.4 // DSP CORE AIR-GAPPED</span>
+</div>
+</div>
+<!-- Desktop Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary-fixed border-b-2 border-primary-fixed pb-1 font-title-rack text-title-rack tracking-wider" href="#engines">Engines</a>
+<a class="text-outline hover:text-on-surface font-title-rack text-title-rack tracking-wider transition-colors duration-150" href="#telemetry">Telemetry</a>
+<a class="text-outline hover:text-on-surface font-title-rack text-title-rack tracking-wider transition-colors duration-150" href="#racks">Rack Units</a>
+<a class="text-outline hover:text-on-surface font-title-rack text-title-rack tracking-wider transition-colors duration-150" href="#specs">Specs</a>
+<a class="text-outline hover:text-on-surface font-title-rack text-title-rack tracking-wider transition-colors duration-150" href="#manual">Manual</a>
+</nav>
+<!-- Trailing Actions Cluster -->
+<div class="flex items-center gap-3">
+<button class="text-outline hover:text-primary-fixed transition-colors duration-150 p-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<button class="text-outline hover:text-primary-fixed transition-colors duration-150 p-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</button>
+<div class="h-4 w-px bg-surface-variant mx-1 hidden sm:block"></div>
+<button class="hidden sm:inline-flex items-center px-space-sm py-1 rounded bg-surface-container-high border border-outline-variant text-outline hover:text-on-surface font-label-mono text-label-mono tracking-wider active:translate-y-px transition-all">
+        Offline License
+      </button>
+<a class="inline-flex items-center gap-1.5 px-space-md py-1.5 rounded bg-primary-container text-on-primary-container font-title-rack text-title-rack tracking-wider font-bold neon-glow-primary hover:brightness-110 active:translate-y-px transition-all" href="#download">
+<span class="material-symbols-outlined text-[16px]">download</span>
+        Download v2.4
+      </a>
+</div>
+</header>
+<!-- Global Rack Chassis Canvas -->
+<main class="pt-20 pb-16 px-space-sm sm:px-space-lg lg:px-margin-desktop max-w-[1440px] mx-auto space-y-16">
+<!-- ========================================================================= -->
+<!-- HERO SECTION: Master Offline Rack Overview                                -->
+<!-- ========================================================================= -->
+<section class="pt-8 pb-4 relative">
+<!-- Machined Top Status Ribbon -->
+<div class="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/60 font-label-mono text-label-mono text-primary-fixed mb-6 tracking-widest shadow-inner">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+        100% AIR-GAPPED &amp; OFFLINE // ZERO TELEMETRY // LOCAL NEURAL ENGINE
+      </div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="lg:col-span-7 space-y-6">
+<h1 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">
+            Studio-Grade AI Mastering. <br class="hidden sm:inline"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-fixed via-secondary to-primary-fixed-dim">
+              Zero Cloud. Zero Latency.
+            </span>
+</h1>
+<p class="font-body-default text-body-default text-outline max-w-2xl text-base leading-relaxed">
+            Decibelist brings high-precision neural mastering engines and forensic acoustic telemetry directly to your local hardware. Master commercial-ready masters without sending a single byte to external servers. Bit-accurate, ultra-low noise floor, and instant hardware execution.
+          </p>
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="inline-flex items-center gap-2 px-space-lg py-3 rounded bg-primary-container text-on-primary-container font-title-rack text-title-rack uppercase tracking-wider font-bold neon-glow-primary hover:brightness-105 active:translate-y-px transition-all" href="#download">
+<span class="material-symbols-outlined">download</span>
+              Download for Desktop v2.4 (macOS / Windows / Linux)
+            </a>
+<a class="inline-flex items-center gap-2 px-space-lg py-3 rounded bg-surface-container border border-surface-variant text-on-surface font-title-rack text-title-rack uppercase tracking-wider hover:border-primary-fixed/50 active:translate-y-px transition-all" href="#racks">
+<span class="material-symbols-outlined text-outline">view_quilt</span>
+              Explore Offline Rack
+            </a>
+</div>
+<!-- Quick Hardware Status Ticker -->
+<div class="pt-4 grid grid-cols-3 gap-3 max-w-lg hardware-recessed p-3 rounded bg-surface-container-lowest border border-surface-variant/40">
+<div>
+<div class="font-label-mono text-label-mono text-outline">CORE ARCHITECTURE</div>
+<div class="font-metric-readout text-metric-readout text-primary-fixed">GO + C++ WAILS 3</div>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-outline">NETWORK ADAPTER</div>
+<div class="font-metric-readout text-metric-readout text-error">DISCONNECTED (SAFE)</div>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-outline">MAX CEILING</div>
+<div class="font-metric-readout text-metric-readout text-secondary">-0.60 dB TRUE PEAK</div>
+</div>
+</div>
+</div>
+<!-- Hero Hardware Rack Visual Embed -->
+<div class="lg:col-span-5 relative">
+<!-- Outer Chassis 19" Rack Frame -->
+<div class="bg-surface-container-lowest hardware-bezel rounded-xl p-3 shadow-2xl relative overflow-hidden group">
+<div class="absolute top-2 left-2 flex gap-1">
+<div class="w-2 h-2 rounded-full bg-outline-variant/60 border border-black/80"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant/60 border border-black/80"></div>
+</div>
+<div class="absolute top-2 right-2 flex gap-1">
+<div class="w-2 h-2 rounded-full bg-outline-variant/60 border border-black/80"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant/60 border border-black/80"></div>
+</div>
+<div class="px-3 pt-2 pb-2 border-b border-surface-variant/40 flex items-center justify-between">
+<span class="font-title-rack text-title-rack text-outline uppercase flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+                ACTIVE RACK UNIT 01 // MASTERING CONTROLLER
+              </span>
+<span class="font-label-mono text-label-mono text-outline">SID: 3883E5B1</span>
+</div>
+<!-- Image Asset Presentation -->
+<div class="relative rounded overflow-hidden hardware-recessed bg-black/80 mt-2">
+<img alt="Decibelist Mastering Rack Interface" class="w-full h-auto object-cover transform hover:scale-[1.01] transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhdX5LZ5WIFyFYygdzYv0P-0oVX6q5KReFPJgcQkMTvAcQo-ii25h5RE_6Rf3sdOS5VZWV0fPPOXd6ctLLkuA-1TEsuCMqfC6dHmrgLoAtnHBmllLRhjfbS0VymN3Mhfghyyhe6xZqKzhk-uvBJcStCw5ZR8v-SWNOFabj9yQW_tMQWd7_ObqV79NJl3a-mWFaowX_qZ2ZYkawOALNCeZR6Ga7Vi6klVC3HMWvn7cbJcsrDrpTTxMriyV8-ZR1whF4qA"/>
+</div>
+<div class="mt-3 flex items-center justify-between px-2 pt-2 border-t border-surface-variant/40">
+<span class="font-label-mono text-label-mono text-primary-fixed font-semibold tracking-wider">
+                HYBRID &amp; CLASSIC ALGORITHM STACK
+              </span>
+<span class="font-label-mono text-label-mono text-tertiary-fixed-dim">
+                4X LINEAR PHASE OVERSAMPLING
+              </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- RACK SELECTOR BAR (Exact reproduction of physical tab strip)             -->
+<!-- ========================================================================= -->
+<div class="hardware-recessed bg-surface-container-lowest p-2 rounded-lg border border-surface-variant/40 flex flex-wrap items-center justify-between gap-4" id="racks">
+<div class="flex items-center gap-2">
+<button class="px-space-md py-1.5 rounded bg-surface-container-high border border-primary-container text-primary-fixed font-title-rack text-title-rack tracking-widest uppercase neon-glow-primary">
+          Mastering Rack
+        </button>
+<button class="px-space-md py-1.5 rounded bg-surface-container border border-surface-variant/60 text-outline hover:text-on-surface font-title-rack text-title-rack tracking-widest uppercase transition-colors">
+          Preview Rack
+        </button>
+<button class="px-space-md py-1.5 rounded bg-surface-container border border-surface-variant/60 text-outline hover:text-on-surface font-title-rack text-title-rack tracking-widest uppercase transition-colors">
+          Analysis Rack
+        </button>
+<button class="px-space-md py-1.5 rounded bg-surface-container border border-surface-variant/60 text-outline hover:text-on-surface font-title-rack text-title-rack tracking-widest uppercase transition-colors">
+          Jobs Rack
+        </button>
+</div>
+<div class="hidden sm:flex items-center gap-4 font-label-mono text-label-mono text-outline pr-2">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span> ENGINE: DUAL DSP READY
+        </span>
+<span>BUFFER: 512 SAMPLES</span>
+<span>OFFLINE COMPLIANCE: EBU R128</span>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- FEATURE SHOWCASE 1: Dual AI Mastering Engines (Engines Section)            -->
+<!-- ========================================================================= -->
+<section class="space-y-6" id="engines">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-variant/50 pb-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">ARCHITECTURE COMPARISON</span>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase mt-1">Dual Local AI Mastering Engines</h2>
+</div>
+<div class="font-label-mono text-label-mono text-outline">
+          ZERO ROUNDTRIP // 100% C++ DSP NATIVE THREADS
+        </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Hybrid Engine Card -->
+<div class="bg-surface-container hardware-bezel rounded-xl p-6 relative overflow-hidden space-y-5">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary-container/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-sm bg-surface-container-lowest hardware-recessed flex items-center justify-center text-primary-fixed border border-primary-fixed/30">
+<span class="material-symbols-outlined text-[24px]">neurology</span>
+</div>
+<div>
+<h3 class="font-title-rack text-headline-md text-primary-fixed uppercase font-bold tracking-wider">HYBRID ENGINE</h3>
+<span class="font-label-mono text-label-mono text-outline">ESSENTIA + MASTER_ME INTELLIGENCE</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container/10 border border-primary-container/40 text-primary-fixed font-label-mono text-label-mono">
+              DEFAULT
+            </span>
+</div>
+<p class="font-body-default text-body-default text-on-surface-variant">
+            Combines deep acoustic descriptor extraction with adaptive feedback dynamic processing. Analyzes spectral flux, harmonic dissonance, and perceived loudness in real-time, sculpting multi-band dynamics automatically.
+          </p>
+<div class="hardware-recessed bg-surface-container-lowest p-4 rounded-lg space-y-3 border border-surface-variant/40">
+<div class="font-label-caps text-label-caps text-outline uppercase tracking-wider">DSP Execution Pipeline</div>
+<div class="flex items-center justify-between text-xs font-label-mono text-on-surface">
+<span class="text-outline">01. Feature Extraction</span>
+<span class="text-primary-fixed">Essentia 2.1 C++</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded overflow-hidden">
+<div class="bg-primary-container h-full w-full"></div>
+</div>
+<div class="flex items-center justify-between text-xs font-label-mono text-on-surface">
+<span class="text-outline">02. Dynamic Leveling</span>
+<span class="text-primary-fixed">Master_me Adaptive AGC</span>
+</div>
+<div class="flex items-center justify-between text-xs font-label-mono text-on-surface">
+<span class="text-outline">03. Harmonic Saturation</span>
+<span class="text-primary-fixed">Odd/Even Tube Topology</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="p-2.5 rounded bg-surface-container-low border border-surface-variant/40">
+<div class="font-label-mono text-label-mono text-outline">LATENCY BUDGET</div>
+<div class="font-metric-readout text-metric-readout text-primary-fixed">&lt; 12.4 ms (Local)</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-low border border-surface-variant/40">
+<div class="font-label-mono text-label-mono text-outline">OPTIMAL TARGET</div>
+<div class="font-metric-readout text-metric-readout text-on-surface">Modern Pop / Club / EDM</div>
+</div>
+</div>
+</div>
+<!-- Classic Engine Card -->
+<div class="bg-surface-container hardware-bezel rounded-xl p-6 relative overflow-hidden space-y-5">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-secondary/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-sm bg-surface-container-lowest hardware-recessed flex items-center justify-center text-secondary border border-secondary/30">
+<span class="material-symbols-outlined text-[24px]">reorder</span>
+</div>
+<div>
+<h3 class="font-title-rack text-headline-md text-secondary uppercase font-bold tracking-wider">CLASSIC ENGINE</h3>
+<span class="font-label-mono text-label-mono text-outline">PHASELIMITER HIGH PRECISION CHAIN</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-variant border border-outline-variant text-outline font-label-mono text-label-mono">
+              ANALOG PURIST
+            </span>
+</div>
+<p class="font-body-default text-body-default text-on-surface-variant">
+            A linear-phase mastering limiter designed for surgical acoustic clarity. Features dedicated lookahead brickwall safety, pristine transient preservation, and zero phase alteration across sensitive stereo soundstages.
+          </p>
+<div class="hardware-recessed bg-surface-container-lowest p-4 rounded-lg space-y-3 border border-surface-variant/40">
+<div class="font-label-caps text-label-caps text-outline uppercase tracking-wider">DSP Execution Pipeline</div>
+<div class="flex items-center justify-between text-xs font-label-mono text-on-surface">
+<span class="text-outline">01. Linear Phase Filtering</span>
+<span class="text-secondary">Butterworth 8-Pole</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded overflow-hidden">
+<div class="bg-secondary h-full w-full"></div>
+</div>
+<div class="flex items-center justify-between text-xs font-label-mono text-on-surface">
+<span class="text-outline">02. Brickwall Ceiling</span>
+<span class="text-secondary">Phaselimiter Lookahead</span>
+</div>
+<div class="flex items-center justify-between text-xs font-label-mono text-on-surface">
+<span class="text-outline">03. Intersample Guard</span>
+<span class="text-secondary">ITU-R BS.1770-4</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="p-2.5 rounded bg-surface-container-low border border-surface-variant/40">
+<div class="font-label-mono text-label-mono text-outline">TOTAL DISTORTION</div>
+<div class="font-metric-readout text-metric-readout text-secondary">&lt; 0.00012% THD+N</div>
+</div>
+<div class="p-2.5 rounded bg-surface-container-low border border-surface-variant/40">
+<div class="font-label-mono text-label-mono text-outline">OPTIMAL TARGET</div>
+<div class="font-metric-readout text-metric-readout text-on-surface">Acoustic / Jazz / Classical</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- FEATURE SHOWCASE 2: Acoustic Analytics & Forensic Console                 -->
+<!-- ========================================================================= -->
+<section class="space-y-6" id="telemetry">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-variant/50 pb-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">FORENSIC TELEMETRY</span>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase mt-1">Deep Acoustic Analytics Console</h2>
+</div>
+<div class="font-label-mono text-label-mono text-tertiary-fixed-dim">
+          TRUE PEAK: -0.60 dB // EBU INTEGRATED TARGET: -12.7 dB
+        </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Telemetry UI Screenshot Embed -->
+<div class="lg:col-span-7 bg-surface-container-lowest hardware-bezel rounded-xl p-3 shadow-2xl">
+<div class="px-3 py-2 border-b border-surface-variant/40 flex items-center justify-between">
+<span class="font-title-rack text-title-rack text-outline uppercase flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              ANALYSIS RACK TELEMETRY MATRIX
+            </span>
+<span class="font-label-mono text-label-mono text-primary-fixed">STATUS: SUCCEEDED</span>
+</div>
+<div class="hardware-recessed bg-black/90 rounded overflow-hidden mt-2">
+<img alt="Decibelist Analysis Rack Console" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3gl5zXW_5oXt6fmJItLeReSW-LUucoQaQi2_lfNe7uZj1unA5Vc8sOsFgXvvhvpelTRwdJoN6SwxVmpah5f2EpBkX6VcZsU9hhogTbe08dJuJ71mF86CpuzW8aXVPSgJhZA9k6oqRK5aUr73eoAV8cxwgDndrrEwUCtjFRZPi0oF8F0ROiJRiwSlS3LtyzZ5TEXqVcHO8OgEHiXthvU7AVBtu-PZ0BaStoEoIMQhV6YESfxbfLG1__AaBaO0T0ylcmw"/>
+</div>
+</div>
+<!-- Telemetry Details & Monospaced Metric Comparisons -->
+<div class="lg:col-span-5 space-y-4">
+<div class="bg-surface-container hardware-bezel rounded-xl p-5 space-y-4">
+<h3 class="font-title-rack text-title-rack text-on-surface uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-[18px]">query_stats</span>
+              Golden Reference Matching
+            </h3>
+<p class="font-body-default text-body-default text-outline">
+              Our automated acoustic engine calculates your track's mathematical correlation with high-chart mastering references, flagging harmonic anomalies before release.
+            </p>
+<!-- Metric Comparative Inset Well -->
+<div class="hardware-recessed bg-surface-container-lowest p-3.5 rounded border border-surface-variant/40 space-y-2.5 font-metric-readout text-metric-readout">
+<div class="grid grid-cols-3 text-outline text-[11px] pb-1 border-b border-surface-variant/40 font-label-mono">
+<span>METRIC</span>
+<span class="text-right">ORIGINAL</span>
+<span class="text-right text-primary-fixed">MASTERED</span>
+</div>
+<div class="grid grid-cols-3 items-center">
+<span class="text-on-surface font-medium">Loudness</span>
+<span class="text-right text-outline">-14.0 dB</span>
+<span class="text-right text-primary-fixed">-12.7 dB</span>
+</div>
+<div class="grid grid-cols-3 items-center">
+<span class="text-on-surface font-medium">True Peak</span>
+<span class="text-right text-outline">-1.70 dB</span>
+<span class="text-right text-primary-fixed">-0.60 dB</span>
+</div>
+<div class="grid grid-cols-3 items-center">
+<span class="text-on-surface font-medium">Loudness Range</span>
+<span class="text-right text-outline">5.3 dB</span>
+<span class="text-right text-primary-fixed">6.0 dB</span>
+</div>
+<div class="grid grid-cols-3 items-center">
+<span class="text-on-surface font-medium">Professionality</span>
+<span class="text-right text-outline">48.96 %</span>
+<span class="text-right text-secondary-fixed">58.69 %</span>
+</div>
+<div class="grid grid-cols-3 items-center">
+<span class="text-on-surface font-medium">Acoustic Entropy</span>
+<span class="text-right text-outline">146.53 bit</span>
+<span class="text-right text-primary-fixed">170.74 bit</span>
+</div>
+<div class="grid grid-cols-3 items-center">
+<span class="text-on-surface font-medium">Dissonance</span>
+<span class="text-right text-outline">5.00</span>
+<span class="text-right text-primary-fixed">0.00</span>
+</div>
+</div>
+</div>
+<!-- Forensic Tools List -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container p-3 rounded hardware-bezel">
+<span class="font-label-mono text-label-mono text-primary-fixed block">SPECTROGRAM FFT</span>
+<span class="font-body-default text-xs text-on-surface-variant mt-1 block">Full 20Hz–22kHz spectral density heatmaps with zoom reticles.</span>
+</div>
+<div class="bg-surface-container p-3 rounded hardware-bezel">
+<span class="font-label-mono text-label-mono text-tertiary-fixed-dim block">LIMITING ERROR MAP</span>
+<span class="font-body-default text-xs text-on-surface-variant mt-1 block">Pinpoint micro-clipping and dynamic crest degradation visually.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- FEATURE SHOWCASE 3: Real-Time Preview Rack & A/B Testing                  -->
+<!-- ========================================================================= -->
+<section class="space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-variant/50 pb-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">AUDITING &amp; EXPORT</span>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase mt-1">Real-Time Preview &amp; Hardware A/B</h2>
+</div>
+<div class="font-label-mono text-label-mono text-outline">
+          INSTANT CROSSFADE // ZERO-LATENCY BYPASS SWITCH
+        </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Visual & Feature Embed -->
+<div class="lg:col-span-7 bg-surface-container-lowest hardware-bezel rounded-xl p-3 shadow-2xl order-2 lg:order-1">
+<div class="px-3 py-2 border-b border-surface-variant/40 flex items-center justify-between">
+<span class="font-title-rack text-title-rack text-outline uppercase flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+              PREVIEW RACK AUDITING BAY
+            </span>
+<span class="font-label-mono text-label-mono text-secondary-fixed">DUAL VU NEEDLE ACTIVE</span>
+</div>
+<div class="hardware-recessed bg-black/90 rounded overflow-hidden mt-2">
+<img alt="Decibelist Preview Rack Interface" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqCAHyDbSRRh9voafWQpkgPq_0BY-ZmXtWcqCFe3Cen95gGA1XjAs7PHyenTu-tiJqjgEeIs26Gc3ubbXLwW3SZIRCN_zBbG99bcLy0jzXU1TPX3OW189_Pubn4CNn1Dw8ybi1xwnN684HNjrlsYnyGcq2jKMvpWLBnh7KVINlZRgld_TcrjMwxEM4InBo3ss55B_eUXrA0RevrdJFqFnDDl9V6_-pTRgB--IdsyZQmGsK7kte7rWniWhgyDZTC286qg"/>
+</div>
+</div>
+<!-- Descriptive Hardware Callouts -->
+<div class="lg:col-span-5 space-y-5 order-1 lg:order-2">
+<div class="space-y-3">
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase">Instant Blind Auditing</h3>
+<p class="font-body-default text-body-default text-outline">
+              Never let loudness deceive your ears. The Preview Rack features matched-gain A/B comparison and instant bypass routing, ensuring you evaluate harmonic thickness and dynamic balance with clinical honesty.
+            </p>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3 p-3 rounded bg-surface-container-low hardware-bezel">
+<div class="w-8 h-8 rounded bg-surface-container-lowest hardware-recessed flex items-center justify-center text-primary-fixed shrink-0">
+<span class="material-symbols-outlined text-[18px]">waves</span>
+</div>
+<div>
+<h4 class="font-title-rack text-title-rack text-on-surface uppercase">Color-Coded Dual Waveform</h4>
+<p class="font-body-default text-xs text-on-surface-variant mt-0.5">Electric Cyan for raw input, Golden Amber for mastered curve. Scannable phase aligned visualization.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded bg-surface-container-low hardware-bezel">
+<div class="w-8 h-8 rounded bg-surface-container-lowest hardware-recessed flex items-center justify-center text-tertiary-fixed-dim shrink-0">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</div>
+<div>
+<h4 class="font-title-rack text-title-rack text-on-surface uppercase">Skeuomorphic Analog Peak Meters</h4>
+<p class="font-body-default text-xs text-on-surface-variant mt-0.5">Physical ballistic needles calibrated for Left/Right peak tracking with millisecond peak-hold markers.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded bg-surface-container-low hardware-bezel">
+<div class="w-8 h-8 rounded bg-surface-container-lowest hardware-recessed flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[18px]">output</span>
+</div>
+<div>
+<h4 class="font-title-rack text-title-rack text-on-surface uppercase">Multi-Target Export Pipeline</h4>
+<p class="font-body-default text-xs text-on-surface-variant mt-0.5">Deliver 16-bit WAV, 24-bit studio masters, 32-bit float archives, stem packages, and compliance PDFs in a single click.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- FEATURE SHOWCASE 4: Interactive Hardware Potentiometers & Encoders        -->
+<!-- ========================================================================= -->
+<section class="bg-surface-container hardware-bezel rounded-2xl p-6 lg:p-8 space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-variant/40 pb-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">TACTILE CONTROLS</span>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase mt-1">Skeuomorphic Hardware Encoders</h2>
+</div>
+<span class="font-label-mono text-label-mono text-outline">STEPPED CALIBRATION // 0.1 dB INCREMENTS</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-2">
+<!-- Knob 1: Target Loudness -->
+<div class="bg-surface-container-low hardware-bezel rounded-xl p-4 flex flex-col items-center text-center space-y-3">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">TARGET LOUDNESS</span>
+<!-- Rotary Dial Component -->
+<div class="relative w-24 h-24 flex items-center justify-center">
+<!-- Segmented LED Ring -->
+<div class="absolute inset-0 rounded-full border-2 border-dashed border-primary-container/40 animate-[spin_40s_linear_infinite]"></div>
+<div class="w-16 h-16 rounded-full rotary-dial relative flex items-center justify-center cursor-pointer hover:border hover:border-primary-fixed/40 transition-all">
+<div class="w-1 h-3 bg-primary-container rounded-full absolute -top-1"></div>
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest border border-outline-variant/40"></div>
+</div>
+</div>
+<div>
+<div class="font-metric-readout-lg text-metric-readout-lg text-primary-fixed font-bold">-6.0 dB</div>
+<span class="font-label-mono text-label-mono text-outline">MAX ENERGY MODE</span>
+</div>
+</div>
+<!-- Knob 2: True Peak Ceiling -->
+<div class="bg-surface-container-low hardware-bezel rounded-xl p-4 flex flex-col items-center text-center space-y-3">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">CEILING MODE</span>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-2 border-dashed border-secondary/40"></div>
+<div class="w-16 h-16 rounded-full rotary-dial relative flex items-center justify-center cursor-pointer hover:border hover:border-secondary/40 transition-all">
+<div class="w-1 h-3 bg-secondary rounded-full absolute top-1 right-2"></div>
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest border border-outline-variant/40"></div>
+</div>
+</div>
+<div>
+<div class="font-metric-readout-lg text-metric-readout-lg text-secondary font-bold">-0.6 DBFS</div>
+<span class="font-label-mono text-label-mono text-outline">TRUE PEAK LP (15k)</span>
+</div>
+</div>
+<!-- Knob 3: Low Cut Filter -->
+<div class="bg-surface-container-low hardware-bezel rounded-xl p-4 flex flex-col items-center text-center space-y-3">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">LOW CUT HPF</span>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-2 border-dashed border-outline-variant/60"></div>
+<div class="w-16 h-16 rounded-full rotary-dial relative flex items-center justify-center cursor-pointer hover:border hover:border-primary-fixed/40 transition-all">
+<div class="w-1 h-3 bg-primary-container rounded-full absolute -top-1"></div>
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest border border-outline-variant/40"></div>
+</div>
+</div>
+<div>
+<div class="font-metric-readout-lg text-metric-readout-lg text-on-surface font-bold">40 HZ</div>
+<span class="font-label-mono text-label-mono text-outline">SUB RUMBLE REMOVAL</span>
+</div>
+</div>
+<!-- Knob 4: High Cut Filter -->
+<div class="bg-surface-container-low hardware-bezel rounded-xl p-4 flex flex-col items-center text-center space-y-3">
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-wider">HIGH CUT LPF</span>
+<div class="relative w-24 h-24 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-2 border-dashed border-tertiary-fixed-dim/40"></div>
+<div class="w-16 h-16 rounded-full rotary-dial relative flex items-center justify-center cursor-pointer hover:border hover:border-tertiary-fixed-dim/40 transition-all">
+<div class="w-1 h-3 bg-tertiary-fixed-dim rounded-full absolute -top-1"></div>
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest border border-outline-variant/40"></div>
+</div>
+</div>
+<div>
+<div class="font-metric-readout-lg text-metric-readout-lg text-tertiary-fixed-dim font-bold">22000 HZ</div>
+<span class="font-label-mono text-label-mono text-outline">NYQUIST PROTECTION</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- PERFORMANCE & TECH STACK SECTION (Bento Grid)                            -->
+<!-- ========================================================================= -->
+<section class="space-y-6" id="specs">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-surface-variant/50 pb-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-widest">TECHNICAL SPECIFICATION</span>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase mt-1">Native Hardware Performance</h2>
+</div>
+<div class="font-label-mono text-label-mono text-outline">
+          ZERO ELECTRON BLOAT // DIRECT HW ACCELERATION
+        </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Bento Card 1: Runtime -->
+<div class="bg-surface-container hardware-bezel rounded-xl p-6 space-y-3">
+<div class="w-10 h-10 rounded bg-surface-container-lowest hardware-recessed flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<h3 class="font-title-rack text-title-rack text-on-surface uppercase tracking-wider">Go + Wails 3 Architecture</h3>
+<p class="font-body-default text-body-default text-on-surface-variant">
+            Built from scratch on the next-gen Wails 3 runtime. Uses native Webview2 / WebKit bindings for sub-40MB RAM idle consumption, avoiding heavy Chromium runtimes.
+          </p>
+<div class="pt-2 font-label-mono text-label-mono text-primary-fixed">
+            RAM USAGE: ~38 MB IDLE
+          </div>
+</div>
+<!-- Bento Card 2: DSP Engines -->
+<div class="bg-surface-container hardware-bezel rounded-xl p-6 space-y-3">
+<div class="w-10 h-10 rounded bg-surface-container-lowest hardware-recessed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">developer_board</span>
+</div>
+<h3 class="font-title-rack text-title-rack text-on-surface uppercase tracking-wider">C++ Compiled DSP Kernels</h3>
+<p class="font-body-default text-body-default text-on-surface-variant">
+            Embedded native C++ toolchain integrating Essentia algorithms, FFmpeg audio decoding pipelines, and Phaselimiter multi-thread lookahead matrices.
+          </p>
+<div class="pt-2 font-label-mono text-label-mono text-secondary">
+            AVX2 &amp; NEON INTRINSICS ENABLED
+          </div>
+</div>
+<!-- Bento Card 3: Air-Gapped Security -->
+<div class="bg-surface-container hardware-bezel rounded-xl p-6 space-y-3">
+<div class="w-10 h-10 rounded bg-surface-container-lowest hardware-recessed flex items-center justify-center text-tertiary-fixed-dim">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<h3 class="font-title-rack text-title-rack text-on-surface uppercase tracking-wider">Total Offline Isolation</h3>
+<p class="font-body-default text-body-default text-on-surface-variant">
+            Guaranteed zero outbound sockets. Unreleased pre-masters, stems, and album tracks remain safely contained inside your studio facility network.
+          </p>
+<div class="pt-2 font-label-mono text-label-mono text-tertiary-fixed-dim">
+            ZERO TELEMETRY // NDA SAFE
+          </div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- DOWNLOAD & ACQUISITION TERMINAL SECTION                                  -->
+<!-- ========================================================================= -->
+<section class="bg-surface-container-lowest hardware-bezel rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden" id="download">
+<!-- Reticle Ambient Graphic -->
+<div class="absolute inset-0 reticle-grid pointer-events-none opacity-40"></div>
+<div class="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-surface-container border border-outline-variant font-label-mono text-label-mono text-primary-fixed uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+          RELEASE DISTRIBUTION v2.4-STABLE
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">
+          Mount Decibelist in Your Studio
+        </h2>
+<p class="font-body-default text-body-default text-outline max-w-xl mx-auto">
+          Download the stand-alone desktop rack for your primary operating environment. Comes pre-bundled with all neural weights, feature extractors, and brickwall limiters.
+        </p>
+<!-- OS Selection Cluster -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-left">
+<!-- macOS -->
+<div class="bg-surface-container p-4 rounded-lg hardware-bezel hover:border-primary-fixed/60 transition-all cursor-pointer group">
+<div class="flex items-center justify-between">
+<span class="font-title-rack text-title-rack text-on-surface uppercase font-bold">macOS</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary-fixed text-[20px]">laptop_mac</span>
+</div>
+<div class="font-label-mono text-label-mono text-outline mt-2">Universal (Apple Silicon &amp; Intel)</div>
+<div class="font-label-mono text-label-mono text-primary-fixed mt-1">DMG // 68.4 MB</div>
+</div>
+<!-- Windows -->
+<div class="bg-surface-container p-4 rounded-lg hardware-bezel hover:border-primary-fixed/60 transition-all cursor-pointer group border-primary-fixed/30 bg-surface-container-high">
+<div class="flex items-center justify-between">
+<span class="font-title-rack text-title-rack text-primary-fixed uppercase font-bold">Windows</span>
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">desktop_windows</span>
+</div>
+<div class="font-label-mono text-label-mono text-outline mt-2">Windows 10 / 11 (64-bit)</div>
+<div class="font-label-mono text-label-mono text-primary-fixed mt-1">MSI / EXE // 72.1 MB</div>
+</div>
+<!-- Linux -->
+<div class="bg-surface-container p-4 rounded-lg hardware-bezel hover:border-primary-fixed/60 transition-all cursor-pointer group">
+<div class="flex items-center justify-between">
+<span class="font-title-rack text-title-rack text-on-surface uppercase font-bold">Linux</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary-fixed text-[20px]">terminal</span>
+</div>
+<div class="font-label-mono text-label-mono text-outline mt-2">Ubuntu / Arch / Debian</div>
+<div class="font-label-mono text-label-mono text-primary-fixed mt-1">AppImage / deb // 64.9 MB</div>
+</div>
+</div>
+<!-- Download Action Hub -->
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-primary-container text-on-primary-container font-title-rack text-title-rack uppercase tracking-widest font-bold neon-glow-primary hover:brightness-105 active:translate-y-px transition-all">
+<span class="material-symbols-outlined">download</span>
+            DOWNLOAD INSTALLER v2.4
+          </button>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded bg-surface-container border border-surface-variant text-on-surface font-title-rack text-title-rack uppercase tracking-wider hover:border-outline transition-all">
+<span class="material-symbols-outlined text-outline">key</span>
+            Offline Dongle Activation
+          </button>
+</div>
+<!-- Integrity Telemetry -->
+<div class="pt-3 font-label-mono text-label-mono text-outline">
+          SHA256 CHECKSUM: <span class="text-on-surface-variant">3883e5b1f098c47b59e0bc87612f0a8d6729a8f27618</span>
+</div>
+</div>
+</section>
+</main>
+<!-- ========================================================================= -->
+<!-- FOOTER (Shared Component JSON Blueprint)                                  -->
+<!-- ========================================================================= -->
+<footer class="w-full px-margin-desktop py-space-xl border-t border-surface-variant/50 bg-surface-container-lowest" style="box-shadow: inset 0 2px 5px rgba(0,0,0,0.85);">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Brand & Copyright -->
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="font-title-rack text-title-rack text-primary-fixed-dim tracking-widest uppercase">
+          DECIBELIST DSP LABS
+        </span>
+<span class="font-label-mono text-label-mono text-outline text-center md:text-left">
+          © 2024 DECIBELIST DSP LABS. ALL CALIBRATION METRICS PRESERVED OFFLINE.
+        </span>
+</div>
+<!-- Footer Navigation Links -->
+<div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+<a class="text-outline font-label-mono text-label-mono hover:text-on-surface transition-colors hover:underline" href="#specs">Hardware Specs</a>
+<a class="text-outline font-label-mono text-label-mono hover:text-on-surface transition-colors hover:underline" href="#whitepaper">DSP Whitepaper</a>
+<a class="text-outline font-label-mono text-label-mono hover:text-on-surface transition-colors hover:underline" href="#changelog">Changelog v2.4</a>
+<a class="text-outline font-label-mono text-label-mono hover:text-on-surface transition-colors hover:underline" href="#licensing">Offline Dongle Licensing</a>
+<a class="text-outline font-label-mono text-label-mono hover:text-on-surface transition-colors hover:underline" href="#privacy">Privacy Architecture</a>
+<a class="text-outline font-label-mono text-label-mono hover:text-on-surface transition-colors hover:underline" href="#safety">Acoustic Safety Compliance</a>
+</div>
+</div>
+</footer>
+</body></html>

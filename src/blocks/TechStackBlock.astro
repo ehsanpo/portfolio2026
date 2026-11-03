@@ -24,7 +24,7 @@ const { showAll = false } = Astro.props;
 		<div class="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
 			{
 				stacks
-					.slice(0, showAll ? stacks.length : 3)
+					.slice(0, showAll ? stacks.length : 5)
 					.map((stack) => <StackCard {...stack} client:load />)
 			}
 		</div>

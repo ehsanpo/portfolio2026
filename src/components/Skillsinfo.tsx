@@ -22,7 +22,7 @@ const SkillsInfo = ({ show: _show }: { show?: boolean }) => {
 						<ul className="space-y-2">
 							<li>
 								<span className="font-basement text-accent">Beginner (1-4): </span>
-								XXX I’ve experimented and built something basic for personal use.
+								I’ve experimented and built something basic for personal use.
 							</li>
 							<li>
 								<span className="font-basement text-primary-300">Professional (5-7): </span>

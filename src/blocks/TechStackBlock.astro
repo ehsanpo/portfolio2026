@@ -21,7 +21,7 @@ const { showAll = false } = Astro.props;
 		>
 			Stacks
 		</Heading>
-		<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+		<div class="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
 			{
 				stacks
 					.slice(0, showAll ? stacks.length : 3)

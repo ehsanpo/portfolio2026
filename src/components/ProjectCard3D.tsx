@@ -285,7 +285,7 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 			>
 				{image ? (
 					<svg
-						className={`content__img h-full w-full content__img--${layout}`}
+						className={`content__img h-full w-full content__img--${layout} grayscale group-hover/card:grayscale-0 contrast-[1.08] group-hover/card:contrast-[1] mix-blend-multiply transition-all duration-1300 ease-out`}
 						width={imageWidth}
 						height={imageHeight}
 						version="1.1"

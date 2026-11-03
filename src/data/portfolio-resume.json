@@ -1651,6 +1651,26 @@
 		}
 	],
 	"stacks": [
+		
+		{
+			"slug": "AI",
+			"labels": [
+				"9router",
+				"Antigravity",
+				"Claude Code",
+				"Copilot",
+				"Agent orchestrator"
+				
+			],
+			"icon": "/img/stacks/tools2.svg",
+			"data": [
+				"9",
+				"10",
+				"8",
+				"8",
+				"6"
+			]
+		},
 		{
 			"slug": "Front-end",
 			"labels": [
@@ -1729,7 +1749,6 @@
 				"Electron js",
 				"Wails",
 				"Tailwind",
-				"Vite",
 				"React Native"
 			],
 			"icon": "/img/stacks/apps.svg",
@@ -1737,7 +1756,6 @@
 				"9",
 				"7",
 				"10",
-				"7",
 				"8"
 			]
 		},
@@ -1745,7 +1763,6 @@
 			"slug": "Cloud",
 			"labels": [
 				"AWS API Gateway",
-				"Lambda",
 				"DynamoDB",
 				"S3",
 				"CloudFront"

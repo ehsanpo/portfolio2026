@@ -167,18 +167,18 @@ const RankTimeline = () => {
 						onClick={() => setViewMode("cards")}
 						className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
 							viewMode === "cards"
-								? "bg-primary text-primary-foreground shadow-sm"
+								? "bg-primary text-black shadow-sm"
 								: "text-muted-foreground hover:text-foreground"
 						}`}
 					>
-						✨ 3D Story Cards
+						✨ Story Cards
 					</button>
 					<button
 						type="button"
 						onClick={() => setViewMode("timeline")}
 						className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
 							viewMode === "timeline"
-								? "bg-primary text-primary-foreground shadow-sm"
+								? "bg-primary text-black shadow-sm"
 								: "text-muted-foreground hover:text-foreground"
 						}`}
 					>

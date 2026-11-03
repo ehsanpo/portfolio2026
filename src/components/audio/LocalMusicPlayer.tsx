@@ -1,6 +1,10 @@
-import React, { useMemo } from "react";
-import { Disc3, Music, Pause, Play, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
+import { Disc3, Music, Pause, Play, SkipBack, SkipForward, Volume2, VolumeX, Maximize2, Minimize2, Sparkles } from "lucide-react";
 import AudioVisualizer from "@/components/audio/AudioVisualizer";
+import CyberShaderVisualizer from "@/components/audio/CyberShaderVisualizer";
+import MasteringDesk from "@/components/audio/MasteringDesk";
+import { SHADER_PRESETS } from "@/components/audio/shaderPresets";
+import { audioManager } from "@/utils/audioSystem";
 import { useAudioStore } from "@/store/useAudioStore";
 import Decorator from "./Decorator";
 
@@ -33,6 +37,96 @@ const LocalMusicPlayer: React.FC<LocalMusicPlayerProps> = ({ tracks = [] }) => {
 		setMuted,
 		requestSeek,
 	} = useAudioStore();
+	const [visualizerMode, setVisualizerMode] = useState<"orbit" | "shader" | "mastering">("shader");
+	const [selectedPresetId, setSelectedPresetId] = useState<string>("fractal-continuous-morph");
+	const [shaderCategory, setShaderCategory] = useState<"All" | "Mastering" | "Fractal" | "Dream" | "EQ" | "MilkDrop" | "Orbit">("All");
+	const [autoCycleFractal, setAutoCycleFractal] = useState(false);
+	const [isFullscreen, setIsFullscreen] = useState(false);
+	const playerContainerRef = useRef<HTMLDivElement>(null);
+
+	// Real-time audio telemetry for mastering desk meters and displays
+	const [analyserData, setAnalyserData] = useState({
+		bass: 0,
+		mid: 0,
+		treble: 0,
+		subBass: 0,
+		isPlaying: false,
+	});
+
+	useEffect(() => {
+		const handleFullscreenChange = () => {
+			setIsFullscreen(Boolean(document.fullscreenElement));
+		};
+		document.addEventListener("fullscreenchange", handleFullscreenChange);
+		return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+	}, []);
+
+	// Live audio sampling loop
+	useEffect(() => {
+		let animId: number;
+		const analyser = audioManager.getAnalyser();
+		const buffer = new Uint8Array(analyser.frequencyBinCount);
+
+		const sample = () => {
+			animId = requestAnimationFrame(sample);
+			analyser.getByteFrequencyData(buffer);
+
+			let sub = 0;
+			let b = 0;
+			let m = 0;
+			let t = 0;
+
+			for (let i = 0; i < 4; i++) sub += buffer[i];
+			for (let i = 0; i < 12; i++) b += buffer[i];
+			for (let i = 20; i < 80; i++) m += buffer[i];
+			for (let i = 100; i < 200; i++) t += buffer[i];
+
+			setAnalyserData({
+				subBass: sub / 4 / 255,
+				bass: b / 12 / 255,
+				mid: m / 60 / 255,
+				treble: t / 100 / 255,
+				isPlaying,
+			});
+		};
+
+		sample();
+		return () => cancelAnimationFrame(animId);
+	}, [isPlaying]);
+
+	// Auto cycle between fractals seamlessly without breaking
+	useEffect(() => {
+		if (!autoCycleFractal) return;
+		const fractals = SHADER_PRESETS.filter((p) => p.category === "Fractal");
+		if (fractals.length === 0) return;
+
+		const interval = setInterval(() => {
+			setSelectedPresetId((prev) => {
+				const currIdx = fractals.findIndex((f) => f.id === prev);
+				const nextIdx = (currIdx + 1) % fractals.length;
+				return fractals[nextIdx].id;
+			});
+		}, 8500);
+
+		return () => clearInterval(interval);
+	}, [autoCycleFractal]);
+
+	const toggleFullscreen = async () => {
+		if (!playerContainerRef.current) return;
+		if (!document.fullscreenElement) {
+			try {
+				await playerContainerRef.current.requestFullscreen();
+			} catch (err) {
+				console.error("Fullscreen error:", err);
+			}
+		} else {
+			try {
+				await document.exitFullscreen();
+			} catch (err) {
+				console.error("Exit fullscreen error:", err);
+			}
+		}
+	};
 
 	const storePlaylist = useMemo(
 		() =>
@@ -104,55 +198,161 @@ const LocalMusicPlayer: React.FC<LocalMusicPlayerProps> = ({ tracks = [] }) => {
 	}
 
 	return (
-		<div className="mx-auto w-full max-w-5xl" data-local-music-player>
-			<div className="skeu-panel p-6">
-				<div className="flex flex-col gap-4 min-h-0 lg:flex-row max-h-[600px]">
+		<div
+			ref={playerContainerRef}
+			className={`mx-auto w-full transition-all duration-300 ${
+				isFullscreen
+					? "fixed inset-0 z-50 flex h-screen w-screen max-w-none flex-col justify-between bg-[#06080e] p-6"
+					: "max-w-5xl"
+			}`}
+			data-local-music-player
+		>
+			<div className={`skeu-panel flex flex-col ${isFullscreen ? "h-full flex-1 p-6" : "p-6"}`}>
+				<div className={`flex flex-col gap-4 min-h-0 lg:flex-row ${isFullscreen ? "flex-1" : "max-h-[600px]"}`}>
 					{/* Left - Visualizer */}
-					<div className="flex-1 skeu-inset p-4 flex flex-col relative">
+					<div className="flex-1 skeu-inset p-4 flex flex-col relative overflow-hidden">
 
 						<Decorator isOn={isPlaying} /> 
 
+						{/* Unified Category & Preset Controls Toolbar (No redundant shader titles) */}
+						<div className="z-20 mb-2 flex flex-col gap-1.5">
+							<div className="flex items-center justify-between border-b border-white/5 pb-1">
+								{/* Category tabs */}
+								<div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
+									{(["All", "Fractal", "Mastering", "Dream", "EQ", "MilkDrop", "Orbit"] as const).map((cat) => (
+										<button
+											key={cat}
+											type="button"
+											onClick={() => {
+												setShaderCategory(cat as any);
+												if (cat === "Orbit") {
+													setVisualizerMode("orbit");
+												} else if (cat === "Mastering") {
+													setVisualizerMode("mastering" as any);
+												} else {
+													setVisualizerMode("shader");
+												}
+											}}
+											className={`rounded px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-all ${
+												shaderCategory === cat
+													? "bg-primary/25 text-primary border border-primary/40 shadow-sm"
+													: "text-muted-foreground/70 hover:text-foreground hover:bg-white/5"
+											}`}
+										>
+											{cat}
+										</button>
+									))}
+								</div>
 
+								{/* Right-aligned action buttons: Auto Cycle + Fullscreen */}
+								<div className="flex items-center gap-1.5 ml-2">
+									{(shaderCategory === "Fractal" || shaderCategory === "All") && visualizerMode === "shader" && (
+										<button
+											type="button"
+											onClick={() => setAutoCycleFractal(!autoCycleFractal)}
+											className={`rounded px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase transition-all ${
+												autoCycleFractal
+													? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.3)]"
+													: "bg-background/40 text-muted-foreground/70 hover:text-foreground"
+											}`}
+											title="Seamlessly cycle between all 20 fractals without breaking"
+										>
+											{autoCycleFractal ? "Cycle ON" : "Cycle OFF"}
+										</button>
+									)}
 
-				
+									<button
+										type="button"
+										onClick={toggleFullscreen}
+										className="skeu-button flex items-center gap-1.5 rounded px-2.5 py-0.5 text-xs font-semibold text-muted-foreground hover:text-foreground"
+										title={isFullscreen ? "Exit Fullscreen" : "Fullscreen Player"}
+									>
+										{isFullscreen ? (
+											<>
+												<Minimize2 className="w-3.5 h-3.5" />
+												<span className="hidden sm:inline text-[11px]">Exit Full</span>
+											</>
+										) : (
+											<>
+												<Maximize2 className="w-3.5 h-3.5" />
+												<span className="hidden sm:inline text-[11px]">Full Screen</span>
+											</>
+										)}
+									</button>
+								</div>
+							</div>
 
-						{/* Spinning Disc */}
-						<div className="flex justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1">
-							<div
-								className={`w-28 h-28 rounded-full ${isPlaying ? "animate-spin" : ""}`}
-								style={{
-									animationDuration: "3s",
-									background:
-										"conic-gradient(from 0deg, hsl(0 0% 8%), hsl(0 0% 15%), hsl(0 0% 8%), hsl(0 0% 12%), hsl(0 0% 8%))",
-									boxShadow:
-										"0 8px 32px hsl(0 0% 0% / 0.8), inset 0 0 20px hsl(0 0% 0% / 0.5), 0 0 0 4px hsl(0 0% 18%)",
-								}}
-							>
+							{/* Presets list (when in Shader or EQ or MilkDrop mode) */}
+							{visualizerMode === "shader" && shaderCategory !== "Orbit" && (
+								<div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none">
+									{SHADER_PRESETS.filter(
+										(preset) => shaderCategory === "All" || preset.category === shaderCategory
+									).map((preset) => {
+										const isActive = selectedPresetId === preset.id;
+										return (
+											<button
+												key={preset.id}
+												type="button"
+												onClick={() => setSelectedPresetId(preset.id)}
+												className={`whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-medium transition-all ${
+													isActive
+														? "bg-accent/30 text-accent border border-accent/50 shadow-[0_0_8px_rgba(14,165,233,0.3)]"
+														: "bg-background/30 text-muted-foreground/80 hover:bg-background/60 hover:text-foreground"
+												}`}
+											>
+												{preset.name}
+											</button>
+										);
+									})}
+								</div>
+							)}
+						</div>
+
+						{/* Spinning Disc (Only in Orbit mode) */}
+						{shaderCategory === "Orbit" && (
+							<div className="flex justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 pointer-events-none">
 								<div
-									className="w-full h-full rounded-full flex items-center justify-center"
+									className={`w-28 h-28 rounded-full ${isPlaying ? "animate-spin" : ""}`}
 									style={{
+										animationDuration: "3s",
 										background:
-											"radial-gradient(circle at 30% 30%, hsl(0 0% 25%), hsl(0 0% 10%) 60%, hsl(0 0% 5%))",
+											"conic-gradient(from 0deg, hsl(0 0% 8%), hsl(0 0% 15%), hsl(0 0% 8%), hsl(0 0% 12%), hsl(0 0% 8%))",
+										boxShadow:
+											"0 8px 32px hsl(0 0% 0% / 0.8), inset 0 0 20px hsl(0 0% 0% / 0.5), 0 0 0 4px hsl(0 0% 18%)",
 									}}
 								>
 									<div
-										className="w-10 h-10 rounded-full"
+										className="w-full h-full rounded-full flex items-center justify-center"
 										style={{
-											background: "linear-gradient(145deg, hsl(45 80% 55%), hsl(45 80% 40%))",
-											boxShadow: "0 2px 8px hsl(45 100% 50% / 0.4)",
+											background:
+												"radial-gradient(circle at 30% 30%, hsl(0 0% 25%), hsl(0 0% 10%) 60%, hsl(0 0% 5%))",
 										}}
 									>
-										<div className="w-full h-full rounded-full flex items-center justify-center">
-											<div className="w-3 h-3 rounded-full bg-background" />
+										<div
+											className="w-10 h-10 rounded-full"
+											style={{
+												background: "linear-gradient(145deg, hsl(45 80% 55%), hsl(45 80% 40%))",
+												boxShadow: "0 2px 8px hsl(45 100% 50% / 0.4)",
+											}}
+										>
+											<div className="w-full h-full rounded-full flex items-center justify-center">
+												<div className="w-3 h-3 rounded-full bg-background" />
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						)}
 
-
-						<div className="flex-1 min-h-[320px]">
-							<AudioVisualizer />
+						{/* Screen Center Visualizer Render Area */}
+						<div className="flex-1 min-h-[320px] flex overflow-hidden rounded-lg">
+							{shaderCategory === "Orbit" ? (
+								<AudioVisualizer />
+							) : shaderCategory === "Mastering" ? (
+								<MasteringDesk analyserData={analyserData} />
+							) : (
+								<CyberShaderVisualizer presetId={selectedPresetId} />
+							)}
 						</div>
 
 						{/* Ambient glow */}

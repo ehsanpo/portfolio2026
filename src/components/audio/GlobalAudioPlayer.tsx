@@ -9,7 +9,7 @@ const SiriWaveBar = memo(function SiriWaveBar() {
 
 	useEffect(() => {
 		let cancelled = false;
-		let wave: InstanceType<SiriWaveType> | null = null;
+		let wave: any = null;
 		let unsubscribe: (() => void) | null = null;
 
 		const applyState = (isPlaying: boolean) => {
@@ -46,10 +46,9 @@ const SiriWaveBar = memo(function SiriWaveBar() {
 
 			wave.start();
 			applyState(useAudioStore.getState().isPlaying);
-			unsubscribe = useAudioStore.subscribe(
-				(state) => state.isPlaying,
-				(isPlaying) => applyState(isPlaying)
-			);
+			unsubscribe = useAudioStore.subscribe((state) => {
+				applyState(state.isPlaying);
+			});
 		};
 
 		setup();

@@ -67,7 +67,7 @@ export const RankTimelinePagination = ({
 							aria-current={isSelected ? "page" : undefined}
 							className={`h-9 min-w-9 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
 								isSelected
-									? "bg-primary text-primary-foreground font-bold shadow-sm shadow-primary/20 scale-102"
+									? "bg-primary text-black font-bold shadow-sm shadow-primary/20 scale-102"
 									: "text-muted-foreground hover:text-foreground hover:bg-muted/60"
 							}`}
 						>

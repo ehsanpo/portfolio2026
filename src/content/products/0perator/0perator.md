@@ -42,12 +42,11 @@ onHome: true
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
 <style>
-  /* Material Symbols Font Rule */
-  .material-symbols-outlined {
+  .operator-page .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-weight: normal;
     font-style: normal;
@@ -62,68 +61,66 @@ onHome: true
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Technical Grid Sub-styling */
-  .tech-grid {
-    background-size: 32px 32px;
-    background-image: 
-      linear-gradient(to right, rgba(51, 65, 85, 0.25) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(51, 65, 85, 0.25) 1px, transparent 1px);
+  .operator-page .bg-surface { background-color: #111722 !important; }
+  .operator-page .bg-surface-dim { background-color: #0D1118 !important; }
+  .operator-page .bg-surface-elevated { background-color: #151C28 !important; }
+  .operator-page .bg-surface-container-lowest { background-color: #080B10 !important; }
+  .operator-page .bg-surface-container-low { background-color: #0D1118 !important; }
+  .operator-page .bg-surface-container { background-color: #111722 !important; }
+  .operator-page .bg-surface-container-high,
+  .operator-page .bg-surface-container-highest { background-color: #151C28 !important; }
+  .operator-page .bg-primary-container,
+  .operator-page .bg-secondary-container { background-color: #34D399 !important; }
+  .operator-page .bg-info-soft,
+  .operator-page .bg-success-soft { background-color: #0D2C24 !important; }
+  .operator-page .bg-warning-soft { background-color: #451A03 !important; }
+  .operator-page .bg-danger-soft { background-color: #450A0A !important; }
+
+  .operator-page .text-text-primary { color: #EDEDED !important; }
+  .operator-page .text-text-secondary { color: #CED5DE !important; }
+  .operator-page .text-text-tertiary { color: #AEB8C5 !important; }
+  .operator-page .text-text-muted { color: #8B95A5 !important; }
+  .operator-page .text-primary-foreground { color: #080B10 !important; }
+  .operator-page .text-primary,
+  .operator-page .text-secondary-container,
+  .operator-page .text-info,
+  .operator-page .text-success { color: #34D399 !important; }
+  .operator-page .text-warning { color: #FBBF24 !important; }
+  .operator-page .text-danger { color: #F87171 !important; }
+
+  .operator-page .border-border { border-color: #202936 !important; }
+  .operator-page .border-border-strong { border-color: #2B3544 !important; }
+  .operator-page .border-info,
+  .operator-page .border-secondary-container,
+  .operator-page .border-success { border-color: #34D399 !important; }
+  .operator-page .border-warning { border-color: #FBBF24 !important; }
+  .operator-page .border-danger { border-color: #F87171 !important; }
+  .operator-page .hover\:border-info:hover { border-color: #34D399 !important; }
+
+  .operator-page {
+    background-color: #080B10;
+    color: #EDEDED;
+    font-family: 'JetBrains Mono', monospace;
   }
-
-  /* 0perator Color Palette Overrides */
-  .bg-surface { background-color: #111827 !important; }
-  .bg-surface-dim { background-color: #0c1321 !important; }
-  .bg-surface-elevated { background-color: #1F2937 !important; }
-  .bg-surface-container-lowest { background-color: #070e1c !important; }
-  .bg-surface-container-low { background-color: #151b2a !important; }
-  .bg-surface-container { background-color: #19202e !important; }
-  .bg-surface-container-high { background-color: #232a39 !important; }
-  .bg-surface-container-highest { background-color: #2e3544 !important; }
-  .bg-primary-container { background-color: #60a5fa !important; }
-  .bg-secondary-container { background-color: #00d2ff !important; }
-  .bg-info-soft { background-color: #082F49 !important; }
-  .bg-warning-soft { background-color: #451A03 !important; }
-  .bg-success-soft { background-color: #052E16 !important; }
-  .bg-danger-soft { background-color: #450A0A !important; }
-
-  .text-text-primary { color: #F8FAFC !important; }
-  .text-text-secondary { color: #E2E8F0 !important; }
-  .text-text-tertiary { color: #CBD5E1 !important; }
-  .text-text-muted { color: #94A3B8 !important; }
-  .text-primary-foreground { color: #0F172A !important; }
-  .text-secondary-container { color: #00d2ff !important; }
-  .text-info { color: #38BDF8 !important; }
-  .text-success { color: #22C55E !important; }
-  .text-warning { color: #FBBF24 !important; }
-  .text-danger { color: #F87171 !important; }
-
-  .border-border { border-color: #334155 !important; }
-  .border-border-strong { border-color: #475569 !important; }
-  .border-info { border-color: #38BDF8 !important; }
-  .border-success { border-color: #22C55E !important; }
-  .border-warning { border-color: #FBBF24 !important; }
-  .border-danger { border-color: #F87171 !important; }
-  .border-secondary-container { border-color: #00d2ff !important; }
-
-  /* Typography Scale */
-  .font-headline-xl { font-family: 'JetBrains Mono', monospace !important; font-size: 32px; line-height: 40px; letter-spacing: -0.02em; font-weight: 700; }
-  .font-headline-lg { font-family: 'JetBrains Mono', monospace !important; font-size: 24px; line-height: 32px; letter-spacing: -0.01em; font-weight: 700; }
-  .font-headline-md { font-family: 'JetBrains Mono', monospace !important; font-size: 18px; line-height: 26px; letter-spacing: -0.005em; font-weight: 600; }
-  .font-headline-sm { font-family: 'JetBrains Mono', monospace !important; font-size: 14px; line-height: 20px; letter-spacing: 0em; font-weight: 600; }
-  .font-body-lg { font-family: 'Inter', sans-serif !important; font-size: 16px; line-height: 24px; font-weight: 400; }
-  .font-body-md { font-family: 'Inter', sans-serif !important; font-size: 14px; line-height: 20px; font-weight: 400; }
-  .font-body-sm { font-family: 'Inter', sans-serif !important; font-size: 12px; line-height: 18px; font-weight: 400; }
-  .font-label-lg { font-family: 'JetBrains Mono', monospace !important; font-size: 13px; line-height: 18px; letter-spacing: 0.02em; font-weight: 500; }
-  .font-label-md { font-family: 'JetBrains Mono', monospace !important; font-size: 12px; line-height: 16px; letter-spacing: 0.04em; font-weight: 500; }
-  .font-label-sm { font-family: 'JetBrains Mono', monospace !important; font-size: 11px; line-height: 14px; letter-spacing: 0.05em; font-weight: 600; }
+  .operator-page .font-mono { font-family: 'JetBrains Mono', monospace !important; }
+  .operator-page .font-headline-xl { font-family: 'Rajdhani', sans-serif !important; font-size: 32px; line-height: 40px; letter-spacing: -0.02em; font-weight: 700; }
+  .operator-page .font-headline-lg { font-family: 'Rajdhani', sans-serif !important; font-size: 24px; line-height: 32px; letter-spacing: -0.01em; font-weight: 700; }
+  .operator-page .font-headline-md { font-family: 'Rajdhani', sans-serif !important; font-size: 18px; line-height: 26px; letter-spacing: -0.005em; font-weight: 600; }
+  .operator-page .font-headline-sm { font-family: 'Rajdhani', sans-serif !important; font-size: 14px; line-height: 20px; letter-spacing: 0em; font-weight: 600; }
+  .operator-page .font-body-lg { font-family: 'JetBrains Mono', monospace !important; font-size: 16px; line-height: 24px; font-weight: 400; }
+  .operator-page .font-body-md { font-family: 'JetBrains Mono', monospace !important; font-size: 14px; line-height: 20px; font-weight: 400; }
+  .operator-page .font-body-sm { font-family: 'JetBrains Mono', monospace !important; font-size: 12px; line-height: 18px; font-weight: 400; }
+  .operator-page .font-label-lg { font-family: 'JetBrains Mono', monospace !important; font-size: 13px; line-height: 18px; letter-spacing: 0.02em; font-weight: 500; }
+  .operator-page .font-label-md { font-family: 'JetBrains Mono', monospace !important; font-size: 12px; line-height: 16px; letter-spacing: 0.04em; font-weight: 500; }
+  .operator-page .font-label-sm { font-family: 'JetBrains Mono', monospace !important; font-size: 11px; line-height: 14px; letter-spacing: 0.05em; font-weight: 600; }
 </style>
 
-<div class="w-full text-text-primary space-y-12 tech-grid py-4">
+<div class="operator-page w-full text-text-primary space-y-12 py-4">
 
   <!-- Operational Air-Gap Banner Strip -->
   <aside aria-label="System status" class="w-full bg-surface-container-lowest border border-border rounded-lg py-2 px-4 md:px-6 flex flex-wrap items-center justify-between text-label-sm font-label-sm gap-2">
     <div class="flex items-center gap-2 text-secondary-container">
-      <span class="inline-block w-2 h-2 rounded-full bg-secondary-container animate-pulse shadow-[0_0_8px_rgba(0,210,255,0.7)]"></span>
+      <span class="inline-block w-2 h-2 rounded-full bg-secondary-container animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.35)]"></span>
       <span class="tracking-widest uppercase">LOCAL AIR-GAP READY / ZERO CLOUD DEPENDENCY</span>
     </div>
     <div class="hidden sm:flex items-center gap-4 text-text-muted">
@@ -143,7 +140,7 @@ onHome: true
         </div>
         <div class="flex flex-col">
           <span class="text-headline-md font-headline-md tracking-tight font-bold text-text-primary">0perator</span>
-          <span class="text-[10px] font-label-sm text-text-muted tracking-wider leading-none">DISPATCH ENGINE v3.2</span>
+          <span class="text-[10px] font-label-sm text-text-muted tracking-wider leading-none">DISPATCH ENGINE v3.2 · RELEASE 1.0.1</span>
         </div>
       </div>
       <!-- Desktop Navigation Links -->
@@ -158,8 +155,6 @@ onHome: true
 
   <!-- Hero Section: Tactical Mission Control -->
   <section class="relative pt-4 pb-8 overflow-hidden">
-    <!-- Glow Gradients -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-secondary-container/10 blur-[130px] pointer-events-none rounded-full"></div>
     <div class="max-w-6xl mx-auto">
       <!-- Hero Header Cluster -->
       <div class="text-center max-w-4xl mx-auto mb-10">
@@ -168,7 +163,7 @@ onHome: true
           <span>BUILT FOR HIGH-TEMPO DISPATCH OPERATIONS • 100% LOCAL-FIRST</span>
         </div>
         <h1 class="text-headline-xl font-headline-xl text-text-primary mb-6 leading-tight text-3xl sm:text-4xl md:text-5xl">
-          Local-First Delivery Operations Hub with <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary-container via-info to-primary-container">Zero Telemetry</span>
+          Local-First Delivery Operations Hub with <span class="text-secondary-container">Zero Telemetry</span>
         </h1>
         <p class="text-body-lg font-body-lg text-text-muted max-w-3xl mx-auto mb-8">
           Engineered for dispatchers, couriers, and warehouse managers who demand absolute privacy, zero cloud subscription fees, and microsecond desktop responsiveness. Encrypted at rest with SQLCipher AES-256.
@@ -205,7 +200,7 @@ onHome: true
         </div>
       </div>
       <!-- High-Fidelity Hero Workstation Mockup (Dispatch Console) -->
-      <div class="relative rounded-xl border border-border-strong bg-surface shadow-[0_25px_50px_-12px_rgba(2,6,23,0.85)] overflow-hidden">
+      <div class="relative rounded-xl border border-border-strong bg-surface shadow-[0_25px_50px_-12px_rgba(0,0,0,0.65)] overflow-hidden">
         <!-- Mockup Title Bar -->
         <div class="h-10 bg-surface-container-lowest border-b border-border flex items-center justify-between px-4 text-label-sm font-label-sm select-none">
           <div class="flex items-center gap-2">
@@ -363,10 +358,10 @@ onHome: true
   <!-- Security & Architecture Deep Dive -->
   <section class="py-12 border-t border-border" id="security-specs">
     <div class="max-w-3xl mb-10">
-      <div class="text-label-sm font-label-sm text-info uppercase tracking-wider mb-2">Hardened Runtime Defense</div>
-      <h2 class="text-headline-lg font-headline-lg text-text-primary text-2xl md:text-3xl mb-3">Zero Trust, Local Cipher, Zero Cloud Leaks</h2>
+      <div class="text-label-sm font-label-sm text-info uppercase tracking-wider mb-2">Application Security Assessment</div>
+      <h2 class="text-headline-lg font-headline-lg text-text-primary text-2xl md:text-3xl mb-3">Local Database Security Review</h2>
       <p class="text-text-muted text-body-lg font-body-lg">
-        0perator treats the internet as hostile territory. The system operates strictly within an air-gapped mental model, encrypting all disk blocks before they hit your NVMe drive.
+        The operational database uses SQLCipher. OPlane's assessment identified unresolved findings, so this review is not a certification or a guarantee that the application is free of vulnerabilities.
       </p>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -430,19 +425,35 @@ onHome: true
           <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
             <div class="flex items-center gap-2 text-info">
               <span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
-              <h4 class="font-headline-sm text-headline-sm text-text-primary">Security Reviewed</h4>
+              <h4 class="font-headline-sm text-headline-sm text-text-primary">Security Reviewed by OPlane</h4>
             </div>
-            <span class="text-label-sm font-label-sm text-info font-mono bg-info-soft px-2.5 py-1 rounded border border-info/40">Security analysis by Oplane</span>
+            <svg class="h-6 w-auto text-text-primary" viewBox="0 0 3334 900" role="img" aria-labelledby="oplane-logo-title" xmlns="http://www.w3.org/2000/svg">
+              <title id="oplane-logo-title">OPlane</title>
+              <g fill="currentColor" fill-rule="nonzero">
+                <path d="M1190.625,670.708c-107.708,0 -183.083,-82.875 -183.083,-204.917c0,-122.042 75.333,-204.917 183.083,-204.917c107.75,0 183.042,82.875 183.042,204.917c0,122.042 -75.333,204.917 -183.042,204.917Zm0,-58c69.292,0 114.5,-57.25 114.5,-146.917c0,-89.667 -45.208,-147.667 -114.5,-147.667c-69.292,0 -114.5,57.25 -114.5,147.667c0,90.417 45.208,146.917 114.5,146.917Z"/>
+                <path d="M1489.708,605.167l0,150.417l-67.792,0l0,-487.167l67.792,0l0,57.25c23.375,-38.417 67.042,-64.792 122.042,-64.792c109.25,0 171.75,92.667 171.75,204.917c0,112.25 -62.5,204.917 -171.75,204.917c-55,0 -98.667,-26.375 -122.042,-65.542Zm-1.5,-125.042c0,90.375 55.75,131.083 111.458,131.083c73.833,0 115.25,-61.042 115.25,-145.417c0,-84.375 -41.417,-145.375 -115.25,-145.375c-55.75,0 -111.458,39.917 -111.458,131.833l0,27.875Z"/>
+                <rect x="1831.75" y="177.75" width="67.792" height="484.667"/>
+                <path d="M1943.958,556.208c0,-78.333 61.042,-110.75 149.167,-128.833l95.667,-19.583l0,-16.583c0,-45.208 -24.875,-70.833 -77.583,-70.833c-49.708,0 -79.125,23.375 -91.167,67.042l-64.042,-16.583c18.833,-64.042 76.833,-110 157.458,-110c88.125,0 142.375,42.958 142.375,127.333l0,192.083c0,25.625 15.833,33.875 42.208,27.875l0,54.25c-60.292,7.542 -94.917,-6.792 -103.208,-44.458c-24.125,30.875 -67.792,51.25 -121.292,51.25c-71.583,0 -129.583,-42.167 -129.583,-113l-0,0.042Zm244.833,-95.667l-76.833,16.583c-60.25,12.042 -100.958,28.625 -100.958,76.083c0,38.417 27.875,61 70.833,61c58,0 106.958,-35.417 106.958,-85.875l0,-67.792Z"/>
+                <path d="M2333.417,268.417l67.792,0l0,53.5c22.625,-32.375 61.75,-61.042 117.5,-61.042c83.625,0 131.083,58 131.083,141.625l0,259.875l-67.792,0l0,-241.833c0,-55 -23.375,-96.417 -82.125,-96.417c-49,0 -98.708,37.667 -98.708,103.208l0,235.042l-67.792,0l0,-394l0.042,0.042Z"/>
+                <path d="M2693.5,465.792c0,-117.5 74.583,-204.917 181.542,-204.917c106.958,0 168,83.625 168,192.833l0,22.625l-284.75,0c3.75,82.875 51.25,135.583 119.792,135.583c52.75,0 90.417,-28.625 102.458,-75.333l59.5,21.083c-24.125,70.083 -83.625,113 -161.958,113c-109.208,0 -184.583,-83.625 -184.583,-204.917l-0,0.042Zm68.583,-41.417l212.458,0c-1.5,-55.75 -31.625,-105.458 -100.208,-105.458c-57.25,0 -100.208,38.417 -112.25,105.458Z"/>
+              </g>
+              <g fill="currentColor" fill-rule="nonzero">
+                <path d="M387.292,466.583l137.375,94.167c27.458,18.833 63.708,18.833 91.167,0l137.375,-94.167l-136.958,-94.042c-27.708,-19.042 -64.25,-19.042 -91.958,0l-136.958,94.042l-0.042,0Z"/>
+                <path d="M570.25,261.833c104.083,0 189.958,77.708 202.958,178.25l62.958,-43.167c18.917,-13 18.958,-40.917 0,-53.917l-219.958,-151c-27.708,-19.042 -64.25,-19.042 -91.958,0l-219.75,150.875c-19,13.042 -19,41.125 0,54.167l62.75,43c13,-100.542 98.875,-178.25 202.958,-178.25l0.042,0.042Z"/>
+                <path d="M570.25,671.292c-104,0 -189.875,-77.583 -202.958,-178.042l-62.792,43.125c-19,13.042 -19,41.125 0,54.167l220.125,150.917c27.458,18.833 63.708,18.833 91.167,0l220.333,-151.042c18.917,-13 18.958,-40.917 0,-53.917l-63,-43.25c-13.083,100.458 -98.917,178.042 -202.958,178.042l0.083,-0Z"/>
+                <path d="M387.292,466.583l136.917,93.875c27.75,19 64.333,19 92.083,0l136.917,-93.875l-136.875,-93.958c-27.75,-19.042 -64.417,-19.042 -92.167,0l-136.875,93.958Z"/>
+              </g>
+            </svg>
           </div>
           <p class="text-body-md font-body-md text-text-muted mb-4">
-            We take application security seriously. Our app has been security-scanned using Oplane to help identify potential vulnerabilities and assess architectural risks. This is part of our commitment to building a more secure, reliable, and trustworthy product.
+            OPlane completed an application security assessment. Its report includes unresolved findings. This assessment is not a certification or a guarantee that 0perator is free of vulnerabilities.
           </p>
           <div class="mt-4 flex flex-wrap items-center gap-3 text-label-sm font-label-sm text-text-muted">
-            <span class="text-success">✓ Vulnerability Surface Assessment</span>
+            <span class="text-success">Vulnerability surface assessed</span>
             <span class="text-border">|</span>
-            <span class="text-success">✓ Architectural Risk Analysis</span>
+            <span class="text-success">Architectural risks assessed</span>
             <span class="text-border">|</span>
-            <span class="text-success">✓ Continuous Security Commitment</span>
+            <span class="text-warning">Unresolved findings remain</span>
           </div>
         </div>
       </div>
@@ -530,54 +541,6 @@ onHome: true
           </tr>
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <!-- Download Release & SHA-256 Verification Call To Action -->
-  <section class="py-12 border-t border-border" id="download">
-    <div class="rounded-2xl border border-border-strong bg-surface p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-      <div class="relative z-10 max-w-3xl mx-auto text-center space-y-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-surface-container border border-border font-label-sm text-info uppercase tracking-wider">
-          <span class="material-symbols-outlined text-[14px]">terminal</span>
-          RELEASE DISTRIBUTION v3.2-STABLE
-        </div>
-        <h2 class="font-headline-lg text-text-primary text-2xl sm:text-3xl font-bold">
-          Deploy 0perator to Your Dispatch Center
-        </h2>
-        <p class="text-body-md font-body-md text-text-muted max-w-xl mx-auto">
-          Download the stand-alone desktop client for your primary operating environment. Pre-bundled with embedded SQLite/SQLCipher database drivers and 2-Opt route solvers.
-        </p>
-        <!-- OS Selection Cluster -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-left">
-          <!-- Windows -->
-          <div class="bg-surface-container p-4 rounded-xl border border-info/40 bg-surface-container-high transition-all cursor-pointer">
-            <div class="flex items-center justify-between">
-              <span class="font-headline-sm text-info uppercase font-bold">Windows</span>
-              <span class="material-symbols-outlined text-info text-[20px]">desktop_windows</span>
-            </div>
-            <div class="font-label-sm text-text-muted mt-2">Windows 10 / 11 (64-bit)</div>
-            <div class="font-label-sm text-info mt-1 font-mono">MSI / EXE // 42.1 MB</div>
-          </div>
-          <!-- macOS -->
-          <div class="bg-surface-container p-4 rounded-xl border border-border hover:border-info/60 transition-all cursor-pointer">
-            <div class="flex items-center justify-between">
-              <span class="font-headline-sm text-text-primary uppercase font-bold">macOS</span>
-              <span class="material-symbols-outlined text-text-muted text-[20px]">laptop_mac</span>
-            </div>
-            <div class="font-label-sm text-text-muted mt-2">Universal (Apple Silicon &amp; Intel)</div>
-            <div class="font-label-sm text-text-primary mt-1 font-mono">DMG // 38.4 MB</div>
-          </div>
-          <!-- Linux -->
-          <div class="bg-surface-container p-4 rounded-xl border border-border hover:border-info/60 transition-all cursor-pointer">
-            <div class="flex items-center justify-between">
-              <span class="font-headline-sm text-text-primary uppercase font-bold">Linux</span>
-              <span class="material-symbols-outlined text-text-muted text-[20px]">terminal</span>
-            </div>
-            <div class="font-label-sm text-text-muted mt-2">Ubuntu / Arch / Debian</div>
-            <div class="font-label-sm text-text-primary mt-1 font-mono">AppImage / deb // 34.9 MB</div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 

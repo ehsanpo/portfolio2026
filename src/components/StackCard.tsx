@@ -28,7 +28,7 @@ export default function StackCard({ slug, labels, icon, data }: StackCardProps) 
 	return (
 		<motion.div className={`rounded-lg`} whileHover={{ scale: 1.02 }}>
 			<Card3D
-				className="cursor-pointer flex-col items-center justify-center whitespace-nowrap text-black"
+				className="flex-col items-center justify-center whitespace-nowrap text-black"
 				glowColor="color-mix(in srgb, currentColor 80%, var(--color-accent))"
 			>
 				<div className="-mb-2.5 flex items-center gap-4 p-3">

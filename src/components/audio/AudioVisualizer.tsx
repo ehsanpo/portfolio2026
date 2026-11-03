@@ -4,7 +4,7 @@ import { useAudioStore } from "@/store/useAudioStore";
 
 const AudioVisualizer: React.FC = () => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
-	const animationRef = useRef<number>();
+	const animationRef = useRef<number | undefined>(undefined);
 	const isPlaying = useAudioStore((state) => state.isPlaying);
 
 	useEffect(() => {
@@ -182,9 +182,9 @@ const AudioVisualizer: React.FC = () => {
 			bassSmoothedRef.current += (bassAvg - bassSmoothedRef.current) * 0.1;
 			const smoothBass = bassSmoothedRef.current;
 
-			// 2. Sub-bass Trigger Color Rotation
+			// 2. Sub-bass Trigger Color Rotation (lowered threshold from 240 to 190 for better sensitivity)
 			const now = performance.now();
-			if (subBassAvg > 240 && now - lastTriggerTimeRef.current > 400) {
+			if (subBassAvg > 190 && now - lastTriggerTimeRef.current > 350) {
 				colorIndexRef.current = (colorIndexRef.current + 1) % palette.length;
 				lastTriggerTimeRef.current = now;
 			}
@@ -274,7 +274,7 @@ const AudioVisualizer: React.FC = () => {
 	}, [isPlaying]);
 
 	return (
-		<div className="relative flex h-full min-h-[400px] w-full items-center justify-center overflow-hidden rounded-xl p-4">
+		<div className="relative flex h-full min-h-[400px] w-full items-center justify-center overflow-hidden rounded-xl bg-[#06080e] p-4 shadow-inner">
 			<canvas ref={canvasRef} className="absolute inset-0 h-full w-full object-contain" />
 		</div>
 	);

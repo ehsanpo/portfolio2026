@@ -22,8 +22,14 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# arcade0 runtime
+worktrees/
+preview.log
+execution.log
+*.log
 TASK_INSTRUCTION.md
 AGENT_RESPONSE.md
-execution.log
-.arcade0/
+ACCEPTANCE_EVIDENCE.md
 .scratch/
+scratch/

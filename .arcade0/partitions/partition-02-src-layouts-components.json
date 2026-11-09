@@ -1,0 +1,25 @@
+{
+  "partition_id": "partition-02-src-layouts-components",
+  "worker_id": "serena-indexer-02",
+  "status": "SUCCESS",
+  "exit_code": 0,
+  "checksum": "sha256:4a382c1613ea2f90cc2e88a385f09919f2ce2a874b341f2ff2b197b1029cbb94",
+  "scanned_paths": [
+    "src/layouts/Layout.astro",
+    "src/components/Header.astro",
+    "src/components/Footer.astro",
+    "src/components/ProjectCard.astro",
+    "src/components/Skills.astro",
+    "src/components/Experience.astro",
+    "src/styles/global.css"
+  ],
+  "exports": [
+    { "file": "src/layouts/Layout.astro", "symbol": "Layout", "kind": "Component" },
+    { "file": "src/components/Header.astro", "symbol": "Header", "kind": "Component" },
+    { "file": "src/components/Footer.astro", "symbol": "Footer", "kind": "Component" },
+    { "file": "src/components/ProjectCard.astro", "symbol": "ProjectCard", "kind": "Component" },
+    { "file": "src/components/Skills.astro", "symbol": "Skills", "kind": "Component" },
+    { "file": "src/components/Experience.astro", "symbol": "Experience", "kind": "Component" }
+  ],
+  "verified_at": "2026-03-30T09:12:02Z"
+}

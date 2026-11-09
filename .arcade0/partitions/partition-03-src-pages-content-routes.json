@@ -1,0 +1,23 @@
+{
+  "partition_id": "partition-03-src-pages-content-routes",
+  "worker_id": "serena-indexer-03",
+  "status": "SUCCESS",
+  "exit_code": 0,
+  "checksum": "sha256:7bc305e6b12a884fc570188ef77b10bc8d16799052b618cf6741764619736c2a",
+  "scanned_paths": [
+    "src/pages/index.astro",
+    "src/pages/404.astro",
+    "src/pages/projects/[...slug].astro",
+    "src/content/config.ts"
+  ],
+  "routes": [
+    { "route": "/", "component": "src/pages/index.astro", "type": "page" },
+    { "route": "/404", "component": "src/pages/404.astro", "type": "error" },
+    { "route": "/projects/[...slug]", "component": "src/pages/projects/[...slug].astro", "type": "dynamic" }
+  ],
+  "collections": [
+    { "name": "projects", "schema": "z.object" },
+    { "name": "experience", "schema": "z.object" }
+  ],
+  "verified_at": "2026-03-30T09:12:04Z"
+}

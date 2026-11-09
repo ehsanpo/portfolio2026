@@ -1,0 +1,24 @@
+{
+  "partition_id": "partition-01-core-config",
+  "worker_id": "serena-indexer-01",
+  "status": "SUCCESS",
+  "exit_code": 0,
+  "checksum": "sha256:d9b2e04f479a8bc43d1a0e882bc25fce6143c4983ef11fa2417726fa74da6058",
+  "scanned_paths": [
+    "astro.config.mjs",
+    "package.json",
+    "package-lock.json",
+    "tsconfig.json",
+    "CNAME",
+    "README.md"
+  ],
+  "exports": [
+    { "file": "astro.config.mjs", "symbol": "default", "kind": "AstroConfig" }
+  ],
+  "dependencies": {
+    "astro": "^4.0.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.0.0"
+  },
+  "verified_at": "2026-03-30T09:12:00Z"
+}

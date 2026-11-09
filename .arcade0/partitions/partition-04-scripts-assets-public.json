@@ -1,0 +1,18 @@
+{
+  "partition_id": "partition-04-scripts-assets-public",
+  "worker_id": "serena-indexer-04",
+  "status": "SUCCESS",
+  "exit_code": 0,
+  "checksum": "sha256:fa234407b464877119ff08902cd59bce2cf2ea37882ab275fbf5a0445d312bc8",
+  "scanned_paths": [
+    "scripts/",
+    "public/",
+    "demo/"
+  ],
+  "assets": [
+    "public/favicon.svg",
+    "public/robots.txt",
+    "demo/index.html"
+  ],
+  "verified_at": "2026-03-30T09:12:06Z"
+}

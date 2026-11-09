@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+TASK_INSTRUCTION.md
+AGENT_RESPONSE.md
+execution.log
+.arcade0/
+.scratch/

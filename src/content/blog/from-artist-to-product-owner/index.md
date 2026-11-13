@@ -6,6 +6,7 @@ category: ["AI", "Personal"]
 tag: ["AI", "Software Development", "Music", "Creative Process"]
 featured: false
 draft: false
+cover: "cover.png"
 ---
 
 

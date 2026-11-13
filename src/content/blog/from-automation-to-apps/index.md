@@ -5,7 +5,7 @@ date: "2025-12-12"
 author: "Ehsan Pourhadi"
 category: ["Web Development", "Learning"]
 tag: ["React", "PLC", "State Management", "Automation"]
-featured: false
+featured: true
 draft: false
 cover: "cover.jpg"
 ---

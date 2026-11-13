@@ -5,7 +5,7 @@ date: "2025-12-25"
 author: "Ehsan Pourhadi"
 category: ["Mobile Development", "Real-time Apps"]
 tag: ["React Native", "Expo", "Supabase", "Location Tracking", "Privacy", "TypeScript", "Real-time"]
-featured: true
+featured: false
 draft: false
 cover: "cover.jpg"
 ---

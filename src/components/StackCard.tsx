@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { findTimelineMatch } from "../utils/client-data";
-import Card3D from "./Card3D";
 
 interface StackCardProps {
 	readonly slug: string;
@@ -9,67 +7,72 @@ interface StackCardProps {
 	readonly data: string[];
 }
 
-function getExpertiseColor(level: number): string {
-	if (level >= 7) return "bg-green-500";
-	if (level >= 4) return "bg-blue-500";
-	if (level >= 1) return "bg-yellow-500";
-	return "bg-gray-400";
+function getExpertiseIndicatorClass(level: number): string {
+	if (level >= 8) return "bg-tomato";
+	if (level >= 6) return "bg-cobalt";
+	if (level >= 4) return "bg-mint";
+	return "bg-mustard";
+}
+
+function getExpertiseLevel(level: number): string {
+	if (level === 10) return "Expert";
+	if (level >= 7 && level <= 9) return "Advanced";
+	if (level >= 4 && level <= 6) return "Pro";
+	if (level >= 1 && level <= 3) return "Init";
+	return "N/A";
 }
 
 export default function StackCard({ slug, labels, icon, data }: StackCardProps) {
-	const getExpertiseLevel = (level: number): string => {
-		if (level === 10) return "Expert";
-		if (level >= 7 && level <= 9) return "Advanced";
-		if (level >= 4 && level <= 6) return "Professional";
-		if (level >= 1 && level <= 3) return "Beginner";
-		return "No Experience";
-	};
-
 	return (
-		<motion.div className={`rounded-lg`} whileHover={{ scale: 1.02 }}>
-			<Card3D
-				className="flex-col items-center justify-center whitespace-nowrap text-black"
-				glowColor="color-mix(in srgb, currentColor 80%, var(--color-accent))"
-			>
-				<div className="-mb-2.5 flex items-center gap-4 p-3">
-					<img src={icon} alt={slug} className="h-12 w-12" />
-					<h3 className="font-basement text-xl text-gray-600 dark:text-gray-300">{slug}</h3>
+		<div className="on-paper hard bg-cream text-ink flex h-full flex-col justify-between">
+			<div>
+				<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
+					<img src={icon} alt="" className="size-4 shrink-0 object-contain" aria-hidden="true" />
+					<h3 className="font-pixel text-sm leading-none uppercase text-ink">{slug}</h3>
+					<span className="stripes h-[11px] flex-1" aria-hidden="true" />
 				</div>
-				<div className="space-y-4 p-3">
+
+				<ul className="divide-y divide-ink/20 px-4 py-1">
 					{labels.map((label, index) => {
+						const score = parseInt(data[index] || "0", 10) || 0;
 						const timelineMatch = findTimelineMatch(label);
 						const yearsOfExperience = timelineMatch?.yearsOfExperience;
 
 						return (
-							<div key={label} className="group/stat relative">
-								<div className="clip2 rounded bg-white/40 dark:bg-black/70 px-2 py-2 transition-all duration-300 group-hover/stat:translate-z-2 group-hover/stat:scale-112 group-hover/stat:shadow-xl">
-									<div className="flex justify-between gap-2">
-										<span className="text-gray-700 dark:text-gray-300">
-											<span
-												className={`mr-1 inline-block h-3 w-3 rounded-full ${getExpertiseColor(
-													parseInt(data[index]) || 0
-												)}`}
-											></span>
-											{label}
-											{yearsOfExperience && (
-												<span className="ml-1 text-sm text-gray-500 opacity-0 transition-all duration-300 ease-in-out group-hover/stat:opacity-100 dark:text-secondary-400">
-													
-													{yearsOfExperience} Years
-												</span>
-											)}
-										</span>
-										<div className="flex items-center gap-2">
-											<span className="text-primary-500 opacity-0 transition-all duration-300 ease-in-out group-hover/stat:opacity-100">
-												{getExpertiseLevel(parseInt(data[index]))}
-											</span>
-										</div>
-									</div>
+							<li key={label} className="py-2.5">
+								<div className="flex items-baseline justify-between gap-2">
+									<span className="flex items-center gap-2 font-sans text-sm font-semibold text-ink">
+										<span
+											className={`size-2 shrink-0 border border-ink ${getExpertiseIndicatorClass(score)}`}
+											aria-hidden="true"
+										/>
+										<span>{label}</span>
+									</span>
+									<span className="font-mono text-xs text-ink/75 tabular-nums">
+										{yearsOfExperience ? `${yearsOfExperience}y` : `${score}/10`}
+									</span>
 								</div>
-							</div>
+								<div className="mt-1 flex items-center justify-between gap-2 pl-4">
+									<div className="h-1.5 flex-1 border border-ink/40 bg-paper">
+										<div
+											className="h-full bg-ink"
+											style={{ width: `${Math.min(100, Math.max(10, score * 10))}%` }}
+										/>
+									</div>
+									<span className="label-mono text-[10px]! text-ink/70">
+										{getExpertiseLevel(score)}
+									</span>
+								</div>
+							</li>
 						);
 					})}
-				</div>
-			</Card3D>
-		</motion.div>
+				</ul>
+			</div>
+
+			<div className="border-t-[1.5px] border-ink/25 px-4 py-2 flex items-center justify-between bg-paper/60">
+				<span className="label-mono text-[10px]! text-ink/70">Modules</span>
+				<span className="font-mono text-xs font-semibold text-ink">{labels.length} indexed</span>
+			</div>
+		</div>
 	);
 }

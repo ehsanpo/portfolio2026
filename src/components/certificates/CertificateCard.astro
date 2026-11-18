@@ -1,5 +1,4 @@
 ---
-import BoxReveal from "../ui/box-reveal";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
@@ -13,8 +12,21 @@ interface Props {
 const { name, image, year, index } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-lg text-center">
-	<BoxReveal boxColor="bg-primary-500 h-full" duration={0.5} delay={(index % 4) * 0.2} client:idle>
+<article
+	class="group relative flex flex-col justify-between border-r-[1.5px] border-b-[1.5px] border-ink bg-cream p-5 text-ink transition-colors hover:bg-mustard"
+>
+	<div class="flex items-center justify-between gap-2">
+		<span class="label-mono text-ink/60">
+			NO. {String(index + 1).padStart(2, "0")}
+		</span>
+		<span class="font-pixel border-[1.5px] border-ink bg-paper px-2 py-0.5 text-sm">
+			{year}
+		</span>
+	</div>
+
+	<div
+		class="my-5 flex h-28 w-full items-center justify-center border-[1.5px] border-ink/20 bg-paper p-4 transition-transform duration-200 group-hover:scale-[1.03]"
+	>
 		<Image
 			src={image}
 			alt={name}
@@ -22,22 +34,20 @@ const { name, image, year, index } = Astro.props;
 			sizes="(max-width: 768px) 100vw, 25vw"
 			format="webp"
 			quality={80}
-			loading="eager"
-			class="w-full object-cover"
+			loading="lazy"
+			class="max-h-20 w-auto object-contain"
 		/>
-	</BoxReveal>
-
-	<div class="p-4">
-		<BoxReveal
-			boxColor="bg-secondary-400 h-full"
-			duration={0.6}
-			delay={(index % 4) * 0.4}
-			client:idle
-		>
-			<h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-				<p class="text-sm text-gray-600 dark:text-gray-400">{year}</p>
-				{name}
-			</h3>
-		</BoxReveal>
 	</div>
-</div>
+
+	<div class="border-t-[1.5px] border-ink/20 pt-3">
+		<h3 class="text-base leading-snug font-bold tracking-[-0.02em] text-ink">
+			{name}
+		</h3>
+		<div class="mt-2 flex items-center justify-between">
+			<span class="label-mono text-[10px]! text-ink/70">STATUS / VERIFIED</span>
+			<span class="size-2 border border-ink bg-mint" aria-hidden="true"></span>
+		</div>
+	</div>
+</article>
+
+

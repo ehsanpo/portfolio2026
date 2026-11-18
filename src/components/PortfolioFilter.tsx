@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import clsx from "clsx";
 
 interface PortfolioFilterProps {
@@ -35,35 +34,31 @@ export default function PortfolioFilter({
 	};
 
 	return (
-		<div className="mb-8 flex flex-wrap gap-4">
-			<motion.button
+		<div className="mb-10 flex flex-wrap gap-2.5">
+			<button
+				type="button"
 				onClick={() => filterPortfolio("all")}
 				className={clsx(
-					"clip2 rounded px-4 py-2 transition-colors",
-					selectedCategory === "all" ? "bg-primary-500 text-black" : "text-light bg-neutral-800/50"
+					"key px-3! py-2! text-xs! focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
+					selectedCategory === "all" ? "bg-ink text-cream" : "bg-cream text-ink"
 				)}
-				whileHover={{ scale: 1.05 }}
-				whileTap={{ scale: 0.95 }}
 				aria-label="Show all categories"
 			>
 				All
-			</motion.button>
+			</button>
 			{categories.map((category) => (
-				<motion.button
+				<button
+					type="button"
 					key={category}
 					onClick={() => filterPortfolio(category)}
 					className={clsx(
-						"clip2 rounded px-4 py-2 transition-colors",
-						selectedCategory === category
-							? "bg-primary-500 text-black"
-							: "text-light bg-neutral-800/50"
+						"key px-3! py-2! text-xs! focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
+						selectedCategory === category ? "bg-ink text-cream" : "bg-cream text-ink"
 					)}
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
 					aria-label={`Filter by ${category}`}
 				>
 					{category}
-				</motion.button>
+				</button>
 			))}
 		</div>
 	);

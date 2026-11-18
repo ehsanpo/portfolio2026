@@ -1,8 +1,4 @@
 import React from "react";
-import { Heading } from "../ui/heading";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import Tilt from "react-parallax-tilt";
-import { Tag } from "lucide-react";
 
 interface PromptHeaderProps {
 	prompt: {
@@ -16,72 +12,77 @@ interface PromptHeaderProps {
 }
 
 const PromptHeader: React.FC<PromptHeaderProps> = ({ prompt }) => {
-	const { title, description, category, tags, icon, image } = prompt;
+	const { title, description, category, tags, image } = prompt;
 
 	return (
-		<div className="bg-gray-100 dark:bg-neutral-800">
-			<header className="mx-auto max-w-6xl overflow-hidden px-4 py-12">
-				<ParallaxProvider>
-					<div className="relative container">
-						<div className="grid md:grid-cols-2">
-							<div className="self-center">
-								<Heading className="mb-4 !text-left" level="h1" gradient>
-									{title}
-								</Heading>
-								<p className="mb-4 text-xl">{description}</p>
-								<div className="flex flex-col gap-4">
-									{category && (
-										<div className="flex gap-4">
-											<h3 className="text-primary-400 min-w-20 font-medium uppercase">Category</h3>
-											<span className="clip2 hover:border-primary border-primary-500/30 bg-primary-500/20 text-primary-400 border-l-2 px-3 py-1 text-sm transition-all">
-												{category}
-											</span>
-										</div>
-									)}
+		<header className="block-mint border-b-[1.5px] border-ink pt-28 pb-12 md:pt-32 md:pb-16">
+			<div className="container mx-auto px-4">
+				<div className="mb-6">
+					<a href="/prompts" className="key bg-cream text-ink">
+						Back to prompts
+					</a>
+				</div>
 
-									{tags && tags.length > 0 && (
-										<div className="flex gap-4">
-											<h3 className="min-w-20 font-medium text-purple-400 uppercase">Tags</h3>
-											<div className="flex flex-wrap gap-2">
-												{tags.map((tag, index) => (
-													<span
-														key={index}
-														className="clip2 inline-flex items-center gap-1 border-l-2 border-purple-500/30 bg-purple-500/20 px-3 py-1 text-sm text-purple-400 transition-all hover:border-purple-500"
-													>
-														<Tag className="h-3 w-3" />
-														{tag}
-													</span>
-												))}
-											</div>
-										</div>
-									)}
+				<div className="flex items-center justify-between border-t-[1.5px] border-ink pt-3">
+					<p className="label-mono">/ Prompt specification</p>
+					<div className="flex items-center gap-3">
+						{category && <p className="label-mono hidden opacity-75 sm:block">{category}</p>}
+						<span className="size-2 bg-ink" aria-hidden="true" />
+					</div>
+				</div>
+
+				<div className="mt-8 grid items-center gap-10 lg:grid-cols-12">
+					<div className="lg:col-span-7">
+						<h1 className="text-4xl font-bold tracking-[-0.04em] text-ink md:text-6xl">
+							{title}.
+						</h1>
+						<p className="mt-4 max-w-2xl text-lg leading-snug text-ink/90">{description}</p>
+
+						{(category || (tags && tags.length > 0)) && (
+							<div className="mt-6 flex flex-wrap items-center gap-2">
+								{category && (
+									<span className="label-mono border-[1.5px] border-ink bg-mustard px-2.5 py-1 text-ink">
+										{category}
+									</span>
+								)}
+								{tags?.map((tag, index) => (
+									<span
+										key={index}
+										className="on-paper border-[1.5px] border-ink bg-cream px-2.5 py-1 font-mono text-xs font-semibold text-ink"
+									>
+										#{tag}
+									</span>
+								))}
+							</div>
+						)}
+					</div>
+
+					<div className="lg:col-span-5">
+						<div className="on-paper hard bg-cream p-3 text-ink">
+							<div className="mb-3 flex items-center gap-3 border-b-[1.5px] border-ink pb-2">
+								<span className="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true" />
+								<span className="stripes h-[13px] flex-1" aria-hidden="true" />
+								<span className="font-pixel text-xs leading-none">PREVIEW</span>
+								<span className="stripes h-[13px] flex-1" aria-hidden="true" />
+							</div>
+							{image ? (
+								<img
+									src={image}
+									alt={title}
+									className="aspect-[16/10] w-full border-[1.5px] border-ink object-cover"
+								/>
+							) : (
+								<div className="flex aspect-[16/10] w-full items-center justify-center border-[1.5px] border-ink bg-paper">
+									<span className="font-pixel text-2xl text-ink">PROMPT SPEC</span>
 								</div>
-							</div>
-							<div className="relative mt-10 flex-1 md:mt-0">
-								<Tilt perspective={1000} className="portfolio-hero-image-tilt relative">
-									<div className="portfolio-hero-image">
-										<Parallax speed={-10}>
-											{image ? (
-												<img
-													src={image}
-													alt={title}
-													className="portfolio-hero-box porfolio-hero-large mr-4 rounded-lg object-cover shadow-2xl"
-												/>
-											) : (
-												<div className="portfolio-hero-box porfolio-hero-large from-primary/20 to-primary/5 mr-4 flex items-center justify-center rounded-lg bg-gradient-to-br shadow-2xl">
-													<span className="text-9xl">{icon || "📝"}</span>
-												</div>
-											)}
-										</Parallax>
-									</div>
-								</Tilt>
-							</div>
+							)}
 						</div>
 					</div>
-				</ParallaxProvider>
-			</header>
-		</div>
+				</div>
+			</div>
+		</header>
 	);
 };
 
 export default PromptHeader;
+

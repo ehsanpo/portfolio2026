@@ -7,23 +7,31 @@ const portfolioItems = await getPortfolioItems();
 const uniqueClients = [...new Set(portfolioItems.map((item) => item.client))].filter(Boolean);
 ---
 
-<div class="clip bg-white py-12 dark:bg-neutral-800">
-	<div class="container mx-auto mb-8 px-4">
-		<h2 class="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-white">Trusted By</h2>
+<section class="block-cobalt border-t-[1.5px] border-ink py-12">
+	<div class="container mb-8">
+		<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+			<p class="label-mono">/ Shipped for</p>
+			<div class="flex items-center gap-3">
+				<p class="label-mono hidden opacity-70 sm:block">Selected client roster</p>
+				<span class="size-2 bg-current" aria-hidden="true"></span>
+			</div>
+		</div>
 	</div>
 
 	<div class="relative overflow-hidden">
 		<div class="marquee-container">
 			<MarqueeContent clients={uniqueClients} />
+			<MarqueeContent clients={uniqueClients} />
 		</div>
 	</div>
-</div>
+</section>
 
 <style>
 	.marquee-container {
 		display: flex;
+		width: max-content;
 		animation: scroll 30s linear infinite;
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
 	@keyframes scroll {
@@ -39,3 +47,4 @@ const uniqueClients = [...new Set(portfolioItems.map((item) => item.client))].fi
 		animation-play-state: paused;
 	}
 </style>
+

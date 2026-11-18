@@ -65,8 +65,8 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 			const rects = document.querySelectorAll(".react-calendar-heatmap rect");
 			rects.forEach((rect, index) => {
 				(rect as SVGRectElement).style.transitionDelay = `${index * 0.002}s`;
-				rect.setAttributeNS(null, "rx", "1");
-				rect.setAttributeNS(null, "ry", "1");
+				rect.setAttributeNS(null, "rx", "0");
+				rect.setAttributeNS(null, "ry", "0");
 				rect.setAttributeNS(null, "data-tooltip-id", "tooltip-graph");
 			});
 		}
@@ -89,162 +89,172 @@ const GitHubContributions: React.FC<GitHubContributionsProps> = ({
 		})) || [];
 
 	const totalContributions = data?.total[selectedYear.toString()] || 0;
+	const activeDays = data?.contributions.filter((d) => d.count > 0).length || 0;
+	const peakDay = data?.contributions.reduce<ContributionDay | null>(
+		(max, d) => (!max || d.count > max.count ? d : max),
+		null
+	);
 
 	return (
-		<div className={cn("github-contributions min-h-60", className)}>
-			<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-				<div>
-					<h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-						GitHub Contributions
-					</h3>
-					<div className="h-6">
-						{data && !loading && (
-							<p className="text-sm text-gray-600 dark:text-gray-400">
-								{totalContributions} contributions in {selectedYear}
-							</p>
+		<div className={cn("github-contributions space-y-8", className)}>
+			<div className="on-paper hard bg-cream text-ink">
+				<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
+					<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-mustard" aria-hidden="true" />
+					<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+					<span className="font-pixel text-xs leading-none uppercase text-ink">
+						GITHUB / @{username} / {selectedYear}
+					</span>
+				</div>
+
+				<div className="p-6">
+					<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+						<div>
+							<h3 className="text-xl font-bold tracking-[-0.02em] text-ink">
+								Contribution Heatmap
+							</h3>
+							<div className="h-5 mt-1">
+								{data && !loading && (
+									<p className="label-mono text-ink/70">
+										{totalContributions} contributions in {selectedYear}
+									</p>
+								)}
+							</div>
+						</div>
+
+						<div className="flex items-center gap-3">
+							{loading && (
+								<span className="label-mono text-ink/70">Loading...</span>
+							)}
+							<label htmlFor="year-select" className="label-mono text-ink">
+								Year:
+							</label>
+							<select
+								id="year-select"
+								value={selectedYear}
+								onChange={handleYearChange}
+								disabled={loading}
+								className="border-[1.5px] border-ink bg-paper px-3 py-1.5 font-mono text-sm font-semibold text-ink focus:outline-2 focus:outline-offset-2 focus:outline-ink"
+							>
+								{yearOptions.reverse().map((year) => (
+									<option key={year} value={year}>
+										{year}
+									</option>
+								))}
+							</select>
+						</div>
+					</div>
+
+					<div className="relative">
+						{error && (
+							<div className="border-[1.5px] border-ink bg-tomato/20 p-4">
+								<p className="font-mono text-sm text-ink">
+									Error loading contributions: {error}
+								</p>
+							</div>
+						)}
+
+						{data && !error && (
+							<div className="w-full overflow-x-auto">
+								<style>{`
+									.react-calendar-heatmap {
+										width: 100% !important;
+										min-width: 700px;
+									}
+									.react-calendar-heatmap .react-calendar-heatmap-month-label {
+										font-size: 11px;
+										font-family: var(--font-geist-mono);
+										fill: #5f5748;
+									}
+									.react-calendar-heatmap .react-calendar-heatmap-weekday-label {
+										font-size: 10px;
+										font-family: var(--font-geist-mono);
+										fill: #5f5748;
+									}
+									.react-calendar-heatmap .color-empty {
+										fill: #e8e3d6;
+									}
+									.react-calendar-heatmap .color-scale-1 {
+										fill: #93d3b0;
+									}
+									.react-calendar-heatmap .color-scale-2 {
+										fill: #76a0e2;
+									}
+									.react-calendar-heatmap .color-scale-3 {
+										fill: #f4b829;
+									}
+									.react-calendar-heatmap .color-scale-4 {
+										fill: #ef5b3b;
+									}
+									.react-calendar-heatmap rect {
+										transition: fill 0.1s ease-out;
+										opacity: 0;
+										animation: cellFadeIn 0.1s ease-out both;
+									}
+									@keyframes cellFadeIn {
+										to {
+											opacity: 1;
+										}
+									}
+									.react-calendar-heatmap rect:hover {
+										stroke: #231e16;
+										stroke-width: 1.5;
+										cursor: pointer;
+									}
+								`}</style>
+								<div className="heatmap-container">
+									<CalendarHeatmap
+										startDate={new Date(`${selectedYear}-01-01`)}
+										endDate={new Date(`${selectedYear}-12-31`)}
+										values={heatMapData}
+										classForValue={(value: ReactCalendarHeatmapValue<string> | undefined) => {
+											if (!value || value.count === 0) {
+												return "color-empty";
+											}
+											if (value.count >= 1 && value.count <= 3) return "color-scale-1";
+											if (value.count >= 4 && value.count <= 6) return "color-scale-2";
+											if (value.count >= 7 && value.count <= 9) return "color-scale-3";
+											return "color-scale-4";
+										}}
+										tooltipDataAttrs={(value: ReactCalendarHeatmapValue<string> | undefined) => {
+											if (!value) return {};
+											return {
+												"data-tooltip-content": `${new Date(value.date).toISOString().slice(0, 10)}: ${value.count} contributions`,
+											} as Record<string, string>;
+										}}
+									/>
+									<ReactTooltip
+										id="tooltip-graph"
+										className="!bg-ink !text-cream !border-[1.5px] !border-ink !rounded-none !font-mono !text-xs"
+									/>
+								</div>
+							</div>
 						)}
 					</div>
 				</div>
-
-				<div className="flex items-center gap-2">
-					{loading && (
-						<div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
-							<svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24">
-								<circle
-									className="opacity-25"
-									cx="12"
-									cy="12"
-									r="10"
-									stroke="currentColor"
-									strokeWidth="4"
-									fill="none"
-								/>
-								<path
-									className="opacity-75"
-									fill="currentColor"
-									d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-								/>
-							</svg>
-							Loading...
-						</div>
-					)}
-					<label
-						htmlFor="year-select"
-						className="text-sm font-medium text-gray-700 dark:text-gray-300"
-					>
-						Year:
-					</label>
-					<select
-						id="year-select"
-						value={selectedYear}
-						onChange={handleYearChange}
-						disabled={loading}
-						className="rounded-md border border-gray-300 bg-white px-3 py-1 text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
-					>
-						{yearOptions.reverse().map((year) => (
-							<option key={year} value={year}>
-								{year}
-							</option>
-						))}
-					</select>
-				</div>
 			</div>
 
-			<div className="relative">
-				{error && (
-					<div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-700 dark:bg-red-900/20">
-						<p className="text-sm text-red-600 dark:text-red-400">
-							Error loading contributions: {error}
-						</p>
+			{data && !error && (
+				<dl className="grid grid-cols-1 gap-6 sm:grid-cols-3 text-paper">
+					<div className="border-t-[1.5px] border-paper/40 pt-3">
+						<dd className="font-pixel text-5xl text-mustard">
+							{totalContributions.toLocaleString()}
+						</dd>
+						<dt className="mt-1.5 text-sm text-paper/80">
+							contributions in {selectedYear}
+						</dt>
 					</div>
-				)}
-
-				{data && !error && (
-					<div className="w-full overflow-x-auto">
-						<style>{`
-							.react-calendar-heatmap {
-								width: 100% !important;
-								min-width: 700px;
-							}
-							.react-calendar-heatmap .react-calendar-heatmap-month-label {
-								font-size: 12px;
-								fill: #666;
-							}
-							.react-calendar-heatmap .react-calendar-heatmap-weekday-label {
-								font-size: 10px;
-								fill: #666;
-							}
-							.react-calendar-heatmap .color-empty {
-								fill: #ebedf0;
-							}
-							.react-calendar-heatmap .color-scale-1 {
-								fill: #a3d5e8;
-							}
-							.react-calendar-heatmap .color-scale-2 {
-								fill: #6bc4e0;
-							}
-							.react-calendar-heatmap .color-scale-3 {
-								fill: #03aad7;
-							}
-							.react-calendar-heatmap .color-scale-4 {
-								fill: #0377a7;
-							}
-							.react-calendar-heatmap rect {
-								transition: fill 0.1s ease-out;
-								opacity: 0;
-								animation: cellFadeIn 0.1s ease-out both;
-							}
-							@keyframes cellFadeIn {
-								to {
-									opacity: 1;
-								}
-							}
-							.heatmap-container {
-							}
-							.react-calendar-heatmap rect:hover {
-								stroke: var(--primary);
-								stroke-width: 1;
-								cursor: pointer;
-							}
-							@media (prefers-color-scheme: dark) {
-								.react-calendar-heatmap .react-calendar-heatmap-month-label {
-									fill: #ccc;
-								}
-								.react-calendar-heatmap .react-calendar-heatmap-weekday-label {
-									fill: #ccc;
-								}
-								.react-calendar-heatmap .color-empty {
-									fill: #374151;
-								}
-							}
-						`}</style>
-						<div className="heatmap-container">
-							<CalendarHeatmap
-								startDate={new Date(`${selectedYear}-01-01`)}
-								endDate={new Date(`${selectedYear}-12-31`)}
-								values={heatMapData}
-								classForValue={(value: ReactCalendarHeatmapValue<string> | undefined) => {
-									if (!value || value.count === 0) {
-										return "color-empty";
-									}
-
-									if (value.count >= 1 && value.count <= 3) return "color-scale-1";
-									if (value.count >= 4 && value.count <= 6) return "color-scale-2";
-									if (value.count >= 7 && value.count <= 9) return "color-scale-3";
-									return "color-scale-4";
-								}}
-								tooltipDataAttrs={(value: ReactCalendarHeatmapValue<string> | undefined) => {
-									if (!value) return {};
-									return {
-										"data-tooltip-content": `${new Date(value.date).toISOString().slice(0, 10)} has count: ${value.count}`,
-									} as Record<string, string>;
-								}}
-							/>
-							<ReactTooltip id="tooltip-graph" />
-						</div>
+					<div className="border-t-[1.5px] border-paper/40 pt-3">
+						<dd className="font-pixel text-5xl text-mustard">{activeDays}</dd>
+						<dt className="mt-1.5 text-sm text-paper/80">days with at least one</dt>
 					</div>
-				)}
-			</div>
+					<div className="border-t-[1.5px] border-paper/40 pt-3">
+						<dd className="font-pixel text-5xl text-mustard">{peakDay?.count || 0}</dd>
+						<dt className="mt-1.5 text-sm text-paper/80">
+							{peakDay?.date ? `peak on ${peakDay.date}` : "peak single day"}
+						</dt>
+					</div>
+				</dl>
+			)}
 		</div>
 	);
 };

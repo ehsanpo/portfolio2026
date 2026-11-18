@@ -23,15 +23,26 @@ const paginatedRegularPosts = regularPosts.slice(0, POSTS_PER_PAGE);
 	imageAlt="Ehsan's Blog - Developer Insights and Stories"
 >
 	<PageHero
-		title="Blog"
-		subtitle="Thoughts, insights, and stories from my journey as a developer"
+		title="Blog & field notes"
+		subtitle="Thoughts, insights, and stories from my journey as a developer."
 	/>
-	<div class="py-20">
+	<section class="section">
 		<div class="container mx-auto px-4">
 			{
 				featuredPosts.length > 0 && (
-					<div class="mb-16">
-						<h2 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">Featured Posts</h2>
+					<div class="mb-20">
+						<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+							<p class="label-mono">/ Featured dispatches</p>
+							<div class="flex items-center gap-3">
+								<p class="label-mono hidden opacity-70 sm:block">
+									{featuredPosts.length} selected notes
+								</p>
+								<span class="size-2 bg-current" aria-hidden="true" />
+							</div>
+						</div>
+						<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+							Featured dispatches.
+						</h2>
 						<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
 							{featuredPosts.map((post) => (
 								<BlogCard post={post} featured={true} client:load />
@@ -41,11 +52,16 @@ const paginatedRegularPosts = regularPosts.slice(0, POSTS_PER_PAGE);
 				)
 			}
 
-			<div class="mb-8">
-				<h2 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
-					{featuredPosts.length > 0 ? "All Posts" : "Latest Posts"}
-				</h2>
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ All dispatches</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{regularPosts.length} articles</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
 			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				{featuredPosts.length > 0 ? "All articles." : "Latest articles."}
+			</h2>
 
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{paginatedRegularPosts.map((post) => <BlogCard post={post} client:load />)}
@@ -61,16 +77,13 @@ const paginatedRegularPosts = regularPosts.slice(0, POSTS_PER_PAGE);
 
 			{
 				blogPosts.length === 0 && (
-					<div class="py-16 text-center">
-						<h3 class="mb-4 text-2xl font-semibold text-gray-600 dark:text-gray-400">
-							No blog posts yet
-						</h3>
-						<p class="text-gray-500 dark:text-gray-500">
-							Stay tuned for upcoming articles and insights!
-						</p>
+					<div class="on-paper hard mt-12 bg-cream p-12 text-center text-ink">
+						<h3 class="mb-2 text-2xl font-bold tracking-[-0.03em]">No blog posts yet</h3>
+						<p class="text-sm opacity-80">Stay tuned for upcoming articles and insights.</p>
 					</div>
 				)
 			}
 		</div>
-	</div>
+	</section>
 </Layout>
+

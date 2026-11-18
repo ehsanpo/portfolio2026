@@ -79,7 +79,7 @@ const getPostIcon = (kind: SocialPostKind) => {
 };
 
 const fallbackGradient =
-	"bg-linear-to-br from-secondary-700 via-accent-700 to-primary-500 dark:from-secondary-900 dark:via-accent-900 dark:to-primary-800";
+	"bg-tomato";
 
 const formatTime = (timeInSeconds: number) => {
 	if (Number.isNaN(timeInSeconds) || !Number.isFinite(timeInSeconds)) return "0:00";
@@ -315,7 +315,7 @@ function FeedVideoPlayer({ src, title, poster }: FeedVideoPlayerProps) {
 			{/* Center tap pulse feedback */}
 			{showCenterIcon && (
 				<div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-					<div className="flex h-16 w-16 items-center justify-center rounded-full bg-black/70 text-white backdrop-blur-md">
+					<div className="flex h-16 w-16 items-center justify-center rounded-none bg-black/70 text-white backdrop-blur-md">
 						{showCenterIcon === "play" ? (
 							<Play className="h-8 w-8 translate-x-0.5 fill-white" />
 						) : (
@@ -341,11 +341,11 @@ function FeedVideoPlayer({ src, title, poster }: FeedVideoPlayerProps) {
 						step={0.1}
 						value={currentTime}
 						onChange={handleSeek}
-						className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-white/25 accent-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+						className="h-1.5 w-full cursor-pointer appearance-none rounded-none bg-white/25 accent-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
 						aria-label="Seek video"
 					/>
 					<div
-						className="pointer-events-none absolute left-0 top-0 h-1.5 rounded-full bg-white"
+						className="pointer-events-none absolute left-0 top-0 h-1.5 rounded-none bg-white"
 						style={{ width: `${progressPercent}%` }}
 					/>
 				</div>
@@ -356,7 +356,7 @@ function FeedVideoPlayer({ src, title, poster }: FeedVideoPlayerProps) {
 						<button
 							type="button"
 							onClick={togglePlay}
-							className="rounded-full p-1.5 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white"
+							className="rounded-none p-1.5 text-white transition-colors hover:bg-white/20 focus-visible:ring-2 focus-visible:ring-white"
 							aria-label={isPlaying ? "Pause video" : "Play video"}
 						>
 							{isPlaying ? (
@@ -369,7 +369,7 @@ function FeedVideoPlayer({ src, title, poster }: FeedVideoPlayerProps) {
 						<button
 							type="button"
 							onClick={restart}
-							className="rounded-full p-1.5 text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+							className="rounded-none p-1.5 text-white/80 transition-colors hover:bg-white/20 hover:text-white"
 							aria-label="Restart video"
 							title="Restart"
 						>
@@ -380,7 +380,7 @@ function FeedVideoPlayer({ src, title, poster }: FeedVideoPlayerProps) {
 							<button
 								type="button"
 								onClick={toggleMute}
-								className="rounded-full p-1.5 text-white transition-colors hover:bg-white/20"
+								className="rounded-none p-1.5 text-white transition-colors hover:bg-white/20"
 								aria-label={isMuted ? "Unmute audio" : "Mute audio"}
 							>
 								{isMuted || volume === 0 ? (
@@ -410,7 +410,7 @@ function FeedVideoPlayer({ src, title, poster }: FeedVideoPlayerProps) {
 						<button
 							type="button"
 							onClick={toggleFullscreen}
-							className="rounded-full p-1.5 text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+							className="rounded-none p-1.5 text-white/80 transition-colors hover:bg-white/20 hover:text-white"
 							aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
 						>
 							{isFullscreen ? <Minimize className="h-4 w-4" /> : <Maximize className="h-4 w-4" />}
@@ -426,7 +426,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 	const Icon = getPostIcon(post.kind);
 	const fallback = (
 		<div
-			className={`flex h-full w-full items-center justify-center ${fallbackGradient} text-white`}
+			className={`flex h-full w-full items-center justify-center ${fallbackGradient} text-ink`}
 			aria-label={`${post.title} placeholder`}
 		>
 			<div className="flex flex-col items-center gap-3 p-4 text-center">
@@ -455,14 +455,14 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 
 					{/* Paused Video Play Icon Indicator */}
 					<div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/35">
-						<div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/60 text-white backdrop-blur-sm transition-transform group-hover:scale-110 shadow-lg">
+						<div className="flex h-12 w-12 items-center justify-center rounded-none border border-white/30 bg-black/60 text-white backdrop-blur-sm transition-transform group-hover:scale-110 shadow-lg">
 							<Play className="h-5 w-5 translate-x-0.5 fill-white" />
 						</div>
 					</div>
 
 					{/* Top TikTok badge */}
 					<div className="pointer-events-none absolute top-3 left-3 z-10">
-						<span className="inline-flex items-center gap-1.5 rounded-full border border-pink-500/30 bg-black/60 backdrop-blur-md px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-pink-300">
+						<span className="inline-flex items-center gap-1.5 rounded-none border border-pink-500/30 bg-black/60 backdrop-blur-md px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-pink-300">
 							<TikTokIcon className="h-3 w-3 fill-current" />
 							TikTok
 						</span>
@@ -497,7 +497,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 	if (post.kind === "github") {
 		if (mode === "grid") {
 			return (
-				<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-950 p-3.5 sm:p-4 text-white">
+				<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-ink p-3.5 sm:p-4 text-white">
 					{/* Background watermark */}
 					<div className="pointer-events-none absolute -right-6 -bottom-6 opacity-[0.06] text-white">
 						<GitHubIcon className="h-32 w-32" />
@@ -505,7 +505,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 
 					<div className="relative z-10 space-y-1.5">
 						<div className="flex items-center justify-between">
-							<span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-white">
+							<span className="inline-flex items-center gap-1.5 rounded-none border border-white/20 bg-white/10 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-white">
 								<GitHubIcon className="h-3 w-3" />
 								GitHub Star
 							</span>
@@ -515,7 +515,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 									target="_blank"
 									rel="noreferrer"
 									onClick={(e) => e.stopPropagation()}
-									className="rounded-full border border-white/15 bg-white/5 p-1 text-neutral-300 transition-colors hover:border-white/40 hover:bg-white/15 hover:text-white"
+									className="rounded-none border border-white/15 bg-white/5 p-1 text-neutral-300 transition-colors hover:border-white/40 hover:bg-white/15 hover:text-white"
 									aria-label={`Open ${post.title} on GitHub`}
 									title="Open repository"
 								>
@@ -539,7 +539,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 						<div className="flex items-center gap-1.5">
 							{typeof post.stars === "number" && (
 								<span
-									className="inline-flex items-center gap-1 rounded-md border border-amber-400/30 bg-amber-400/10 px-1.5 py-0.5 text-[11px] font-semibold text-amber-300"
+									className="inline-flex items-center gap-1 rounded-none border border-amber-400/30 bg-amber-400/10 px-1.5 py-0.5 text-[11px] font-semibold text-amber-300"
 									title={`${post.stars.toLocaleString()} stars`}
 								>
 									<Star className="h-3 w-3 fill-amber-400 text-amber-400" />
@@ -548,7 +548,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 							)}
 							{typeof post.forks === "number" && (
 								<span
-									className="inline-flex items-center gap-1 rounded-md border border-sky-400/30 bg-sky-400/10 px-1.5 py-0.5 text-[11px] font-semibold text-sky-300"
+									className="inline-flex items-center gap-1 rounded-none border border-sky-400/30 bg-sky-400/10 px-1.5 py-0.5 text-[11px] font-semibold text-sky-300"
 									title={`${post.forks.toLocaleString()} forks`}
 								>
 									<GitFork className="h-3 w-3 text-sky-400" />
@@ -569,7 +569,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 
 		// Feed mode for GitHub: rich showcase layout
 		return (
-			<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-gradient-to-b from-neutral-900 via-neutral-950 to-black p-5 sm:p-6 text-white">
+			<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-ink p-5 sm:p-6 text-white">
 				{/* Background ambient watermark */}
 				<div className="pointer-events-none absolute -right-10 -top-10 opacity-[0.05] text-white">
 					<GitHubIcon className="h-56 w-56" />
@@ -577,7 +577,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 
 				<div className="relative z-10 space-y-3.5">
 					<div className="flex items-center justify-between">
-						<span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+						<span className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
 							<GitHubIcon className="h-3.5 w-3.5" />
 							Starred Repository
 						</span>
@@ -597,25 +597,25 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 
 					{/* Prominent Star & Fork Badges */}
 					<div className="grid grid-cols-2 gap-2.5 pt-1">
-						<div className="flex items-center gap-2.5 rounded-2xl border border-amber-400/25 bg-amber-400/10 p-3 backdrop-blur-sm">
-							<div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-400/20 text-amber-300">
+						<div className="flex items-center gap-2.5 rounded-none border border-amber-400/25 bg-amber-400/10 p-3 backdrop-blur-sm">
+							<div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-none bg-amber-400/20 text-amber-300">
 								<Star className="h-4 w-4 fill-amber-400 text-amber-400" />
 							</div>
 							<div>
 								<div className="text-base font-bold text-white">
-									{typeof post.stars === "number" ? post.stars.toLocaleString() : "—"}
+									{typeof post.stars === "number" ? post.stars.toLocaleString() : "n/a"}
 								</div>
 								<div className="text-[11px] font-medium text-amber-300/90">Stars</div>
 							</div>
 						</div>
 
-						<div className="flex items-center gap-2.5 rounded-2xl border border-sky-400/25 bg-sky-400/10 p-3 backdrop-blur-sm">
-							<div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-400/20 text-sky-300">
+						<div className="flex items-center gap-2.5 rounded-none border border-sky-400/25 bg-sky-400/10 p-3 backdrop-blur-sm">
+							<div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-none bg-sky-400/20 text-sky-300">
 								<GitFork className="h-4 w-4 text-sky-400" />
 							</div>
 							<div>
 								<div className="text-base font-bold text-white">
-									{typeof post.forks === "number" ? post.forks.toLocaleString() : "—"}
+									{typeof post.forks === "number" ? post.forks.toLocaleString() : "n/a"}
 								</div>
 								<div className="text-[11px] font-medium text-sky-300/90">Forks</div>
 							</div>
@@ -630,7 +630,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 							href={post.href}
 							target="_blank"
 							rel="noreferrer"
-							className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-neutral-950 shadow-lg transition-transform hover:scale-[1.02] hover:bg-neutral-100"
+							className="inline-flex w-full items-center justify-center gap-2 rounded-none bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-neutral-950 shadow-lg transition-transform hover:scale-[1.02] hover:bg-neutral-100"
 						>
 							<GitHubIcon className="h-4 w-4" />
 							{post.ctaLabel || "View Repository on GitHub"}
@@ -655,10 +655,10 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 
 		if (mode === "grid") {
 			return (
-				<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 p-3.5 sm:p-4 text-white">
+				<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-ink p-3.5 sm:p-4 text-white">
 					<div className="relative z-10 space-y-1.5">
 						<div className="flex items-center justify-between">
-							<span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-white">
+							<span className="inline-flex items-center gap-1.5 rounded-none border border-white/20 bg-white/10 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase text-white">
 								<Link2 className="h-3 w-3" />
 								Link
 							</span>
@@ -668,7 +668,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 									target="_blank"
 									rel="noreferrer"
 									onClick={(e) => e.stopPropagation()}
-									className="rounded-full border border-white/15 bg-white/5 p-1 text-neutral-300 transition-colors hover:border-white/40 hover:bg-white/15 hover:text-white"
+									className="rounded-none border border-white/15 bg-white/5 p-1 text-neutral-300 transition-colors hover:border-white/40 hover:bg-white/15 hover:text-white"
 									aria-label={`Open ${post.title}`}
 									title={post.ctaLabel || "Open link"}
 								>
@@ -705,10 +705,10 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 		}
 
 		return (
-			<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-5 sm:p-6 text-white">
+			<div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-ink p-5 sm:p-6 text-white">
 				<div className="relative z-10 space-y-3.5">
 					<div className="flex items-center justify-between">
-						<span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+						<span className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
 							<Link2 className="h-3.5 w-3.5" />
 							Link Resource
 						</span>
@@ -738,7 +738,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 							href={post.href}
 							target="_blank"
 							rel="noreferrer"
-							className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-neutral-950 shadow-lg transition-transform hover:scale-[1.02] hover:bg-neutral-100"
+							className="inline-flex w-full items-center justify-center gap-2 rounded-none bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-neutral-950 shadow-lg transition-transform hover:scale-[1.02] hover:bg-neutral-100"
 						>
 							<ExternalLink className="h-4 w-4" />
 							{post.ctaLabel || "Open Link"}
@@ -780,7 +780,7 @@ const renderPostMedia = (post: SocialPost, mode: "grid" | "feed") => {
 					/>
 				)}
 				<div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/35">
-					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/60 text-white backdrop-blur-sm transition-transform group-hover:scale-110 shadow-lg">
+					<div className="flex h-12 w-12 items-center justify-center rounded-none border border-white/30 bg-black/60 text-white backdrop-blur-sm transition-transform group-hover:scale-110 shadow-lg">
 						<Play className="h-5 w-5 translate-x-0.5 fill-white" />
 					</div>
 				</div>
@@ -992,8 +992,8 @@ export default function SocialGridFeed({
 
 	if (!posts.length) {
 		return (
-			<div className="rounded-2xl border border-black/10 p-8 text-center dark:border-white/10">
-				<p className="text-neutral-600 dark:text-neutral-300">No social posts added yet.</p>
+			<div className="on-paper hard bg-cream p-8 text-center text-ink">
+				<p className="font-mono text-sm text-ink">No social posts added yet.</p>
 			</div>
 		);
 	}
@@ -1025,18 +1025,18 @@ export default function SocialGridFeed({
 										setSelectedFilter(key);
 										setCurrentPage(1);
 									}}
-									className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all ${
+									className={`key px-3! py-1.5! text-[11px]! ${
 										isSelected
-											? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm"
-											: "border border-neutral-300/80 bg-white/70 text-neutral-700 hover:border-neutral-400 hover:bg-white dark:border-white/15 dark:bg-neutral-900/60 dark:text-neutral-300 dark:hover:border-white/30 dark:hover:bg-neutral-800"
+											? "bg-ink text-cream"
+											: "bg-cream text-ink"
 									}`}
 								>
 									{label}
 									<span
-										className={`rounded-full px-1.5 py-0.2 text-[10px] font-bold ${
+										className={`rounded-none border-[1.5px] border-current px-1.5 text-[10px] font-bold ${
 											isSelected
-												? "bg-white/20 text-white dark:bg-black/15 dark:text-neutral-900"
-												: "bg-neutral-200 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
+												? "bg-transparent text-cream"
+												: "bg-transparent text-ink"
 										}`}
 									>
 										{count}
@@ -1054,11 +1054,11 @@ export default function SocialGridFeed({
 							setSortOrder((curr) => (curr === "desc" ? "asc" : "desc"));
 							setCurrentPage(1);
 						}}
-						className="inline-flex items-center gap-2 rounded-full border border-neutral-300/80 bg-white/80 px-3.5 py-1.5 text-xs font-semibold text-neutral-800 shadow-sm backdrop-blur transition-all hover:bg-neutral-100 dark:border-white/15 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:bg-neutral-800"
+						className="key bg-cream text-ink"
 						aria-label={`Sort by date: currently ${sortOrder === "desc" ? "newest first" : "oldest first"}`}
 						title="Toggle date sort direction"
 					>
-						<ArrowUpDown className="h-3.5 w-3.5 text-neutral-500 dark:text-neutral-400" />
+						<ArrowUpDown className="size-3.5" />
 						<span>Date: {sortOrder === "desc" ? "Newest First" : "Oldest First"}</span>
 					</button>
 				</div>
@@ -1066,15 +1066,15 @@ export default function SocialGridFeed({
 
 			{/* Empty Filter State */}
 			{filteredPosts.length === 0 ? (
-				<div className="rounded-2xl border border-neutral-200 p-12 text-center dark:border-white/10">
-					<p className="text-neutral-600 dark:text-neutral-300">No posts found for this filter.</p>
+				<div className="on-paper hard bg-cream p-12 text-center text-ink">
+					<p className="font-mono text-sm text-ink">No posts found for this filter.</p>
 					<button
 						type="button"
 						onClick={() => {
 							setSelectedFilter("all");
 							setCurrentPage(1);
 						}}
-						className="mt-4 rounded-full bg-neutral-900 px-4 py-2 text-xs font-semibold text-white dark:bg-white dark:text-neutral-950"
+						className="key mt-4 bg-ink text-cream"
 					>
 						Show all posts
 					</button>
@@ -1095,7 +1095,7 @@ export default function SocialGridFeed({
 								key={post.id}
 								type="button"
 								onClick={() => openFeedAt(index, "push")}
-								className="group relative w-full overflow-hidden rounded-3xl border border-black/10 bg-black text-left shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+								className="group relative w-full overflow-hidden border-[1.5px] border-ink bg-ink text-left shadow-[4px_4px_0_var(--ink)] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
 								aria-label={`Open ${post.title}`}
 							>
 								<div
@@ -1118,7 +1118,7 @@ export default function SocialGridFeed({
 												target="_blank"
 												rel="noreferrer"
 												onClick={(e) => e.stopPropagation()}
-												className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-neutral-950 shadow-md transition-all hover:bg-neutral-100 hover:scale-[1.02]"
+												className="inline-flex w-full items-center justify-center gap-1.5 rounded-none bg-white px-3 py-1.5 text-xs font-bold text-neutral-950 shadow-md transition-all hover:bg-neutral-100 hover:scale-[1.02]"
 											>
 												<TikTokIcon className="h-3.5 w-3.5 fill-current" />
 												{post.ctaLabel || "Watch on TikTok"}
@@ -1131,7 +1131,7 @@ export default function SocialGridFeed({
 									post.kind !== "github" && !(post.kind === "link" && !post.mediaUrl) && (
 										<div className="absolute inset-x-0 bottom-0 space-y-1.5 bg-gradient-to-t from-black via-black/80 to-transparent p-3.5 text-white">
 											<div className="flex items-center justify-between">
-												<span className="inline-flex items-center gap-1 rounded-full border border-white/25 bg-black/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
+												<span className="inline-flex items-center gap-1 rounded-none border border-white/25 bg-black/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
 													<Icon className="h-3 w-3" />
 													{postTypeLabel[post.kind]}
 												</span>
@@ -1155,11 +1155,11 @@ export default function SocialGridFeed({
 			{totalPages > 1 && (
 				<nav
 					aria-label="Social posts pagination"
-					className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-black/10 pt-8 sm:flex-row dark:border-white/10"
+					className="mt-12 flex flex-col items-center justify-between gap-4 border-t-[1.5px] border-current pt-6 sm:flex-row"
 				>
-					<p className="text-xs text-neutral-500 dark:text-neutral-400">
-						Page <span className="font-semibold text-neutral-900 dark:text-white">{safeCurrentPage}</span> of{" "}
-						<span className="font-semibold text-neutral-900 dark:text-white">{totalPages}</span> ({filteredPosts.length} posts)
+					<p className="label-mono">
+						Page <span className="font-bold">{safeCurrentPage}</span> of{" "}
+						<span className="font-bold">{totalPages}</span> ({filteredPosts.length} posts)
 					</p>
 
 					<div className="flex items-center gap-1.5">
@@ -1168,7 +1168,7 @@ export default function SocialGridFeed({
 							onClick={() => handlePageChange(safeCurrentPage - 1)}
 							disabled={safeCurrentPage <= 1}
 							aria-label="Previous page"
-							className="inline-flex h-9 items-center gap-1 rounded-full border border-neutral-300/80 bg-white/80 px-3 text-xs font-semibold text-neutral-700 shadow-sm backdrop-blur transition-all hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:bg-neutral-900/80 dark:text-neutral-300 dark:hover:bg-neutral-800"
+							className="key bg-cream px-3! py-1.5! text-[11px]! text-ink disabled:cursor-not-allowed disabled:opacity-40"
 						>
 							<ChevronLeft className="h-4 w-4" />
 							<span className="hidden sm:inline">Previous</span>
@@ -1179,7 +1179,7 @@ export default function SocialGridFeed({
 								item === "ellipsis" ? (
 									<span
 										key={`ellipsis-${idx}`}
-										className="flex h-9 w-7 items-center justify-center text-xs font-bold text-neutral-400 dark:text-neutral-500"
+										className="flex h-9 w-7 items-center justify-center text-xs font-bold"
 									>
 										…
 									</span>
@@ -1189,10 +1189,10 @@ export default function SocialGridFeed({
 										type="button"
 										onClick={() => handlePageChange(item)}
 										aria-current={item === safeCurrentPage ? "page" : undefined}
-										className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold transition-all ${
+										className={`key size-9 p-0! text-[11px]! ${
 											item === safeCurrentPage
-												? "bg-neutral-900 text-white shadow-sm dark:bg-white dark:text-neutral-950 font-bold"
-												: "border border-neutral-300/80 bg-white/70 text-neutral-700 hover:border-neutral-400 hover:bg-white dark:border-white/15 dark:bg-neutral-900/60 dark:text-neutral-300 dark:hover:border-white/30 dark:hover:bg-neutral-800"
+												? "bg-ink text-cream"
+												: "bg-cream text-ink"
 										}`}
 									>
 										{item}
@@ -1206,7 +1206,7 @@ export default function SocialGridFeed({
 							onClick={() => handlePageChange(safeCurrentPage + 1)}
 							disabled={safeCurrentPage >= totalPages}
 							aria-label="Next page"
-							className="inline-flex h-9 items-center gap-1 rounded-full border border-neutral-300/80 bg-white/80 px-3 text-xs font-semibold text-neutral-700 shadow-sm backdrop-blur transition-all hover:bg-neutral-100 disabled:cursor-not-allowed disabled:opacity-40 dark:border-white/15 dark:bg-neutral-900/80 dark:text-neutral-300 dark:hover:bg-neutral-800"
+							className="key bg-cream px-3! py-1.5! text-[11px]! text-ink disabled:cursor-not-allowed disabled:opacity-40"
 						>
 							<span className="hidden sm:inline">Next</span>
 							<ChevronRight className="h-4 w-4" />
@@ -1228,7 +1228,7 @@ export default function SocialGridFeed({
 						<button
 							type="button"
 							onClick={() => closeFeed("push")}
-							className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/70 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-black/90 focus-visible:ring-2 focus-visible:ring-white"
+							className="pointer-events-auto inline-flex items-center gap-2 rounded-none border border-white/25 bg-black/70 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-black/90 focus-visible:ring-2 focus-visible:ring-white"
 						>
 							<Grid3X3 className="h-4 w-4" />
 							Back to grid
@@ -1238,7 +1238,7 @@ export default function SocialGridFeed({
 							<button
 								type="button"
 								onClick={copyCurrentUrl}
-								className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-black/70 px-3.5 py-2 text-xs font-semibold text-white backdrop-blur-md transition-colors hover:bg-black/90 focus-visible:ring-2 focus-visible:ring-white"
+								className="inline-flex items-center gap-1.5 rounded-none border border-white/25 bg-black/70 px-3.5 py-2 text-xs font-semibold text-white backdrop-blur-md transition-colors hover:bg-black/90 focus-visible:ring-2 focus-visible:ring-white"
 								aria-label="Copy share link"
 								title="Copy share link"
 							>
@@ -1249,7 +1249,7 @@ export default function SocialGridFeed({
 							<button
 								type="button"
 								onClick={() => closeFeed("push")}
-								className="rounded-full border border-white/25 bg-black/70 p-2 text-white backdrop-blur-md transition-colors hover:bg-black/90 focus-visible:ring-2 focus-visible:ring-white"
+								className="rounded-none border border-white/25 bg-black/70 p-2 text-white backdrop-blur-md transition-colors hover:bg-black/90 focus-visible:ring-2 focus-visible:ring-white"
 								aria-label="Close feed"
 							>
 								<X className="h-5 w-5" />
@@ -1282,7 +1282,7 @@ export default function SocialGridFeed({
 							}`}
 						>
 							<div
-								className={`relative overflow-hidden rounded-[2.25rem] border border-white/20 bg-neutral-950 shadow-[0_30px_90px_rgba(0,0,0,0.85)] ${
+								className={`relative overflow-hidden rounded-none border-[1.5px] border-cream bg-ink shadow-[8px_8px_0_var(--tomato)] ${
 									activePost.kind === "github" || activePost.kind === "link"
 										? "aspect-[9/8] sm:aspect-[9/8]"
 										: "aspect-[9/16]"
@@ -1294,7 +1294,7 @@ export default function SocialGridFeed({
 								{activePost.kind === "tiktok" && (
 									<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 space-y-2 bg-gradient-to-t from-black via-black/80 to-transparent p-4 sm:p-5 text-white">
 										<div className="pointer-events-auto flex items-center justify-between">
-											<span className="inline-flex items-center gap-1.5 rounded-full border border-pink-500/30 bg-black/60 backdrop-blur-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-pink-300">
+											<span className="inline-flex items-center gap-1.5 rounded-none border border-pink-500/30 bg-black/60 backdrop-blur-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-pink-300">
 												<TikTokIcon className="h-3.5 w-3.5 fill-current" />
 												TikTok
 											</span>
@@ -1311,7 +1311,7 @@ export default function SocialGridFeed({
 													href={activePost.href}
 													target="_blank"
 													rel="noreferrer"
-													className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-black shadow-lg transition-transform hover:scale-[1.02] hover:bg-neutral-200"
+													className="inline-flex w-full items-center justify-center gap-2 rounded-none bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-black shadow-lg transition-transform hover:scale-[1.02] hover:bg-neutral-200"
 												>
 													<TikTokIcon className="h-4 w-4 fill-current" />
 													{activePost.ctaLabel || "Watch on TikTok"}
@@ -1328,7 +1328,7 @@ export default function SocialGridFeed({
 									!(activePost.kind === "link" && !activePost.mediaUrl) && (
 										<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 space-y-2 bg-gradient-to-t from-black via-black/80 to-transparent p-4 sm:p-5 text-white">
 										<div className="pointer-events-auto flex items-center justify-between">
-											<span className="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-black/50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider">
+											<span className="inline-flex items-center gap-1.5 rounded-none border border-white/25 bg-black/50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider">
 												{(() => {
 													const Icon = getPostIcon(activePost.kind);
 													return <Icon className="h-3.5 w-3.5" />;
@@ -1359,7 +1359,7 @@ export default function SocialGridFeed({
 											{activePost.permalink && (
 												<a
 													href={activePost.permalink}
-													className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/50 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-black/75"
+													className="inline-flex items-center gap-1.5 rounded-none border border-white/30 bg-black/50 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-black/75"
 												>
 													Post Link
 													<Link2 className="h-3.5 w-3.5" />
@@ -1371,7 +1371,7 @@ export default function SocialGridFeed({
 													href={activePost.href}
 													target="_blank"
 													rel="noreferrer"
-													className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-bold text-black transition-colors hover:bg-neutral-200"
+													className="inline-flex items-center gap-1.5 rounded-none bg-white px-4 py-2 text-xs font-bold text-black transition-colors hover:bg-neutral-200"
 												>
 													{activePost.ctaLabel ?? "Open Link"}
 													<ExternalLink className="h-3.5 w-3.5" />
@@ -1389,7 +1389,7 @@ export default function SocialGridFeed({
 								type="button"
 								onClick={() => navigate(-1)}
 								disabled={activeIndex <= 0}
-								className="pointer-events-auto rounded-full border border-white/25 bg-black/60 p-3 text-white transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-30 focus-visible:ring-2 focus-visible:ring-white"
+								className="pointer-events-auto rounded-none border border-white/25 bg-black/60 p-3 text-white transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-30 focus-visible:ring-2 focus-visible:ring-white"
 								aria-label="Previous post"
 								title="Previous (or press ↑)"
 							>
@@ -1399,7 +1399,7 @@ export default function SocialGridFeed({
 								type="button"
 								onClick={() => navigate(1)}
 								disabled={activeIndex >= filteredPosts.length - 1}
-								className="pointer-events-auto rounded-full border border-white/25 bg-black/60 p-3 text-white transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-30 focus-visible:ring-2 focus-visible:ring-white"
+								className="pointer-events-auto rounded-none border border-white/25 bg-black/60 p-3 text-white transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-30 focus-visible:ring-2 focus-visible:ring-white"
 								aria-label="Next post"
 								title="Next (or press ↓)"
 							>

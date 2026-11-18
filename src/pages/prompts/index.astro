@@ -14,85 +14,83 @@ const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 	image="/img/ogdefault.jpg"
 	imageAlt="Ehsan's AI Prompts Collection"
 >
-	<PageHero title="AI Prompts" subtitle="A collection of AI prompts for various tasks" />
-	<div class="border-t border-white/5 bg-neutral-900 py-20">
+	<PageHero
+		title="Prompt library"
+		subtitle="A curated collection of structured AI prompts for engineering, architecture, and product workflows."
+	/>
+	<section class="section">
 		<div class="container mx-auto px-4">
 			{
 				categories.map((category) => {
 					const categoryPrompts = prompts.filter((p) => p.category === category);
 					return (
-						<div class="mb-16">
-							<h2 class="mb-10 flex items-center gap-4 text-4xl font-black tracking-tighter text-white uppercase">
-								{category}
-								<span class="h-px flex-1 bg-linear-to-r from-white/10 to-transparent" />
+						<div class="mb-20 last:mb-0">
+							<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+								<p class="label-mono">/ Prompt library / {category}</p>
+								<div class="flex items-center gap-3">
+									<p class="label-mono hidden opacity-70 sm:block">
+										{categoryPrompts.length} prompts
+									</p>
+									<span class="size-2 bg-current" aria-hidden="true" />
+								</div>
+							</div>
+							<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+								{category}.
 							</h2>
-							<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+							<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 								{categoryPrompts.map((prompt) => (
-									<Card3D client:load className="h-[400px]" glowColor="rgba(255, 199, 0, 0.15)">
-										<div class="preserve-3d flex h-full flex-col items-start p-6">
+									<Card3D client:load intensity={10} shine={false} className="h-[400px]">
+										<div
+											class="preserve-3d flex h-full flex-col items-start p-6 text-ink"
+											style="transform-style: preserve-3d;"
+										>
 											<div
-												class="group-hover/card:bg-primary/5 group-hover/card:border-primary/20 mb-6 flex h-44 w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-all duration-500"
-												style="transform: translateZ(30px)"
+												class="mb-5 flex h-44 w-full items-center justify-center overflow-hidden border-[1.5px] border-ink bg-paper"
+												style="transform: translateZ(30px);"
 											>
 												{prompt.image ? (
 													<img
 														src={prompt.image}
 														alt={prompt.title}
-														class="h-full w-full object-cover opacity-40 transition-all duration-700 group-hover/card:scale-110 group-hover/card:opacity-100"
+														class="h-full w-full object-cover transition-transform duration-300 group-hover/card:scale-105"
 													/>
 												) : (
-													<span class="text-6xl transition-all duration-500 group-hover/card:scale-110 group-hover/card:rotate-6">
-														{prompt.icon || "✨"}
+													<span class="font-pixel text-2xl tracking-wider text-ink">
+														PROMPT
 													</span>
 												)}
 											</div>
 
-											<div class="preserve-3d flex flex-1 flex-col gap-3">
+											<div class="preserve-3d flex flex-1 flex-col gap-2">
 												<h3
-													class="group-hover/card:text-primary text-2xl leading-tight font-black text-white transition-all duration-500"
-													style="transform: translateZ(50px); text-shadow: 0 10px 20px rgba(0,0,0,0.5);"
+													class="text-2xl leading-tight font-bold tracking-[-0.03em] text-ink"
+													style="transform: translateZ(50px);"
 												>
 													{prompt.title}
 												</h3>
 												<p
-													class="line-clamp-3 text-sm leading-relaxed font-medium text-white/50"
-													style="transform: translateZ(30px)"
+													class="line-clamp-3 text-sm leading-relaxed text-ink/80"
+													
 												>
 													{prompt.description}
 												</p>
 											</div>
 
 											<div
-												class="mt-auto flex w-full items-center justify-between pt-6"
-												style="transform: translateZ(40px)"
+												class="mt-auto flex w-full items-center justify-between border-t-[1.5px] border-ink/20 pt-4"
+												style="transform: translateZ(40px);"
 											>
-												<div class="flex flex-wrap gap-2">
+												<div class="flex flex-wrap gap-1.5">
 													{prompt.tags?.slice(0, 2).map((tag) => (
-														<span class="group-hover/card:border-primary/30 group-hover/card:text-primary/70 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[9px] font-black tracking-widest text-white/30 uppercase transition-all duration-500">
+														<span class="border border-ink bg-paper px-2 py-0.5 font-mono text-[10px] font-semibold text-ink uppercase">
 															#{tag}
 														</span>
 													))}
 												</div>
 
-												<div
-													class="text-primary -translate-x-4 opacity-0 transition-all duration-500 group-hover/card:translate-x-0 group-hover/card:opacity-100"
-													style="transform: translateZ(60px)"
-												>
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="20"
-														height="20"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="currentColor"
-														stroke-width="3"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-													>
-														<path d="M5 12h14" />
-														<path d="m12 5 7 7-7 7" />
-													</svg>
-												</div>
+												<span class="label-mono text-[10px]! text-ink">
+													Inspect &rarr;
+												</span>
 											</div>
 
 											<a
@@ -109,5 +107,6 @@ const categories = [...new Set(prompts.map((p) => p.category).filter(Boolean))];
 				})
 			}
 		</div>
-	</div>
+	</section>
 </Layout>
+

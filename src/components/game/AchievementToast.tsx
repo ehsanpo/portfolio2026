@@ -16,26 +16,27 @@ export function AchievementToast({ toast }: Props) {
 
 	return (
 		<div
-			className="pointer-events-auto rounded-lg border border-amber-200/40 bg-amber-500/15 px-4 py-3 text-sm text-amber-50 shadow-lg shadow-amber-500/20 backdrop-blur"
+			className="on-paper hard pointer-events-auto bg-cream text-ink"
 			data-game-ignore
 		>
-			<div className="flex items-center gap-2 font-semibold">
-				<span aria-hidden="true" role="img">
-					🏆
-				</span>
-				<span>{toast.title}</span>
+			<div className="flex items-center gap-2 border-b-[1.5px] border-ink px-2.5 py-1">
+				<span className="size-2.5 shrink-0 border border-ink bg-mustard" aria-hidden="true" />
+				<span className="stripes h-[10px] flex-1" aria-hidden="true" />
+				<span className="font-pixel text-[11px] leading-none">UNLOCKED</span>
+				<span className="stripes h-[10px] flex-1" aria-hidden="true" />
 			</div>
-			<p className="mt-1 text-amber-50/90">{toast.message}</p>
-			<button
-				onClick={() => ack(toast.id)}
-				className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-amber-100 underline"
-				data-game-ignore
-			>
-				<span aria-hidden="true" role="img">
-					✨
-				</span>
-				<span>Dismiss</span>
-			</button>
+			<div className="px-3.5 py-2.5 text-sm text-ink">
+				<div className="font-mono text-xs font-bold">{toast.title}</div>
+				<p className="mt-1 font-mono text-xs text-ink/80">{toast.message}</p>
+				<button
+					type="button"
+					onClick={() => ack(toast.id)}
+					className="key mt-2.5 bg-paper px-2.5! py-1! text-[10px]! text-ink shadow-[2px_2px_0_var(--ink)]!"
+					data-game-ignore
+				>
+					<span>Dismiss</span>
+				</button>
+			</div>
 		</div>
 	);
 }

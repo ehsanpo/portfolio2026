@@ -44,7 +44,7 @@ interface PortfolioItem {
 	bilder: string[];
 	case_link_url?: string;
 	content: any;
-	port_date:  string;
+	port_date: string;
 }
 
 const { item } = Astro.props as unknown as { item: PortfolioItem };
@@ -56,15 +56,23 @@ const agencySlug = portfolioData.companies.find((c) => c.name === item.agency)?.
 
 <Layout
 	title={`${item.title} - Portfolio`}
-	description={item.description || item.tagline || `${item.title} - ${item.client}`}
+	description={item.description || item.tagline || `${item.title} (${item.client})`}
 	image={item.background_image?.src || item.logo?.src || "/img/ogdefault.jpg"}
-	imageAlt={`${item.title} - ${item.client}`}
+	imageAlt={`${item.title} (${item.client})`}
 >
-	<article class="relative min-h-screen bg-white pt-4 dark:bg-neutral-900">
-		<PortfolioHeader item={item} agencySlug={agencySlug} client:load />
+	<article class="bg-background text-foreground relative min-h-screen">
+		<PortfolioHeader
+			item={item}
+			agencySlug={agencySlug}
+			backHref="/portfolio"
+			backLabel="Back to portfolio"
+			client:load
+		/>
 
-		<div class="relative z-10 mx-auto max-w-6xl px-4 pt-10">
-			<div class="prose dark:prose-invert mx-auto mb-20 max-w-3xl">
+		<div class="container mx-auto px-4 py-16">
+			<div
+				class="prose dark:prose-invert post-prose prose-headings:font-bold prose-headings:tracking-[-0.035em] prose-a:decoration-brand prose-a:underline-offset-4 prose-pre:rounded-none prose-pre:border-[1.5px] prose-pre:border-ink prose-img:rounded-none prose-img:border-[1.5px] prose-img:border-ink mx-auto mb-16 max-w-3xl"
+			>
 				<slot />
 				<Content />
 			</div>
@@ -73,22 +81,14 @@ const agencySlug = portfolioData.companies.find((c) => c.name === item.agency)?.
 
 			{
 				item.case_link_url && (
-					<div class="pb-20 text-center">
+					<div class="pt-6 pb-16 text-center">
 						<a
 							href={item.case_link_url}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="bg-primary-600 hover:bg-primary-700 inline-flex items-center rounded-lg px-6 py-3 text-white transition-colors"
+							class="key bg-ink text-cream"
 						>
-							Visit Project
-							<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-								/>
-							</svg>
+							Launch live project
 						</a>
 					</div>
 				)

@@ -1,16 +1,12 @@
 ---
-
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/hero/Hero.astro";
 import StackCard from "@/components/StackCard";
 import SkillChart from "@/components/SkillChart";
 import ToolsList from "@/components/skills/ToolsList.astro";
 import { ProcessFlowDiagram } from "@/components/Beams";
-import { Heading } from "@/components/ui/heading";
 import { getPortfolioData, getRoles } from "@/utils/data";
-import BoxReveal from "@/components/ui/box-reveal";
 import { getRoleImage } from "@/utils/roleImageMap";
-
 
 const { stacks } = getPortfolioData();
 const roles = getRoles();
@@ -42,171 +38,223 @@ const managementChart = {
 ---
 
 <Layout title="Engineering Manager - Ehsan Pourhadi">
-	<Hero fullHeight title="Engineering Manager" img={displayImage.src}>
-		<div>
-			<BoxReveal boxColor="bg-secondary-400" duration={0.1} delay={0.2} client:load>
-				<p class="mb-5 text-2xl dark:text-gray-300">
-					{currentRole?.description}
-				</p>
-			</BoxReveal>
-			<BoxReveal boxColor="bg-primary-500" duration={0.5} delay={0.2} client:load>
-				<p class="text-xl dark:text-gray-300">
-					I combine technical expertise with people leadership, fostering growth, removing blockers,
-					and ensuring teams deliver high-quality software while maintaining work-life balance and
-					professional development.
-				</p>
-			</BoxReveal>
+	<Hero fullHeight title="Engineering Manager" img={displayImage?.src}>
+		<div class="space-y-4">
+			<p class="text-xl font-medium leading-snug">
+				{currentRole?.description}
+			</p>
+			<p class="text-base leading-relaxed opacity-85">
+				I combine technical expertise with people leadership, fostering growth, removing blockers,
+				and ensuring teams deliver high-quality software while maintaining sustainable workflows and
+				professional development.
+			</p>
 		</div>
 	</Hero>
 
-	<section class="container mx-auto px-4 pb-12">
-		<div class="mx-auto max-w-4xl">
-			<div class="mb-16">
-				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
-				<p class="text-lg text-gray-700 dark:text-gray-300">
-					I bridge the gap between technical execution and people leadership. With 12+ years of
-					hands-on development experience, I lead teams by doing, not just directing. I create
-					environments where engineers thrive, ship quality code, and continuously improve both
-					their craft and our processes.
-				</p>
-			</div>
-
-			<div class="mb-16">
-				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
-				<div class="space-y-6">
-					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
-						<h3 class="text-primary-600 dark:text-primary-400 mb-2 text-xl font-semibold">
-							From Experience at Bredband2
-						</h3>
-						<blockquote
-							class="border-primary-500 border-l-4 pl-4 text-gray-700 italic dark:text-gray-300"
-						>
-							"Managed the project and team. Streamlined development processes to enhance team
-							productivity and efficiency. Mentored junior developers and conducted code reviews."
-						</blockquote>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Source: Portfolio Experience - Bredband2 (2020-2023)
-						</p>
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-5xl space-y-20">
+				<div>
+					<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+						<p class="label-mono">/ What I bring</p>
+						<div class="flex items-center gap-3">
+							<p class="label-mono hidden opacity-70 sm:block">Leadership philosophy</p>
+							<span class="size-2 bg-current" aria-hidden="true"></span>
+						</div>
 					</div>
+					<h2 class="mt-6 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Servant leadership backed by hands-on engineering.
+					</h2>
+					<p class="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+						I bridge the gap between technical execution and people leadership. With 12+ years of
+						hands-on development experience, I lead teams by doing, not just directing. I create
+						environments where engineers thrive, ship quality code, and continuously improve both
+						their craft and our processes.
+					</p>
+				</div>
 
-					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
-						<h3 class="text-primary-600 dark:text-primary-400 mb-2 text-xl font-semibold">
-							Testimonial from Lenny Erlesand (Engineering Manager at Telavox)
-						</h3>
-						<blockquote
-							class="border-primary-500 border-l-4 pl-4 text-gray-700 italic dark:text-gray-300"
-						>
-							"Ehsan is deeply engaged in improving how we work together as a team. He takes
-							initiative in refining our processes, ensuring that we collaborate more effectively
-							and work more sustainably. He provides thoughtful feedback, asks challenging
-							questions, and contributes to discussions with both openness and courage."
-						</blockquote>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Source: Testimonials - Lenny Erlesand
-						</p>
+				<div>
+					<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+						<p class="label-mono">/ Evidence</p>
+						<div class="flex items-center gap-3">
+							<p class="label-mono hidden opacity-70 sm:block">On the record</p>
+							<span class="size-2 bg-current" aria-hidden="true"></span>
+						</div>
+					</div>
+					<h2 class="mt-6 mb-8 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Verified track record.
+					</h2>
+					<div class="grid gap-6 md:grid-cols-2">
+						<article class="on-paper hard flex flex-col justify-between bg-cream text-ink">
+							<div>
+								<div class="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1.5">
+									<span class="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true"></span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+									<span class="font-pixel text-xs leading-none">LOG 01</span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+								</div>
+								<div class="p-5">
+									<h3 class="text-lg font-bold tracking-[-0.02em]">Experience at Bredband2</h3>
+									<blockquote class="mt-3 border-l-[2px] border-ink pl-3 text-sm leading-relaxed opacity-90">
+										"Managed the project and team. Streamlined development processes to enhance team
+										productivity and efficiency. Mentored junior developers and conducted code
+										reviews."
+									</blockquote>
+								</div>
+							</div>
+							<div class="border-t-[1.5px] border-ink/20 px-5 py-3">
+								<p class="label-mono text-[10px]! opacity-70">
+									Source: Bredband2 (2020 to 2023)
+								</p>
+							</div>
+						</article>
+
+						<article class="on-paper hard flex flex-col justify-between bg-cream text-ink">
+							<div>
+								<div class="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1.5">
+									<span class="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true"></span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+									<span class="font-pixel text-xs leading-none">LOG 02</span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+								</div>
+								<div class="p-5">
+									<h3 class="text-lg font-bold tracking-[-0.02em]">
+										Lenny Erlesand (Engineering Manager at Telavox)
+									</h3>
+									<blockquote class="mt-3 border-l-[2px] border-ink pl-3 text-sm leading-relaxed opacity-90">
+										"Ehsan is deeply engaged in improving how we work together as a team. He takes
+										initiative in refining our processes, ensuring that we collaborate more
+										effectively and work more sustainably. He provides thoughtful feedback, asks
+										challenging questions, and contributes to discussions with both openness and
+										courage."
+									</blockquote>
+								</div>
+							</div>
+							<div class="border-t-[1.5px] border-ink/20 px-5 py-3">
+								<p class="label-mono text-[10px]! opacity-70">
+									Source: Testimonial, Telavox
+								</p>
+							</div>
+						</article>
 					</div>
 				</div>
-			</div>
 
-			<div class="mb-16">
-				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
-				<div class="grid gap-6 md:grid-cols-2">
-					<div class="from-primary-500/10 to-primary-600/10 rounded-lg bg-gradient-to-br p-6">
-						<div class="text-primary-600 dark:text-primary-400 mb-2 text-3xl font-bold">
-							100,000+
+				<div>
+					<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+						<p class="label-mono">/ Impact &amp; outcomes</p>
+						<div class="flex items-center gap-3">
+							<p class="label-mono hidden opacity-70 sm:block">Key deliverables</p>
+							<span class="size-2 bg-current" aria-hidden="true"></span>
 						</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-							Active Users Served
-						</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Led customer service portal redesign at Bredband2, delivering real-time service
-							monitoring
-						</p>
 					</div>
+					<h2 class="mt-6 mb-8 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Measured outcomes.
+					</h2>
+					<div class="grid gap-6 md:grid-cols-2">
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">100,000+</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">Active Users Served</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Led customer service portal redesign at Bredband2, delivering real-time service
+								monitoring.
+							</p>
+						</div>
 
-					<div class="from-secondary-400/10 to-secondary-600/10 rounded-lg bg-gradient-to-br p-6">
-						<div class="text-secondary-600 dark:text-secondary-400 mb-2 text-3xl font-bold">
-							3-Year
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">3-Year</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">Team Leadership</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Successfully managed cross-functional teams through major technical transitions.
+							</p>
 						</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-							Team Leadership
-						</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Successfully managed cross-functional teams through major technical transitions
-						</p>
-					</div>
 
-					<div class="rounded-lg bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6">
-						<div class="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">
-							Award-Winning
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">Award-Winning</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">Project Delivery</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Svenska Design Gold and Cannes Lions recognition for technical excellence.
+							</p>
 						</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-							Project Delivery
-						</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Svenska Design Gold & Cannes Lions recognition for technical excellence
-						</p>
-					</div>
 
-					<div class="rounded-lg bg-gradient-to-br from-green-500/10 to-green-600/10 p-6">
-						<div class="mb-2 text-3xl font-bold text-green-600 dark:text-green-400">
-							Scaled Velocity
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">Scaled Velocity</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">Through Coaching</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Mentored developers and streamlined processes to boost team productivity.
+							</p>
 						</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-							Through Coaching
-						</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Mentored developers and streamlined processes to boost team productivity
-						</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="py-12">
-		<div class="container mx-auto">
-			<Heading level="h2" gradient floating backplate client:idle>Technical Stacks</Heading>
-			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+	<section class="block-mustard section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Technical stacks</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">Core architecture</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				Technical stacks.
+			</h2>
+			<div class="grid gap-8 md:grid-cols-2">
 				{managementStacks.map((stack) => <StackCard {...stack} client:load />)}
 			</div>
 		</div>
 	</section>
 
-	<section class="py-12">
-		<div class="container mx-auto">
-			<Heading level="h2" gradient floating backplate client:idle>Leadership Skills</Heading>
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Competency matrix</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">Leadership profile</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				Leadership skills.
+			</h2>
 			<SkillChart data={[managementChart]} chartData={managementChart} client:load />
 		</div>
 	</section>
 
 	<ToolsList />
 
-	<section class="py-12">
-		<div class="container mx-auto">
-			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Delivery workflow</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">Team execution</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				Development process.
+			</h2>
 			<ProcessFlowDiagram client:load />
 		</div>
 	</section>
 
-	<section class="container mx-auto px-4 py-16">
-		<div class="gradient-bg rounded-lg py-12 text-center">
-			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">
-				Ready to build great software together?
-			</h3>
-			<a
-				href="/contact"
-				class="bg-primary-600 hover:bg-primary-700 inline-flex items-center rounded-lg px-6 py-3 text-white transition-colors"
-			>
-				Get in Touch
-				<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-				</svg>
-			</a>
+	<section class="container mx-auto px-4 pb-20">
+		<div class="block-cobalt hard p-8 text-ink md:p-12">
+			<div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+				<div>
+					<p class="label-mono">/ Collaborate</p>
+					<h3 class="mt-3 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Ready to build great software together?
+					</h3>
+				</div>
+				<a href="/contact" class="key shrink-0 bg-ink text-cream">
+					Call the studio
+				</a>
+			</div>
 		</div>
 	</section>
 </Layout>
+

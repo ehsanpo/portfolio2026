@@ -28,49 +28,49 @@ interface SkillChartProps {
 
 const categoryColors = {
 	Overall: {
-		bg: "rgba(34, 197, 94, 0.2)",
-		border: "rgba(34, 197, 94, 1)",
-		button: "bg-primary-500 text-primary-900",
+		bg: "rgba(239, 91, 59, 0.2)",
+		border: "#ef5b3b",
+		button: "bg-cream text-ink",
 	},
 	"Front-end": {
-		bg: "rgba(168, 85, 247, 0.2)",
-		border: "rgba(168, 85, 247, 1)",
-		button: "bg-purple-400 text-purple-900",
+		bg: "rgba(118, 160, 226, 0.25)",
+		border: "#76a0e2",
+		button: "bg-cream text-ink",
 	},
 	Backend: {
-		bg: "rgba(251, 146, 60, 0.2)",
-		border: "rgba(251, 146, 60, 1)",
-		button: "bg-yellow-500 text-yellow-900",
+		bg: "rgba(244, 184, 41, 0.25)",
+		border: "#f4b829",
+		button: "bg-cream text-ink",
 	},
 	Database: {
-		bg: "rgba(59, 130, 246, 0.2)",
-		border: "rgba(59, 130, 246, 1)",
-		button: "bg-blue-500 text-cyan-900",
+		bg: "rgba(147, 211, 176, 0.3)",
+		border: "#93d3b0",
+		button: "bg-cream text-ink",
 	},
 	Design: {
-		bg: "rgba(107, 114, 128, 0.2)",
-		border: "rgba(107, 114, 128, 1)",
-		button: "bg-white text-gray-900",
+		bg: "rgba(35, 30, 22, 0.15)",
+		border: "#231e16",
+		button: "bg-cream text-ink",
 	},
 	Cloud: {
-		bg: "rgba(251, 146, 60, 0.2)",
-		border: "rgba(251, 146, 60, 1)",
-		button: "bg-orange-400 text-orange-900",
+		bg: "rgba(244, 184, 41, 0.25)",
+		border: "#f4b829",
+		button: "bg-cream text-ink",
 	},
 	DevOps: {
-		bg: "rgba(244, 63, 94, 0.2)",
-		border: "rgba(244, 63, 94, 1)",
-		button: "bg-rose-400 text-rose-900",
+		bg: "rgba(243, 166, 187, 0.3)",
+		border: "#f3a6bb",
+		button: "bg-cream text-ink",
 	},
 	Apps: {
-		bg: "rgba(20, 184, 166, 0.2)",
-		border: "rgba(20, 184, 166, 1)",
-		button: "bg-teal-500 text-teal-900",
+		bg: "rgba(118, 160, 226, 0.25)",
+		border: "#76a0e2",
+		button: "bg-cream text-ink",
 	},
 	Multimedia: {
-		bg: "rgba(217, 70, 239, 0.2)",
-		border: "rgba(217, 70, 239, 1)",
-		button: "bg-fuchsia-400 text-fuchsia-900",
+		bg: "rgba(239, 91, 59, 0.2)",
+		border: "#ef5b3b",
+		button: "bg-cream text-ink",
 	},
 };
 
@@ -121,20 +121,19 @@ const CategoryButton = ({
 
 	return (
 		<button
-			className={`font-basement flex w-50 items-center justify-center rounded-lg p-2 transition-all duration-200 ${
-				isActive
-					? "scale-105 transform text-white shadow-lg"
-					: `${categoryColor.button} transition-colors hover:bg-white`
+			type="button"
+			className={`key px-3! py-2! text-xs! ${
+				isActive ? "bg-ink text-cream" : "bg-cream text-ink"
 			}`}
-			style={isActive ? { backgroundColor: categoryColor.border } : {}}
 			onClick={onClick}
 		>
-			<div
-				className="mr-2 h-3 w-3 rounded-full"
+			<span
+				className="size-2 shrink-0 border border-current"
 				style={{ backgroundColor: categoryColor.border }}
-			></div>
-			{category}
-			<span className="ml-2 text-xs opacity-75">({skillCount})</span>
+				aria-hidden="true"
+			/>
+			<span>{category}</span>
+			<span className="opacity-70">({skillCount})</span>
 		</button>
 	);
 };
@@ -144,41 +143,39 @@ const SkillCard = ({
 	index,
 	currentCategory,
 	currentColor,
-	isDarkMode,
 }: {
 	skill: { name: string; value: number };
 	index: number;
 	currentCategory: string;
 	currentColor: { bg: string; border: string; button: string };
-	isDarkMode: boolean;
+	isDarkMode?: boolean;
 }) => (
 	<div
 		key={`${currentCategory}-${skill.name}-${index}`}
-		className={`rounded-lg p-4 ${isDarkMode ? "bg-gray-700" : "bg-gray-50"}`}
+		className="border-[1.5px] border-ink bg-paper p-4 text-ink"
 	>
-		<div className="flex items-center justify-between">
-			<h4 className="font-semibold" style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-				{skill.name}
-			</h4>
-			<div className="flex items-center space-x-2">
-				<div
-					className="h-3 w-3 rounded-full"
+		<div className="flex items-center justify-between gap-2">
+			<h4 className="font-sans text-sm font-bold text-ink">{skill.name}</h4>
+			<div className="flex items-center gap-2">
+				<span
+					className="size-2.5 shrink-0 border border-ink"
 					style={{ backgroundColor: currentColor.border }}
-				></div>
-				<span className="text-sm font-medium" style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
+					aria-hidden="true"
+				/>
+				<span className="label-mono text-[10px]! text-ink/80">
 					{getExpertiseLevel(skill.value)}
 				</span>
 			</div>
 		</div>
-		<div className="mt-2">
-			<div className={`h-2 w-full rounded-full ${isDarkMode ? "bg-gray-600" : "bg-gray-200"}`}>
+		<div className="mt-2.5">
+			<div className="h-2 w-full border border-ink/40 bg-cream">
 				<div
-					className="h-2 rounded-full transition-all duration-300"
+					className="h-full transition-all duration-300"
 					style={{
 						width: `${(skill.value / 10) * 100}%`,
 						backgroundColor: currentColor.border,
 					}}
-				></div>
+				/>
 			</div>
 		</div>
 	</div>
@@ -187,13 +184,11 @@ const SkillCard = ({
 const StatisticsCard = ({
 	skillsData,
 	currentCategory,
-	currentColor,
-	isDarkMode,
 }: {
 	skillsData: { name: string; value: number }[];
 	currentCategory: string;
-	currentColor: { bg: string; border: string; button: string };
-	isDarkMode: boolean;
+	currentColor?: { bg: string; border: string; button: string };
+	isDarkMode?: boolean;
 }) => {
 	const averageSkill =
 		skillsData.length > 0
@@ -202,42 +197,25 @@ const StatisticsCard = ({
 	const expertSkills = skillsData.filter((skill) => skill.value >= 9).length;
 
 	return (
-		<div
-			className="mt-8 rounded-lg p-6"
-			style={{
-				backgroundColor: `${currentColor.bg.replace("0.2", "0.1")}`,
-			}}
-		>
-			<h4
-				className="mb-4 text-lg font-semibold"
-				style={{ color: isDarkMode ? "#ffffff" : "#000000" }}
-			>
-				{currentCategory === "Overall" ? "Overall Statistics" : `${currentCategory} Statistics`}
-			</h4>
+		<div className="mt-8 border-[1.5px] border-ink bg-paper p-6 text-ink">
+			<div className="flex items-center justify-between border-b-[1.5px] border-ink/25 pb-3 mb-5">
+				<h4 className="label-mono text-ink">
+					/ {currentCategory === "Overall" ? "Overall Statistics" : `${currentCategory} Statistics`}
+				</h4>
+				<span className="size-2 bg-ink" aria-hidden="true" />
+			</div>
 			<div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-				<div className="text-center">
-					<div className="text-2xl font-bold" style={{ color: currentColor.border }}>
-						{skillsData.length}
-					</div>
-					<div className="text-sm opacity-70" style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-						Technologies
-					</div>
+				<div className="border-t-[1.5px] border-ink pt-3">
+					<div className="font-pixel text-4xl leading-none text-ink">{skillsData.length}</div>
+					<div className="label-mono mt-1.5 text-ink/75">Technologies</div>
 				</div>
-				<div className="text-center">
-					<div className="text-2xl font-bold" style={{ color: currentColor.border }}>
-						{averageSkill}
-					</div>
-					<div className="text-sm opacity-70" style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-						Average Expertise
-					</div>
+				<div className="border-t-[1.5px] border-ink pt-3">
+					<div className="font-pixel text-4xl leading-none text-ink">{averageSkill}</div>
+					<div className="label-mono mt-1.5 text-ink/75">Average Expertise</div>
 				</div>
-				<div className="text-center">
-					<div className="text-2xl font-bold" style={{ color: currentColor.border }}>
-						{expertSkills}
-					</div>
-					<div className="text-sm opacity-70" style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-						Expert Level (9-10)
-					</div>
+				<div className="border-t-[1.5px] border-ink pt-3">
+					<div className="font-pixel text-4xl leading-none text-ink">{expertSkills}</div>
+					<div className="label-mono mt-1.5 text-ink/75">Expert Level (9-10)</div>
 				</div>
 			</div>
 		</div>
@@ -280,8 +258,8 @@ export default function SkillChart({ data, chartData, showButtons }: SkillChartP
 				borderColor: currentColor.border,
 				borderWidth: 2,
 				pointBackgroundColor: currentColor.border,
-				pointBorderColor: "#fff",
-				pointHoverBackgroundColor: "#fff",
+				pointBorderColor: "#231e16",
+				pointHoverBackgroundColor: "#fff4d6",
 				pointHoverBorderColor: currentColor.border,
 				fill: true,
 			},
@@ -297,20 +275,20 @@ export default function SkillChart({ data, chartData, showButtons }: SkillChartP
 				max: 10,
 				min: 0,
 				angleLines: {
-					color: isDarkMode ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)",
+					color: "rgba(35, 30, 22, 0.2)",
 				},
 				grid: {
-					color: isDarkMode ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)",
+					color: "rgba(35, 30, 22, 0.2)",
 				},
 				pointLabels: {
-					color: isDarkMode ? "#ffffff" : "#000000",
+					color: "#231e16",
 					font: {
 						size: 14,
-						family: "Basement, sans-serif",
+						family: "GeistMono, ui-monospace, monospace",
 					},
 				},
 				ticks: {
-					color: isDarkMode ? "#ffffff" : "#000000",
+					color: "#231e16",
 					backdropColor: "transparent",
 					stepSize: 2,
 					font: {
@@ -323,10 +301,10 @@ export default function SkillChart({ data, chartData, showButtons }: SkillChartP
 			legend: {
 				position: "top" as const,
 				labels: {
-					color: isDarkMode ? "#ffffff" : "#000000",
+					color: "#231e16",
 					font: {
 						size: 14,
-						family: "Basement, sans-serif",
+						family: "GeistMono, ui-monospace, monospace",
 					},
 				},
 			},
@@ -400,44 +378,44 @@ export default function SkillChart({ data, chartData, showButtons }: SkillChartP
 				</div>
 			)}
 
-			<div className={`rounded-xl p-8 shadow-lg ${isDarkMode ? "bg-gray-800" : "bg-white"}`}>
-				<div className="mb-6">
-					<h3
-						className="mb-2 text-2xl font-bold"
-						style={{ color: isDarkMode ? "#ffffff" : "#000000" }}
-					>
-						{currentCategory === "Overall" ? "Overall Skills" : `${currentCategory} Stack`}
-					</h3>
-					<p className="opacity-80" style={{ color: isDarkMode ? "#ffffff" : "#000000" }}>
-						{currentCategory === "Overall"
-							? `Comprehensive view of expertise across ${skillsData.length} technologies from all categories`
-							: `Expertise levels for ${skillsData.length} technologies in this category`}
-					</p>
+			<div className="on-paper hard bg-cream text-ink">
+				<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
+					<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-tomato" aria-hidden="true" />
+					<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+					<span className="font-pixel text-xs leading-none uppercase text-ink">
+						{currentCategory === "Overall" ? "RADAR / OVERALL" : `RADAR / ${currentCategory}`}
+					</span>
 				</div>
+				<div className="p-6 md:p-8">
+					<div className="mb-6">
+						<h3 className="mb-2 text-2xl font-bold tracking-[-0.03em] text-ink">
+							{currentCategory === "Overall" ? "Overall Skills" : `${currentCategory} Stack`}
+						</h3>
+						<p className="text-ink/80">
+							{currentCategory === "Overall"
+								? `Comprehensive view of expertise across ${skillsData.length} technologies from all categories`
+								: `Expertise levels for ${skillsData.length} technologies in this category`}
+						</p>
+					</div>
 
-				<div className="relative" style={{ height: "500px" }}>
-					<Radar data={chartDatainternal} options={options} />
+					<div className="relative" style={{ height: "500px" }}>
+						<Radar data={chartDatainternal} options={options} />
+					</div>
+
+					<div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+						{skillsData.map((skill, index) => (
+							<SkillCard
+								key={`${currentCategory}-${skill.name}-${index}`}
+								skill={skill}
+								index={index}
+								currentCategory={currentCategory}
+								currentColor={currentColor}
+							/>
+						))}
+					</div>
+
+					<StatisticsCard skillsData={skillsData} currentCategory={currentCategory} />
 				</div>
-
-				<div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-					{skillsData.map((skill, index) => (
-						<SkillCard
-							key={`${currentCategory}-${skill.name}-${index}`}
-							skill={skill}
-							index={index}
-							currentCategory={currentCategory}
-							currentColor={currentColor}
-							isDarkMode={isDarkMode}
-						/>
-					))}
-				</div>
-
-				<StatisticsCard
-					skillsData={skillsData}
-					currentCategory={currentCategory}
-					currentColor={currentColor}
-					isDarkMode={isDarkMode}
-				/>
 			</div>
 		</div>
 	);

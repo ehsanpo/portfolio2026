@@ -1,0 +1,77 @@
+---
+import { getPortfolioData } from "@/utils/data";
+
+const { companies, stacks, contact, awards } = getPortfolioData();
+const keyStacks = stacks.slice(0, 6);
+---
+
+<section id="boring" class="block-mustard border-t-[1.5px] border-ink">
+	<div class="container mx-auto px-4">
+		<details class="group">
+			<summary
+				class="flex cursor-pointer list-none items-center justify-between gap-6 py-10 md:py-14 [&::-webkit-details-marker]:hidden"
+			>
+				<span>
+					<span class="block text-4xl font-bold tracking-[-0.04em] text-ink md:text-6xl">
+						The boring version
+					</span>
+					<span class="mt-3 block text-lg text-ink/90">
+						{contact.yearsOfExperience} years, {companies.length} companies, {awards.length} awards.
+						Hiring managers, this one is for you.
+					</span>
+				</span>
+				<span class="key shrink-0 bg-cream p-3 text-ink" aria-hidden="true">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="square"
+						class="size-5 transition-transform duration-200 group-open:rotate-45"
+					>
+						<path d="M12 5v14M5 12h14"></path>
+					</svg>
+				</span>
+			</summary>
+
+			<div class="grid grid-cols-1 gap-10 pb-14 lg:grid-cols-12">
+				<ol class="divide-y divide-ink/25 border-y border-ink/25 lg:col-span-8">
+					{
+						companies.map((company) => (
+							<li class="grid grid-cols-1 gap-x-6 gap-y-1 py-3 md:grid-cols-[9rem_1fr]">
+								<span class="font-mono text-sm text-ink/80">{company.year}</span>
+								<span>
+									<a
+										href={`/work/${company.id}`}
+										class="font-bold text-ink underline-offset-4 hover:underline"
+									>
+										{company.position}
+									</a>
+									{", "}
+									<span class="font-medium text-ink">{company.name}</span>
+									<span class="block text-sm text-ink/75">{company.description}</span>
+								</span>
+							</li>
+						))
+					}
+				</ol>
+
+				<div class="lg:col-span-4">
+					<dl class="space-y-4">
+						{
+							keyStacks.map((stack) => (
+								<div>
+									<dt class="label-mono text-ink">{stack.slug}</dt>
+									<dd class="mt-1 leading-snug text-ink/90">{stack.labels.join(", ")}</dd>
+								</div>
+							))
+						}
+					</dl>
+					<a href="/cv" class="key mt-8 bg-ink text-cream">
+						Open full CV
+					</a>
+				</div>
+			</div>
+		</details>
+	</div>
+</section>

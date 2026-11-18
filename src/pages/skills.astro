@@ -7,7 +7,6 @@ import Certificates from "@/blocks/CertificatesBlock.astro";
 import ToolsList from "@/components/skills/ToolsList.astro";
 import PageHero from "@/components/hero/PageHero.astro";
 import TechStackBlock from "@/blocks/TechStackBlock.astro";
-import { Heading } from "@/components/ui/heading";
 import { ProcessFlowDiagram } from "@/components/Beams";
 import GitHubContributionsBlock from "@/blocks/GitHubContributionsBlock.astro";
 
@@ -20,20 +19,57 @@ const { stacks, charts } = getPortfolioData();
 		subtitle="My technical expertise and proficiency across different technologies"
 	/>
 	<TechStackBlock showAll />
-	<Heading level="h2" gradient floating backplate client:idle>Skills Chart</Heading>
 
-	<SkillChart data={stacks} chartData={charts[0]} client:load showButtons={true} />
+	<section id="skills-chart" class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Skills chart</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">Interactive radar</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-8 mb-10 max-w-3xl text-4xl md:text-5xl font-bold tracking-[-0.04em]">
+				Skills Chart.
+			</h2>
+			<SkillChart data={stacks} chartData={charts[0]} client:load showButtons={true} />
+		</div>
+	</section>
 
-	<section class="">
-		<div class="container mx-auto">
-			<Heading level="h2" gradient floating backplate client:idle>Tech Timeline </Heading>
+	<section id="tech-timeline" class="block-cobalt section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Tech timeline</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">2010 to 2026</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-8 max-w-3xl text-4xl md:text-5xl font-bold tracking-[-0.04em]">
+				Tech Timeline.
+			</h2>
 			<RankTimeline client:visible />
 		</div>
 	</section>
 
 	<ToolsList />
 	<GitHubContributionsBlock />
-	<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
-	<ProcessFlowDiagram client:load />
+
+	<section id="development-process" class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Development process</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">Inputs to delivery</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-8 mb-10 max-w-3xl text-4xl md:text-5xl font-bold tracking-[-0.04em]">
+				Development Process.
+			</h2>
+			<ProcessFlowDiagram client:load />
+		</div>
+	</section>
+
 	<Certificates showAll />
 </Layout>

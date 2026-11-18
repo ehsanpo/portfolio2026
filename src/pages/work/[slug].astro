@@ -16,9 +16,6 @@ const { company } = Astro.props;
 
 const portfolioEntries = await getCollection("portfolio");
 const relatedProjects = portfolioEntries.filter((entry) => {
-
-
-	console.log("Checking entry:", entry.data.agency, "for company:", company.name, company.id);
 	return (
 		entry.data.agency === company.name ||
 		entry.data.client === company.name ||

@@ -1,12 +1,11 @@
 ---
 import { getPortfolioData } from "@/utils/data";
-import Heading from "@/components/ui/heading/Heading";
 import { Image } from "astro:assets";
+import Card3D from "@/components/Card3D";
 
 import cannen from "@/assets/awards/cannen.png";
 import guldagg from "@/assets/awards/guldagg.png";
 import svenskadesign from "@/assets/awards/svenskadesign.png";
-import Card3D from "@/components/Card3D";
 
 const { awards } = getPortfolioData();
 
@@ -19,38 +18,65 @@ const imageMap: Record<string, any> = {
 const awardsWithImages = awards.map((award) => ({
 	...award,
 	image: imageMap[award.images] || award.images,
+	href: award.link.startsWith("/") ? award.link : `/${award.link}`,
 }));
 ---
 
-<section class="bg-white py-20 dark:bg-neutral-800/50">
-	<div class="container mx-auto px-4">
-		<Heading level="h3" gradient floating backplate client:idle> Awards </Heading>
+<section id="awards" class="section scroll-mt-20">
+	<div class="container">
+		<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+			<p class="label-mono">/ Recognition</p>
+			<div class="flex items-center gap-3">
+				<p class="label-mono hidden opacity-70 sm:block">Verified awards</p>
+				<span class="size-2 bg-current" aria-hidden="true"></span>
+			</div>
+		</div>
 
-		<div class="grid grid-cols-1 gap-8 text-center md:grid-cols-2 lg:grid-cols-3">
+		<h2 class="mt-8 max-w-3xl text-4xl font-bold tracking-[-0.04em] md:text-5xl">
+			Awards &amp; industry honors.
+		</h2>
+
+		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 			{
-				awardsWithImages.map((award) => (
-					<Card3D
-						className="text-black"
-						childClassName="clip6 bg-opium dark:bg-transparent"
-						glowColor="color-mix(in srgb, currentColor 80%, var(--color-primary))"
-						client:load
-					>
-						<a href={award.link} class="rounded-lg p-6 transition-transform hover:-translate-y-1">
-							<div class="">
+				awardsWithImages.map((award, index) => (
+					<Card3D client:load intensity={10} shine={false} className="h-full">
+						<a
+							href={award.href}
+							class="group/award flex h-full flex-col justify-between p-6 text-ink"
+							style="transform-style: preserve-3d;"
+						>
+							<div class="flex items-center justify-between border-b-[1.5px] border-ink/20 pb-3">
+								<span class="label-mono text-ink/70">HONOR / 0{index + 1}</span>
+								<span class="font-pixel border-[1.5px] border-ink bg-mustard px-2 py-0.5 text-xs text-ink">
+									WINNER
+								</span>
+							</div>
+
+							<div
+								class="my-8 flex h-36 w-full items-center justify-center transition-transform duration-300"
+								style="transform: translateZ(calc(var(--hover, 0) * 35px));"
+							>
 								<Image
 									src={award.image}
 									alt={award.name}
-									widths={[480, 768, 1024]}
+									widths={[480, 768]}
 									sizes="(max-width: 768px) 100vw, 33vw"
 									format="webp"
-									quality={80}
+									quality={85}
 									loading="lazy"
-									class="mx-auto mb-4 rounded-lg transition-transform group-hover/card:scale-105"
+									class="max-h-32 w-auto object-contain transition-transform duration-300 group-hover/award:scale-105"
 								/>
-								<h3 class="text-primary-500 mb-2 text-xl font-semibold transition-all duration-300 group-hover/card:translate-z-20 group-hover/card:scale-110">
-									{award.name}
-								</h3>
-								<p class="text-primary-500">{award.description}</p>
+							</div>
+
+							<div
+								class="border-t-[1.5px] border-ink pt-4"
+								style="transform: translateZ(calc(var(--hover, 0) * 20px));"
+							>
+								<h3 class="text-2xl font-bold tracking-[-0.03em] text-ink">{award.name}</h3>
+								<p class="mt-2 text-sm leading-relaxed text-ink/80">{award.description}</p>
+								<div class="mt-5 flex items-center justify-between">
+									<span class="key w-full bg-ink text-cream">View case study</span>
+								</div>
 							</div>
 						</a>
 					</Card3D>
@@ -59,3 +85,5 @@ const awardsWithImages = awards.map((award) => ({
 		</div>
 	</div>
 </section>
+
+

@@ -1,7 +1,6 @@
 ---
 import { getPortfolioData } from "@/utils/data";
 import TimelineCard from "@/components/TimelineCard";
-import BoxReveal from "@/components/ui/box-reveal";
 
 const { companies, education } = getPortfolioData();
 
@@ -29,34 +28,45 @@ const educationItems = education
 	.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
 ---
 
-<section class="py-10 md:py-20">
-	<div class="container mx-auto">
-		<div class="grid gap-12 lg:grid-cols-2">
-			<div class="flex flex-col gap-8">
-				<BoxReveal boxColor="bg-primary-500" duration={0.5} client:idle>
-					<h2 class="font-basement text-3xl md:text-4xl">Experience</h2>
-				</BoxReveal>
+<section id="career" class="block-mustard section">
+	<div class="container mx-auto px-4">
+		<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+			<p class="label-mono">/ The career &amp; academic record</p>
+			<div class="flex items-center gap-3">
+				<p class="label-mono hidden opacity-70 sm:block">
+					{workItems.length} roles, {educationItems.length} studies
+				</p>
+				<span class="size-2 bg-current" aria-hidden="true"></span>
+			</div>
+		</div>
 
-				<div class="flex flex-col gap-4">
+		<h2 class="mt-8 max-w-3xl text-4xl md:text-5xl font-bold tracking-[-0.04em]">
+			Experience &amp; education.
+		</h2>
+
+		<div class="mt-10 grid gap-10 lg:grid-cols-2">
+			<div>
+				<h3 class="label-mono mb-4">/ Experience</h3>
+				<div class="on-paper hard bg-cream text-ink divide-y-[1.5px] divide-ink">
 					{
 						workItems.map((item, index) => (
-							<a href={`/work/${item.id}`} style="text-decoration: none;">
-								<TimelineCard {...item} delay={index * 0.1} client:load />
+							<a
+								href={`/work/${item.id}`}
+								class="block transition-colors hover:bg-mustard focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ink"
+							>
+								<TimelineCard {...item} delay={index * 0.05} client:visible />
 							</a>
 						))
 					}
 				</div>
 			</div>
 
-			<div class="flex flex-col gap-8">
-				<BoxReveal boxColor="bg-secondary-400" duration={0.5} client:idle>
-					<h2 class="font-basement text-3xl md:text-4xl">Education</h2>
-				</BoxReveal>
-
-				<div class="flex flex-col gap-4">
+			<div>
+				<h3 class="label-mono mb-4">/ Education</h3>
+				<div class="on-paper hard bg-cream text-ink divide-y-[1.5px] divide-ink">
 					{
 						educationItems.map((item, index) => (
-							<TimelineCard {...item} delay={index * 0.1} client:load />
+							<TimelineCard {...item} delay={index * 0.05} client:visible />
 						))
 					}
 				</div>

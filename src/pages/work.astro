@@ -7,34 +7,47 @@ import PageHero from "@/components/hero/PageHero.astro";
 const companies = portfolioData.companies;
 ---
 
-<Layout title="Experience" description="Work Experience and Professional Career">
-	<PageHero title="Experience" subtitle="A showcase of the companies I've worked at" />
-	<section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-		<div class="grid grid-cols-1 gap-10 md:grid-cols-3">
-			{
-				companies.map((company, index) => (
-					<ProjectCard3D
-						client:visible
-						title={company.name}
-						description={company.description}
-						date={company.year}
-						tags={company.tags}
-						image={
-							company.image
-								? {
-										src: company.image,
-										alt: company.name,
-										width: 800,
-										height: 600,
-									}
-								: undefined
-						}
-						categories={company.position}
-						layout={index}
-						href={`/work/${company.id}`}
-					/>
-				))
-			}
+<Layout title="Work & Experience" description="Work Experience and Professional Career">
+	<PageHero
+		title="Work & experience"
+		subtitle="Thirteen+ years across product companies, agencies, and technical leadership roles."
+	/>
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Career record</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{companies.length} organizations</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+
+			<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{
+					companies.map((company, index) => (
+						<ProjectCard3D
+							client:load
+							title={company.name}
+							description={company.description}
+							date={company.year}
+							tags={company.tags}
+							image={
+								company.image
+									? {
+											src: company.image,
+											alt: company.name,
+											width: 800,
+											height: 600,
+										}
+									: undefined
+							}
+							categories={company.position}
+							layout={index}
+							href={`/work/${company.id}`}
+						/>
+					))
+				}
+			</div>
 		</div>
 	</section>
 </Layout>

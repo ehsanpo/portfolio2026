@@ -6,12 +6,13 @@ interface Props {
 const { clients } = Astro.props;
 ---
 
-<div class="flex items-center gap-12 px-4">
+<div class="flex shrink-0 items-center gap-6 px-3">
 	{
 		clients.map((client) => (
-			<div class="clip2 bg-accent-600 font-basement text-secondary-900 rounded-md p-3 text-lg font-medium whitespace-nowrap">
+			<div class="on-paper hard bg-cream px-5 py-2.5 font-mono text-sm font-semibold whitespace-nowrap text-ink">
 				{client}
 			</div>
 		))
 	}
 </div>
+

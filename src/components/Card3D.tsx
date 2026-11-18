@@ -10,12 +10,11 @@ interface Card3DProps {
 	shine?: boolean;
 }
 
-const DEFAULT_INTENSITY = 15;
-const DEFAULT_GLOW_COLOR = "rgba(255, 255, 255, 0.3)";
+const DEFAULT_INTENSITY = 10;
+const DEFAULT_GLOW_COLOR = "rgba(244, 184, 41, 0.22)";
 const PERSPECTIVE = 1200;
-const SCALE_FACTOR = 1.02;
-const GLOW_OFFSET_MULTIPLIER = 20;
-const SHINE_POSITION_MULTIPLIER = 50;
+const SCALE_FACTOR = 1.015;
+const SHINE_POSITION_MULTIPLIER = 45;
 
 export const Card3D: React.FC<Card3DProps> = ({
 	children,
@@ -65,54 +64,50 @@ export const Card3D: React.FC<Card3DProps> = ({
 			}
 		>
 			<div
-				className="relative h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-transform"
+				className="relative h-full w-full transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] will-change-transform"
 				style={{
 					transformStyle: "preserve-3d",
-					transform: `
-						rotateX(calc(var(--y, 0) * var(--intensity, 0) * -1deg)) 
-						rotateY(calc(var(--x, 0) * var(--intensity, 0) * 1deg))
-						scale3d(${SCALE_FACTOR}, ${SCALE_FACTOR}, ${SCALE_FACTOR})
-					`,
+					transform: isHovered
+						? `
+							rotateX(calc(var(--y, 0) * var(--intensity, 0) * -1deg)) 
+							rotateY(calc(var(--x, 0) * var(--intensity, 0) * 1deg))
+							scale3d(${SCALE_FACTOR}, ${SCALE_FACTOR}, ${SCALE_FACTOR})
+						`
+						: "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
 				}}
 			>
-				<div
-					className="absolute inset-4 rounded-2xl opacity-0 blur-2xl transition-all duration-500 group-hover/card:opacity-50"
-					style={{
-						transform: "translateZ(-50px)",
-						background: glowColor,
-						left: `calc(var(--x, 0) * -${GLOW_OFFSET_MULTIPLIER}px)`,
-						top: `calc(var(--y, 0) * -${GLOW_OFFSET_MULTIPLIER}px)`,
-					}}
-				/>
-
 				<div className="relative z-10 h-full w-full" style={{ transformStyle: "preserve-3d" }}>
 					<div
 						className={cn(
-							"bg-opium absolute inset-0 rounded-2xl border border-white/15 bg-linear-to-br from-white/10 to-white/5 shadow-2xl backdrop-blur-2xl transition-colors duration-500 dark:bg-transparent",
+							"on-paper bg-cream text-ink absolute inset-0 border-[1.5px] border-ink transition-shadow duration-200",
 							childClassName
 						)}
-					/>
-
-					{/* Radial glow */}
-					<div
-						className="pointer-events-none absolute inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover/card:opacity-30"
 						style={{
-							background: `radial-gradient(circle at calc(50% + var(--x, 0) * ${SHINE_POSITION_MULTIPLIER}%) calc(50% + var(--y, 0) * ${SHINE_POSITION_MULTIPLIER}%), ${glowColor}, transparent 50%)`,
+							boxShadow: isHovered
+								? `calc(6px + var(--x, 0) * -4px) calc(6px + var(--y, 0) * -4px) 0px var(--ink)`
+								: `4px 4px 0px var(--ink)`,
 						}}
 					/>
 
-					{/* Shine effect */}
+					{/* Crisp 0-radius paper-sheen highlight */}
+					<div
+						className="pointer-events-none absolute inset-[1.5px] opacity-0 transition-opacity duration-200 group-hover/card:opacity-25"
+						style={{
+							background: `radial-gradient(circle at calc(50% + var(--x, 0) * ${SHINE_POSITION_MULTIPLIER}%) calc(50% + var(--y, 0) * ${SHINE_POSITION_MULTIPLIER}%), ${glowColor}, transparent 60%)`,
+						}}
+					/>
+
 					{shine && (
 						<div
-							className="pointer-events-none absolute inset-px rounded-2xl opacity-0 blur-sm transition-opacity duration-500 group-hover/card:opacity-10"
+							className="pointer-events-none absolute inset-[1.5px] opacity-0 transition-opacity duration-300 group-hover/card:opacity-15"
 							style={{
-								background: `linear-gradient(135deg, transparent 10%, white calc(10% + var(--x, 0) * 90%), transparent 65%)`,
+								background: `linear-gradient(135deg, transparent 15%, rgba(255, 255, 255, 0.7) calc(15% + var(--x, 0) * 70%), transparent 65%)`,
 							}}
 						/>
 					)}
 
 					<div
-						className="preserve-3d relative z-20 h-full w-full"
+						className="preserve-3d on-paper text-ink relative z-20 h-full w-full"
 						style={{ transformStyle: "preserve-3d" }}
 					>
 						{children}

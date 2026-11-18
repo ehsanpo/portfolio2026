@@ -7,28 +7,25 @@ import Layout from "@/layouts/Layout.astro";
 	<Resume client:idle />
 </Layout>
 
----
 <style is:global>
 	:root {
-		--main-color: #0891b2;
-	}
-
-	body {
-		line-height: 1.5;
+		--main-color: #d4411f;
 	}
 
 	@media print {
 		@page {
 			size: A4;
 			margin: 16px 16px;
-			page-break-inside: avoid;
 		}
-		header, nav, 
+		header,
+		nav,
 		#pixelworld,
 		footer {
 			display: none !important;
 		}
-
+		body::after {
+			display: none !important;
+		}
 		.bg-white {
 			background-color: #fff !important;
 		}
@@ -40,6 +37,5 @@ import Layout from "@/layouts/Layout.astro";
 		.timeline-item {
 			page-break-inside: avoid;
 		}
-
 	}
 </style>

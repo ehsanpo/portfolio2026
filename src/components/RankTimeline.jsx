@@ -160,35 +160,35 @@ const RankTimeline = () => {
 			}}
 		>
 			{/* Top Bar: View Mode Switcher */}
-			<div className="flex items-center justify-between gap-4 flex-wrap mb-5 px-1">
-				<div className="flex items-center gap-1.5 p-1 rounded-xl bg-muted/40 border border-white/40">
+			<div className="flex items-center justify-between gap-4 flex-wrap mb-6">
+				<div className="flex items-center gap-3">
 					<button
 						type="button"
 						onClick={() => setViewMode("cards")}
-						className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
+						className={`key px-3! py-2! text-xs! ${
 							viewMode === "cards"
-								? "bg-primary text-black shadow-sm"
-								: "text-muted-foreground hover:text-foreground"
+								? "bg-ink text-cream"
+								: "bg-cream text-ink"
 						}`}
 					>
-						✨ Story Cards
+						Story Cards
 					</button>
 					<button
 						type="button"
 						onClick={() => setViewMode("timeline")}
-						className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
+						className={`key px-3! py-2! text-xs! ${
 							viewMode === "timeline"
-								? "bg-primary text-black shadow-sm"
-								: "text-muted-foreground hover:text-foreground"
+								? "bg-ink text-cream"
+								: "bg-cream text-ink"
 						}`}
 					>
-						📊 Timeline Grid
+						Timeline Grid
 					</button>
 				</div>
 
-				<div className="text-sm font-medium text-muted-foreground hidden sm:block">
+				<div className="label-mono text-muted-foreground hidden sm:block">
 					{viewMode === "cards"
-						? "Interactive evolution by year (2010 – 2026)"
+						? "Interactive evolution by year (2010 to 2026)"
 						: "Chronological succession tracks"}
 				</div>
 			</div>
@@ -209,13 +209,13 @@ const RankTimeline = () => {
 						endYear={END_YEAR}
 					/>
 
-					{/* 3D Track Wrapper with Left & Right Gradient Blur Fade */}
-					<div className="relative">
-						{/* Left Edge Overlay Blur Fade */}
-						<div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 md:w-28 bg-gradient-to-r from-background via-background/70 to-transparent z-20 backdrop-blur-[2px] rounded-l-2xl" />
+					{/* 3D Track Wrapper with Left & Right Edge Fades */}
+					<div className="relative border-[1.5px] border-foreground bg-paper/40 dark:bg-card/40">
+						{/* Left Edge Overlay Fade */}
+						<div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 sm:w-16 md:w-20 bg-gradient-to-r from-background to-transparent z-20" />
 
-						{/* Right Edge Overlay Blur Fade */}
-						<div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 md:w-28 bg-gradient-to-l from-background via-background/70 to-transparent z-20 backdrop-blur-[2px] rounded-r-2xl" />
+						{/* Right Edge Overlay Fade */}
+						<div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-16 md:w-20 bg-gradient-to-l from-background to-transparent z-20" />
 
 						{/* Scroll Track with generous side padding, wide spacious cards, and spacing */}
 						<div
@@ -258,7 +258,7 @@ const RankTimeline = () => {
 			{/* Global React Tooltip Component */}
 			<Tooltip
 				id="timeline-tooltip"
-				className="!z-50 !bg-neutral-900/95 !text-white !border !border-white/15 !rounded-xl !px-3.5 !py-2.5 !shadow-2xl !text-sm !backdrop-blur-md"
+				className="!z-50 !bg-ink !text-cream !border-[1.5px] !border-ink !rounded-none !px-3 !py-2 !shadow-[3px_3px_0_var(--mustard)] !font-mono !text-xs"
 			/>
 		</div>
 	);

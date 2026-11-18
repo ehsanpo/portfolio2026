@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -25,14 +24,14 @@ const Button: React.FC<ButtonProps> = ({
 	type = "button",
 	disabled,
 }) => {
-	const getColorClasses = () => {
+	const getVariantClasses = () => {
 		if (variant === "secondary") {
-			return "from-accent-400 to-accent-700 focus:outline-accent-600 outline-accent-600 hover:outline-accent-500";
+			return "key bg-cream text-ink";
 		}
 		if (variant === "ghost") {
-			return "p-1 h-auto rounded-sm from-primary-400 to-primary-700 focus:outline-primary-600 outline-primary-600 hover:outline-primary-500";
+			return "key bg-transparent text-current";
 		}
-		return "from-primary-400 to-secondary-400 focus:outline-secondary-400 outline-secondary-600 hover:outline-secondary-600";
+		return "key bg-ink text-cream";
 	};
 
 	const Tag = href ? "a" : "button";
@@ -43,27 +42,13 @@ const Button: React.FC<ButtonProps> = ({
 			{...(Tag === "a" ? { href, target } : { type, disabled })}
 			onClick={onClick as any}
 			className={twMerge(
-				`group oultine-offset-base-900 relative inline-flex h-12 items-center justify-center rounded-xl bg-linear-to-tr/oklch bg-size-[100%_200%] bg-position-[0%_100%] px-8 py-3 text-center text-lg font-medium text-black outline transition-all duration-400 ease-in-out hover:bg-position-[0%_0%] focus:outline-2 focus:outline-offset-4 focus-visible:outline-none`,
-				getColorClasses(),
+				getVariantClasses(),
+				"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
 				disabled && "pointer-events-none cursor-not-allowed opacity-50",
 				className
 			)}
 		>
-			<div
-				className={cn(
-					"font-basement relative flex items-center justify-center overflow-hidden px-4 pt-2.75 pb-2",
-					variant === "ghost" && "p-1"
-				)}
-			>
-				<div className="relative z-20">
-					<div className="transform transition-transform duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-10">
-						{content}
-					</div>
-					<div className="absolute top-10 left-0 transition-all duration-300 group-hover:top-0">
-						{content}
-					</div>
-				</div>
-			</div>
+			{content}
 		</Tag>
 	);
 };

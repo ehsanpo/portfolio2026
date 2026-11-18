@@ -2,7 +2,6 @@ import { useAudioStore } from "@/store/useAudioStore";
 import { memo, useEffect, useRef, useState } from "react";
 import { ChevronUp, Minimize2, Pause, Play, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type SiriWaveType from "siriwave";
 
 const SiriWaveBar = memo(function SiriWaveBar() {
 	const containerRef = useRef<HTMLDivElement | null>(null);
@@ -26,9 +25,9 @@ const SiriWaveBar = memo(function SiriWaveBar() {
 			if (cancelled || !container) return;
 
 			const curveDefinition = [
-				{ color: "255,200,2", supportLine: true },
-				{ color: "250,34,5" },
-				{ color: "0,182,254" },
+				{ color: "35,30,22", supportLine: true },
+				{ color: "239,91,59" },
+				{ color: "244,184,41" },
 			];
 
 			wave = new SiriWave({
@@ -36,7 +35,7 @@ const SiriWaveBar = memo(function SiriWaveBar() {
 				style: "ios9",
 				speed: 0.08,
 				amplitude: 3,
-				color: "#facc15",
+				color: "#ef5b3b",
 				autostart: true,
 				cover: false,
 				width: 96,
@@ -241,165 +240,167 @@ export function GlobalAudioPlayer() {
 	return (
 		<div
 			className={cn(
-				"fixed right-0 bottom-0 left-0 z-50 transition-all duration-300",
+				"fixed right-3 bottom-3 left-3 z-50 transition-all duration-300 md:left-auto md:w-[540px]",
 				shouldHide && "pointer-events-none translate-y-full opacity-0"
 			)}
 			aria-hidden={shouldHide}
 		>
-			<div
-				className={cn(
-					"skeu-panel relative w-full",
-					isMinimized ? "h-4 px-2 py-0" : "px-3 py-2"
-				)}
-			>
+			<div className="on-paper hard bg-cream text-ink relative w-full">
 				{isMinimized ? (
-					<div className="relative h-full">
-						<div className="absolute inset-0 skeu-track">
+					<div className="flex items-center gap-3 px-2.5 py-1.5">
+						<span className="size-2.5 shrink-0 border border-ink bg-tomato" aria-hidden="true" />
+						<span className="font-pixel shrink-0 text-xs leading-none">STUDIO DECK</span>
+						<div className="relative h-2.5 flex-1 border-[1.5px] border-ink bg-paper">
 							<div
-								className="absolute inset-y-0 left-0 rounded-full"
-								style={{
-									width: `${progress}%`,
-									background: "linear-gradient(90deg, hsl(45 80% 50%), hsl(45 80% 60%))",
-									boxShadow: "0 0 8px hsl(45 100% 50% / 0.5)",
-								}}
+								className="absolute inset-y-0 left-0 bg-tomato"
+								style={{ width: `${progress}%` }}
 							/>
 						</div>
 						<button
+							type="button"
 							onClick={() => setIsMinimized(false)}
-							className="skeu-button absolute top-1/2 right-1 flex h-4 w-4 -translate-y-1/2 items-center justify-center"
+							className="inline-flex size-6 items-center justify-center border-[1.5px] border-ink bg-paper text-ink shadow-[2px_2px_0_var(--ink)] transition-transform active:translate-x-[1px] active:translate-y-[1px]"
 							aria-label="Expand player"
 						>
-							<ChevronUp className="h-2.5 w-2.5" />
+							<ChevronUp className="size-3.5" />
 						</button>
 					</div>
 				) : (
-					<div className="flex flex-col gap-2">
-						<div className="flex items-center gap-3">
-							<div className="flex items-center gap-2">
-								<button
-									onClick={prevTrack}
-									disabled={playlist.length === 0}
-									className="skeu-button flex h-8 w-8 items-center justify-center text-muted-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-									aria-label="Previous track"
-								>
-									<SkipBack className="h-4 w-4" />
-								</button>
-								<button
-									onClick={togglePlay}
-									className={cn(
-										"flex h-9 w-9 items-center justify-center",
-										isPlaying ? "skeu-button-primary" : "skeu-button"
-									)}
-									aria-label={isPlaying ? "Pause" : "Play"}
-								>
-									{isPlaying ? (
-										<Pause className="h-4 w-4" />
-									) : (
-										<Play className="ml-0.5 h-4 w-4" />
-									)}
-								</button>
-								<button
-									onClick={nextTrack}
-									disabled={playlist.length === 0}
-									className="skeu-button flex h-8 w-8 items-center justify-center text-muted-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
-									aria-label="Next track"
-								>
-									<SkipForward className="h-4 w-4" />
-								</button>
-							</div>
-
-							<div className="flex min-w-0 flex-1 items-center gap-3">
-								<div className="skeu-inset min-w-0 flex-1 px-3 py-1.5">
-									<p className="text-xs font-medium text-foreground truncate">
-										{currentTrack?.title || "No song selected"}
-									</p>
-									<p className="text-[10px] text-muted-foreground truncate">
-										{currentTrack?.artist || "Select a song"}
-									</p>
-								</div>
-								<div className="skeu-inset flex items-center px-2 py-1">
-									<SiriWaveBar />
-								</div>
-							</div>
-
-							<div className="flex items-center gap-2">
-								<button
-									onClick={toggleMute}
-									className="skeu-button flex h-8 w-8 items-center justify-center text-muted-foreground hover:text-foreground"
-									aria-label={isMuted ? "Unmute" : "Mute"}
-								>
-									{isMuted || volume === 0 ? (
-										<VolumeX className="h-4 w-4" />
-									) : (
-										<Volume2 className="h-4 w-4" />
-									)}
-								</button>
-								<div className="hidden w-20 items-center md:flex">
-									<div className="relative h-1.5 w-full skeu-track">
-										<div
-											className="absolute inset-y-0 left-0 rounded-full bg-muted-foreground/60"
-											style={{ width: `${isMuted ? 0 : volume * 100}%` }}
-										/>
-										<input
-											type="range"
-											min="0"
-											max="100"
-											value={isMuted ? 0 : Math.round(volume * 100)}
-											onChange={(e) => {
-												setMuted(false);
-												setVolume(Number(e.target.value) / 100);
-											}}
-											className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-										/>
-										<div
-											className="skeu-knob absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2"
-											style={{ left: `${isMuted ? 0 : volume * 100}%` }}
-										/>
-									</div>
-								</div>
-								<button
-									onClick={() => setIsMinimized(true)}
-									className="skeu-button flex h-7 w-7 items-center justify-center text-muted-foreground hover:text-foreground"
-									aria-label="Minimize player"
-								>
-									<Minimize2 className="h-3.5 w-3.5" />
-								</button>
-							</div>
+					<div>
+						<div className="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1">
+							<span className="size-2.5 shrink-0 border border-ink bg-tomato" aria-hidden="true" />
+							<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+							<span className="font-pixel text-xs leading-none">ON AIR / STUDIO DECK</span>
+							<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+							<button
+								type="button"
+								onClick={() => setIsMinimized(true)}
+								className="inline-flex size-5 items-center justify-center border-[1.5px] border-ink bg-paper text-ink transition-colors hover:bg-mustard"
+								aria-label="Minimize player"
+							>
+								<Minimize2 className="size-3" />
+							</button>
 						</div>
 
-						<div className="flex items-center gap-2">
-							<span className="w-8 text-right text-[10px] font-mono text-muted-foreground">
-								{currentTimeLabel}
-							</span>
-							<div className="relative h-1.5 flex-1 skeu-track">
-								<div
-									className="absolute inset-y-0 left-0 rounded-full"
-									style={{
-										width: `${progress}%`,
-										background: "linear-gradient(90deg, hsl(45 80% 50%), hsl(45 80% 60%))",
-										boxShadow: "0 0 8px hsl(45 100% 50% / 0.5)",
-									}}
-								/>
-								<input
-									type="range"
-									min="0"
-									max="100"
-									value={progress}
-									onChange={(e) => {
-										if (duration <= 0) return;
-										const nextValue = Number(e.target.value);
-										requestSeek((nextValue / 100) * duration);
-									}}
-									className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-								/>
-								<div
-									className="skeu-knob absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2"
-									style={{ left: `${progress}%` }}
-								/>
+						<div className="flex flex-col gap-2.5 p-3">
+							<div className="flex items-center gap-2.5">
+								<div className="flex items-center gap-1.5">
+									<button
+										type="button"
+										onClick={prevTrack}
+										disabled={playlist.length === 0}
+										className="key h-8! w-8! bg-paper p-0! text-ink shadow-[2px_2px_0_var(--ink)]! disabled:cursor-not-allowed disabled:opacity-40"
+										aria-label="Previous track"
+									>
+										<SkipBack className="size-3.5" />
+									</button>
+									<button
+										type="button"
+										onClick={togglePlay}
+										className={cn(
+											"key h-9! w-9! p-0! shadow-[2px_2px_0_var(--ink)]!",
+											isPlaying ? "bg-tomato text-ink" : "bg-mustard text-ink"
+										)}
+										aria-label={isPlaying ? "Pause" : "Play"}
+									>
+										{isPlaying ? (
+											<Pause className="size-4" />
+										) : (
+											<Play className="ml-0.5 size-4" />
+										)}
+									</button>
+									<button
+										type="button"
+										onClick={nextTrack}
+										disabled={playlist.length === 0}
+										className="key h-8! w-8! bg-paper p-0! text-ink shadow-[2px_2px_0_var(--ink)]! disabled:cursor-not-allowed disabled:opacity-40"
+										aria-label="Next track"
+									>
+										<SkipForward className="size-3.5" />
+									</button>
+								</div>
+
+								<div className="flex min-w-0 flex-1 items-center gap-2 border-[1.5px] border-ink bg-paper px-2.5 py-1.5">
+									<div className="min-w-0 flex-1">
+										<p className="truncate font-mono text-xs font-bold text-ink">
+											{currentTrack?.title || "No song selected"}
+										</p>
+										<p className="truncate font-mono text-[10px] text-ink/70">
+											{currentTrack?.artist || "Select a song"}
+										</p>
+									</div>
+									<div className="shrink-0 border-l-[1.5px] border-ink/20 pl-2">
+										<SiriWaveBar />
+									</div>
+								</div>
+
+								<div className="flex items-center gap-2">
+									<button
+										type="button"
+										onClick={toggleMute}
+										className="key h-8! w-8! bg-paper p-0! text-ink shadow-[2px_2px_0_var(--ink)]!"
+										aria-label={isMuted ? "Unmute" : "Mute"}
+									>
+										{isMuted || volume === 0 ? (
+											<VolumeX className="size-3.5" />
+										) : (
+											<Volume2 className="size-3.5" />
+										)}
+									</button>
+									<div className="hidden w-16 items-center sm:flex">
+										<div className="relative h-2.5 w-full border-[1.5px] border-ink bg-paper">
+											<div
+												className="absolute inset-y-0 left-0 bg-mustard"
+												style={{ width: `${isMuted ? 0 : volume * 100}%` }}
+											/>
+											<input
+												type="range"
+												min="0"
+												max="100"
+												value={isMuted ? 0 : Math.round(volume * 100)}
+												onChange={(e) => {
+													setMuted(false);
+													setVolume(Number(e.target.value) / 100);
+												}}
+												aria-label="Volume"
+												className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+											/>
+										</div>
+									</div>
+								</div>
 							</div>
-							<span className="w-8 text-[10px] font-mono text-muted-foreground">
-								{totalTimeLabel}
-							</span>
+
+							<div className="flex items-center gap-2">
+								<span className="w-8 text-right font-mono text-[10px] font-semibold text-ink">
+									{currentTimeLabel}
+								</span>
+								<div className="relative h-3 flex-1 border-[1.5px] border-ink bg-paper">
+									<div
+										className="absolute inset-y-0 left-0 bg-tomato"
+										style={{ width: `${progress}%` }}
+									/>
+									<input
+										type="range"
+										min="0"
+										max="100"
+										value={progress}
+										onChange={(e) => {
+											if (duration <= 0) return;
+											const nextValue = Number(e.target.value);
+											requestSeek((nextValue / 100) * duration);
+										}}
+										aria-label="Seek track"
+										className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+									/>
+									<div
+										className="pointer-events-none absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 border-[1.5px] border-ink bg-mustard"
+										style={{ left: `${progress}%` }}
+									/>
+								</div>
+								<span className="w-8 font-mono text-[10px] font-semibold text-ink">
+									{totalTimeLabel}
+								</span>
+							</div>
 						</div>
 					</div>
 				)}

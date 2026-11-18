@@ -1,15 +1,17 @@
 ---
 import { getPortfolioData } from "@/utils/data";
 import { TestimonialCard } from "@/components/testimonials/TestimonialCard";
-import { Heading } from "@/components/ui/heading";
-import Button from "@/components/ui/Button";
 import { getTestimonialImage } from "@/utils/testimonialImages";
 
 const { testimonials } = getPortfolioData();
 const { showAll = false } = Astro.props;
 
+const sanitizeText = (text: string) => text.replace(/\s*[—–]\s*/g, ", ");
+
 const testimonialsWithImages = testimonials.map((testimonial) => ({
 	...testimonial,
+	short: sanitizeText(testimonial.short),
+	desc: sanitizeText(testimonial.desc),
 	img: getTestimonialImage(testimonial.img),
 }));
 ---
@@ -25,7 +27,7 @@ const testimonialsWithImages = testimonials.map((testimonial) => ({
 	}
 
 	.marquee-inner {
-		animation: marqueeScroll 40s linear infinite;
+		animation: marqueeScroll 50s linear infinite;
 	}
 
 	.marquee-reverse {
@@ -37,59 +39,63 @@ const testimonialsWithImages = testimonials.map((testimonial) => ({
 	}
 </style>
 
-<section class="clip5 bg-white py-20 dark:bg-neutral-800" id="testimonials">
-	<div class="container mx-auto px-4">
-		<Heading
-			level="h2"
-			gradient
-			floating
-			backplate
-			client:idle
-			subtitle="Testimonials from clients and colleagues"
-		>
-			What People Say
-		</Heading>
+<section class="block-ink section scroll-mt-20" id="testimonials">
+	<div class="container">
+		<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+			<p class="label-mono">/ Colleagues &amp; clients</p>
+			<div class="flex items-center gap-3">
+				<p class="label-mono hidden opacity-70 sm:block">On the record</p>
+				<span class="size-2 bg-current" aria-hidden="true"></span>
+			</div>
+		</div>
+
+		<h2 class="mt-8 max-w-3xl text-4xl font-bold tracking-[-0.04em] md:text-5xl">
+			What people say.
+		</h2>
 
 		{
 			showAll ? (
-				<div class="m-auto mt-12 flex w-full max-w-6xl flex-wrap items-center justify-center gap-2">
+				<div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{testimonialsWithImages.map((testimonial) => (
-						<TestimonialCard testimonial={testimonial} client:load />
+						<TestimonialCard testimonial={testimonial} fullWidth client:load />
 					))}
 				</div>
 			) : (
-				<>
-					<div class="marquee-row relative mx-auto w-full max-w-6xl overflow-hidden">
-						<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent dark:from-neutral-800" />
-						<div class="marquee-inner flex min-w-[200%] transform-gpu pt-2 pb-2">
+				<div class="mt-10 space-y-6">
+					<div class="marquee-row relative mx-auto w-full overflow-hidden">
+						<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-16 bg-linear-to-r from-[var(--ink)] to-transparent md:w-28" />
+						<div class="marquee-inner flex min-w-[200%] transform-gpu py-2">
 							{[...testimonialsWithImages, ...testimonialsWithImages].map((testimonial) => (
 								<TestimonialCard testimonial={testimonial} client:load />
 							))}
 						</div>
-						<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent md:w-40 dark:from-neutral-800" />
+						<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-16 bg-linear-to-l from-[var(--ink)] to-transparent md:w-28" />
 					</div>
 
-					<div class="marquee-row relative mx-auto w-full max-w-6xl overflow-hidden">
-						<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-20 bg-linear-to-r from-white to-transparent dark:from-neutral-800" />
-						<div class="marquee-inner marquee-reverse flex min-w-[200%] transform-gpu pt-10 pb-5">
+					<div class="marquee-row relative mx-auto w-full overflow-hidden">
+						<div class="pointer-events-none absolute top-0 left-0 z-10 h-full w-16 bg-linear-to-r from-[var(--ink)] to-transparent md:w-28" />
+						<div class="marquee-inner marquee-reverse flex min-w-[200%] transform-gpu py-2">
 							{[...testimonialsWithImages, ...testimonialsWithImages]
 								.reverse()
 								.map((testimonial) => (
 									<TestimonialCard testimonial={testimonial} client:load />
 								))}
 						</div>
-						<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-20 bg-linear-to-l from-white to-transparent md:w-40 dark:from-neutral-800" />
+						<div class="pointer-events-none absolute top-0 right-0 z-10 h-full w-16 bg-linear-to-l from-[var(--ink)] to-transparent md:w-28" />
 					</div>
-				</>
+				</div>
 			)
 		}
 
 		{
 			showAll ? null : (
-				<div class="mt-12 text-center">
-					<Button href="/about/#testimonials" text="View All Testimonials →" variant="secondary" />
+				<div class="mt-10">
+					<a href="/about/#testimonials" class="key bg-cream text-ink">
+						Read all testimonials
+					</a>
 				</div>
 			)
 		}
 	</div>
 </section>
+

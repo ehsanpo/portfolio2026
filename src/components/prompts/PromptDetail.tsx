@@ -1,7 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { Copy, Check } from "lucide-react";
 import { cn } from "../../lib/utils";
-import Button from "../ui/Button";
 
 interface PromptDetailProps {
 	children: ReactNode;
@@ -25,53 +23,42 @@ export function PromptDetail({ children, className }: PromptDetailProps) {
 	};
 
 	return (
-		<div className={cn("", className)}>
-			<div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-6 dark:border-blue-800 dark:bg-blue-900/20">
-				<div className="flex items-start gap-2">
-					<svg
-						className="mt-0.5 mr-3 h-6 w-6 text-blue-600 dark:text-blue-400"
-						fill="currentColor"
-						viewBox="0 0 20 20"
-					>
-						<path
-							fillRule="evenodd"
-							d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-							clipRule="evenodd"
-						/>
-					</svg>
-					<div className="flex-1">
-						<h3 className="mb-2 text-base font-semibold text-blue-800 dark:text-blue-300">
-							How to use this prompt
-						</h3>
-						<p className="text-sm text-blue-700 dark:text-blue-400">
-							Copy the prompt above and paste it into your favorite AI assistant (ChatGPT, Claude,
-							Gemini, etc.). You can customize it based on your specific needs.
-						</p>
-					</div>
-					<div className="flex justify-end">
-						<Button onClick={handleCopy} variant="secondary">
-							<div className="flex items-center gap-2">
-								{copied ? (
-									<>
-										<Check className="h-4 w-4" />
-										Copied!
-									</>
-								) : (
-									<>
-										<Copy className="h-4 w-4" />
-										Copy Prompt
-									</>
-								)}
-							</div>
-						</Button>
-					</div>
+		<div className={cn("space-y-8", className)}>
+			<div className="on-paper hard flex flex-col items-start justify-between gap-4 bg-cream p-5 text-ink sm:flex-row sm:items-center">
+				<div>
+					<p className="label-mono">/ Usage instructions</p>
+					<p className="mt-1 text-sm leading-relaxed opacity-85">
+						Copy the prompt specification below and paste it into your preferred model, customizing
+						parameters to fit your project.
+					</p>
 				</div>
+				<button type="button" onClick={handleCopy} className="key shrink-0 bg-ink text-cream">
+					{copied ? "Copied to clipboard" : "Copy prompt"}
+				</button>
 			</div>
-			<div className="relative mb-8">
-				<div className="prompt-content prose prose-lg dark:prose-invert max-w-none rounded-xl border border-gray-200 bg-white p-8 dark:border-gray-800 dark:bg-gray-900">
+
+			<div className="on-paper hard bg-cream text-ink">
+				<div className="flex items-center justify-between gap-3 border-b-[1.5px] border-ink px-3 py-2">
+					<div className="flex flex-1 items-center gap-3">
+						<span className="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true" />
+						<span className="stripes h-[13px] flex-1" aria-hidden="true" />
+						<span className="font-pixel text-xs leading-none">PROMPT.MD</span>
+						<span className="stripes h-[13px] flex-1" aria-hidden="true" />
+					</div>
+					<button
+						type="button"
+						onClick={handleCopy}
+						className="key bg-mustard px-2.5! py-1! text-[10px]! text-ink"
+					>
+						{copied ? "Copied" : "Copy"}
+					</button>
+				</div>
+
+				<div className="prompt-content prose prose-base max-w-none p-6 md:p-8 prose-headings:font-bold prose-headings:tracking-[-0.03em] prose-headings:text-ink prose-p:text-ink/90 prose-li:text-ink/90 prose-strong:text-ink prose-code:text-ink prose-pre:rounded-none prose-pre:border-[1.5px] prose-pre:border-ink prose-pre:bg-paper prose-pre:text-ink">
 					{children}
 				</div>
 			</div>
 		</div>
 	);
 }
+

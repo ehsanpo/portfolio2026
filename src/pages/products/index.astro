@@ -20,21 +20,30 @@ const allCategories = [...new Set(productItems.flatMap((entry) => entry.category
 
 <Layout
 	title="Products - Work"
-	description="A showcase of my products and digital creations"
+	description="Digital products, tools, and independent software releases"
 	image="/img/ogdefault.jpg"
 	imageAlt="Ehsan's Products - Digital Creations and Tools"
 >
-	<PageHero title="Products" subtitle="A showcase of my products and digital creations" />
-	<div class="py-20">
+	<PageHero title="Products" subtitle="Digital products, tools, and independent software releases." />
+	<section class="section">
 		<div class="container mx-auto px-4">
+			<div class="mb-8 flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Digital products</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{sortedItems.length} releases</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+
 			<PortfolioFilter categories={allCategories as string[]} category="all" client:load />
-			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{
 					sortedItems.map((item, index) => (
 						<a
 							href={`/products/${item.permalink || item.slug}`}
 							data-categories={JSON.stringify(item.category || [])}
-							class="group/card-link block h-full cursor-pointer"
+							class="group/card-link block h-full cursor-pointer no-underline"
 						>
 							<ProjectCard3D
 								client:load
@@ -45,7 +54,6 @@ const allCategories = [...new Set(productItems.flatMap((entry) => entry.category
 								tags={item.tag}
 								image={getProjectImage(item)}
 								icon={item.logo?.src}
-								glowColor="rgba(255, 238, 8, 0.2)"
 								className="h-full"
 								layout={index}
 							/>
@@ -54,5 +62,5 @@ const allCategories = [...new Set(productItems.flatMap((entry) => entry.category
 				}
 			</div>
 		</div>
-	</div>
+	</section>
 </Layout>

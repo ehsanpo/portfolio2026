@@ -18,31 +18,43 @@ const allCategories = [...new Set(portfolioItems.flatMap((entry) => entry.catego
 
 <Layout
 	title="Portfolio - Work"
-	description="A showcase of my selected works and projects"
+	description="Selected engineering, product, and creative works"
 	image="/img/ogdefault.jpg"
 	imageAlt="Ehsan's Portfolio - Selected Works and Projects"
 >
-	<PageHero title="Portfolio" subtitle="A showcase of my selected works and projects" />
-	<div class="py-20">
+	<PageHero title="Portfolio" subtitle="Selected engineering, product, and creative works." />
+	<section class="section">
 		<div class="container mx-auto px-4">
+			<div class="mb-8 flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Project archive</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{sortedItems.length} entries</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+
 			<PortfolioFilter categories={allCategories} category="all" client:load />
+
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{
 					sortedItems.map((item, index) => (
-						<ProjectCard3D
-							title={item.title || ""}
-							description={item.tagline || ""}
-							date={item.port_date}
-							categories={item.category}
-							tags={item.tag}
-							image={getProjectImage(item)}
-							href={`/portfolio/${item.permalink || item.slug}`}
-							layout={index}
-							client:load
-						/>
+						<div data-categories={JSON.stringify(item.category || [])} class="h-full">
+							<ProjectCard3D
+								title={item.title || ""}
+								description={item.tagline || ""}
+								date={item.port_date}
+								categories={item.category}
+								tags={item.tag}
+								image={getProjectImage(item)}
+								href={`/portfolio/${item.permalink || item.slug}`}
+								layout={index}
+								className="h-full"
+								client:load
+							/>
+						</div>
 					))
 				}
 			</div>
 		</div>
-	</div>
+	</section>
 </Layout>

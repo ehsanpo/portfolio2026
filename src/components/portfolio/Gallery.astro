@@ -10,27 +10,44 @@ interface Props {
 const { images, alt } = Astro.props;
 ---
 
-<div class="my-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-	{
-		images?.map((image: any, index: number) => (
-			<a
-				href={image.src}
-				data-pswp-width={image.width}
-				data-pswp-height={image.height}
-				class="gallery-item cursor-pointer"
-			>
-				<OptimizedImage
-					src={image}
-					alt={`${alt} - Image ${index + 1}`}
-					class="h-64 w-full rounded-lg object-cover transition-transform hover:scale-105"
-					sizes="(max-width: 768px) 100vw, 50vw"
-					widths={[480, 768, 1024, 1200, 1536]}
-					loading="lazy"
-				/>
-			</a>
-		))
-	}
-</div>
+{
+	images && images.length > 0 && (
+		<div class="my-12">
+			<div class="mb-6 flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Visual plates</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{images.length} figures</p>
+					<span class="size-2 bg-current" aria-hidden="true" />
+				</div>
+			</div>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+				{images?.map((image: any, index: number) => (
+					<a
+						href={image.src}
+						data-pswp-width={image.width}
+						data-pswp-height={image.height}
+						class="gallery-item border-ink bg-cream group block cursor-pointer overflow-hidden border-[1.5px] shadow-[3px_3px_0_var(--ink)] transition-transform duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_var(--ink)]"
+					>
+						<div class="border-ink bg-cream text-ink flex items-center justify-between border-b-[1.5px] px-3 py-1.5">
+							<span class="label-mono text-ink/70 text-[10px]!">
+								Fig. {String(index + 1).padStart(2, "0")}
+							</span>
+							<span class="font-pixel text-ink text-[10px]">INSPECT</span>
+						</div>
+						<OptimizedImage
+							src={image}
+							alt={`${alt} - Plate ${index + 1}`}
+							class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+							sizes="(max-width: 768px) 100vw, 50vw"
+							widths={[480, 768, 1024, 1200, 1536]}
+							loading="lazy"
+						/>
+					</a>
+				))}
+			</div>
+		</div>
+	)
+}
 
 <script>
 	import PhotoSwipe from "photoswipe";

@@ -1,7 +1,6 @@
 ---
 import { getBlogPosts } from "../utils/data";
 import { BlogCard } from "../components/blog/BlogCard";
-import Button from "@/components/ui/Button";
 
 const blogPosts = await getBlogPosts();
 const latestPosts = blogPosts.slice(0, 3);
@@ -9,25 +8,36 @@ const latestPosts = blogPosts.slice(0, 3);
 
 {
 	latestPosts.length > 0 && (
-		<section class="bg-gray-50 py-20 dark:bg-neutral-900">
-			<div class="container mx-auto px-4">
-				<div class="mb-16 text-center">
-					<h2 class="mb-4 text-4xl font-bold text-gray-900 dark:text-white">Latest Blog Posts</h2>
-					<p class="mx-auto max-w-2xl text-xl text-gray-600 dark:text-gray-400">
-						Insights, tutorials, and thoughts on web development and technology.
-					</p>
+		<section id="blog" class="section scroll-mt-20">
+			<div class="container">
+				<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+					<p class="label-mono">/ Field notes</p>
+					<div class="flex items-center gap-3">
+						<p class="label-mono hidden opacity-70 sm:block">Latest dispatches</p>
+						<span class="size-2 bg-current" aria-hidden="true" />
+					</div>
 				</div>
 
-				<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				<h2 class="mt-8 max-w-3xl text-4xl font-bold tracking-[-0.04em] md:text-5xl">
+					Writing &amp; engineering notes.
+				</h2>
+				<p class="mt-4 max-w-xl text-lg text-muted-foreground">
+					Insights, tutorials, and practical field notes on web architecture, AI tooling, and software engineering.
+				</p>
+
+				<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 					{latestPosts.map((post) => (
 						<BlogCard post={post} client:load />
 					))}
 				</div>
 
-				<div class="text-center">
-					<Button href="/blog" text="View All Posts →" variant="secondary" />
+				<div class="mt-10">
+					<a href="/blog" class="key bg-ink text-cream">
+						All articles ({blogPosts.length})
+					</a>
 				</div>
 			</div>
 		</section>
 	)
 }
+

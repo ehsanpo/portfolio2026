@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../layouts/Layout.astro";
 import SpotifyEmbed from "../components/audio/SpotifyEmbed";
 import PageHero from "@/components/hero/PageHero.astro";
@@ -25,10 +25,10 @@ const musicFiles = [
 		src: "/music/Fabbe - Harley_mastered.mp3",
 	},
 	{
-		filename: "Fabbe - Glider genom Malmö_mastered.mp3",
-		title: "Glider genom Malmö",
+		filename: "Fabbe - Glider genom MalmÃ¶_mastered.mp3",
+		title: "Glider genom MalmÃ¶",
 		artist: "Fabbe",
-		src: "/music/Fabbe - Glider genom Malmö_mastered.mp3",
+		src: "/music/Fabbe - Glider genom MalmÃ¶_mastered.mp3",
 	},
 	{
 		filename: "gaia-space-agency-circuit serenade-remix.mp3",
@@ -97,7 +97,7 @@ const playlists = [
 	},
 	{
 		playlistId: "1SVNdrRPEto1RXbmX9Oyy9",
-		title: "Malmö Syndrome - 2021",
+		title: "MalmÃ¶ Syndrome - 2021",
 	},
 	{
 		playlistId: "04RmkiqoBN6VFU5XQvS0CE",
@@ -127,17 +127,35 @@ const playlists = [
 ---
 
 <Layout title="Music - Developer Portfolio">
-	<PageHero title="Music" />
-	<div class="container mx-auto px-4 py-20">
-		<div class="mb-20">
-			<LocalMusicPlayer client:only="react" tracks={musicFiles} />
-		</div>
+	<PageHero title="Music" subtitle="Tracks I made and mastered, plus every release on Spotify." />
 
-		<div>
-			<h2 class="mb-8 text-3xl font-bold dark:text-white">Spotify Playlists</h2>
-			<div class="grid gap-4 md:grid-cols-3">
+	<section class="section">
+		<div class="container">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Studio booth</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{musicFiles.length} tracks on the deck</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<div class="mt-8">
+				<LocalMusicPlayer client:only="react" tracks={musicFiles} />
+			</div>
+		</div>
+	</section>
+
+	<section class="section block-ink">
+		<div class="container">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Archive playlists</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{playlists.length} releases on Spotify</p>
+					<span class="size-2 bg-mustard" aria-hidden="true"></span>
+				</div>
+			</div>
+			<div class="mt-8 grid gap-6 md:grid-cols-3">
 				{playlists.map((playlist) => <SpotifyEmbed {...playlist} client:visible />)}
 			</div>
 		</div>
-	</div>
+	</section>
 </Layout>

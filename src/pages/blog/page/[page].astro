@@ -13,7 +13,6 @@ export async function getStaticPaths() {
 	const regularPosts = blogPosts.filter((post) => post.featured !== true);
 	const totalPages = Math.max(1, Math.ceil(regularPosts.length / POSTS_PER_PAGE));
 
-	// Generate static routes for page 2 .. totalPages
 	const paths = [];
 	for (let p = 2; p <= totalPages; p++) {
 		const start = (p - 1) * POSTS_PER_PAGE;
@@ -41,16 +40,23 @@ const { currentPage, totalPages, regularPosts, totalItems } = Astro.props;
 	imageAlt="Ehsan's Blog - Developer Insights and Stories"
 >
 	<PageHero
-		title="Blog"
-		subtitle={`Articles & stories from my creative journey (Page ${currentPage})`}
+		title="Blog & field notes"
+		subtitle={`Articles and stories from my creative journey (Page ${currentPage} of ${totalPages})`}
 	/>
-	<div class="py-20">
+	<section class="section">
 		<div class="container mx-auto px-4">
-			<div class="mb-8">
-				<h2 class="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
-					Articles (Page {currentPage} of {totalPages})
-				</h2>
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ All dispatches</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">
+						Page {currentPage} of {totalPages}
+					</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
 			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				Archive (Page {currentPage} of {totalPages}).
+			</h2>
 
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{regularPosts.map((post) => <BlogCard post={post} client:load />)}
@@ -64,5 +70,6 @@ const { currentPage, totalPages, regularPosts, totalItems } = Astro.props;
 				basePath="/blog"
 			/>
 		</div>
-	</div>
+	</section>
 </Layout>
+

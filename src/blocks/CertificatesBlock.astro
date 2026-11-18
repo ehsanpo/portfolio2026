@@ -1,7 +1,6 @@
 ---
 import { getPortfolioData } from "@/utils/data";
 import CertificateCard from "@/components/certificates/CertificateCard.astro";
-import { Heading } from "@/components/ui/heading";
 
 import cybersecurity from "@/assets/cert/cybersecurity.png";
 import AWS from "@/assets/cert/AWS.png";
@@ -14,7 +13,6 @@ import accessibility from "@/assets/cert/accessibility.png";
 import GAA from "@/assets/cert/GAA.png";
 import GTM from "@/assets/cert/GTM.png";
 import GA from "@/assets/cert/GA.png";
-import Button from "@/components/ui/Button";
 import cybersecurityAware from "@/assets/cert/CAPC.png";
 import leanLeadership from "@/assets/cert/LLPC.png";
 import promptEngineering from "@/assets/cert/CPEFPC.png";
@@ -39,7 +37,7 @@ const imageMap: Record<string, any> = {
 	"/img/cert/LLPC.png": leanLeadership,
 	"/img/cert/CPEFPC.png": promptEngineering,
 	"/img/cert/bb2-self-leader.png": selfLeadership,
-	"/img/cert/secasso.png" : secasso,
+	"/img/cert/secasso.png": secasso,
 };
 
 const certsWithImages = certifications.map((cert) => ({
@@ -49,13 +47,21 @@ const certsWithImages = certifications.map((cert) => ({
 const { showAll = false } = Astro.props;
 ---
 
-<section class="m-auto w-full overflow-hidden bg-gray-50 py-20 dark:bg-neutral-900">
-	<div class="container mx-auto px-4">
-		<Heading level="h3" gradient floating backplate client:idle> Certifications </Heading>
+<section id="certifications" class="block-blush section scroll-mt-20">
+	<div class="container">
+		<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+			<p class="label-mono">/ Credentials</p>
+			<div class="flex items-center gap-3">
+				<p class="label-mono hidden opacity-70 sm:block">Licensed &amp; certified</p>
+				<span class="size-2 bg-current" aria-hidden="true"></span>
+			</div>
+		</div>
 
-		<div
-			class="grid grid-cols-2 justify-center justify-items-center gap-8 md:grid-cols-2 lg:grid-cols-4"
-		>
+		<h2 class="mt-8 max-w-3xl text-4xl font-bold tracking-[-0.04em] md:text-5xl">
+			Certifications.
+		</h2>
+
+		<div class="on-paper hard mt-10 grid grid-cols-1 border-t-[1.5px] border-l-[1.5px] border-ink bg-cream text-ink sm:grid-cols-2 lg:grid-cols-4">
 			{
 				certsWithImages
 					.slice(0, showAll ? certsWithImages.length : 4)
@@ -64,14 +70,13 @@ const { showAll = false } = Astro.props;
 		</div>
 		{
 			showAll ? null : (
-				<div class="mt-12 text-center">
-					<Button
-						href="/about/#certifications"
-						text="View All Certifications →"
-						variant="secondary"
-					/>
+				<div class="mt-10">
+					<a href="/about/#certifications" class="key bg-ink text-cream">
+						All certifications ({certsWithImages.length})
+					</a>
 				</div>
 			)
 		}
 	</div>
 </section>
+

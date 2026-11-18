@@ -4,59 +4,30 @@
 	--year-height: 36px;
 }
 
-/* Thicker, prominent custom scrollbars for main view containers */
 .ranktimeline-wrap {
-	scrollbar-color: rgba(255, 255, 255, 0.45) rgba(0, 0, 0, 0.25);
+	scrollbar-color: var(--ink) var(--paper);
 	scrollbar-width: auto;
-	color-scheme: dark;
 }
 
-:root:not(.dark) .ranktimeline-wrap {
-	scrollbar-color: rgba(0, 0, 0, 0.45) rgba(0, 0, 0, 0.08);
-	color-scheme: light;
-}
-
-/* WebKit custom scrollbar styles - THICKER 14px */
 .ranktimeline-wrap::-webkit-scrollbar {
-	height: 14px;
-	width: 14px;
+	height: 12px;
+	width: 12px;
 }
 
 .ranktimeline-wrap::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.25);
-	border-radius: 9999px;
+	background: var(--paper);
+	border-top: 1.5px solid var(--ink);
 }
 
 .ranktimeline-wrap::-webkit-scrollbar-thumb {
-	background: rgba(255, 255, 255, 0.4);
-	border-radius: 9999px;
-	border: 3px solid transparent;
-	background-clip: padding-box;
+	background: var(--ink);
+	border: 2px solid var(--paper);
 }
 
 .ranktimeline-wrap::-webkit-scrollbar-thumb:hover {
-	background: rgba(255, 255, 255, 0.7);
-	border: 3px solid transparent;
-	background-clip: padding-box;
+	background: var(--brand);
 }
 
-:root:not(.dark) .ranktimeline-wrap::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.08);
-}
-
-:root:not(.dark) .ranktimeline-wrap::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.35);
-	border: 3px solid transparent;
-	background-clip: padding-box;
-}
-
-:root:not(.dark) .ranktimeline-wrap::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 0.65);
-	border: 3px solid transparent;
-	background-clip: padding-box;
-}
-
-/* Completely hidden scrollbar for card footer drawer */
 .ranktimeline-icons-drawer {
 	scrollbar-width: none !important;
 	-ms-overflow-style: none !important;

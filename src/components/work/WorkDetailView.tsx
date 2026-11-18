@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { ProjectCard3D } from "@/components/ProjectCard3D";
 import TeamAvatar from "@/components/TeamAvatar";
 import { getTestimonialImage } from "@/utils/testimonialImages";
@@ -20,6 +19,7 @@ interface Company {
 		name: string;
 		description: string;
 		images?: string;
+		link?: string;
 	}>;
 	codeSkills: string[];
 	softSkills: string[];
@@ -36,39 +36,6 @@ interface WorkDetailViewProps {
 	skillDurations: Record<string, string>;
 }
 
-const containerVariants = {
-	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.1,
-			delayChildren: 0.2,
-		},
-	} as any,
-};
-
-const itemVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-	} as any,
-};
-
-const heroVariants = {
-	hidden: { opacity: 0, y: 50 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.8,
-			ease: [0.22, 1, 0.36, 1],
-			staggerChildren: 0.1,
-		},
-	} as any,
-};
-
 export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 	company,
 	relatedProjects,
@@ -80,226 +47,221 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 	};
 
 	return (
-		<div className="mx-auto max-w-7xl px-4 pt-32 pb-32 sm:px-6 lg:px-8">
-			<motion.section
-				initial="hidden"
-				animate="visible"
-				variants={heroVariants}
-				className="relative overflow-hidden pb-20"
-			>
-				<div className="absolute inset-0 -z-10">
-					<div className="from-accent-500/10 absolute top-0 left-1/2 h-full w-full -translate-x-1/2 bg-linear-to-b to-transparent opacity-20 blur-3xl"></div>
-				</div>
+		<div>
+			<section className="block-mustard border-b-[1.5px] border-ink pt-28 pb-12 md:pt-32 md:pb-16">
+				<div className="container mx-auto px-4">
+					<div className="flex items-center justify-between border-t-[1.5px] border-ink pt-3">
+						<p className="label-mono">/ Work / {company.name}</p>
+						<div className="flex items-center gap-3">
+							<p className="label-mono">{company.year}</p>
+							<span className="size-2 bg-ink" aria-hidden="true" />
+						</div>
+					</div>
 
-				<div className="flex flex-col items-center gap-12 lg:flex-row">
-					<motion.div
-						variants={itemVariants}
-						className="group hover:border-accent-500/50 flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-sm transition-colors duration-500 md:h-48 md:w-48"
-					>
-						{company.image ? (
-							<img
-								src={company.image}
-								alt={company.name}
-								className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-110"
-							/>
-						) : (
-							<div className="text-4xl font-bold text-black uppercase dark:text-white">
-								{company.name.charAt(0)}
-							</div>
-						)}
-					</motion.div>
+					<div className="mt-6">
+						<a href="/work" className="key bg-cream text-ink mb-6">
+							Back to work
+						</a>
+					</div>
 
-					<div className="flex-1 text-center lg:text-left">
-						<motion.div
-							variants={itemVariants}
-							className="bg-accent-500/10 border-accent-500/20 text-accent-400 mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium"
-						>
-							<span className="bg-accent-500 h-2 w-2 animate-pulse rounded-full"></span>
-							{company.year}
-						</motion.div>
-						<motion.h1
-							variants={itemVariants}
-							className="text-primary-500 mb-1 text-4xl font-bold tracking-tight md:text-6xl"
-						>
-							{company.name}
-						</motion.h1>
-						<motion.p
-							variants={itemVariants}
-							className="text-accent-400/90 mb-1 text-xl font-medium tracking-wider uppercase md:text-2xl"
-						>
-							{company.position}
-						</motion.p>
-						<motion.p
-							variants={itemVariants}
-							className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-400 lg:mx-0"
-						>
-							{company.description}
-						</motion.p>
+					<div className="mt-2 flex flex-col items-start gap-8 md:flex-row md:items-center">
+						<div className="on-paper hard bg-cream p-4 border-[1.5px] border-ink h-28 w-28 md:h-36 md:w-36 flex items-center justify-center shrink-0">
+							{company.image ? (
+								<img
+									src={company.image}
+									alt={company.name}
+									className="h-full w-full object-contain"
+								/>
+							) : (
+								<div className="font-pixel text-4xl text-ink uppercase">
+									{company.name.charAt(0)}
+								</div>
+							)}
+						</div>
+
+						<div className="flex-1">
+							<h1 className="text-4xl md:text-6xl font-bold tracking-[-0.04em] text-ink leading-[1.02]">
+								{company.name}.
+							</h1>
+							<p className="label-mono mt-3 inline-block border-[1.5px] border-ink bg-cream px-2.5 py-1 text-ink">
+								{company.position}
+							</p>
+							<p className="mt-4 max-w-2xl text-lg leading-snug text-ink/90">
+								{company.description}
+							</p>
+						</div>
 					</div>
 				</div>
-			</motion.section>
+			</section>
 
-			<div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-				<div className="space-y-12 lg:col-span-8">
-					{company.tags && company.tags.length > 0 && (
-						<motion.section
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-100px" }}
-							variants={containerVariants}
-						>
-							<h2 className="border-accent-500 mb-6 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
-								Focus Areas
-							</h2>
-							<div className="flex flex-wrap gap-2">
+			<div className="container mx-auto px-4 py-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
+				<div className="lg:col-span-8 space-y-12">
+					{company.softSkills && company.softSkills.length > 0 && (
+						<section>
+							<div className="flex items-center justify-between border-t-[1.5px] border-current pt-3 mb-6">
+								<p className="label-mono">/ Focus areas</p>
+								<span className="size-2 bg-current" aria-hidden="true" />
+							</div>
+							<div className="flex flex-wrap gap-2.5">
 								{company.softSkills.map((skill, idx) => (
-									<motion.span
+									<span
 										key={idx}
-										variants={itemVariants}
-										className="bg-accent-500/10 border-accent-500/20 text-accent-400 hover:bg-accent-500/20 rounded-xl border px-4 py-2 text-sm font-medium transition-colors"
+										className="on-paper border-[1.5px] border-ink bg-cream px-3 py-1.5 font-mono text-xs font-semibold text-ink shadow-[2px_2px_0_var(--ink)]"
 									>
 										{skill}
-									</motion.span>
+									</span>
 								))}
 							</div>
-						</motion.section>
+						</section>
 					)}
 
-					<motion.section
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, margin: "-100px" }}
-						variants={containerVariants}
-					>
-						<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
-							Overview
-						</h2>
-						<div className="grid grid-cols-1 gap-4">
-							{company.detailedDescription.map((item, idx) => (
-								<motion.div
-									key={idx}
-									variants={itemVariants}
-									className="hover:border-accent-500/30 group rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300"
-								>
-									<p className="leading-6 text-slate-700 transition-colors dark:text-slate-300 dark:group-hover:text-white">
-										{item}
-									</p>
-								</motion.div>
-							))}
-						</div>
-					</motion.section>
-
-					{company.awards && company.awards.length > 0 && (
-						<motion.section
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-100px" }}
-							variants={containerVariants}
-						>
-							<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
-								Awards & Recognition
-							</h2>
-							<div className="space-y-4">
-								{company.awards.map((award, idx) => (
-									<motion.div
+					{company.detailedDescription && company.detailedDescription.length > 0 && (
+						<section>
+							<div className="flex items-center justify-between border-t-[1.5px] border-current pt-3 mb-6">
+								<p className="label-mono">/ Role &amp; architecture</p>
+								<span className="size-2 bg-current" aria-hidden="true" />
+							</div>
+							<div className="on-paper hard bg-cream text-ink divide-y-[1.5px] divide-ink">
+								{company.detailedDescription.map((item, idx) => (
+									<div
 										key={idx}
-										variants={itemVariants}
-										className="flex items-center gap-6 rounded-2xl border border-yellow-500/20 bg-linear-to-r from-yellow-500/10 to-transparent p-6"
+										className="grid grid-cols-1 gap-3 p-5 sm:grid-cols-[3.5rem_1fr] sm:items-baseline"
 									>
-										{award.images && (
-											<img
-												src={award.images}
-												alt={award.name}
-												className="h-16 w-16 object-contain drop-shadow-lg filter"
-											/>
-										)}
-										<div>
-											<h3 className="text-xl font-bold text-black dark:text-white">{award.name}</h3>
-											<p className="text-yellow-500/80">{award.description}</p>
-										</div>
-									</motion.div>
+										<span className="label-mono text-muted-foreground">
+											{String(idx + 1).padStart(2, "0")}
+										</span>
+										<p className="text-base leading-relaxed text-ink">{item}</p>
+									</div>
 								))}
 							</div>
-						</motion.section>
+						</section>
+					)}
+
+					{company.awards && company.awards.length > 0 && (
+						<section>
+							<div className="flex items-center justify-between border-t-[1.5px] border-current pt-3 mb-6">
+								<p className="label-mono">/ Recognition</p>
+								<span className="size-2 bg-current" aria-hidden="true" />
+							</div>
+							<div className="space-y-4">
+								{company.awards.map((award, idx) => (
+									<div
+										key={idx}
+										className="on-paper hard bg-cream text-ink flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
+									>
+										<div className="flex items-center gap-5">
+											{award.images && (
+												<div className="flex h-16 w-16 shrink-0 items-center justify-center border-[1.5px] border-ink bg-paper p-2">
+													<img
+														src={award.images}
+														alt={award.name}
+														className="h-full w-full object-contain"
+													/>
+												</div>
+											)}
+											<div>
+												<span className="font-pixel text-xs border border-ink bg-mustard px-2 py-0.5 text-ink">
+													HONOR
+												</span>
+												<h3 className="mt-1.5 text-xl font-bold tracking-[-0.02em] text-ink">
+													{award.name}
+												</h3>
+												<p className="mt-1 text-sm leading-snug text-ink/80">
+													{award.description}
+												</p>
+											</div>
+										</div>
+										{award.link && (
+											<a
+												href={award.link.startsWith("/") ? award.link : `/${award.link}`}
+												className="key bg-ink text-cream shrink-0"
+											>
+												Case study
+											</a>
+										)}
+									</div>
+								))}
+							</div>
+						</section>
 					)}
 
 					{relatedProjects.length > 0 && (
-						<motion.section
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-100px" }}
-							variants={containerVariants}
-						>
-							<h2 className="border-accent-500 mb-8 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
-								Projects & Case Studies
-							</h2>
+						<section>
+							<div className="flex items-center justify-between border-t-[1.5px] border-current pt-3 mb-6">
+								<p className="label-mono">/ Shipped at {company.name}</p>
+								<div className="flex items-center gap-3">
+									<p className="label-mono hidden opacity-70 sm:block">
+										{relatedProjects.length} case {relatedProjects.length === 1 ? "study" : "studies"}
+									</p>
+									<span className="size-2 bg-current" aria-hidden="true" />
+								</div>
+							</div>
 							<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
 								{relatedProjects.map((project, index) => (
-									<motion.div key={project.id} variants={itemVariants}>
-										<ProjectCard3D
-											title={project.data.title}
-											description={project.data.tagline}
-											date={project.data.date}
-											tags={project.data.tag}
-											image={getProjectImage(project.data)}
-											categories={project.data.category}
-											layout={index}
-											href={`/portfolio/${project.data.permalink}`}
-											glowColor="color-mix(in srgb, black 80%, var(--color-accent))"
-										/>
-									</motion.div>
+									<ProjectCard3D
+										key={project.id}
+										title={project.data.title}
+										description={project.data.tagline}
+										date={project.data.port_date || project.data.date}
+										tags={project.data.tag}
+										image={getProjectImage(project.data)}
+										categories={project.data.category}
+										layout={index}
+										href={`/portfolio/${project.data.permalink || project.slug}`}
+									/>
 								))}
 							</div>
-						</motion.section>
+						</section>
 					)}
 				</div>
 
-				<div className="space-y-12 lg:col-span-4">
-					<motion.section
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, margin: "-100px" }}
-						variants={containerVariants}
-					>
-						<h2 className="border-accent-500 mb-6 border-l-4 pl-4 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
-							Technical Expertise
-						</h2>
-						<div className="space-y-3">
-							{company.codeSkills.map((skill, idx) => (
-								<motion.div
-									key={idx}
-									variants={itemVariants}
-									className="group flex items-center justify-between rounded-xl border border-black/10 bg-white/5 p-4 transition-colors hover:bg-white/10 dark:border-white/10"
-								>
-									<span className="group-hover:text-accent-400 font-medium transition-colors dark:text-slate-300">
-										{skill}
-									</span>
-									<span className="font-mono text-xs text-slate-500">
-										{getSkillDuration(skill)}
-									</span>
-								</motion.div>
-							))}
-						</div>
-					</motion.section>
+				<div className="lg:col-span-4 space-y-12">
+					{company.codeSkills && company.codeSkills.length > 0 && (
+						<section className="on-paper hard bg-cream text-ink">
+							<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
+								<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-tomato" aria-hidden="true" />
+								<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+								<h2 className="font-pixel text-xs leading-none uppercase text-ink">
+									STACK &amp; DURATION
+								</h2>
+							</div>
+							<dl className="divide-y divide-ink/20 px-4 py-1">
+								{company.codeSkills.map((skill, idx) => {
+									const duration = getSkillDuration(skill);
+									return (
+										<div
+											key={idx}
+											className="flex items-baseline justify-between gap-4 py-2.5"
+										>
+											<dt className="font-sans text-sm font-semibold text-ink">
+												{skill}
+											</dt>
+											<dd className="font-mono text-xs text-ink/75 tabular-nums">
+												{duration || "Active"}
+											</dd>
+										</div>
+									);
+								})}
+							</dl>
+						</section>
+					)}
 
 					{company.team && company.team.length > 0 && (
-						<motion.section
-							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, margin: "-100px" }}
-							variants={containerVariants}
-						>
-							<h2 className="mb-6 text-sm font-bold tracking-widest text-black uppercase dark:text-white">
-								Team Members
-							</h2>
-							<div className="space-y-4">
+						<section className="on-paper hard bg-cream text-ink">
+							<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
+								<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-mint" aria-hidden="true" />
+								<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+								<h2 className="font-pixel text-xs leading-none uppercase text-ink">
+									TEAM ROSTER
+								</h2>
+							</div>
+							<ul className="divide-y divide-ink/20 p-4">
 								{company.team.map((member, idx) => (
-									<motion.div
+									<li
 										key={idx}
-										variants={itemVariants}
-										className="group flex items-center gap-4"
+										className="flex items-center gap-3.5 py-2.5 first:pt-0 last:pb-0"
 									>
-										<div className="group-hover:border-accent-500 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-slate-700 bg-slate-800 transition-colors">
+										<div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden border-[1.5px] border-ink bg-paper">
 											{member.img ? (
 												<img
 													src={getTestimonialImage(member.img)}
@@ -307,19 +269,21 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 													className="h-full w-full object-cover"
 												/>
 											) : (
-												<TeamAvatar name={member.name} size={48} />
+												<TeamAvatar name={member.name} size={44} />
 											)}
 										</div>
-										<div>
-											<div className="group-hover:text-accent-400 text-sm font-medium text-black transition-colors dark:text-white">
+										<div className="min-w-0 flex-1">
+											<div className="truncate font-sans text-sm font-bold text-ink">
 												{member.name}
 											</div>
-											<div className="text-xs text-slate-500">{member.role}</div>
+											<div className="label-mono truncate text-[10px]! text-ink/70">
+												{member.role}
+											</div>
 										</div>
-									</motion.div>
+									</li>
 								))}
-							</div>
-						</motion.section>
+							</ul>
+						</section>
 					)}
 				</div>
 			</div>

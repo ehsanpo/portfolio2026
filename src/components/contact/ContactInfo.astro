@@ -3,24 +3,24 @@ import { getPortfolioData } from "../../utils/data";
 const { contact } = getPortfolioData();
 ---
 
-<div class="space-y-4">
+<div class="flex flex-col gap-5">
 	<div>
-		<h3 class="text-lg font-medium text-gray-900 dark:text-white">Location</h3>
-		<p class="mt-2 text-gray-600 dark:text-gray-400">{contact.location}</p>
+		<h3 class="label-mono text-ink/70">Location</h3>
+		<p class="mt-2 font-mono text-sm text-ink">{contact.location}</p>
 	</div>
 
 	<div>
-		<h3 class="text-lg font-medium text-gray-900 dark:text-white">Connect</h3>
-		<div class="mt-2 flex gap-4">
+		<h3 class="label-mono text-ink/70">Connect</h3>
+		<div class="mt-2 flex flex-wrap gap-2">
 			{
 				Object.entries(contact.socialLinks).map(([platform, url]) => (
 					<a
 						href={url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="hover:text-primary-600 text-gray-600 dark:text-gray-400"
+						class="key bg-paper px-2.5! py-1.5! text-[11px]! text-ink shadow-[2px_2px_0_var(--ink)]!"
 					>
-						<span class="capitalize">{platform}</span>
+						{platform}
 					</a>
 				))
 			}

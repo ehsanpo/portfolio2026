@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, useEffect } from "react";
+﻿import React, { useMemo, useState, useRef, useEffect } from "react";
 import { Disc3, Music, Pause, Play, SkipBack, SkipForward, Volume2, VolumeX, Maximize2, Minimize2, Sparkles } from "lucide-react";
 import AudioVisualizer from "@/components/audio/AudioVisualizer";
 import CyberShaderVisualizer from "@/components/audio/CyberShaderVisualizer";
@@ -6,7 +6,6 @@ import MasteringDesk from "@/components/audio/MasteringDesk";
 import { SHADER_PRESETS } from "@/components/audio/shaderPresets";
 import { audioManager } from "@/utils/audioSystem";
 import { useAudioStore } from "@/store/useAudioStore";
-import Decorator from "./Decorator";
 
 interface MusicTrack {
 	filename: string;
@@ -189,391 +188,297 @@ const LocalMusicPlayer: React.FC<LocalMusicPlayerProps> = ({ tracks = [] }) => {
 	const totalTimeLabel = duration > 0 ? formatTime(duration) : currentTrack?.duration || "0:00";
 	const currentTimeLabel = formatTime(currentTime);
 
+
 	if (tracks.length === 0) {
 		return (
-			<div className="border-accent/50 bg-card rounded-lg border p-8 text-center">
-				<p className="text-muted-foreground">No local music tracks found</p>
+			<div className="on-paper hard bg-cream p-8 text-center text-ink">
+				<p className="label-mono">No local music tracks found</p>
 			</div>
 		);
 	}
+
+	const categories = ["All", "Fractal", "Mastering", "Dream", "EQ", "MilkDrop", "Orbit"] as const;
 
 	return (
 		<div
 			ref={playerContainerRef}
 			className={`mx-auto w-full transition-all duration-300 ${
 				isFullscreen
-					? "fixed inset-0 z-50 flex h-screen w-screen max-w-none flex-col justify-between bg-[#06080e] p-6"
+					? "fixed inset-0 z-50 flex h-screen w-screen max-w-none flex-col justify-between bg-ink p-6"
 					: "max-w-5xl"
 			}`}
 			data-local-music-player
 		>
-			<div className={`skeu-panel flex flex-col ${isFullscreen ? "h-full flex-1 p-6" : "p-6"}`}>
-				<div className={`flex flex-col gap-4 min-h-0 lg:flex-row ${isFullscreen ? "flex-1" : "max-h-[600px]"}`}>
-					{/* Left - Visualizer */}
-					<div className="flex-1 skeu-inset p-4 flex flex-col relative overflow-hidden">
+			<div className={`on-paper hard flex flex-col bg-cream text-ink ${isFullscreen ? "h-full flex-1" : ""}`}>
+				<div className="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1.5">
+					<span
+						className={`size-3 shrink-0 border-[1.5px] border-ink ${isPlaying ? "animate-pulse bg-tomato" : "bg-paper"}`}
+						aria-hidden="true"
+					/>
+					<span className="stripes h-[13px] flex-1" aria-hidden="true" />
+					<span className="font-pixel text-sm leading-none">STUDIO BOOTH / LOCAL DECK</span>
+					<span className="stripes h-[13px] flex-1" aria-hidden="true" />
+				</div>
 
-						<Decorator isOn={isPlaying} /> 
-
-						{/* Unified Category & Preset Controls Toolbar (No redundant shader titles) */}
-						<div className="z-20 mb-2 flex flex-col gap-1.5">
-							<div className="flex items-center justify-between border-b border-white/5 pb-1">
-								{/* Category tabs */}
-								<div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
-									{(["All", "Fractal", "Mastering", "Dream", "EQ", "MilkDrop", "Orbit"] as const).map((cat) => (
-										<button
-											key={cat}
-											type="button"
-											onClick={() => {
-												setShaderCategory(cat as any);
-												if (cat === "Orbit") {
-													setVisualizerMode("orbit");
-												} else if (cat === "Mastering") {
-													setVisualizerMode("mastering" as any);
-												} else {
-													setVisualizerMode("shader");
-												}
-											}}
-											className={`rounded px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-all ${
-												shaderCategory === cat
-													? "bg-primary/25 text-primary border border-primary/40 shadow-sm"
-													: "text-muted-foreground/70 hover:text-foreground hover:bg-white/5"
-											}`}
-										>
-											{cat}
-										</button>
-									))}
-								</div>
-
-								{/* Right-aligned action buttons: Auto Cycle + Fullscreen */}
-								<div className="flex items-center gap-1.5 ml-2">
-									{(shaderCategory === "Fractal" || shaderCategory === "All") && visualizerMode === "shader" && (
-										<button
-											type="button"
-											onClick={() => setAutoCycleFractal(!autoCycleFractal)}
-											className={`rounded px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase transition-all ${
-												autoCycleFractal
-													? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.3)]"
-													: "bg-background/40 text-muted-foreground/70 hover:text-foreground"
-											}`}
-											title="Seamlessly cycle between all 20 fractals without breaking"
-										>
-											{autoCycleFractal ? "Cycle ON" : "Cycle OFF"}
-										</button>
-									)}
-
-									<button
-										type="button"
-										onClick={toggleFullscreen}
-										className="skeu-button flex items-center gap-1.5 rounded px-2.5 py-0.5 text-xs font-semibold text-muted-foreground hover:text-foreground"
-										title={isFullscreen ? "Exit Fullscreen" : "Fullscreen Player"}
-									>
-										{isFullscreen ? (
-											<>
-												<Minimize2 className="w-3.5 h-3.5" />
-												<span className="hidden sm:inline text-[11px]">Exit Full</span>
-											</>
-										) : (
-											<>
-												<Maximize2 className="w-3.5 h-3.5" />
-												<span className="hidden sm:inline text-[11px]">Full Screen</span>
-											</>
-										)}
-									</button>
-								</div>
-							</div>
-
-							{/* Presets list (when in Shader or EQ or MilkDrop mode) */}
-							{visualizerMode === "shader" && shaderCategory !== "Orbit" && (
-								<div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none">
-									{SHADER_PRESETS.filter(
-										(preset) => shaderCategory === "All" || preset.category === shaderCategory
-									).map((preset) => {
-										const isActive = selectedPresetId === preset.id;
-										return (
+				<div className={`flex flex-col gap-4 p-4 ${isFullscreen ? "min-h-0 flex-1" : ""}`}>
+					<div className={`flex min-h-0 flex-col gap-4 lg:flex-row ${isFullscreen ? "flex-1" : "max-h-[600px]"}`}>
+						{/* Left: visualizer */}
+						<div className="relative flex flex-1 flex-col overflow-hidden border-[1.5px] border-ink bg-paper p-3">
+							<div className="z-20 mb-2 flex flex-col gap-2">
+								<div className="flex items-center justify-between gap-2 border-b-[1.5px] border-ink/20 pb-2">
+									<div className="scrollbar-none flex items-center gap-1 overflow-x-auto" role="tablist" aria-label="Visualizer category">
+										{categories.map((cat) => (
 											<button
-												key={preset.id}
+												key={cat}
 												type="button"
-												onClick={() => setSelectedPresetId(preset.id)}
-												className={`whitespace-nowrap rounded-md px-2 py-0.5 text-[11px] font-medium transition-all ${
-													isActive
-														? "bg-accent/30 text-accent border border-accent/50 shadow-[0_0_8px_rgba(14,165,233,0.3)]"
-														: "bg-background/30 text-muted-foreground/80 hover:bg-background/60 hover:text-foreground"
+												role="tab"
+												aria-selected={shaderCategory === cat}
+												onClick={() => {
+													setShaderCategory(cat);
+													if (cat === "Orbit") {
+														setVisualizerMode("orbit");
+													} else if (cat === "Mastering") {
+														setVisualizerMode("mastering");
+													} else {
+														setVisualizerMode("shader");
+													}
+												}}
+												className={`label-mono shrink-0 border-[1.5px] px-2 py-0.5 text-[10px]! transition-colors ${
+													shaderCategory === cat
+														? "border-ink bg-mustard text-ink"
+														: "border-transparent text-ink/70 hover:border-ink hover:text-ink"
 												}`}
 											>
-												{preset.name}
+												{cat}
 											</button>
-										);
-									})}
-								</div>
-							)}
-						</div>
+										))}
+									</div>
 
-						{/* Spinning Disc (Only in Orbit mode) */}
-						{shaderCategory === "Orbit" && (
-							<div className="flex justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 pointer-events-none">
-								<div
-									className={`w-28 h-28 rounded-full ${isPlaying ? "animate-spin" : ""}`}
-									style={{
-										animationDuration: "3s",
-										background:
-											"conic-gradient(from 0deg, hsl(0 0% 8%), hsl(0 0% 15%), hsl(0 0% 8%), hsl(0 0% 12%), hsl(0 0% 8%))",
-										boxShadow:
-											"0 8px 32px hsl(0 0% 0% / 0.8), inset 0 0 20px hsl(0 0% 0% / 0.5), 0 0 0 4px hsl(0 0% 18%)",
-									}}
-								>
-									<div
-										className="w-full h-full rounded-full flex items-center justify-center"
-										style={{
-											background:
-												"radial-gradient(circle at 30% 30%, hsl(0 0% 25%), hsl(0 0% 10%) 60%, hsl(0 0% 5%))",
-										}}
-									>
-										<div
-											className="w-10 h-10 rounded-full"
-											style={{
-												background: "linear-gradient(145deg, hsl(45 80% 55%), hsl(45 80% 40%))",
-												boxShadow: "0 2px 8px hsl(45 100% 50% / 0.4)",
-											}}
+									<div className="flex shrink-0 items-center gap-1.5">
+										{(shaderCategory === "Fractal" || shaderCategory === "All") && visualizerMode === "shader" && (
+											<button
+												type="button"
+												onClick={() => setAutoCycleFractal(!autoCycleFractal)}
+												aria-pressed={autoCycleFractal}
+												className={`key px-2! py-0.5! text-[10px]! shadow-[2px_2px_0_var(--ink)]! ${
+													autoCycleFractal ? "bg-mint text-ink" : "bg-paper text-ink"
+												}`}
+												title="Cycle between all fractals without breaking"
+											>
+												{autoCycleFractal ? "Cycle on" : "Cycle off"}
+											</button>
+										)}
+
+										<button
+											type="button"
+											onClick={toggleFullscreen}
+											className="key bg-paper px-2! py-0.5! text-[10px]! text-ink shadow-[2px_2px_0_var(--ink)]!"
+											title={isFullscreen ? "Exit fullscreen" : "Fullscreen player"}
 										>
-											<div className="w-full h-full rounded-full flex items-center justify-center">
-												<div className="w-3 h-3 rounded-full bg-background" />
-											</div>
+											{isFullscreen ? <Minimize2 className="size-3.5" /> : <Maximize2 className="size-3.5" />}
+											<span className="hidden sm:inline">{isFullscreen ? "Exit full" : "Full screen"}</span>
+										</button>
+									</div>
+								</div>
+
+								{visualizerMode === "shader" && shaderCategory !== "Orbit" && (
+									<div className="scrollbar-none flex items-center gap-1 overflow-x-auto pb-1">
+										{SHADER_PRESETS.filter(
+											(preset) => shaderCategory === "All" || preset.category === shaderCategory
+										).map((preset) => {
+											const isActive = selectedPresetId === preset.id;
+											return (
+												<button
+													key={preset.id}
+													type="button"
+													onClick={() => setSelectedPresetId(preset.id)}
+													aria-pressed={isActive}
+													className={`shrink-0 whitespace-nowrap border-[1.5px] px-2 py-0.5 font-mono text-[11px] font-semibold transition-colors ${
+														isActive
+															? "border-ink bg-ink text-cream"
+															: "border-ink/30 bg-cream text-ink hover:border-ink hover:bg-mustard"
+													}`}
+												>
+													{preset.name}
+												</button>
+											);
+										})}
+									</div>
+								)}
+							</div>
+
+							{shaderCategory === "Orbit" && (
+								<div className="pointer-events-none absolute top-1/2 left-1/2 mt-1 flex -translate-x-1/2 -translate-y-1/2 justify-center">
+									<div
+										className={`flex size-28 items-center justify-center border-[1.5px] border-ink bg-mustard ${isPlaying ? "animate-spin" : ""}`}
+										style={{ animationDuration: "3s" }}
+									>
+										<div className="flex size-10 items-center justify-center border-[1.5px] border-ink bg-tomato">
+											<div className="size-3 bg-cream" />
 										</div>
 									</div>
 								</div>
-							</div>
-						)}
-
-						{/* Screen Center Visualizer Render Area */}
-						<div className="flex-1 min-h-[320px] flex overflow-hidden rounded-lg">
-							{shaderCategory === "Orbit" ? (
-								<AudioVisualizer />
-							) : shaderCategory === "Mastering" ? (
-								<MasteringDesk analyserData={analyserData} />
-							) : (
-								<CyberShaderVisualizer presetId={selectedPresetId} />
 							)}
-						</div>
 
-						{/* Ambient glow */}
-						{isPlaying && (
-							<div className="absolute bottom-10 left-1/4 right-1/4 h-32 pointer-events-none">
-								<div className="w-full h-full bg-gradient-to-t from-primary/20 to-transparent rounded-full blur-3xl animate-pulse-glow" />
-							</div>
-						)}
-					</div>
-
-					{/* Right - Playlist */}
-					<div className="w-full lg:w-72 skeu-inset flex flex-col">
-						{/* Playlist Header */}
-						<div className="p-4 border-b border-gray-400/30">
-							<div className="flex items-center gap-2">
-								<Music className="w-4 h-4 text-primary" />
-								<span className="font-semibold text-foreground">Playlist</span>
-								<span className="text-xs text-muted-foreground ml-auto">
-									{tracks.length} tracks
-								</span>
+							<div className="flex min-h-[320px] flex-1 overflow-hidden border-[1.5px] border-ink bg-ink">
+								{shaderCategory === "Orbit" ? (
+									<AudioVisualizer />
+								) : shaderCategory === "Mastering" ? (
+									<MasteringDesk analyserData={analyserData} />
+								) : (
+									<CyberShaderVisualizer presetId={selectedPresetId} />
+								)}
 							</div>
 						</div>
 
-						{/* Song List */}
-						<div className="flex-1 overflow-y-auto p-2 space-y-1">
-							{tracks.map((song, index) => {
-								const isActive = currentTrack?.id === song.src;
-								return (
-									<button
-										key={song.src}
-										onClick={() => handleSongSelect(song)}
-										className={`w-full p-3 flex items-center gap-3 text-left ${
-											isActive ? "skeu-list-item-active" : "skeu-list-item"
-										}`}
-									>
-										<div
-											className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
-												isActive ? "skeu-button-primary" : "skeu-button"
+						{/* Right: playlist */}
+						<div className="flex w-full flex-col border-[1.5px] border-ink bg-paper lg:w-72">
+							<div className="flex items-center gap-2 border-b-[1.5px] border-ink px-3 py-2">
+								<Music className="size-4" />
+								<span className="label-mono">Playlist</span>
+								<span className="label-mono ml-auto text-ink/70">{tracks.length} tracks</span>
+							</div>
+
+							<div className="max-h-[360px] flex-1 divide-y-[1.5px] divide-ink/15 overflow-y-auto lg:max-h-none">
+								{tracks.map((song, index) => {
+									const isActive = currentTrack?.id === song.src;
+									return (
+										<button
+											key={song.src}
+											type="button"
+											onClick={() => handleSongSelect(song)}
+											aria-pressed={isActive}
+											className={`flex w-full items-center gap-3 p-3 text-left transition-colors ${
+												isActive ? "bg-mustard text-ink" : "bg-transparent text-ink hover:bg-cream"
 											}`}
 										>
-											{isActive && isPlaying ? (
-												<div className="flex items-end gap-0.5 h-3">
-													<div
-														className="w-0.5 rounded-full animate-pulse"
-														style={{
-															height: "50%",
-															background: isActive ? "hsl(0 0% 5%)" : "var(--foreground)",
-														}}
-													/>
-													<div
-														className="w-0.5 rounded-full animate-pulse"
-														style={{
-															height: "100%",
-															animationDelay: "0.1s",
-															background: isActive ? "hsl(0 0% 5%)" : "var(--foreground)",
-														}}
-													/>
-													<div
-														className="w-0.5 rounded-full animate-pulse"
-														style={{
-															height: "60%",
-															animationDelay: "0.2s",
-															background: isActive ? "hsl(0 0% 5%)" : "var(--foreground)",
-														}}
-													/>
-												</div>
-											) : (
-												<span
-													className={`text-[10px] font-mono ${
-														isActive ? "text-background" : "text-muted-foreground"
-													}`}
-												>
-													{(index + 1).toString().padStart(2, "0")}
-												</span>
-											)}
-										</div>
+											<div className="flex size-7 shrink-0 items-center justify-center border-[1.5px] border-ink bg-paper">
+												{isActive && isPlaying ? (
+													<div className="flex h-3 items-end gap-0.5">
+														<div className="w-0.5 animate-pulse bg-ink" style={{ height: "50%" }} />
+														<div className="w-0.5 animate-pulse bg-ink" style={{ height: "100%", animationDelay: "0.1s" }} />
+														<div className="w-0.5 animate-pulse bg-ink" style={{ height: "60%", animationDelay: "0.2s" }} />
+													</div>
+												) : (
+													<span className="font-mono text-[10px] font-semibold">
+														{(index + 1).toString().padStart(2, "0")}
+													</span>
+												)}
+											</div>
 
-										<div className="flex-1 min-w-0">
-											<p
-												className={`text-sm font-medium truncate ${
-													isActive ? "text-black" : "text-foreground"
-												}`}
-											>
-												{song.title}
-											</p>
-											<p className="text-xs text-muted-foreground truncate">{song.artist}</p>
-										</div>
-									</button>
-								);
-							})}
+											<div className="min-w-0 flex-1">
+												<p className="truncate font-mono text-sm font-bold">{song.title}</p>
+												<p className="truncate font-mono text-xs text-ink/70">{song.artist}</p>
+											</div>
+										</button>
+									);
+								})}
+							</div>
 						</div>
 					</div>
-				</div>
 
-				{/* Bottom Controls */}
-				<div className="mt-4 skeu-panel p-4">
-					<div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-						{/* Song Info */}
-						<div className="flex-1 min-w-0">
-							<div className="skeu-inset p-3 flex items-center gap-3">
-								<div
-									className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-									style={{
-										background: "linear-gradient(145deg, hsl(0 0% 15%), hsl(0 0% 8%))",
-										boxShadow:
-											"inset 0 1px 0 hsl(0 0% 25% / 0.3), 0 2px 4px hsl(0 0% 0% / 0.5)",
-									}}
+					{/* Transport */}
+					<div className="border-[1.5px] border-ink bg-paper p-3">
+						<div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+							<div className="min-w-0 flex-1">
+								<div className="flex items-center gap-3 border-[1.5px] border-ink bg-cream p-2.5">
+									<div className="flex size-10 shrink-0 items-center justify-center border-[1.5px] border-ink bg-tomato">
+										<Disc3 className={`size-5 text-ink ${isPlaying ? "animate-spin" : ""}`} style={{ animationDuration: "3s" }} />
+									</div>
+									<div className="min-w-0">
+										<p className="truncate font-mono text-sm font-bold text-ink">
+											{currentTrack?.title || "No song selected"}
+										</p>
+										<p className="truncate font-mono text-xs text-ink/70">
+											{currentTrack?.artist || "Select a song"}
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div className="flex items-center justify-center gap-3">
+								<button
+									type="button"
+									onClick={prevTrack}
+									disabled={!currentTrack}
+									aria-label="Previous track"
+									className="key size-10 bg-paper p-0! text-ink disabled:cursor-not-allowed disabled:opacity-40"
 								>
-									<div
-										className="w-6 h-6 rounded-full"
-										style={{
-											background:
-												"linear-gradient(135deg, hsl(45 80% 55% / 0.4), hsl(215 60% 55% / 0.4))",
+									<SkipBack className="size-4" />
+								</button>
+								<button
+									type="button"
+									onClick={handlePlayPause}
+									aria-label={isPlaying ? "Pause" : "Play"}
+									className={`key size-14 p-0! text-ink ${isPlaying ? "bg-tomato" : "bg-mustard"}`}
+								>
+									{isPlaying ? <Pause className="size-5" /> : <Play className="ml-0.5 size-5" />}
+								</button>
+								<button
+									type="button"
+									onClick={nextTrack}
+									disabled={!currentTrack}
+									aria-label="Next track"
+									className="key size-10 bg-paper p-0! text-ink disabled:cursor-not-allowed disabled:opacity-40"
+								>
+									<SkipForward className="size-4" />
+								</button>
+							</div>
+
+							<div className="flex flex-1 items-center gap-2 lg:flex-[2]">
+								<span className="w-8 text-right font-mono text-[10px] font-semibold text-ink">
+									{currentTimeLabel}
+								</span>
+								<div className="relative h-3 flex-1 border-[1.5px] border-ink bg-cream">
+									<div className="absolute inset-y-0 left-0 bg-tomato" style={{ width: `${progress}%` }} />
+									<input
+										type="range"
+										min="0"
+										max="100"
+										value={progress}
+										onChange={(e) => {
+											if (duration <= 0) return;
+											const nextValue = Number(e.target.value);
+											requestSeek((nextValue / 100) * duration);
 										}}
+										aria-label="Seek track"
+										className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+									/>
+									<div
+										className="pointer-events-none absolute top-1/2 size-4 -translate-x-1/2 -translate-y-1/2 border-[1.5px] border-ink bg-mustard"
+										style={{ left: `${progress}%` }}
 									/>
 								</div>
-								<div className="min-w-0">
-									<p className="text-sm font-medium text-foreground truncate">
-										{currentTrack?.title || "No song selected"}
-									</p>
-									<p className="text-xs text-muted-foreground truncate">
-										{currentTrack?.artist || "Select a song"}
-									</p>
+								<span className="w-8 font-mono text-[10px] font-semibold text-ink">{totalTimeLabel}</span>
+							</div>
+
+							<div className="flex items-center gap-2 lg:w-32">
+								<button
+									type="button"
+									onClick={() => setMuted(!isMuted)}
+									aria-label={isMuted ? "Unmute" : "Mute"}
+									className="key size-8 shrink-0 bg-paper p-0! text-ink"
+								>
+									{isMuted || volume === 0 ? <VolumeX className="size-3.5" /> : <Volume2 className="size-3.5" />}
+								</button>
+								<div className="relative h-2.5 flex-1 border-[1.5px] border-ink bg-cream">
+									<div
+										className="absolute inset-y-0 left-0 bg-mustard"
+										style={{ width: `${isMuted ? 0 : volume * 100}%` }}
+									/>
+									<input
+										type="range"
+										min="0"
+										max="100"
+										value={isMuted ? 0 : Math.round(volume * 100)}
+										onChange={(e) => {
+											setVolume(Number(e.target.value) / 100);
+											if (isMuted) setMuted(false);
+										}}
+										aria-label="Volume"
+										className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+									/>
 								</div>
-							</div>
-						</div>
-
-						{/* Playback Controls */}
-						<div className="flex items-center justify-center gap-3">
-							<button
-								onClick={prevTrack}
-								disabled={!currentTrack}
-								className="skeu-button w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed"
-							>
-								<SkipBack className="w-4 h-4" />
-							</button>
-							<button
-								onClick={handlePlayPause}
-								className={`w-14 h-14 flex items-center justify-center ${
-									isPlaying ? "skeu-button-primary" : "skeu-button"
-								}`}
-							>
-								{isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
-							</button>
-							<button
-								onClick={nextTrack}
-								disabled={!currentTrack}
-								className="skeu-button w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed"
-							>
-								<SkipForward className="w-4 h-4" />
-							</button>
-						</div>
-
-						{/* Progress */}
-						<div className="flex flex-1 items-center gap-2 lg:flex-[2]">
-							<span className="text-[10px] text-muted-foreground font-mono w-8 text-right">
-								{currentTimeLabel}
-							</span>
-							<div className="flex-1 h-2 skeu-track relative">
-								<div
-									className="absolute inset-y-0 left-0 rounded-full"
-									style={{
-										width: `${progress}%`,
-										background: "linear-gradient(90deg, hsl(45 80% 50%), hsl(45 80% 60%))",
-										boxShadow: "0 0 8px hsl(45 100% 50% / 0.5)",
-									}}
-								/>
-								<input
-									type="range"
-									min="0"
-									max="100"
-									value={progress}
-									onChange={(e) => {
-										if (duration <= 0) return;
-										const nextValue = Number(e.target.value);
-										requestSeek((nextValue / 100) * duration);
-									}}
-									className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-								/>
-								<div
-									className="skeu-knob w-4 h-4 absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-									style={{ left: `${progress}%` }}
-								/>
-							</div>
-							<span className="text-[10px] text-muted-foreground font-mono w-8">
-								{totalTimeLabel}
-							</span>
-						</div>
-
-						{/* Volume */}
-						<div className="flex items-center gap-2 lg:w-28">
-							<button
-								onClick={() => setMuted(!isMuted)}
-								className="skeu-button w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground"
-							>
-								{isMuted || volume === 0 ? (
-									<VolumeX className="w-3.5 h-3.5" />
-								) : (
-									<Volume2 className="w-3.5 h-3.5" />
-								)}
-							</button>
-							<div className="flex-1 h-1.5 skeu-track relative">
-								<div
-									className="absolute inset-y-0 left-0 rounded-full bg-muted-foreground/60"
-									style={{ width: `${isMuted ? 0 : volume * 100}%` }}
-								/>
-								<input
-									type="range"
-									min="0"
-									max="100"
-									value={isMuted ? 0 : Math.round(volume * 100)}
-									onChange={(e) => {
-										setVolume(Number(e.target.value) / 100);
-										if (isMuted) setMuted(false);
-									}}
-									className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-								/>
-								<div
-									className="skeu-knob w-3 h-3 absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-									style={{ left: `${isMuted ? 0 : volume * 100}%` }}
-								/>
 							</div>
 						</div>
 					</div>

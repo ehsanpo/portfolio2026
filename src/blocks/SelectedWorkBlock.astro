@@ -1,47 +1,191 @@
 ---
-import { Heading } from "@/components/ui/heading";
 import { getPortfolioItems } from "@/utils/data";
-import { ProjectCard3D } from "@/components/ProjectCard3D";
+import { getProjectImage } from "@/utils/projectHelpers";
 
 const portfolioItems = await getPortfolioItems();
 
-const filteredAndSortedItems = portfolioItems
-	.filter((item) => item.onHome)
-	.sort((a, b) => {
-		if (!a.date || !b.date) return 0;
-		return new Date(b.date).getTime() - new Date(a.date).getTime();
-	});
+const sortedAllItems = [...portfolioItems].sort((a, b) => {
+	const yearA = Number(a.port_date) || 0;
+	const yearB = Number(b.port_date) || 0;
+	return yearB - yearA;
+});
+
+const filteredAndSortedItems = sortedAllItems.filter((item) => item.onHome);
+
+const flagshipItems = filteredAndSortedItems.slice(0, 4);
+const flagshipSlugs = new Set(flagshipItems.map((item) => item.permalink || item.slug));
+
+const remainingFeatured = filteredAndSortedItems.slice(4);
+const additionalShelfItems = sortedAllItems
+	.filter((item) => !flagshipSlugs.has(item.permalink || item.slug) && !item.onHome)
+	.slice(0, Math.max(0, 6 - remainingFeatured.length));
+
+const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 ---
 
-<section id="selected-work" class="bg-opium overflow-hidden py-24 dark:bg-neutral-950">
+<section id="selected-work" class="section scroll-mt-20">
 	<div class="container mx-auto px-4">
-		<div class="mb-16">
-			<Heading level="h2" gradient floating backplate className="pb-4" client:load>
-				Selected Work
-			</Heading>
+		<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+			<p class="label-mono">/ Selected work</p>
+			<div class="flex items-center gap-3">
+				<p class="label-mono hidden opacity-70 sm:block">Everything here works</p>
+				<span class="size-2 bg-current" aria-hidden="true"></span>
+			</div>
 		</div>
 
-		<div class="flex flex-wrap justify-center gap-8">
+		<h2 class="mt-8 max-w-4xl text-4xl md:text-5xl font-bold tracking-[-0.04em]">
+			Selected projects &amp; engineering work.
+		</h2>
+		<p class="mt-4 max-w-xl text-lg text-muted-foreground leading-snug">
+			Production systems, platform migrations, and interactive digital products built for Swedish and international organizations.
+		</p>
+
+		<div class="mt-12 border-[1.5px] border-foreground">
 			{
-				filteredAndSortedItems.map((item, index) => (
-					<div class="min-w-[min(100%,320px)] flex-1 lg:min-w-[calc(33.333%-2rem)]">
-						<ProjectCard3D
-							client:load
-							title={item.title}
-							description={item.description}
-							date={item.date}
-							categories={item.category}
-							tags={item.tag}
-							image={item.cover ? { ...item.cover, alt: item.title } : undefined}
-							icon={item.logo?.src}
-							glowColor="rgba(255, 238, 8, 0.2)"
-							className="h-full"
-							href={`/portfolio/${item.permalink}`}
-							layout={index}
-						/>
-					</div>
-				))
+				flagshipItems.map((item, index) => {
+					const isOdd = index % 2 === 1;
+					const projectImg = getProjectImage(item);
+					const year = item.port_date || "";
+					const projectHref = `/portfolio/${item.permalink || item.slug}`;
+
+					return (
+						<div
+							class={`grid grid-cols-1 lg:grid-cols-12 ${index > 0 ? "border-t-[1.5px] border-foreground" : ""}`}
+						>
+							<div
+								class={`lg:col-span-7 overflow-hidden ${isOdd ? "lg:order-2 lg:border-l-[1.5px] border-foreground" : ""}`}
+							>
+								<a
+									href={projectHref}
+									class="group block h-full w-full overflow-hidden"
+								>
+									<div class="relative aspect-[16/10] h-full w-full overflow-hidden">
+										{projectImg ? (
+											<img
+												src={projectImg.src}
+												alt={projectImg.alt || item.title}
+												loading="lazy"
+												class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+											/>
+										) : (
+											<div class="flex size-full items-center justify-center p-8 font-pixel text-2xl">
+												{item.title}
+											</div>
+										)}
+									</div>
+								</a>
+							</div>
+
+							<div
+								class={`border-foreground lg:col-span-5 ${!isOdd ? "lg:border-l-[1.5px]" : ""} p-6 md:p-8 flex flex-col justify-between gap-8 border-t-[1.5px] lg:border-t-0`}
+							>
+								<div>
+									<p class="label-mono text-muted-foreground">Fig. 0{index + 1}</p>
+									<h3 class="mt-3 text-3xl md:text-4xl font-bold tracking-[-0.04em]">
+										{item.title}
+									</h3>
+									{item.tagline && (
+										<p class="mt-2 text-lg leading-snug font-medium">
+											{item.tagline}
+										</p>
+									)}
+									<p class="mt-4 leading-relaxed text-muted-foreground">
+										{item.description || item.tagline}
+									</p>
+								</div>
+
+								<div>
+									<dl class="divide-y divide-border border-y border-border mt-6">
+										<div class="flex items-baseline justify-between gap-4 py-2">
+											<dt class="label-mono text-muted-foreground">Client</dt>
+											<dd class="text-right font-mono text-sm">{item.client || "Independent"}</dd>
+										</div>
+										{item.category && item.category.length > 0 && (
+											<div class="flex items-baseline justify-between gap-4 py-2">
+												<dt class="label-mono text-muted-foreground">Category</dt>
+												<dd class="text-right font-mono text-sm">
+													{item.category.slice(0, 2).join(", ")}
+												</dd>
+											</div>
+										)}
+										{item.tag && item.tag.length > 0 && (
+											<div class="flex items-baseline justify-between gap-4 py-2">
+												<dt class="label-mono text-muted-foreground">Stack</dt>
+												<dd class="text-right font-mono text-sm">
+													{item.tag.slice(0, 3).join(", ")}
+												</dd>
+											</div>
+										)}
+										{year && (
+											<div class="flex items-baseline justify-between gap-4 py-2">
+												<dt class="label-mono text-muted-foreground">Year</dt>
+												<dd class="text-right font-mono text-sm">{year}</dd>
+											</div>
+										)}
+									</dl>
+
+									<div class="mt-5 flex flex-wrap gap-3">
+										<a href={projectHref} class="key bg-cream text-ink">
+											Inspect project
+										</a>
+										{item.case_link_url && (
+											<a
+												href={item.case_link_url}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="key bg-ink text-cream"
+											>
+												Live site
+											</a>
+										)}
+									</div>
+								</div>
+							</div>
+						</div>
+					);
+				})
 			}
+		</div>
+
+		{
+			shelfItems.length > 0 && (
+				<>
+					<h3 class="mt-16 text-2xl md:text-3xl font-bold tracking-[-0.04em]">
+						Also on the shelf
+					</h3>
+					<ul class="mt-6 grid grid-cols-1 border-t-[1.5px] border-l-[1.5px] border-foreground sm:grid-cols-2 lg:grid-cols-3">
+						{shelfItems.map((item, idx) => {
+							const year = item.port_date || "";
+							const badge = [item.client, year].filter(Boolean).join(" / ");
+							return (
+								<li class="border-r-[1.5px] border-b-[1.5px] border-foreground">
+									<a
+										href={`/portfolio/${item.permalink || item.slug}`}
+										class={`group flex h-full flex-col justify-between gap-3 p-5 transition-colors hover:bg-mustard hover:text-ink ${idx === 0 ? "block-mustard" : ""}`}
+									>
+										<div>
+											<span class="flex items-center justify-between gap-3">
+												<span class="text-xl font-bold tracking-tight">{item.title}</span>
+												<span class="label-mono shrink-0">{year}</span>
+											</span>
+											<span class="mt-2 block text-sm leading-relaxed opacity-85">
+												{item.description || item.tagline}
+											</span>
+										</div>
+										<span class="label-mono pt-2 opacity-75">{badge}</span>
+									</a>
+								</li>
+							);
+						})}
+					</ul>
+				</>
+			)
+		}
+
+		<div class="mt-10 flex justify-end">
+			<a href="/portfolio" class="key bg-ink text-cream">
+				All portfolio projects ({portfolioItems.length})
+			</a>
 		</div>
 	</div>
 </section>

@@ -1,16 +1,12 @@
 ---
-
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/hero/Hero.astro";
 import StackCard from "@/components/StackCard";
 import SkillChart from "@/components/SkillChart";
 import ToolsList from "@/components/skills/ToolsList.astro";
 import { ProcessFlowDiagram } from "@/components/Beams";
-import { Heading } from "@/components/ui/heading";
 import { getPortfolioData, getRoles } from "@/utils/data";
-import BoxReveal from "@/components/ui/box-reveal";
 import { getRoleImage } from "@/utils/roleImageMap";
-
 
 const { stacks } = getPortfolioData();
 const roles = getRoles();
@@ -42,182 +38,245 @@ const seniorChart = {
 ---
 
 <Layout title="Senior Software Engineer - Ehsan Pourhadi">
-	<Hero fullHeight title="Senior Software Engineer" img={displayImage.src}>
-		<div>
-			<BoxReveal boxColor="bg-secondary-400" duration={0.1} delay={0.2} client:load>
-				<p class="mb-5 text-2xl dark:text-gray-300">
-					{currentRole?.description}
-				</p>
-			</BoxReveal>
-			<BoxReveal boxColor="bg-primary-500" duration={0.5} delay={0.2} client:load>
-				<p class="text-xl dark:text-gray-300">
-					With 12+ years of software development experience, I've evolved from building features to
-					architecting systems and mentoring teams. I write production-quality code, make sound
-					technical decisions, and share knowledge to elevate team capabilities.
-				</p>
-			</BoxReveal>
+	<Hero fullHeight title="Senior Software Engineer" img={displayImage?.src}>
+		<div class="space-y-4">
+			<p class="text-xl font-medium leading-snug">
+				{currentRole?.description}
+			</p>
+			<p class="text-base leading-relaxed opacity-85">
+				With 12+ years of software development experience, I have evolved from building features to
+				architecting systems and mentoring teams. I write production-quality code, make sound
+				technical decisions, and share knowledge to elevate team capabilities.
+			</p>
 		</div>
 	</Hero>
 
-	<section class="container mx-auto px-4 py-12">
-		<div class="mx-auto max-w-4xl">
-			<div class="mb-16">
-				<Heading level="h2" gradient floating backplate client:idle>What I Bring</Heading>
-				<p class="text-lg text-gray-700 dark:text-gray-300">
-					With 12+ years of software development experience, I've evolved from building features to
-					architecting systems and mentoring teams. I write production-quality code, make sound
-					technical decisions, and share knowledge to elevate team capabilities. I balance technical
-					depth with pragmatic delivery.
-				</p>
-			</div>
-
-			<div class="mb-16">
-				<Heading level="h2" gradient floating backplate client:idle>Evidence</Heading>
-				<div class="space-y-6">
-					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
-						<h3 class="text-primary-600 dark:text-primary-400 mb-2 text-xl font-semibold">
-							From Experience at Telavox
-						</h3>
-						<blockquote
-							class="border-primary-500 border-l-4 pl-4 text-gray-700 italic dark:text-gray-300"
-						>
-							"Collaborated on the development of various software projects using React, Java, and
-							ElectronJs. Contributed to the design and architecture of web applications."
-						</blockquote>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Source: Portfolio Experience - Telavox (2023-Present)
-						</p>
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-5xl space-y-20">
+				<div>
+					<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+						<p class="label-mono">/ What I bring</p>
+						<div class="flex items-center gap-3">
+							<p class="label-mono hidden opacity-70 sm:block">Core approach</p>
+							<span class="size-2 bg-current" aria-hidden="true"></span>
+						</div>
 					</div>
+					<h2 class="mt-6 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Architecture, execution &amp; mentorship.
+					</h2>
+					<p class="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+						With 12+ years of software development experience, I have evolved from building features
+						to architecting systems and mentoring teams. I write production-quality code, make sound
+						technical decisions, and share knowledge to elevate team capabilities. I balance
+						technical depth with pragmatic delivery.
+					</p>
+				</div>
 
-					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
-						<h3 class="text-primary-600 dark:text-primary-400 mb-2 text-xl font-semibold">
-							Testimonial from Heshan Kithuldora (Software Developer)
-						</h3>
-						<blockquote
-							class="border-primary-500 border-l-4 pl-4 text-gray-700 italic dark:text-gray-300"
-						>
-							"Ehsan is a highly experienced engineer with strong technical expertise across both
-							front-end and back-end development. He often took the lead on new initiatives and
-							helped establish effective ways of working within the team."
-						</blockquote>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Source: Testimonials - Heshan Kithuldora
-						</p>
+				<div>
+					<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+						<p class="label-mono">/ Evidence</p>
+						<div class="flex items-center gap-3">
+							<p class="label-mono hidden opacity-70 sm:block">On the record</p>
+							<span class="size-2 bg-current" aria-hidden="true"></span>
+						</div>
 					</div>
+					<h2 class="mt-6 mb-8 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Verified track record.
+					</h2>
+					<div class="grid gap-6 md:grid-cols-3">
+						<article class="on-paper hard flex flex-col justify-between bg-cream text-ink">
+							<div>
+								<div class="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1.5">
+									<span class="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true"></span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+									<span class="font-pixel text-xs leading-none">LOG 01</span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+								</div>
+								<div class="p-5">
+									<h3 class="text-lg font-bold tracking-[-0.02em]">Experience at Telavox</h3>
+									<blockquote class="mt-3 border-l-[2px] border-ink pl-3 text-sm leading-relaxed opacity-90">
+										"Collaborated on the development of various software projects using React, Java,
+										and ElectronJs. Contributed to the design and architecture of web applications."
+									</blockquote>
+								</div>
+							</div>
+							<div class="border-t-[1.5px] border-ink/20 px-5 py-3">
+								<p class="label-mono text-[10px]! opacity-70">
+									Source: Telavox (2023 to 2025)
+								</p>
+							</div>
+						</article>
 
-					<div class="rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-800">
-						<h3 class="text-primary-600 dark:text-primary-400 mb-2 text-xl font-semibold">
-							Testimonial from Asger Bjerre-Nielsen (Developer)
-						</h3>
-						<blockquote
-							class="border-primary-500 border-l-4 pl-4 text-gray-700 italic dark:text-gray-300"
-						>
-							"Ehsan has excellent ability to break down tasks and problems and provide high quality
-							code to efficiently solve even the most demanding task. He is always on the lookout
-							for new tech and ideas, on how to do things better."
-						</blockquote>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Source: Testimonials - Asger Bjerre-Nielsen
-						</p>
+						<article class="on-paper hard flex flex-col justify-between bg-cream text-ink">
+							<div>
+								<div class="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1.5">
+									<span class="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true"></span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+									<span class="font-pixel text-xs leading-none">LOG 02</span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+								</div>
+								<div class="p-5">
+									<h3 class="text-lg font-bold tracking-[-0.02em]">
+										Heshan Kithuldora (Software Developer)
+									</h3>
+									<blockquote class="mt-3 border-l-[2px] border-ink pl-3 text-sm leading-relaxed opacity-90">
+										"Ehsan is a highly experienced engineer with strong technical expertise across
+										both front-end and back-end development. He often took the lead on new
+										initiatives and helped establish effective ways of working within the team."
+									</blockquote>
+								</div>
+							</div>
+							<div class="border-t-[1.5px] border-ink/20 px-5 py-3">
+								<p class="label-mono text-[10px]! opacity-70">
+									Source: Testimonial, Telavox
+								</p>
+							</div>
+						</article>
+
+						<article class="on-paper hard flex flex-col justify-between bg-cream text-ink">
+							<div>
+								<div class="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1.5">
+									<span class="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true"></span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+									<span class="font-pixel text-xs leading-none">LOG 03</span>
+									<span class="stripes h-[13px] flex-1" aria-hidden="true"></span>
+								</div>
+								<div class="p-5">
+									<h3 class="text-lg font-bold tracking-[-0.02em]">
+										Asger Bjerre-Nielsen (Developer)
+									</h3>
+									<blockquote class="mt-3 border-l-[2px] border-ink pl-3 text-sm leading-relaxed opacity-90">
+										"Ehsan has excellent ability to break down tasks and problems and provide high
+										quality code to efficiently solve even the most demanding task. He is always on
+										the lookout for new tech and ideas, on how to do things better."
+									</blockquote>
+								</div>
+							</div>
+							<div class="border-t-[1.5px] border-ink/20 px-5 py-3">
+								<p class="label-mono text-[10px]! opacity-70">
+									Source: Testimonial, Bredband2
+								</p>
+							</div>
+						</article>
 					</div>
 				</div>
-			</div>
 
-			<div class="mb-16">
-				<Heading level="h2" gradient floating backplate client:idle>Impact & Outcomes</Heading>
-				<div class="grid gap-6 md:grid-cols-2">
-					<div class="from-primary-500/10 to-primary-600/10 rounded-lg bg-gradient-to-br p-6">
-						<div class="text-primary-600 dark:text-primary-400 mb-2 text-3xl font-bold">
-							12+ Years
+				<div>
+					<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+						<p class="label-mono">/ Impact &amp; outcomes</p>
+						<div class="flex items-center gap-3">
+							<p class="label-mono hidden opacity-70 sm:block">Key deliverables</p>
+							<span class="size-2 bg-current" aria-hidden="true"></span>
 						</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-							Professional Experience
-						</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Full-stack development across multiple companies and technologies
-						</p>
 					</div>
+					<h2 class="mt-6 mb-8 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Measured outcomes.
+					</h2>
+					<div class="grid gap-6 md:grid-cols-2">
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">12+ Years</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">Professional Experience</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Full-stack development across multiple companies and production architectures.
+							</p>
+						</div>
 
-					<div class="from-secondary-400/10 to-secondary-600/10 rounded-lg bg-gradient-to-br p-6">
-						<div class="text-secondary-600 dark:text-secondary-400 mb-2 text-3xl font-bold">
-							Technical Lead
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">Technical Lead</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">Initiative &amp; Innovation</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Leading new initiatives and establishing engineering best practices for teams.
+							</p>
 						</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-							Initiative & Innovation
-						</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Leading new initiatives and establishing best practices for teams
-						</p>
-					</div>
 
-					<div class="rounded-lg bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-6">
-						<div class="mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400">Mentorship</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-							Knowledge Sharing
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">Mentorship</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">Knowledge Sharing</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Mentoring developers and conducting code reviews to elevate team quality.
+							</p>
 						</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Mentoring developers and conducting code reviews to elevate team quality
-						</p>
-					</div>
 
-					<div class="rounded-lg bg-gradient-to-br from-green-500/10 to-green-600/10 p-6">
-						<div class="mb-2 text-3xl font-bold text-green-600 dark:text-green-400">
-							Architecture
+						<div class="on-paper hard bg-cream p-6 text-ink">
+							<div class="font-pixel text-3xl text-ink">Architecture</div>
+							<div class="mt-2 text-lg font-bold tracking-[-0.02em]">System Design</div>
+							<p class="mt-2 text-sm leading-relaxed opacity-80">
+								Designing scalable architectures for complex web and desktop applications.
+							</p>
 						</div>
-						<div class="text-lg font-semibold text-gray-800 dark:text-gray-200">System Design</div>
-						<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-							Designing scalable architectures for complex web applications
-						</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="py-12">
-		<div class="container mx-auto">
-			<Heading level="h2" gradient floating backplate client:idle>Technical Expertise</Heading>
-			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+	<section class="block-mustard section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Technical expertise</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">Core stack</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				Production stack.
+			</h2>
+			<div class="grid gap-8 md:grid-cols-2">
 				{seniorStacks.map((stack) => <StackCard {...stack} client:load />)}
 			</div>
 		</div>
 	</section>
 
-	<section class="py-12">
-		<div class="container mx-auto">
-			<Heading level="h2" gradient floating backplate client:idle>Senior Engineering Skills</Heading
-			>
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Competency matrix</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">Senior engineering</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				Senior engineering skills.
+			</h2>
 			<SkillChart data={[seniorChart]} chartData={seniorChart} client:load />
 		</div>
 	</section>
 
 	<ToolsList />
 
-	<section class="py-12">
-		<div class="container mx-auto">
-			<Heading level="h2" gradient floating backplate client:idle>Development Process</Heading>
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Engineering workflow</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">From spec to release</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+			<h2 class="mt-6 mb-10 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+				Development process.
+			</h2>
 			<ProcessFlowDiagram client:load />
 		</div>
 	</section>
 
-	<section class="container mx-auto px-4 py-16">
-		<div class="gradient-bg rounded-lg py-12 text-center">
-			<h3 class="mb-6 text-4xl text-gray-600 dark:text-gray-100">
-				Ready to elevate your engineering team?
-			</h3>
-			<a
-				href="/contact"
-				class="bg-primary-600 hover:bg-primary-700 inline-flex items-center rounded-lg px-6 py-3 text-white transition-colors"
-			>
-				Get in Touch
-				<svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-				</svg>
-			</a>
+	<section class="container mx-auto px-4 pb-20">
+		<div class="block-cobalt hard p-8 text-ink md:p-12">
+			<div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+				<div>
+					<p class="label-mono">/ Collaborate</p>
+					<h3 class="mt-3 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+						Ready to elevate your engineering team?
+					</h3>
+				</div>
+				<a href="/contact" class="key shrink-0 bg-ink text-cream">
+					Call the studio
+				</a>
+			</div>
 		</div>
 	</section>
 </Layout>
+

@@ -3,73 +3,72 @@ import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/hero/PageHero.astro";
 import { ProjectCard3D } from "@/components/ProjectCard3D";
 import { getRoles } from "@/utils/data";
-
-
 import { getRoleImage } from "@/utils/roleImageMap";
 
 const roles = getRoles();
-
-
 ---
 
 <Layout title="Professional Roles - Ehsan Pourhadi">
 	<PageHero
-		title="Versatile Expertise"
-		subtitle="Throughout my career, I've worn many hats and adapted to various roles. Each position has shaped my understanding of technology, product development, and team dynamics. Explore the different roles where I can add value to your organization."
+		title="Capabilities & roles"
+		subtitle="Throughout my career, I have adapted across engineering leadership, product development, cloud architecture, and creative audio production. Explore the roles where I add value."
 	/>
 
-	<section class="container mx-auto px-4 py-12">
-		<div class="mx-auto max-w-6xl">
-			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+	<section class="section">
+		<div class="container mx-auto px-4">
+			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
+				<p class="label-mono">/ Capabilities &amp; roles</p>
+				<div class="flex items-center gap-3">
+					<p class="label-mono hidden opacity-70 sm:block">{roles.length} specializations</p>
+					<span class="size-2 bg-current" aria-hidden="true"></span>
+				</div>
+			</div>
+
+			<div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{
-					   roles.map((role, index) => {
-						   const mappedImage = role.image ? getRoleImage(role.image) : undefined;
-						   const displayImage = mappedImage && {
-							   src: mappedImage.src,
-							   alt: role.title,
-							   width: mappedImage.width,
-							   height: mappedImage.height,
-						   };
-						   return (
-							   <a href={`/roles/${role.slug}`} class="block h-full cursor-pointer">
-								   <ProjectCard3D
-									   client:load
-									   title={role.title}
-									   description={role.description}
-									   icon={role.icon}
-									   image={displayImage}
-									   tags={role.tags}
-									   layout={index}
-									   className="h-full"
-								   />
-							   </a>
-						   );
-					   })
+					roles.map((role, index) => {
+						const mappedImage = role.image ? getRoleImage(role.image) : undefined;
+						const displayImage = mappedImage && {
+							src: mappedImage.src,
+							alt: role.title,
+							width: mappedImage.width,
+							height: mappedImage.height,
+						};
+						return (
+							<a href={`/roles/${role.slug}`} class="block h-full cursor-pointer">
+								<ProjectCard3D
+									client:load
+									title={role.title}
+									description={role.description}
+									image={displayImage}
+									tags={role.tags}
+									layout={index}
+									className="h-full"
+								/>
+							</a>
+						);
+					})
 				}
 			</div>
 
-			<div
-				class="from-primary-500 to-secondary-400 mt-16 rounded-lg bg-gradient-to-r p-8 text-center text-black"
-			>
-				<h3 class="mb-4 text-2xl font-bold">Ready to Work Together?</h3>
-				<p class="mb-6 text-lg opacity-90">
-					Whether you need technical expertise, strategic leadership, or creative solutions, I'm
-					here to help bring your vision to life.
-				</p>
-				<a
-					href="/contact"
-					class="text-primary-600 inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-medium transition-all hover:bg-gray-100 hover:shadow-lg"
-				>
-					Get in Touch
-					<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M8 12h8m-8 0l4 4m-4-4l4-4"></path>
-					</svg>
-				</a>
+			<div class="block-cobalt hard mt-16 p-8 text-ink md:p-12">
+				<div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+					<div class="max-w-2xl">
+						<p class="label-mono">/ Next chapter</p>
+						<h3 class="mt-3 text-3xl font-bold tracking-[-0.04em] md:text-4xl">
+							Got a team or product to build?
+						</h3>
+						<p class="mt-3 text-lg leading-snug opacity-90">
+							Whether you need hands-on full-stack architecture, engineering leadership, or
+							end-to-end product execution, let's talk.
+						</p>
+					</div>
+					<a href="/contact" class="key shrink-0 bg-ink text-cream">
+						Call the studio
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>
 </Layout>
+

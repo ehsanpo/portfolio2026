@@ -29,9 +29,14 @@ export default function SpotifyEmbed({ playlistId, title }: SpotifyEmbedProps) {
 	}, [isVisible]);
 
 	return (
-		<div ref={containerRef} className="bg-dark/50 rounded-lg p-6 backdrop-blur-lg">
-			<h3 className="font-basement mb-4 text-xl">{title}</h3>
-			<div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-black/30">
+		<div ref={containerRef} className="on-paper hard bg-cream text-ink">
+			<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-2.5 py-1.5">
+				<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-mint" aria-hidden="true" />
+				<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+				<span className="font-pixel max-w-[60%] truncate text-xs leading-none">{title}</span>
+				<span className="stripes h-[11px] flex-1" aria-hidden="true" />
+			</div>
+			<div className="relative aspect-[4/5] w-full overflow-hidden bg-paper">
 				{isVisible ? (
 					<iframe
 						title={`${title} Spotify playlist`}
@@ -43,8 +48,8 @@ export default function SpotifyEmbed({ playlistId, title }: SpotifyEmbedProps) {
 						className="absolute inset-0 h-full w-full"
 					/>
 				) : (
-					<div className="flex h-full w-full items-center justify-center text-xs text-muted-foreground">
-						Loading Spotify embed...
+					<div className="label-mono flex h-full w-full items-center justify-center text-ink/70">
+						Loading Spotify embed
 					</div>
 				)}
 			</div>

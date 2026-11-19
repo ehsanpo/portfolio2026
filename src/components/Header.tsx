@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import * as Icons from "lucide-react";
+import { Pulse } from "@/components/motion/Pulse";
+import { underlineSweep } from "@/components/motion/hover";
 
 export interface NavLink {
 	key: string;
@@ -15,6 +17,8 @@ export interface HeaderMinimalProps {
 	className?: string;
 }
 
+const SCROLL_THRESHOLD = 24;
+
 export function HeaderMinimal({
 	logoText = "EHSAN",
 	navLinks = [],
@@ -24,15 +28,19 @@ export function HeaderMinimal({
 	const [isOpen, setIsOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 	const [theme, setTheme] = useState<"light" | "dark">("light");
-	const Newurl = new URL(url);
-	const currentPage = Newurl.pathname.split("/").filter(Boolean)[0] || "/";
+	const navRef = useRef<HTMLElement>(null);
+
+	const pathname = url.startsWith("http")
+		? new URL(url).pathname
+		: new URL(url, "https://localhost").pathname;
+	const currentPage = pathname.split("/").filter(Boolean)[0] || "/";
 
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth >= 768) setIsOpen(false);
 		};
 		const handleScroll = () => {
-			setScrolled(window.scrollY > 16);
+			setScrolled(window.scrollY > SCROLL_THRESHOLD);
 		};
 
 		window.addEventListener("resize", handleResize);
@@ -47,6 +55,16 @@ export function HeaderMinimal({
 			window.removeEventListener("scroll", handleScroll);
 		};
 	}, []);
+
+	useEffect(() => {
+		const navEl = navRef.current;
+		if (!navEl) return;
+		const links = Array.from(navEl.querySelectorAll<HTMLElement>("a[data-nav-sweep]"));
+		const teardowns = links.map((link) => underlineSweep(link));
+		return () => {
+			teardowns.forEach((teardown) => teardown());
+		};
+	}, [navLinks]);
 
 	const toggleTheme = () => {
 		const newTheme = theme === "dark" ? "light" : "dark";
@@ -91,40 +109,58 @@ export function HeaderMinimal({
 
 	return (
 		<header className={cn("fixed inset-x-0 top-0 z-50", className)}>
-			<div className="block-ink h-8 overflow-hidden transition-[height] duration-200">
-				<div className="container flex h-8 items-center justify-between gap-4">
-					<p className="label-mono flex items-center gap-2 text-[10px]!">
-						<span className="size-2 animate-pulse bg-tomato" aria-hidden="true" />
-						On air
-						<span className="hidden opacity-70 sm:inline">Open to interesting problems</span>
-					</p>
-					<a
-						className="label-mono text-[10px]! underline underline-offset-4 hover:text-mustard"
-						href="/contact"
-					>
-						Say hello
-					</a>
+			<div
+				aria-hidden={scrolled}
+				className={cn(
+					"block-ink grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+					scrolled ? "pointer-events-none grid-rows-[0fr] opacity-0" : "grid-rows-[1fr] opacity-100"
+				)}
+			>
+				<div className="overflow-hidden">
+					<div className="container flex h-8 items-center justify-between gap-4">
+						<p className="label-mono flex items-center gap-2 text-[10px]!">
+							<Pulse colorClassName="bg-tomato" />
+							On air
+							<span className="hidden opacity-70 sm:inline">Open to interesting problems</span>
+						</p>
+						<a
+							className="label-mono text-[10px]! underline underline-offset-4 hover:text-mustard"
+							href="/contact"
+							tabIndex={scrolled ? -1 : undefined}
+						>
+							Say hello
+						</a>
+					</div>
 				</div>
 			</div>
 
 			<div
 				className={cn(
-					"border-b-[1.5px] transition-colors duration-200",
+					"transition-colors duration-200 motion-reduce:transition-none",
 					!scrolled && currentPage === "/"
-						? "border-transparent bg-transparent text-ink"
-						: "border-ink bg-paper/95 text-ink backdrop-blur-xs dark:border-border dark:bg-background/95 dark:text-foreground"
+						? "bg-transparent text-ink"
+						: "bg-paper/95 text-ink backdrop-blur-xs dark:bg-background/95 dark:text-foreground"
 				)}
 			>
-				<div className="container flex items-center justify-between gap-4 py-2.5">
+				<div
+					className={cn(
+						"container flex items-center justify-between gap-4 transition-[padding] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+						scrolled ? "py-2.5" : "py-3 md:py-4"
+					)}
+				>
 					<div className="flex items-center gap-3">
 						<a
-							className="font-pixel flex items-center gap-2.5 text-2xl leading-none tracking-tight"
+							className="font-pixel group relative inline-flex items-center gap-2.5 leading-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
 							href="/"
+							aria-label={brandLabel}
 						>
 							<svg
 								width="24"
 								height="24"
-								className="size-5 shrink-0 text-current"
+								className={cn(
+									"shrink-0 text-current transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+									scrolled ? "size-5 scale-100" : "size-7 scale-100 md:size-9"
+								)}
 								viewBox="0 0 27.8 26.7"
 								aria-hidden="true"
 							>
@@ -133,18 +169,47 @@ export function HeaderMinimal({
 									d="M0.5,19.4C0.2,19,0,18.7,0,18.2c0-0.4,0.2-0.8,0.5-1.1L17.1,0.5C17.4,0.2,17.8,0,18.2,0c0.4,0,0.8,0.2,1.1,0.5 c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1L2.7,19.4c-0.3,0.3-0.7,0.5-1.1,0.5C1.2,19.8,0.8,19.7,0.5,19.4z M12.4,25.6 c-0.3,0.3-0.8,0.6-1.3,0.8s-1,0.3-1.5,0.3c-0.5,0-1.1-0.1-1.6-0.3c-0.5-0.2-1.1-0.5-1.5-1l-2.1-2.1c-0.4-0.4-0.6-0.8-0.5-1.2 c0.1-0.4,0.4-0.8,0.9-1.3L20.6,5c0.3-0.3,0.7-0.5,1.1-0.5c0.4,0,0.8,0.2,1.1,0.5c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1 l-15,15L9,23.4c0.2,0.2,0.4,0.2,0.6,0.2c0.2,0,0.5-0.1,0.7-0.4L25.1,8.4C25.4,8.1,25.8,8,26.2,8c0.4,0,0.8,0.2,1.1,0.5 c0.3,0.3,0.5,0.7,0.5,1.1c0,0.4-0.2,0.8-0.5,1.1L12.4,25.6z"
 								/>
 							</svg>
-							<span>{brandLabel}</span>
+							<span
+								className={cn(
+									"relative inline-grid items-center overflow-hidden transition-[height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+									scrolled ? "h-6" : "h-[clamp(2.25rem,6.5vw,4.75rem)]"
+								)}
+							>
+								<span
+									aria-hidden={scrolled}
+									className={cn(
+										"col-start-1 row-start-1 origin-left whitespace-nowrap text-[clamp(2.25rem,6.5vw,4.75rem)] leading-[0.88] tracking-[-0.04em] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+										scrolled
+											? "pointer-events-none scale-[0.35] opacity-0 select-none"
+											: "scale-100 opacity-100"
+									)}
+								>
+									{brandLabel}
+								</span>
+								<span
+									aria-hidden={!scrolled}
+									className={cn(
+										"col-start-1 row-start-1 origin-left whitespace-nowrap text-xl leading-none tracking-tight transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+										scrolled
+											? "scale-100 opacity-100"
+											: "pointer-events-none scale-125 opacity-0 select-none"
+									)}
+								>
+									EP
+								</span>
+							</span>
 						</a>
 					</div>
 
-					<nav className="hidden items-center gap-7 md:flex" aria-label="Main">
+					<nav ref={navRef} className="hidden items-center gap-7 md:flex" aria-label="Main">
 						{navLinks.map((link) => (
 							<a
 								key={link.key}
 								href={link.href}
 								data-game-nav-link
+								data-nav-sweep
 								className={cn(
-									"label-mono underline-offset-4 hover:underline",
+									"label-mono relative py-0.5 underline-offset-4",
 									currentPage === link.key ? "underline decoration-brand decoration-2" : ""
 								)}
 							>

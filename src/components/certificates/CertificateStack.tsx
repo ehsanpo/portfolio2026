@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { Draggable } from "gsap/Draggable";
+import { Draggable } from "gsap/all";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(Draggable);

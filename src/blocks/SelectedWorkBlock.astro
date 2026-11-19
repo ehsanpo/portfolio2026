@@ -40,7 +40,7 @@ const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 			Production systems, platform migrations, and interactive digital products built for Swedish and international organizations.
 		</p>
 
-		<div class="mt-12 border-[1.5px] border-foreground">
+		<div class="mt-12 space-y-8 lg:space-y-10" data-stack-deck>
 			{
 				flagshipItems.map((item, index) => {
 					const isOdd = index % 2 === 1;
@@ -49,8 +49,9 @@ const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 					const projectHref = `/portfolio/${item.permalink || item.slug}`;
 
 					return (
-						<div
-							class={`grid grid-cols-1 lg:grid-cols-12 ${index > 0 ? "border-t-[1.5px] border-foreground" : ""}`}
+						<article
+							data-stack-card
+							class="relative grid grid-cols-1 border-[1.5px] border-foreground bg-card text-card-foreground lg:grid-cols-12"
 						>
 							<div
 								class={`lg:col-span-7 overflow-hidden ${isOdd ? "lg:order-2 lg:border-l-[1.5px] border-foreground" : ""}`}
@@ -141,7 +142,7 @@ const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 									</div>
 								</div>
 							</div>
-						</div>
+						</article>
 					);
 				})
 			}
@@ -189,3 +190,21 @@ const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 		</div>
 	</div>
 </section>
+
+<script>
+	import { initSelectedWorkStack } from "@/components/work/stackCards";
+
+	let cleanup: (() => void) | undefined;
+
+	function mount() {
+		cleanup?.();
+		cleanup = initSelectedWorkStack();
+	}
+
+	mount();
+	document.addEventListener("astro:page-load", mount);
+	document.addEventListener("astro:before-swap", () => {
+		cleanup?.();
+		cleanup = undefined;
+	});
+</script>

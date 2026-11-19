@@ -1,6 +1,8 @@
 ---
+import { getImage } from "astro:assets";
 import { getPortfolioData } from "@/utils/data";
 import CertificateCard from "@/components/certificates/CertificateCard.astro";
+import CertificateStack from "@/components/certificates/CertificateStack";
 
 import cybersecurity from "@/assets/cert/cybersecurity.png";
 import AWS from "@/assets/cert/AWS.png";
@@ -45,6 +47,23 @@ const certsWithImages = certifications.map((cert) => ({
 	image: imageMap[cert.img] || cert.img,
 }));
 const { showAll = false } = Astro.props;
+
+const stackCerts = showAll
+	? []
+	: await Promise.all(
+			certsWithImages.map(async (cert, index) => {
+				const imageSrc =
+					typeof cert.image === "string"
+						? cert.image
+						: (await getImage({ src: cert.image, width: 600, format: "webp", quality: 80 })).src;
+				return {
+					name: cert.name,
+					year: cert.year,
+					imageSrc,
+					index,
+				};
+			}),
+		);
 ---
 
 <section id="certifications" class="block-blush section scroll-mt-20">
@@ -61,13 +80,19 @@ const { showAll = false } = Astro.props;
 			Certifications.
 		</h2>
 
-		<div class="on-paper hard mt-10 grid grid-cols-1 border-t-[1.5px] border-l-[1.5px] border-ink bg-cream text-ink sm:grid-cols-2 lg:grid-cols-4">
-			{
-				certsWithImages
-					.slice(0, showAll ? certsWithImages.length : 4)
-					.map((cert, index) => <CertificateCard {...cert} index={index} />)
-			}
-		</div>
+		{
+			showAll ? (
+				<div class="on-paper hard mt-10 grid grid-cols-1 border-t-[1.5px] border-l-[1.5px] border-ink bg-cream text-ink sm:grid-cols-2 lg:grid-cols-4">
+					{certsWithImages.map((cert, index) => (
+						<CertificateCard {...cert} index={index} />
+					))}
+				</div>
+			) : (
+				<div class="on-paper">
+					<CertificateStack certificates={stackCerts} client:visible />
+				</div>
+			)
+		}
 		{
 			showAll ? null : (
 				<div class="mt-10">

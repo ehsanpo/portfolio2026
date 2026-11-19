@@ -29,11 +29,24 @@ export function HeaderMinimal({
 	const [scrolled, setScrolled] = useState(false);
 	const [theme, setTheme] = useState<"light" | "dark">("light");
 	const navRef = useRef<HTMLElement>(null);
+	const menuButtonRef = useRef<HTMLButtonElement>(null);
 
 	const pathname = url.startsWith("http")
 		? new URL(url).pathname
 		: new URL(url, "https://localhost").pathname;
 	const currentPage = pathname.split("/").filter(Boolean)[0] || "/";
+
+	useEffect(() => {
+		if (!isOpen) return;
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setIsOpen(false);
+				menuButtonRef.current?.focus();
+			}
+		};
+		window.addEventListener("keydown", handleKeyDown);
+		return () => window.removeEventListener("keydown", handleKeyDown);
+	}, [isOpen]);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -124,7 +137,7 @@ export function HeaderMinimal({
 							<span className="hidden opacity-70 sm:inline">Open to interesting problems</span>
 						</p>
 						<a
-							className="label-mono text-[10px]! underline underline-offset-4 hover:text-mustard"
+							className="label-mono text-[10px]! underline underline-offset-4 hover:text-mustard focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
 							href="/contact"
 							tabIndex={scrolled ? -1 : undefined}
 						>
@@ -209,7 +222,7 @@ export function HeaderMinimal({
 								data-game-nav-link
 								data-nav-sweep
 								className={cn(
-									"label-mono relative py-0.5 underline-offset-4",
+									"label-mono relative py-0.5 underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current",
 									currentPage === link.key ? "underline decoration-brand decoration-2" : ""
 								)}
 							>
@@ -244,6 +257,7 @@ export function HeaderMinimal({
 						</button>
 
 						<button
+							ref={menuButtonRef}
 							type="button"
 							onClick={() => setIsOpen(!isOpen)}
 							className="inline-flex size-10 items-center justify-center text-sm font-medium transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current md:hidden"
@@ -276,7 +290,7 @@ export function HeaderMinimal({
 								data-game-nav-link
 								onClick={() => setIsOpen(false)}
 								className={cn(
-									"label-mono flex items-center justify-between px-4 py-3.5 text-ink transition-colors hover:bg-mustard",
+									"label-mono flex items-center justify-between px-4 py-3.5 text-ink transition-colors hover:bg-mustard focus-visible:bg-mustard focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ink",
 									currentPage === link.key ? "bg-mustard font-bold" : ""
 								)}
 							>

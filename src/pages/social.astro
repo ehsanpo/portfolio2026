@@ -1,30 +1,37 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/hero/PageHero.astro";
-import SocialGridFeed from "@/components/social/SocialGridFeed";
+import SocialBookmarksFeed from "@/components/social/SocialBookmarksFeed";
 import { getSocialPosts } from "@/utils/social";
 
 const socialPosts = await getSocialPosts();
 ---
 
 <Layout
-	title="Social"
-	description="Design drops, short videos, and useful links in one TikTok-style feed."
+	title="Social & Bookmarks"
+	description="Saved repositories, links, videos, and dispatches from my creative workflow."
 >
-	<PageHero title="Social" subtitle="Images, videos, links, and quick drops from my creative workflow." />
-
-	<section class="section">
+	<section class="block-cobalt border-b-[1.5px] border-ink pt-28 pb-10 md:pt-36 md:pb-14">
 		<div class="container">
-			<div class="flex items-center justify-between border-t-[1.5px] border-current pt-3">
-				<p class="label-mono">/ Feed &amp; dispatches</p>
+			<div class="flex items-center justify-between border-t-[1.5px] border-ink pt-3">
+				<p class="label-mono">/ Social &amp; Bookmarks</p>
 				<div class="flex items-center gap-3">
-					<p class="label-mono hidden opacity-70 sm:block">{socialPosts.length} posts</p>
-					<span class="size-2 bg-current" aria-hidden="true"></span>
+					<p class="label-mono hidden opacity-70 sm:block">{socialPosts.length} saved</p>
+					<span class="size-2 bg-ink" aria-hidden="true"></span>
 				</div>
 			</div>
-			<div class="mt-8">
-				<SocialGridFeed posts={socialPosts} client:load />
-			</div>
+
+			<h1 class="mt-6 max-w-4xl text-4xl font-bold tracking-[-0.04em] text-ink md:text-6xl">
+				Social &amp; Bookmarks.
+			</h1>
+			<p class="mt-4 max-w-xl text-lg leading-snug text-ink/85">
+				Starred repositories, short videos, links, and quick drops from my workflow.
+			</p>
+		</div>
+	</section>
+
+	<section class="bg-background pt-8 pb-16 text-foreground">
+		<div class="container">
+			<SocialBookmarksFeed posts={socialPosts} client:load />
 		</div>
 	</section>
 </Layout>

@@ -345,7 +345,7 @@ export const CertificateStack: React.FC<CertificateStackProps> = ({ certificates
 					<span className="font-semibold text-ink">{activeCert.name}</span>
 				</p>
 
-				<p className="label-mono hidden text-ink/65 md:block">Drag, flick, or arrow keys</p>
+				<p className="label-mono hidden text-ink/80 md:block">Drag, flick, or arrow keys</p>
 			</div>
 		</div>
 	);

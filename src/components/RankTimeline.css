@@ -38,3 +38,9 @@
 	width: 0 !important;
 	height: 0 !important;
 }
+
+@media (prefers-reduced-motion: reduce) {
+	.ranktimeline-wrap {
+		scroll-behavior: auto !important;
+	}
+}

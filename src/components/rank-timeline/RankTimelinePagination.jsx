@@ -16,10 +16,10 @@ export const RankTimelinePagination = ({
 	);
 
 	return (
-		<div className="flex items-center justify-center w-full mb-6 px-1">
+		<div className="flex items-center justify-center w-full mb-6">
 			<nav
 				aria-label="Timeline Pagination"
-				className="inline-flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-2xl bg-card/70 dark:bg-neutral-900/60 border border-white/40 backdrop-blur-md shadow-xs max-w-full"
+				className="on-paper hard inline-flex flex-wrap items-center justify-center gap-1 border-[1.5px] border-ink bg-cream p-1.5 max-w-full"
 			>
 				{/* Previous Button */}
 				<button
@@ -27,17 +27,18 @@ export const RankTimelinePagination = ({
 					onClick={onPrev}
 					disabled={activeYear === startYear}
 					aria-label="Previous year"
-					className="inline-flex items-center gap-1 px-2.5 sm:px-3 h-9 rounded-xl text-xs sm:text-sm font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/60 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+					className="inline-flex items-center justify-center gap-1.5 px-3 min-h-[44px] min-w-[44px] font-mono text-xs font-semibold uppercase tracking-wider text-ink border-[1.5px] border-transparent hover:border-ink hover:bg-mustard disabled:opacity-35 disabled:pointer-events-none transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink cursor-pointer"
 				>
 					<svg
-						width="16"
-						height="16"
+						width="14"
+						height="14"
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
 						strokeWidth="2.5"
-						strokeLinecap="round"
-						strokeLinejoin="round"
+						strokeLinecap="square"
+						strokeLinejoin="miter"
+						aria-hidden="true"
 					>
 						<polyline points="15 18 9 12 15 6"></polyline>
 					</svg>
@@ -50,9 +51,10 @@ export const RankTimelinePagination = ({
 						return (
 							<span
 								key={item}
-								className="w-6 h-9 flex items-center justify-center text-xs text-muted-foreground/60 font-bold select-none"
+								aria-hidden="true"
+								className="w-7 min-h-[44px] flex items-center justify-center font-mono text-xs font-bold text-ink/60 select-none"
 							>
-								•••
+								...
 							</span>
 						);
 					}
@@ -65,10 +67,10 @@ export const RankTimelinePagination = ({
 							type="button"
 							onClick={() => onSelectYear(year)}
 							aria-current={isSelected ? "page" : undefined}
-							className={`h-9 min-w-9 px-2 sm:px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+							className={`min-h-[44px] min-w-[44px] px-2.5 font-mono text-xs font-semibold transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink cursor-pointer border-[1.5px] ${
 								isSelected
-									? "bg-primary text-black font-bold shadow-sm shadow-primary/20 scale-102"
-									: "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+									? "bg-ink text-cream border-ink"
+									: "text-ink border-transparent hover:border-ink hover:bg-mustard"
 							}`}
 						>
 							{year}
@@ -82,18 +84,19 @@ export const RankTimelinePagination = ({
 					onClick={onNext}
 					disabled={activeYear === endYear}
 					aria-label="Next year"
-					className="inline-flex items-center gap-1 px-2.5 sm:px-3 h-9 rounded-xl text-xs sm:text-sm font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/60 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+					className="inline-flex items-center justify-center gap-1.5 px-3 min-h-[44px] min-w-[44px] font-mono text-xs font-semibold uppercase tracking-wider text-ink border-[1.5px] border-transparent hover:border-ink hover:bg-mustard disabled:opacity-35 disabled:pointer-events-none transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink cursor-pointer"
 				>
 					<span className="hidden sm:inline">Next</span>
 					<svg
-						width="16"
-						height="16"
+						width="14"
+						height="14"
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
 						strokeWidth="2.5"
-						strokeLinecap="round"
-						strokeLinejoin="round"
+						strokeLinecap="square"
+						strokeLinejoin="miter"
+						aria-hidden="true"
 					>
 						<polyline points="9 18 15 12 9 6"></polyline>
 					</svg>

@@ -132,8 +132,11 @@ const RankTimeline = () => {
 			`[data-year="${year}"]`
 		);
 		if (targetCard) {
+			const prefersReduced =
+				typeof window !== "undefined" &&
+				window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 			targetCard.scrollIntoView({
-				behavior: "smooth",
+				behavior: prefersReduced ? "auto" : "smooth",
 				inline: "center",
 				block: "nearest",
 			});
@@ -152,7 +155,7 @@ const RankTimeline = () => {
 
 	return (
 		<div
-			className="ranktimeline w-full my-8 select-none"
+			className="ranktimeline w-full mt-8 select-none"
 			style={{
 				"--col-width": "24px",
 				"--row-height": "40px",
@@ -161,32 +164,34 @@ const RankTimeline = () => {
 		>
 			{/* Top Bar: View Mode Switcher */}
 			<div className="flex items-center justify-between gap-4 flex-wrap mb-6">
-				<div className="flex items-center gap-3">
+				<div className="flex items-center gap-3" role="group" aria-label="Timeline view mode">
 					<button
 						type="button"
+						aria-pressed={viewMode === "cards"}
 						onClick={() => setViewMode("cards")}
-						className={`key px-3! py-2! text-xs! ${
+						className={`key min-h-[44px] px-4! py-2.5! text-xs! focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
 							viewMode === "cards"
 								? "bg-ink text-cream"
-								: "bg-cream text-ink"
+								: "bg-cream text-ink hover:bg-mustard"
 						}`}
 					>
 						Story Cards
 					</button>
 					<button
 						type="button"
+						aria-pressed={viewMode === "timeline"}
 						onClick={() => setViewMode("timeline")}
-						className={`key px-3! py-2! text-xs! ${
+						className={`key min-h-[44px] px-4! py-2.5! text-xs! focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
 							viewMode === "timeline"
 								? "bg-ink text-cream"
-								: "bg-cream text-ink"
+								: "bg-cream text-ink hover:bg-mustard"
 						}`}
 					>
 						Timeline Grid
 					</button>
 				</div>
 
-				<div className="label-mono text-muted-foreground hidden sm:block">
+				<div className="label-mono text-ink/85 hidden sm:block">
 					{viewMode === "cards"
 						? "Interactive evolution by year (2010 to 2026)"
 						: "Chronological succession tracks"}
@@ -194,11 +199,10 @@ const RankTimeline = () => {
 			</div>
 
 			{/* ========================================================================= */}
-			{/* MODE 1: 3D Story Cards View                                               */}
+			{/* MODE 1: Story Cards View                                                  */}
 			{/* ========================================================================= */}
 			{viewMode === "cards" && (
 				<>
-					{/* Production Soft Pagination Bar */}
 					<RankTimelinePagination
 						activeYear={activeYear}
 						years={YEARS}
@@ -209,18 +213,11 @@ const RankTimeline = () => {
 						endYear={END_YEAR}
 					/>
 
-					{/* 3D Track Wrapper with Left & Right Edge Fades */}
-					<div className="relative border-[1.5px] border-foreground bg-paper/40 dark:bg-card/40">
-						{/* Left Edge Overlay Fade */}
-						<div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 sm:w-16 md:w-20 bg-gradient-to-r from-background to-transparent z-20" />
-
-						{/* Right Edge Overlay Fade */}
-						<div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-16 md:w-20 bg-gradient-to-l from-background to-transparent z-20" />
-
-						{/* Scroll Track with generous side padding, wide spacious cards, and spacing */}
+					{/* Track Wrapper */}
+					<div className="on-paper hard relative border-[1.5px] border-ink bg-paper">
 						<div
 							ref={scrollContainerRef}
-							className="ranktimeline-wrap relative overflow-x-auto pb-10 pt-3 px-12 sm:px-24 md:px-36 flex gap-8 sm:gap-10 snap-x snap-mandatory scroll-smooth"
+							className="ranktimeline-wrap relative overflow-x-auto py-6 px-6 sm:px-10 md:px-14 flex gap-6 sm:gap-8 snap-x snap-mandatory scroll-smooth motion-reduce:scroll-auto"
 						>
 							{yearCards.map((card) => (
 								<RankStoryCard

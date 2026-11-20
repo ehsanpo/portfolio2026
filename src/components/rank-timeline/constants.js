@@ -4,25 +4,25 @@ export const TOTAL_YEARS = END_YEAR - START_YEAR;
 export const YEARS = Array.from({ length: TOTAL_YEARS + 1 }, (_, i) => START_YEAR + i);
 
 export const categoryBadgeStyles = {
-	Frontend: "bg-teal-500/15 text-teal-400 border-teal-500/30",
-	Backend: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-	Database: "bg-amber-500/15 text-amber-400 border-amber-500/30",
-	DevOps: "bg-sky-500/15 text-sky-400 border-sky-500/30",
-	Apps: "bg-indigo-500/15 text-indigo-400 border-indigo-500/30",
-	Design: "bg-purple-500/15 text-purple-400 border-purple-500/30",
+	Frontend: "bg-mint text-ink border-ink",
+	Backend: "bg-mustard text-ink border-ink",
+	Database: "bg-cream text-ink border-ink",
+	DevOps: "bg-cobalt text-ink border-ink",
+	Apps: "bg-tomato text-ink border-ink",
+	Design: "bg-blush text-ink border-ink",
 };
 
 export const categoryColors = {
-	Frontend: "bg-teal-400 text-teal-950",
-	Backend: "bg-emerald-400 text-emerald-950",
-	Database: "bg-amber-300 text-amber-950",
-	DevOps: "bg-sky-400 text-sky-950",
-	Apps: "bg-indigo-300 text-indigo-950",
-	Design: "bg-purple-300 text-purple-950",
+	Frontend: "bg-mint text-ink",
+	Backend: "bg-mustard text-ink",
+	Database: "bg-cream text-ink",
+	DevOps: "bg-cobalt text-ink",
+	Apps: "bg-tomato text-ink",
+	Design: "bg-blush text-ink",
 };
 
-export const defaultBadgeStyle = "bg-muted/50 text-muted-foreground border-white/40";
-export const defaultColor = "bg-teal-300 text-teal-950";
+export const defaultBadgeStyle = "bg-paper text-ink border-ink";
+export const defaultColor = "bg-mint text-ink";
 
 // Color glow accents per era to make it flashy and 3D
 export const getEraGlowColor = (year) => {

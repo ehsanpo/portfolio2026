@@ -349,3 +349,127 @@ export function jelly(
 		);
 	});
 }
+
+export type ImageZoomOptions = {
+	/** Target media element to zoom; defaults to first img/video/picture/[data-zoom-media] inside the frame. */
+	media?: HTMLElement | null;
+	scale?: number;
+	duration?: number;
+	ease?: string;
+	touch?: boolean;
+};
+
+/**
+ * Museum of Motion `imageZoom`: smoothly scales media inside an overflow-clipped frame on hover/focus-visible.
+ */
+export function imageZoom(
+	frame: HTMLElement,
+	{
+		media,
+		scale = 1.06,
+		duration = 0.55,
+		ease = "power3.out",
+		touch = false,
+	}: ImageZoomOptions = {}
+): Teardown {
+	if (prefersReducedMotion()) return () => {};
+	return own((dispose, after) => {
+		const target =
+			media ??
+			frame.querySelector<HTMLElement>("[data-zoom-media], img, video, picture") ??
+			frame;
+		after(snapshotStyles([frame], ["overflow"]));
+		after(snapshotStyles([target], [...MOTION_PROPS, "will-change"]));
+		frame.style.overflow = "hidden";
+		target.style.willChange = "transform";
+		dispose(() => gsap.killTweensOf(target));
+
+		hotState(
+			dispose,
+			frame,
+			{
+				on: () => {
+					gsap.to(target, { scale, duration, ease, overwrite: "auto" });
+				},
+				off: () => {
+					gsap.to(target, { scale: 1, duration: duration * 0.85, ease, overwrite: "auto" });
+				},
+			},
+			touch
+		);
+	});
+}
+
+export type DirectionalFillOptions = {
+	/** Fill background color (CSS color or custom property). */
+	fill?: string;
+	/** Optional text color while filled. */
+	textColor?: string;
+	duration?: number;
+	ease?: string;
+	touch?: boolean;
+};
+
+/**
+ * Museum of Motion `directionalFill`: expands a circular ink wash from the pointer entry edge and retracts toward the exit edge.
+ */
+export function directionalFill(
+	control: HTMLElement,
+	{
+		fill = "var(--mustard, #f4b829)",
+		textColor,
+		duration = 0.45,
+		ease = "power3.out",
+		touch = false,
+	}: DirectionalFillOptions = {}
+): Teardown {
+	if (prefersReducedMotion()) return () => {};
+	return own((dispose, after) => {
+		const wash = document.createElement("span");
+		wash.dataset.directionalFill = "";
+		wash.setAttribute("aria-hidden", "true");
+		wash.style.cssText =
+			`position:absolute;left:0;top:0;border-radius:50%;pointer-events:none;z-index:-1;` +
+			`background:${fill};transform:translate(-50%,-50%) scale(0);will-change:transform`;
+
+		const initialColor = getComputedStyle(control).color;
+		after(snapshotStyles([control], ["position", "overflow", "isolation", "color"]));
+		if (getComputedStyle(control).position === "static") control.style.position = "relative";
+		control.style.overflow = "hidden";
+		control.style.isolation = "isolate";
+		control.prepend(wash);
+		after(() => wash.remove());
+		dispose(() => gsap.killTweensOf([control, wash]));
+
+		const positionWash = (event: PointerEvent | null) => {
+			const { box, x, y } = crossing(control, event);
+			const radius = Math.hypot(Math.max(x, box.width - x), Math.max(y, box.height - y)) * 1.05;
+			const diameter = Math.max(radius * 2, 16);
+			wash.style.width = `${diameter}px`;
+			wash.style.height = `${diameter}px`;
+			gsap.set(wash, { x, y, xPercent: -50, yPercent: -50 });
+		};
+
+		liquidState(
+			dispose,
+			control,
+			{
+				on(event) {
+					positionWash(event);
+					gsap.to(wash, { scale: 1, duration, ease, overwrite: "auto" });
+					if (textColor) {
+						gsap.to(control, { color: textColor, duration: duration * 0.65, ease: "power2.out", overwrite: "auto" });
+					}
+				},
+				off(event) {
+					positionWash(event);
+					gsap.to(wash, { scale: 0, duration: duration * 0.8, ease: "power2.in", overwrite: "auto" });
+					if (textColor) {
+						gsap.to(control, { color: initialColor, duration: duration * 0.65, ease: "power2.out", overwrite: "auto" });
+					}
+				},
+			},
+			touch
+		);
+	});
+}

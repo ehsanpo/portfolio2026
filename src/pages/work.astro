@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { ProjectCard3D } from "@/components/ProjectCard3D";
+import { WorkCard } from "@/components/work/WorkCard";
+import { Reveal } from "@/components/motion/Reveal";
 import portfolioData from "@/data/portfolio-resume.json";
 import PageHero from "@/components/hero/PageHero.astro";
 
@@ -25,26 +26,30 @@ const companies = portfolioData.companies;
 			<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{
 					companies.map((company, index) => (
-						<ProjectCard3D
-							client:load
-							title={company.name}
-							description={company.description}
-							date={company.year}
-							tags={company.tags}
-							image={
-								company.image
-									? {
-											src: company.image,
-											alt: company.name,
-											width: 800,
-											height: 600,
-										}
-									: undefined
-							}
-							categories={company.position}
-							layout={index}
-							href={`/work/${company.id}`}
-						/>
+						<Reveal
+							client:visible
+							delay={Math.min(index * 0.06, 0.3)}
+							className="h-full"
+						>
+							<WorkCard
+								title={company.name}
+								position={company.position}
+								year={company.year}
+								description={company.description}
+								tags={company.tags}
+								image={
+									company.image
+										? {
+												src: company.image,
+												alt: company.name,
+												width: 800,
+												height: 600,
+											}
+										: undefined
+								}
+								href={`/work/${company.id}`}
+							/>
+						</Reveal>
 					))
 				}
 			</div>

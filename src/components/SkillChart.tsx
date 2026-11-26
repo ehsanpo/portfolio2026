@@ -343,7 +343,7 @@ export default function SkillChart({ data, chartData, showButtons }: SkillChartP
 	}));
 
 	return (
-		<div className="mx-auto w-full max-w-6xl px-4 py-1">
+		<div className="mx-auto w-full max-w-[96rem] px-4 py-1">
 			{showButtons && (
 				<div className="mb-8">
 					<div className="flex flex-wrap justify-center gap-3">

@@ -30,9 +30,24 @@ interface Company {
 	}>;
 }
 
+interface RelatedProject {
+	id: string;
+	slug?: string;
+	data: {
+		title: string;
+		tagline?: string;
+		port_date?: string | number | Date;
+		date?: string | number | Date;
+		tag?: string[];
+		category?: string[];
+		permalink?: string;
+		[key: string]: unknown;
+	};
+}
+
 interface WorkDetailViewProps {
 	company: Company;
-	relatedProjects: any[];
+	relatedProjects: RelatedProject[];
 	skillDurations: Record<string, string>;
 }
 
@@ -106,7 +121,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 								{company.softSkills.map((skill, idx) => (
 									<span
 										key={idx}
-										className="on-paper border-[1.5px] border-ink bg-cream px-3 py-1.5 font-mono text-xs font-semibold text-ink shadow-[2px_2px_0_var(--ink)]"
+										className="bg-[#17140f] px-3.5 py-1.5 font-mono text-xs font-semibold text-white dark:bg-[#1e1a13]"
 									>
 										{skill}
 									</span>
@@ -121,16 +136,16 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 								<p className="label-mono">/ Role &amp; architecture</p>
 								<span className="size-2 bg-current" aria-hidden="true" />
 							</div>
-							<div className="on-paper hard bg-cream text-ink divide-y-[1.5px] divide-ink">
+							<div className="bg-[#17140f] text-white divide-y divide-white/10 dark:bg-[#1e1a13]">
 								{company.detailedDescription.map((item, idx) => (
 									<div
 										key={idx}
 										className="grid grid-cols-1 gap-3 p-5 sm:grid-cols-[3.5rem_1fr] sm:items-baseline"
 									>
-										<span className="label-mono text-muted-foreground">
+										<span className="label-mono text-mustard">
 											{String(idx + 1).padStart(2, "0")}
 										</span>
-										<p className="text-base leading-relaxed text-ink">{item}</p>
+										<p className="text-base leading-relaxed text-white/90">{item}</p>
 									</div>
 								))}
 							</div>
@@ -147,11 +162,11 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 								{company.awards.map((award, idx) => (
 									<div
 										key={idx}
-										className="on-paper hard bg-cream text-ink flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
+										className="bg-[#17140f] text-white flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between dark:bg-[#1e1a13]"
 									>
 										<div className="flex items-center gap-5">
 											{award.images && (
-												<div className="flex h-16 w-16 shrink-0 items-center justify-center border-[1.5px] border-ink bg-paper p-2">
+												<div className="flex h-16 w-16 shrink-0 items-center justify-center bg-[#241f17] p-2.5">
 													<img
 														src={award.images}
 														alt={award.name}
@@ -160,13 +175,13 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 												</div>
 											)}
 											<div>
-												<span className="font-pixel text-xs border border-ink bg-mustard px-2 py-0.5 text-ink">
+												<span className="font-pixel text-xs bg-mustard px-2 py-0.5 text-ink">
 													HONOR
 												</span>
-												<h3 className="mt-1.5 text-xl font-bold tracking-[-0.02em] text-ink">
+												<h3 className="mt-1.5 text-xl font-bold tracking-[-0.02em] text-white">
 													{award.name}
 												</h3>
-												<p className="mt-1 text-sm leading-snug text-ink/80">
+												<p className="mt-1 text-sm leading-snug text-white/80">
 													{award.description}
 												</p>
 											</div>
@@ -174,7 +189,7 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 										{award.link && (
 											<a
 												href={award.link.startsWith("/") ? award.link : `/${award.link}`}
-												className="key bg-ink text-cream shrink-0"
+												className="inline-flex min-h-[44px] shrink-0 items-center justify-center bg-mustard px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard"
 											>
 												Case study
 											</a>
@@ -197,35 +212,43 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 								</div>
 							</div>
 							<div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-								{relatedProjects.map((project, index) => (
-									<ProjectCard3D
-										key={project.id}
-										title={project.data.title}
-										description={project.data.tagline}
-										date={project.data.port_date || project.data.date}
-										tags={project.data.tag}
-										image={getProjectImage(project.data)}
-										categories={project.data.category}
-										layout={index}
-										href={`/portfolio/${project.data.permalink || project.slug}`}
-									/>
-								))}
+								{relatedProjects.map((project, index) => {
+									const rawDate = project.data.port_date ?? project.data.date;
+									const dateStr =
+										rawDate instanceof Date
+											? rawDate.toISOString()
+											: rawDate !== undefined
+												? String(rawDate)
+												: undefined;
+									return (
+										<ProjectCard3D
+											key={project.id}
+											title={project.data.title}
+											description={project.data.tagline}
+											date={dateStr}
+											tags={project.data.tag}
+											image={getProjectImage(project.data)}
+											categories={project.data.category}
+											layout={index}
+											href={`/portfolio/${project.data.permalink || project.slug}`}
+										/>
+									);
+								})}
 							</div>
 						</section>
 					)}
 				</div>
 
-				<div className="lg:col-span-4 space-y-12">
+				<div className="lg:col-span-4 space-y-10">
 					{company.codeSkills && company.codeSkills.length > 0 && (
-						<section className="on-paper hard bg-cream text-ink">
-							<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
-								<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-tomato" aria-hidden="true" />
-								<span className="stripes h-[11px] flex-1" aria-hidden="true" />
-								<h2 className="font-pixel text-xs leading-none uppercase text-ink">
+						<section className="bg-[#17140f] text-white dark:bg-[#1e1a13]">
+							<div className="flex items-center gap-2.5 bg-[#241f17] px-4 py-3">
+								<span className="size-2.5 shrink-0 bg-tomato" aria-hidden="true" />
+								<h2 className="font-pixel text-xs leading-none uppercase tracking-wider text-white">
 									STACK &amp; DURATION
 								</h2>
 							</div>
-							<dl className="divide-y divide-ink/20 px-4 py-1">
+							<dl className="divide-y divide-white/10 px-4 py-1">
 								{company.codeSkills.map((skill, idx) => {
 									const duration = getSkillDuration(skill);
 									return (
@@ -233,10 +256,10 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 											key={idx}
 											className="flex items-baseline justify-between gap-4 py-2.5"
 										>
-											<dt className="font-sans text-sm font-semibold text-ink">
+											<dt className="font-sans text-sm font-semibold text-white">
 												{skill}
 											</dt>
-											<dd className="font-mono text-xs text-ink/75 tabular-nums">
+											<dd className="font-mono text-xs text-mustard tabular-nums">
 												{duration || "Active"}
 											</dd>
 										</div>
@@ -247,21 +270,20 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 					)}
 
 					{company.team && company.team.length > 0 && (
-						<section className="on-paper hard bg-cream text-ink">
-							<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
-								<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-mint" aria-hidden="true" />
-								<span className="stripes h-[11px] flex-1" aria-hidden="true" />
-								<h2 className="font-pixel text-xs leading-none uppercase text-ink">
+						<section className="bg-[#17140f] text-white dark:bg-[#1e1a13]">
+							<div className="flex items-center gap-2.5 bg-[#241f17] px-4 py-3">
+								<span className="size-2.5 shrink-0 bg-mint" aria-hidden="true" />
+								<h2 className="font-pixel text-xs leading-none uppercase tracking-wider text-white">
 									TEAM ROSTER
 								</h2>
 							</div>
-							<ul className="divide-y divide-ink/20 p-4">
+							<ul className="divide-y divide-white/10 p-4">
 								{company.team.map((member, idx) => (
 									<li
 										key={idx}
 										className="flex items-center gap-3.5 py-2.5 first:pt-0 last:pb-0"
 									>
-										<div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden border-[1.5px] border-ink bg-paper">
+										<div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden bg-[#2b251c]">
 											{member.img ? (
 												<img
 													src={getTestimonialImage(member.img)}
@@ -273,10 +295,10 @@ export const WorkDetailView: React.FC<WorkDetailViewProps> = ({
 											)}
 										</div>
 										<div className="min-w-0 flex-1">
-											<div className="truncate font-sans text-sm font-bold text-ink">
+											<div className="truncate font-sans text-sm font-bold text-white">
 												{member.name}
 											</div>
-											<div className="label-mono truncate text-[10px]! text-ink/70">
+											<div className="label-mono truncate text-[10px]! text-white/70">
 												{member.role}
 											</div>
 										</div>

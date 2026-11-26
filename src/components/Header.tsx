@@ -20,7 +20,7 @@ export interface HeaderMinimalProps {
 const SCROLL_THRESHOLD = 24;
 
 export function HeaderMinimal({
-	logoText = "EHSAN",
+	logoText = "Ehsan Pourhadi ",
 	navLinks = [],
 	url = "/",
 	className,
@@ -185,7 +185,7 @@ export function HeaderMinimal({
 							<span
 								className={cn(
 									"relative inline-grid items-center overflow-hidden transition-[height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-									scrolled ? "h-6" : "h-[clamp(2.25rem,6.5vw,4.75rem)]"
+									
 								)}
 							>
 								<span
@@ -193,23 +193,13 @@ export function HeaderMinimal({
 									className={cn(
 										"col-start-1 row-start-1 origin-left whitespace-nowrap text-[clamp(2.25rem,6.5vw,4.75rem)] leading-[0.88] tracking-[-0.04em] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
 										scrolled
-											? "pointer-events-none scale-[0.35] opacity-0 select-none"
-											: "scale-100 opacity-100"
+											? "pointer-events-none scale-[0.35] select-none"
+											: "scale-40 opacity-100"
 									)}
 								>
 									{brandLabel}
 								</span>
-								<span
-									aria-hidden={!scrolled}
-									className={cn(
-										"col-start-1 row-start-1 origin-left whitespace-nowrap text-xl leading-none tracking-tight transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-										scrolled
-											? "scale-100 opacity-100"
-											: "pointer-events-none scale-125 opacity-0 select-none"
-									)}
-								>
-									EP
-								</span>
+								
 							</span>
 						</a>
 					</div>

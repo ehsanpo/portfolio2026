@@ -72,7 +72,7 @@ export function ProcessFlowDiagram() {
 	);
 
 	return (
-		<div className="on-paper hard bg-cream text-ink mx-auto w-full max-w-5xl">
+		<div className="on-paper hard bg-cream text-ink mx-auto w-full max-w-[96rem]">
 			<div className="flex items-center gap-2.5 border-b-[1.5px] border-ink px-3 py-2 bg-cream">
 				<span className="size-2.5 shrink-0 border-[1.5px] border-ink bg-mint" aria-hidden="true" />
 				<span className="stripes h-[11px] flex-1" aria-hidden="true" />

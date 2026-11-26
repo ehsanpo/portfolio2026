@@ -1,7 +1,7 @@
 ---
+import type { ImageMetadata } from "astro";
 import { getPortfolioData } from "@/utils/data";
 import { Image } from "astro:assets";
-import Card3D from "@/components/Card3D";
 
 import cannen from "@/assets/awards/cannen.png";
 import guldagg from "@/assets/awards/guldagg.png";
@@ -9,7 +9,7 @@ import svenskadesign from "@/assets/awards/svenskadesign.png";
 
 const { awards } = getPortfolioData();
 
-const imageMap: Record<string, any> = {
+const imageMap: Record<string, ImageMetadata> = {
 	"/img/awards/cannen.png": cannen,
 	"/img/awards/guldagg.png": guldagg,
 	"/img/awards/svenskadesign.png": svenskadesign,
@@ -17,7 +17,7 @@ const imageMap: Record<string, any> = {
 
 const awardsWithImages = awards.map((award) => ({
 	...award,
-	image: imageMap[award.images] || award.images,
+	image: imageMap[award.images],
 	href: award.link.startsWith("/") ? award.link : `/${award.link}`,
 }));
 ---
@@ -39,23 +39,19 @@ const awardsWithImages = awards.map((award) => ({
 		<div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 			{
 				awardsWithImages.map((award, index) => (
-					<Card3D client:load intensity={10} shine={false} className="h-full">
-						<a
-							href={award.href}
-							class="group/award flex h-full flex-col justify-between p-6 text-ink"
-							style="transform-style: preserve-3d;"
-						>
-							<div class="flex items-center justify-between border-b-[1.5px] border-ink/20 pb-3">
-								<span class="label-mono text-ink/70">HONOR / 0{index + 1}</span>
-								<span class="font-pixel border-[1.5px] border-ink bg-mustard px-2 py-0.5 text-xs text-ink">
-									WINNER
-								</span>
-							</div>
+					<a
+						href={award.href}
+						class="group relative flex h-full flex-col justify-between bg-[#17140f] p-7 text-white transition-colors duration-200 hover:bg-[#221d16] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard dark:bg-[#1f1b14] dark:hover:bg-[#2a241b]"
+					>
+						<div class="flex items-center justify-between gap-3">
+							<span class="label-mono text-white/70">HONOR / 0{index + 1}</span>
+							<span class="font-pixel bg-mustard px-2.5 py-0.5 text-xs text-ink">
+								WINNER
+							</span>
+						</div>
 
-							<div
-								class="my-8 flex h-36 w-full items-center justify-center transition-transform duration-300"
-								style="transform: translateZ(calc(var(--hover, 0) * 35px));"
-							>
+						<div class="my-9 flex h-36 w-full items-center justify-center">
+							{award.image ? (
 								<Image
 									src={award.image}
 									alt={award.name}
@@ -64,22 +60,34 @@ const awardsWithImages = awards.map((award) => ({
 									format="webp"
 									quality={85}
 									loading="lazy"
-									class="max-h-32 w-auto object-contain transition-transform duration-300 group-hover/award:scale-105"
+									class="max-h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
 								/>
-							</div>
+							) : (
+								<img
+									src={award.images}
+									alt={award.name}
+									loading="lazy"
+									class="max-h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+								/>
+							)}
+						</div>
 
-							<div
-								class="border-t-[1.5px] border-ink pt-4"
-								style="transform: translateZ(calc(var(--hover, 0) * 20px));"
-							>
-								<h3 class="text-2xl font-bold tracking-[-0.03em] text-ink">{award.name}</h3>
-								<p class="mt-2 text-sm leading-relaxed text-ink/80">{award.description}</p>
-								<div class="mt-5 flex items-center justify-between">
-									<span class="key w-full bg-ink text-cream">View case study</span>
-								</div>
+						<div>
+							<h3 class="text-2xl font-bold tracking-[-0.03em] text-white transition-colors group-hover:text-mustard">
+								{award.name}
+							</h3>
+							<p class="mt-2.5 text-sm leading-relaxed text-white/80">{award.description}</p>
+							<div class="mt-6 flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-mustard">
+								<span>View case study</span>
+								<span
+									class="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+									aria-hidden="true"
+								>
+									&rarr;
+								</span>
 							</div>
-						</a>
-					</Card3D>
+						</div>
+					</a>
 				))
 			}
 		</div>

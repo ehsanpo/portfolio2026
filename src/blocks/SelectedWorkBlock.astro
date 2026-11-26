@@ -1,6 +1,7 @@
 ---
 import { getPortfolioItems } from "@/utils/data";
 import { getProjectImage } from "@/utils/projectHelpers";
+import PixelRevealImage from "@/components/work/PixelRevealImage.astro";
 
 const portfolioItems = await getPortfolioItems();
 
@@ -62,11 +63,10 @@ const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 								>
 									<div class="relative aspect-[16/10] h-full w-full overflow-hidden">
 										{projectImg ? (
-											<img
+											<PixelRevealImage
 												src={projectImg.src}
 												alt={projectImg.alt || item.title}
-												loading="lazy"
-												class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+												seed={index}
 											/>
 										) : (
 											<div class="flex size-full items-center justify-center p-8 font-pixel text-2xl">
@@ -159,9 +159,11 @@ const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 							const year = item.port_date || "";
 							const badge = [item.client, year].filter(Boolean).join(" / ");
 							return (
-								<li class="border-r-[1.5px] border-b-[1.5px] border-foreground">
+								<li class="overflow-hidden border-r-[1.5px] border-b-[1.5px] border-foreground">
 									<a
 										href={`/portfolio/${item.permalink || item.slug}`}
+										data-shelf-unveil="up"
+										data-unveil-delay={(idx * 0.08).toFixed(2)}
 										class={`group flex h-full flex-col justify-between gap-3 p-5 transition-colors hover:bg-mustard hover:text-ink ${idx === 0 ? "block-mustard" : ""}`}
 									>
 										<div>
@@ -193,18 +195,29 @@ const shelfItems = [...remainingFeatured, ...additionalShelfItems];
 
 <script>
 	import { initSelectedWorkStack } from "@/components/work/stackCards";
+	import { initUnveilElements } from "@/components/motion/Unveil";
 
-	let cleanup: (() => void) | undefined;
+	let cleanupStack: (() => void) | undefined;
+	let cleanupUnveil: (() => void) | undefined;
+
+	function teardown() {
+		cleanupStack?.();
+		cleanupUnveil?.();
+		cleanupStack = undefined;
+		cleanupUnveil = undefined;
+	}
 
 	function mount() {
-		cleanup?.();
-		cleanup = initSelectedWorkStack();
+		teardown();
+		cleanupStack = initSelectedWorkStack();
+		cleanupUnveil = initUnveilElements("[data-shelf-unveil]", {
+			direction: "up",
+			duration: 0.65,
+			threshold: 0.15,
+		});
 	}
 
 	mount();
 	document.addEventListener("astro:page-load", mount);
-	document.addEventListener("astro:before-swap", () => {
-		cleanup?.();
-		cleanup = undefined;
-	});
+	document.addEventListener("astro:before-swap", teardown);
 </script>

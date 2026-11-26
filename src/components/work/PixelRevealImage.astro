@@ -1,0 +1,144 @@
+---
+interface Props {
+	src: string;
+	alt: string;
+	width?: number;
+	height?: number;
+	class?: string;
+	seed?: number;
+	tone?: string;
+	columns?: number;
+	rows?: number;
+}
+
+const {
+	src,
+	alt,
+	width,
+	height,
+	class: className = "",
+	seed = 0,
+	tone,
+	columns = 8,
+	rows = 6,
+} = Astro.props;
+
+const totalPixels = columns * rows;
+
+// Seeded LCG PRNG for deterministic SSR shuffle across renders
+function getShuffledOrder(count: number, initialSeed: number): number[] {
+	const arr = Array.from({ length: count }, (_, i) => i);
+	let s = (initialSeed >>> 0) || 1;
+	for (let i = arr.length - 1; i > 0; i--) {
+		s = (1664525 * s + 1013904223) >>> 0;
+		const j = s % (i + 1);
+		const temp = arr[i]!;
+		arr[i] = arr[j]!;
+		arr[j] = temp;
+	}
+	return arr;
+}
+
+const pixelOrders = getShuffledOrder(totalPixels, seed + 19);
+---
+
+<div
+	class:list={["pixel-reveal-frame relative h-full w-full overflow-hidden", className]}
+	data-pixel-reveal
+	style={tone ? `--pixel-tone: ${tone};` : undefined}
+>
+	<img
+		src={src}
+		alt={alt}
+		width={width}
+		height={height}
+		loading="lazy"
+		decoding="async"
+		draggable="false"
+		class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+	/>
+	<span
+		class="pixel-reveal-grid pointer-events-none absolute inset-0"
+		style={`grid-template-columns: repeat(${columns}, minmax(0, 1fr)); grid-template-rows: repeat(${rows}, minmax(0, 1fr));`}
+		aria-hidden="true"
+	>
+		{pixelOrders.map((order) => (
+			<i style={`--pixel-order: ${order};`} />
+		))}
+	</span>
+</div>
+
+<style>
+	.pixel-reveal-grid {
+		display: none;
+	}
+
+	:global(.pixel-motion-ready) .pixel-reveal-grid {
+		display: grid;
+	}
+
+	.pixel-reveal-grid > i {
+		background: var(--pixel-tone, var(--card, #f8f5ec));
+		will-change: opacity, transform;
+	}
+
+	:global(.dark) .pixel-reveal-grid > i {
+		background: var(--pixel-tone, var(--card, #201c15));
+	}
+
+	:global(.is-pixel-visible) .pixel-reveal-grid > i {
+		animation: workPixelClear 0.5s cubic-bezier(0.22, 0.8, 0.25, 1)
+			calc(var(--pixel-order) * 12ms) both;
+	}
+
+	@keyframes workPixelClear {
+		0% {
+			opacity: 1;
+			transform: scale(1);
+		}
+		100% {
+			opacity: 0;
+			transform: scale(0.85);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.pixel-reveal-grid {
+			display: none !important;
+		}
+	}
+</style>
+
+<script>
+	function setupPixelReveals() {
+		if (typeof window === "undefined") return;
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+		document.documentElement.classList.add("pixel-motion-ready");
+
+		const elements = document.querySelectorAll<HTMLElement>(
+			"[data-pixel-reveal]:not([data-pixel-bound])",
+		);
+		if (!elements.length) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("is-pixel-visible");
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ rootMargin: "0px 0px -5% 0px", threshold: 0.1 },
+		);
+
+		elements.forEach((el) => {
+			el.setAttribute("data-pixel-bound", "true");
+			observer.observe(el);
+		});
+	}
+
+	setupPixelReveals();
+	document.addEventListener("astro:page-load", setupPixelReveals);
+</script>

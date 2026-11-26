@@ -22,51 +22,42 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 	return (
 		<article
 			className={cn(
-				"on-paper hard flex h-full flex-col justify-between bg-cream text-ink",
+				"group flex h-full flex-col justify-between bg-[#17140f] text-white transition-colors duration-200 hover:bg-[#211c15] dark:bg-[#1e1a13] dark:hover:bg-[#282219]",
 				featured && "md:col-span-1",
 				className
 			)}
 		>
 			<div>
-				<div className="flex items-center gap-3 border-b-[1.5px] border-ink px-2.5 py-1.5">
-					<span className="size-3 shrink-0 border-[1.5px] border-ink" aria-hidden="true" />
-					<span className="stripes h-[13px] flex-1" aria-hidden="true" />
-					<span className="font-pixel text-sm leading-none">
-						{featured ? "Featured note" : "Field note"}
-					</span>
-					<span className="stripes h-[13px] flex-1" aria-hidden="true" />
-				</div>
-
 				{post.cover?.src ? (
 					<a
 						href={`/blog/${post.slug}`}
 						className={cn(
-							"block overflow-hidden border-b-[1.5px] border-ink bg-paper",
-							featured ? "h-60" : "h-48"
+							"block overflow-hidden bg-[#110e0a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard",
+							featured ? "aspect-[16/10] sm:h-64 sm:aspect-auto" : "aspect-[16/10] sm:h-52 sm:aspect-auto"
 						)}
 					>
 						<img
 							src={post.cover.src}
 							alt={sanitize(post.title)}
 							loading="lazy"
-							className="h-full w-full object-cover"
+							className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
 						/>
 					</a>
 				) : (
 					<a
 						href={`/blog/${post.slug}`}
 						className={cn(
-							"flex items-center justify-center border-b-[1.5px] border-ink bg-mustard p-6 text-ink",
-							featured ? "h-60" : "h-48"
+							"flex items-center justify-center bg-[#221d16] p-6 text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard",
+							featured ? "h-64" : "h-52"
 						)}
 					>
-						<span className="font-pixel text-2xl">DISPATCH</span>
+						<span className="font-pixel text-2xl tracking-wider">DISPATCH</span>
 					</a>
 				)}
 
-				<div className="p-5">
+				<div className="p-6">
 					<div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-						<time dateTime={post.date} className="label-mono opacity-75">
+						<time dateTime={post.date} className="label-mono text-white/70">
 							{formatDate(post.date)}
 						</time>
 
@@ -75,7 +66,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 								{post.category.slice(0, 2).map((cat) => (
 									<span
 										key={cat}
-										className="label-mono border-[1.5px] border-ink bg-paper px-2 py-0.5 text-[10px]"
+										className="label-mono bg-white/10 px-2.5 py-0.5 text-[10px] text-white/90"
 									>
 										{cat}
 									</span>
@@ -86,26 +77,38 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, featured = false, clas
 
 					<h3
 						className={cn(
-							"font-bold tracking-[-0.03em] text-ink",
-							featured ? "text-2xl leading-tight" : "text-xl leading-snug"
+							"font-bold tracking-[-0.03em] text-white transition-colors group-hover:text-mustard",
+							featured ? "text-xl md:text-2xl leading-tight" : "text-xl leading-snug"
 						)}
 					>
-						<a href={`/blog/${post.slug}`} className="hover:underline">
+						<a
+							href={`/blog/${post.slug}`}
+							className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard"
+						>
 							{sanitize(post.title)}
 						</a>
 					</h3>
 
 					{post.description && (
-						<p className="mt-3 line-clamp-3 text-sm leading-relaxed opacity-85">
+						<p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/80">
 							{sanitize(post.description)}
 						</p>
 					)}
 				</div>
 			</div>
 
-			<div className="border-t-[1.5px] border-ink p-4">
-				<a href={`/blog/${post.slug}`} className="key bg-cream text-ink">
-					Read article
+			<div className="flex items-center justify-between px-6 pb-6 pt-2">
+				<a
+					href={`/blog/${post.slug}`}
+					className="inline-flex min-h-[44px] items-center gap-2 font-mono text-xs font-semibold uppercase tracking-widest text-mustard transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard"
+				>
+					<span>Read article</span>
+					<span
+						className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+						aria-hidden="true"
+					>
+						&rarr;
+					</span>
 				</a>
 			</div>
 		</article>

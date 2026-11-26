@@ -32,10 +32,10 @@ export const RankTimelineGrid = ({
 							key={cat}
 							type="button"
 							aria-pressed={isActive}
-							className={`min-h-[44px] border-[1.5px] border-ink px-3.5 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink cursor-pointer ${
+							className={`min-h-[44px] px-3.5 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mustard cursor-pointer ${
 								isActive
-									? "bg-ink text-cream shadow-[3px_3px_0_var(--mustard)]"
-									: "bg-cream text-ink hover:bg-mustard"
+									? "bg-mustard text-ink"
+									: "bg-[#17140f] text-white/85 hover:bg-[#252017] hover:text-white dark:bg-[#1d1912] dark:hover:bg-[#2a241b]"
 							}`}
 							onClick={() => onSelectCategory(cat)}
 						>
@@ -49,7 +49,7 @@ export const RankTimelineGrid = ({
 			{/* Timeline Grid Container with Max Height and Sticky Ruler */}
 			<div
 				ref={gridScrollRef}
-				className="ranktimeline-wrap on-paper hard relative overflow-auto border-[1.5px] border-ink bg-paper text-ink"
+				className="ranktimeline-wrap relative overflow-auto bg-[#17140f] text-white dark:bg-[#14110d]"
 				style={{
 					maxHeight: "calc(var(--row-height) * 15 + var(--year-height))",
 				}}
@@ -62,12 +62,12 @@ export const RankTimelineGrid = ({
 					}}
 				>
 					{/* Top Year Header Ruler - Sticky when scrolling vertically */}
-					<div className="flex h-10 border-b-[1.5px] border-ink sticky top-0 z-30 select-none bg-cream text-ink">
+					<div className="flex h-10 sticky top-0 z-30 select-none bg-[#211c15] text-white">
 						{years.map((year, index) => (
 							<div
 								key={year}
-								className={`flex-shrink-0 flex items-center font-mono text-xs font-bold tracking-wider text-ink pl-2 ${
-									index > 0 ? "border-l border-ink/25" : ""
+								className={`flex-shrink-0 flex items-center font-mono text-xs font-bold tracking-wider text-white/90 pl-2 ${
+									index > 0 ? "border-l border-white/10" : ""
 								}`}
 								style={{ width: "calc(var(--col-width) * 12)" }}
 							>
@@ -81,7 +81,7 @@ export const RankTimelineGrid = ({
 						{years.map((year, index) => (
 							<div
 								key={year}
-								className="absolute top-0 bottom-0 border-l border-dashed border-ink/20"
+								className="absolute top-0 bottom-0 border-l border-dashed border-white/10"
 								style={{ left: `calc(var(--col-width) * ${index * 12})` }}
 							/>
 						))}
@@ -111,7 +111,7 @@ export const RankTimelineGrid = ({
 									<div
 										data-tooltip-id="timeline-tooltip"
 										data-tooltip-content={`${item.name} • Active: ${item.duration} (${calculateDurationYears(item.duration)}) • ${item.category}`}
-										className={`absolute inset-x-[1px] inset-y-[3px] border-[1.5px] border-ink flex items-center px-2.5 font-mono text-xs font-semibold cursor-pointer transition-transform duration-100 hover:-translate-y-px motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${colorClass}`}
+										className={`absolute inset-x-[1px] inset-y-[3px] flex items-center px-2.5 font-mono text-xs font-semibold cursor-pointer transition-transform duration-100 hover:-translate-y-px motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${colorClass}`}
 										data-id={item.id}
 									>
 										<span className="sticky left-2 flex items-center gap-2 whitespace-nowrap truncate max-w-full">
